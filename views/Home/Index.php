@@ -28,7 +28,7 @@
                             <li><a href="#">Dependencia</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Registrar Usuario</a></li>
+                    <li><a href="?controller=RegistrarUsuario">Registrar Usuario</a></li>
                     <li><a href="#">Desplazamiento</a></li>
                     <li><a href="#">Reportes</a></li>
                     <li><a href="#">Repuesto</a></li>

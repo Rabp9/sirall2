@@ -1,7 +1,7 @@
 <?php
     class HomeController {
         public static function HomeAction() {
-            echo 'asdas';
+            return '/views/Home/Index.php';
         }
     }
 ?>

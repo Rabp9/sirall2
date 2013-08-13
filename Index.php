@@ -9,13 +9,14 @@
     $controllerPredefinido = "Home";    
 
     //Si no se indica una accion, esta accion es la que se usará
-    $accionPredefinida = $controllerPredefinido . 'Action';
     
     if(isset($_GET['controller']))
           $controller = $_GET['controller'];
     else
           $controller = $controllerPredefinido;
-
+    
+    $accionPredefinida = $controller . 'Action';
+    
     if(isset($_GET['accion']))
           $accion = $_GET['accion'] . 'Action';
     else
@@ -38,7 +39,7 @@
     
     //Llamamos la accion o detenemos todo si no existe
     if(is_callable(array($controller, $accion))) {
-        call_user_func(array($controller, $accion));
+        require_once call_user_func(array($controller, $accion));
     }
     else
         die('La accion no existe - 404 not found');
