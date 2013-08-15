@@ -9,6 +9,30 @@
                 isRequired($('#txtNombres'));
                 isRequired($('#txtApellidoPaterno'));
                 isRequired($('#txtApellidoMaterno'));
+                
+                var jqxhr = $.ajax({
+                    url: 'Index.php',
+                    type: 'GET',
+                    data: {
+                        controller: 'RegistrarUsuario',
+                        accion: 'getXMLDependencias'
+                    },
+                    success: function(data) {
+                        alert(data);
+                        $(data).find('Dependencia').each(function() {
+                            alert($(this).find('descripcion').text());
+                        });
+                    }
+                })
+                .done(function() { alert("success"); })
+                .fail(function() { alert("error"); })
+                .always(function() { alert("complete"); });
+
+                // perform other work here ...
+
+                // Set another completion function for the request above
+                jqxhr.always(function() { alert("second complete"); });
+
             });
         </script>
         <title>Titulo</title>
@@ -69,6 +93,13 @@
                                             <option>Selecciona una Dependencia</option>
                                         </optgroup>
                                         <optgroup>
+                                            <?php 
+                                                if(isset($dependencias)) { 
+                                                    foreach ($dependencias as $dependencia) {
+                                                        echo "<option value='" . $dependencia->getIdDependencia() . "'>" . $dependencia->getDescripcion() . "</option>";
+                                                    }
+                                                }
+                                            ?>
                                         </optgroup>
                                     </select>
                                 </td>

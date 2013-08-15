@@ -39,7 +39,7 @@
     
     //Llamamos la accion o detenemos todo si no existe
     if(is_callable(array($controller, $accion))) {
-        require_once call_user_func(array($controller, $accion));
+        return call_user_func(array($controller, $accion));
     }
     else
         die('La accion no existe - 404 not found');

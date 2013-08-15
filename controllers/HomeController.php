@@ -1,7 +1,7 @@
 <?php
     class HomeController {
         public static function HomeAction() {
-            return '/views/Home/Index.php';
+            require_once '/views/Home/Index.php';
         }
     }
 ?>
