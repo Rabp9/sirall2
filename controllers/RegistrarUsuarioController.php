@@ -3,12 +3,13 @@
     
     class RegistrarUsuarioController {
         public static function RegistrarUsuarioAction() {
-            $dependencias = DependenciaDAO::getAllDependencia();
+            $dependencias = DependenciaDAO::getDependenciaByRoot();
             require_once '/views/RegistrarUsuario/Index.php';
         }
         
         public static function getXMLDependenciasAction() {
-            $dependencias = DependenciaDAO::getAllDependencia();
+            $idDependencia = 1;
+            $dependencias = DependenciaDAO::getDependenciaByIdDependencia($idDependencia);
             $rs = "<?xml version=\"1.0\"?>\n<Dependencias>\n";
             foreach ($dependencias as $dependencia) {
                 $rs .= "\t<Dependencia>\n";

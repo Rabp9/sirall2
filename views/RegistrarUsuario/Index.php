@@ -10,7 +10,24 @@
                 isRequired($('#txtApellidoPaterno'));
                 isRequired($('#txtApellidoMaterno'));
                 
-                var jqxhr = $.ajax({
+                $('#cboDependencia').change(function() {
+                    alert('asdas');
+                    var jqxhr = $.ajax({
+                        url: 'Index.php',
+                        type: 'GET',
+                        data: {
+                            controller: 'RegistrarUsuario',
+                            accion: 'getXMLDependencias'
+                        },
+                        success: function(data) {
+                            alert(data);
+                            $(data).find('Dependencia').each(function() {
+                                alert($(this).find('descripcion').text());
+                            });
+                        }
+                    })
+                });
+                /*var jqxhr = $.ajax({
                     url: 'Index.php',
                     type: 'GET',
                     data: {
@@ -32,7 +49,7 @@
 
                 // Set another completion function for the request above
                 jqxhr.always(function() { alert("second complete"); });
-
+*/
             });
         </script>
         <title>Titulo</title>
