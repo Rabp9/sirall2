@@ -9,15 +9,16 @@
                 isRequired($('#txtNombres'));
                 isRequired($('#txtApellidoPaterno'));
                 isRequired($('#txtApellidoMaterno'));
-                
-                $('#cboDependencia').change(function() {
-                    alert('asdas');
+                setValue($('#txtIdUsuario'), <?php echo $nextID; ?>);
+                isReadOnly($('#txtIdUsuario'));
+                /* $('#cboDependencia').change(function() {
                     var jqxhr = $.ajax({
                         url: 'Index.php',
                         type: 'GET',
                         data: {
                             controller: 'RegistrarUsuario',
-                            accion: 'getXMLDependencias'
+                            accion: 'getXMLDependencias',
+                            idDependencia: $('#cboDependencia').val()
                         },
                         success: function(data) {
                             alert(data);
@@ -27,6 +28,7 @@
                         }
                     })
                 });
+        */
                 /*var jqxhr = $.ajax({
                     url: 'Index.php',
                     type: 'GET',

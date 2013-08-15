@@ -16,7 +16,10 @@
                 }
                 $dependencias[] = $dependencia; 
             }
-            return $dependencias;
+            if(isset($dependencias))
+                return $dependencias;
+            else
+                return false;
         }
         
         public static function getDependenciaByIdDependencia($idDependencia) {
@@ -33,7 +36,10 @@
                 }
                 $dependencias[] = $dependencia;
             }
-            return $dependencias;
+            if(isset($dependencias))
+                return $dependencias;
+            else
+                return false;
         }
         
         public static function getDependenciaByDescripcion($descripcion) {
@@ -50,7 +56,10 @@
                 }
                 $dependencias[] = $dependencia;
             }
-            return $dependencias;
+            if(isset($dependencias))
+                return $dependencias;
+            else
+                return false;
         }
                 
         public static function getDependenciaBySuperIdDependencia($superIdDependencia) {
@@ -67,7 +76,10 @@
                 }
                 $dependencias[] = $dependencia;
             }
-            return $dependencias;
+            if(isset($dependencias))
+                return $dependencias;
+            else
+                return false;
         }
                 
         public static function getDependenciaByRoot() {
@@ -80,6 +92,10 @@
                 if($rs['superIdDependencia'] != NULL) {
                     $d = self::getDependenciaByIdDependencia($rs['superIdDependencia']);
                     $dependencia->setSuperDependencia($d[0]);
+                }
+                if(self::getDependenciaBySuperIdDependencia($dependencia->getIdDependencia())) {
+                    foreach(self::getDependenciaBySuperIdDependencia($dependencia->getIdDependencia()) as $d)
+                        $dependencia->addDependencia($d);
                 }
                 $dependencias[] = $dependencia;
             }
