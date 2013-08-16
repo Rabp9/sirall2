@@ -25,5 +25,10 @@
                 echo $rs;
             }
         }
+        
+        public static function CrearUsuarioAction() {
+            
+            require_once '/views/RegistrarUsuario/Respuesta.php';
+        }
     }
 ?>

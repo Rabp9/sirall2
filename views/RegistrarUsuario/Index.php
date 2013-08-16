@@ -2,8 +2,15 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="resources/js/template.js"></script>
         <script type="text/javascript" src="resources/js/funciones.js"></script>
+       
+        <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
+            
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtNombres'));
@@ -57,7 +64,7 @@
         <title>Titulo</title>
     </head>
     <body>
-        <section>
+        <aside>
             <header>
                 <a id="aInicio" href="/SIRALL2/">
                     <figure>
@@ -87,7 +94,7 @@
                     <li><a href="#">Cerrar Sesión</a></li>
                 </ul>
             </nav>
-        </section>
+        </aside>
         <section>
             <article>
                 <header>

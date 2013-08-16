@@ -1,0 +1,70 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;	
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+aside {
+    width: 18%;
+    height: 98%;
+    background-color: #AAD6EA;
+    float: left;
+    padding: 1%;
+}
+
+section {
+    width: 78%;
+    padding: 1%;
+    height: 98%;
+    background-color: #1B86B7;
+    float: left;
+}
+
+aside header {
+    width: 100%;
+    height: 35%;
+    text-align: center;
+    padding: 1%;
+}
+
+/*aside ul {
+    width: 100%;
+    z-index: 1;
+}*/
+
+#tabla {
+    width: 100%;
+}
+
+.crearLink {
+    color: #333 !important;
+    text-decoration: underline !important;
+}
+
+label.error {
+    background-color:#FCC; 
+    border:solid 1px #C33; 
+    color:#C33;
+    border-radius:7px; 
+    -moz-border-radius:7px; 
+    -webkit-border-radius:7px;
+    padding: 5px;
+    margin: 5px;   
+    -moz-box-shadow:    2px #ccc;
+    -webkit-box-shadow: 2px #ccc;
+    box-shadow:         2px #ccc;
+}
+
+textarea.error, input.error {
+    border:solid 2px #C33; 
+}
+
+label.error img {
+    width: 16px;
+    height: 16px;
+}
