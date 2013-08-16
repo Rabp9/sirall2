@@ -103,7 +103,7 @@
                         <h4>Realiza el registro de un Usuario</h4>
                     </hgroup>
                 </header>
-                <form id="frmRegistrarUsuario" method="POST" action="#">
+                <form id="frmRegistrarUsuario" method="POST" action="?controller=RegistrarUsuario&accion=CrearUsuario">
                     <fieldset>
                         <legend>Información Personal</legend>
                         <table>

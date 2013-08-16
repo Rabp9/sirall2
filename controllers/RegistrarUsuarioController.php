@@ -27,8 +27,16 @@
         }
         
         public static function CrearUsuarioAction() {
-            
-            require_once '/views/RegistrarUsuario/Respuesta.php';
+            if(isset($_POST)) {
+                $usuario = new Usuario();
+                $usuario->setNombres($_POST['nombres']);
+                $usuario->setApellidoPaterno($_POST['apellidoPaterno']);
+                $usuario->setApellidoMaterno($_POST['apellidoMaterno']);
+                $usuario->setEmail($_POST['email']);
+                $usuario->setRpm($_POST['rpm']);
+                $usuario->setAnexo($_POST['anexo']);
+            }
+            require_once 'views/RegistrarUsuario/Respuesta.php';
         }
     }
 ?>

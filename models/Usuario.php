@@ -44,7 +44,7 @@
         }
         
         public function setAnexo($anexo) {
-            $this->nombres = $anexo;
+            $this->anexo = $anexo;
         }
         
         //Gets
