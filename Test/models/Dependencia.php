@@ -2,8 +2,8 @@
     class Dependencia {
         private $idDependencia;
         private $descripcion;
+        private $superDependencia;
         private $dependencias;
-        private $superIdDependencia;
         
         public function __construct() {
             $this->idDependencia = 0;
@@ -21,9 +21,13 @@
         public function setDescripcion($descripcion) {
             $this->descripcion = $descripcion;
         }
+        
+        public function setSuperDependencia(Dependencia $dependencia) {
+            $this->superDependencia = $dependencia;
+        }
 
-        public function setSuperIdDependencia($superIdDependencia) {
-            $this->superIdDependencia = $superIdDependencia;
+        public function setDependencias($dependencias) {
+            $this->dependencias = $dependencias;
         }
 
         //Gets
@@ -35,15 +39,18 @@
             return $this->descripcion;
         }
         
-        public function getSuperIdDependencia() {
-            return $this->superIdDependencia;
+        public function getSuperDependencia() {
+            return $this->superDependencia;
+        }
+        
+        public function getDependencias() {
+            return $this->dependencias;
         }
         // </editor-fold>
   
         //Funciones extras
-     
-        public function toArray(){
-            return get_object_vars($this);
-        }      
+        public function addDependencia(Dependencia $dependencia) {
+            return $this->dependencias[] = $dependencia;
+        }
     }
 ?>

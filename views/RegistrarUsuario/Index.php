@@ -10,7 +10,7 @@
        
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
-            
+        
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtNombres'));

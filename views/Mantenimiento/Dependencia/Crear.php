@@ -14,51 +14,14 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtNombres'));
-                isRequired($('#txtApellidoPaterno'));
+                isRequired($('#txtDescripcion'));
                 isRequired($('#txtApellidoMaterno'));
-                setValue($('#txtIdUsuario'), <?php echo $nextID; ?>);
-                isReadOnly($('#txtIdUsuario'));
-                /* $('#cboDependencia').change(function() {
-                    var jqxhr = $.ajax({
-                        url: 'Index.php',
-                        type: 'GET',
-                        data: {
-                            controller: 'RegistrarUsuario',
-                            accion: 'getXMLDependencias',
-                            idDependencia: $('#cboDependencia').val()
-                        },
-                        success: function(data) {
-                            alert(data);
-                            $(data).find('Dependencia').each(function() {
-                                alert($(this).find('descripcion').text());
-                            });
-                        }
-                    })
+                setValue($('#txtIdDependencia'), <?php echo $nextID; ?>);
+                isReadOnly($('#txtIdDependencia'));
+                
+                $('#cboDependencia').change(function() {
+                    alert('cambio y ajax con opcion seleccionada');
                 });
-        */
-                /*var jqxhr = $.ajax({
-                    url: 'Index.php',
-                    type: 'GET',
-                    data: {
-                        controller: 'RegistrarUsuario',
-                        accion: 'getXMLDependencias'
-                    },
-                    success: function(data) {
-                        alert(data);
-                        $(data).find('Dependencia').each(function() {
-                            alert($(this).find('descripcion').text());
-                        });
-                    }
-                })
-                .done(function() { alert("success"); })
-                .fail(function() { alert("error"); })
-                .always(function() { alert("complete"); });
-
-                // perform other work here ...
-
-                // Set another completion function for the request above
-                jqxhr.always(function() { alert("second complete"); });
-*/
             });
         </script>
         <title>Titulo</title>
@@ -101,18 +64,14 @@
                                 <td><label for="cboDependenciaSuperior">Dependencia Superior</label></td>
                                 <td>
                                     <select id="cboDependencia" name="superIdDependencia">
-                                        <optgroup>
-                                            <option>Selecciona una Dependencia</option>
-                                        </optgroup>
-                                        <optgroup>
-                                            <?php 
-                                                if(isset($dependencias)) { 
-                                                    foreach ($dependencias as $dependencia) {
-                                                        echo "<option value='" . $dependencia->getIdDependencia() . "'>" . $dependencia->getDescripcion() . "</option>";
-                                                    }
+                                        <option disabled selected>Selecciona una Dependencia</option>
+                                        <?php 
+                                            if(isset($dependencias)) { 
+                                                foreach ($dependencias as $dependencia) {
+                                                    echo "<option value='" . $dependencia->getIdDependencia() . "'>" . $dependencia->getDescripcion() . "</option>";
                                                 }
-                                            ?>
-                                        </optgroup>
+                                            }
+                                        ?>
                                     </select>
                                 </td>  
                             </tr>
