@@ -81,41 +81,51 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Registrar Usuario</h2>
-                        <h4>Realiza el registro de un Usuario</h4>
+                        <h2>Crear Dependencia</h2>
+                        <h4>Crea una Dependencia</h4>
                     </hgroup>
                 </header>
+                <form id="frmCrearDependencia" method="POST" action="?controller=RegistrarUsuario&action=CrearUsuario">
                     <fieldset>
-                        <legend>Información Personal</legend>
+                        <legend>Crear Dependencia</legend>
                         <table>
                             <tr>
-                                <td>Código Usuario:</td>
-                                <td><?php echo 1; ?></td>
+                                <td><label for="txtIdDependencia"><abbr title="Código identificador">ID.</abbr> Dependencia</label></td>
+                                <td><input id="txtIdDependencia" type="text" name="dependencia"></td>
                             </tr>
                             <tr>
-                                <td>Dependencia:</td>
-                                <td><?php echo 4; ?></td>
+                                <td><label for="txtDescripcion">Descripcion</label></td>
+                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>
-                                <td>Usuario:</td>
-                                <td><?php echo $usuario->getApellidoPaterno() . ' ' . $usuario->getApellidoMaterno() . ', ' . $usuario->getNombres();?></td>  
+                                <td><label for="cboDependenciaSuperior">Dependencia Superior</label></td>
+                                <td>
+                                    <select id="cboDependencia" name="superIdDependencia">
+                                        <optgroup>
+                                            <option>Selecciona una Dependencia</option>
+                                        </optgroup>
+                                        <optgroup>
+                                            <?php 
+                                                if(isset($dependencias)) { 
+                                                    foreach ($dependencias as $dependencia) {
+                                                        echo "<option value='" . $dependencia->getIdDependencia() . "'>" . $dependencia->getDescripcion() . "</option>";
+                                                    }
+                                                }
+                                            ?>
+                                        </optgroup>
+                                    </select>
+                                </td>  
                             </tr>
                             <tr>
-                                <td>e-mail:</td>
-                                <td><?php echo $usuario->getEmail(); ?></td>  
-                            </tr>
-                            <tr>
-                                <td>RPM:</td>
-                                <td><?php echo $usuario->getRpm(); ?></td>  
-                            </tr>
-                            <tr>
-                                <td>Anexo:</td>
-                                <td><?php echo $usuario->getAnexo(); ?></td>  
+                                <td></td>
+                                <td>
+                                    <button id="btnEnviar" type="submit">Enviar</button>
+                                    <button id="btnBorrar" type="reset">Borrar</button>
+                                </td>
                             </tr>
                         </table>
-                        Con el siguiente link podrá crear el nombre de usuario y contraseña de este usuario:
-                        <a href="#">link</a>
-                    </fieldset>       
+                    </fieldset>               
+                </form>
             </article>
         </section>
     </body>

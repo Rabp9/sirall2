@@ -15,16 +15,16 @@
     else
           $controller = $controllerPredefinido;
     
-    $accionPredefinida = $controller . 'Action';
+    $actionPredefinida = $controller . 'Action';
     
-    if(isset($_GET['accion']))
-          $accion = $_GET['accion'] . 'Action';
+    if(isset($_GET['action']))
+          $action = $_GET['action'] . 'Action';
     else
-          $accion = $accionPredefinida;
+          $action = $actionPredefinida;
 
     //un poco de limpieza
     $controller = preg_replace('/[^a-zA-Z0-9]/', '', $controller);
-    $accion = preg_replace('/[^a-zA-Z0-9]/', '', $accion);
+    $action = preg_replace('/[^a-zA-Z0-9]/', '', $action);
 
     //Ya tenemos el controlador y la accion
 
@@ -38,8 +38,8 @@
           die('El controlador no existe - 404 not found');
     
     //Llamamos la accion o detenemos todo si no existe
-    if(is_callable(array($controller, $accion))) {
-        return call_user_func(array($controller, $accion));
+    if(is_callable(array($controller, $action))) {
+        return call_user_func(array($controller, $action));
     }
     else
         die('La accion no existe - 404 not found');

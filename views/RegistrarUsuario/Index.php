@@ -74,25 +74,7 @@
                 </a>
             </header>
             <nav>
-                <ul id="ulMenu">
-                    <li>
-                        <a href="#">Mantenimiento</a>
-                        <ul>
-                            <li><a href="#">Equipo</a></li>
-                            <li><a href="#">Repuesto</a></li>
-                            <li><a href="#">Usuario</a></li>
-                            <li><a href="#">Marca</a></li>
-                            <li><a href="#">Modelo</a></li>
-                            <li><a href="#">Tipo de Equipo</a></li>
-                            <li><a href="#">Dependencia</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Registrar Usuario</a></li>
-                    <li><a href="#">Desplazamiento</a></li>
-                    <li><a href="#">Reportes</a></li>
-                    <li><a href="#">Repuesto</a></li>
-                    <li><a href="#">Cerrar Sesión</a></li>
-                </ul>
+                <?php include_once 'views/Home/nav.php';?>
             </nav>
         </aside>
         <section>
@@ -103,7 +85,7 @@
                         <h4>Realiza el registro de un Usuario</h4>
                     </hgroup>
                 </header>
-                <form id="frmRegistrarUsuario" method="POST" action="?controller=RegistrarUsuario&accion=CrearUsuario">
+                <form id="frmRegistrarUsuario" method="POST" action="?controller=RegistrarUsuario&action=CrearUsuario">
                     <fieldset>
                         <legend>Información Personal</legend>
                         <table>
@@ -162,7 +144,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </fieldset>                    
+                    </fieldset>               
                 </form>
             </article>
         </section>
