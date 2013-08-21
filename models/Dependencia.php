@@ -2,7 +2,6 @@
     class Dependencia {
         private $idDependencia;
         private $descripcion;
-        private $dependencias;
         private $superIdDependencia;
         
         public function __construct() {
@@ -44,6 +43,15 @@
      
         public function toArray(){
             return get_object_vars($this);
-        }      
+        }
+        
+        public function toXML() {
+            $xml = "<Dependencia>\n";
+            $xml .= "\t<idDependencia>" . $this->getIdDependencia() . "</idDependencia>\n";
+            $xml .= "\t<descripcion>" . $this->getDescripcion() . "</descripcion>\n";
+            $xml .= "\t<superIdDependencia>" . $this->getSuperIdDependencia() . "</superIdDependencia>\n";
+            $xml = $xml . "</Dependencia>";
+            return $xml;
+        }
     }
 ?>

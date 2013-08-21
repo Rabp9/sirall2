@@ -19,9 +19,54 @@
                 setValue($('#txtIdDependencia'), <?php echo $nextID; ?>);
                 isReadOnly($('#txtIdDependencia'));
                 
-                $('#cboDependencia').change(function() {
-                    alert('cambio y ajax con opcion seleccionada');
-                });
+                var cboId = 1;
+                var changeSelect = function(event) {
+                    var id = $(this).val();
+                    $.ajax({
+                        url: 'Index.php',
+                        type: 'GET',
+                        data: {
+                            controller: 'Dependencia',
+                            action: 'SubDependencias',
+                            superIdDependencia: id
+                        },
+                        success: function(data) {
+                            //limpiar                   
+                            var $target = $(event.target);
+                            var nivel = $target.attr('id').charAt($target.attr('id').length-1);
+                            if(nivel !== 'a')
+                                cboId = parseInt(nivel) + 1;
+                            $('#cbo').find('select').each(function() {
+                               // if($(this).attr('id') != $('#cboDependencia').attr('id')) {
+                                    //si nivel de this es mayor a nivel
+                                    var thisNivel = $(this).attr('id').charAt($(this).attr('id').length-1);
+                                    if(thisNivel > nivel)
+                                        $(this).remove();
+                                //}
+                            });
+                            $('#cbo').find('br').each(function(index) {
+                                if(index >= nivel)
+                                    $(this).remove();
+                            });
+                            if($(data).find('dependencia').length !== 0 ) {
+                                //limpiar
+                                
+                                
+                                var $cbo = "<select id='cbo" + cboId + "'></select>";
+                                $('#cbo').append('<br/>' + $cbo);
+                                $('#cbo' + cboId).append("<option disabled selected>Selecciona una Dependencia</option>");
+                                $(data).find('Dependencia').each(function() {
+                                    var option = new Option($(this).find('descripcion').text(), $(this).find('idDependencia').text());
+                                    $('#cbo' + cboId).append(option);
+                                });
+                                $('#cbo' + cboId).change(changeSelect);
+                                cboId += 1;
+                           }
+                        }
+                    })
+                };
+                
+                $('select').change(changeSelect);
             });
         </script>
         <title>Titulo</title>
@@ -62,8 +107,8 @@
                             </tr>
                             <tr>
                                 <td><label for="cboDependenciaSuperior">Dependencia Superior</label></td>
-                                <td>
-                                    <select id="cboDependencia" name="superIdDependencia">
+                                <td id="cbo">
+                                    <select id="cbo0" name="superIdDependencia">
                                         <option disabled selected>Selecciona una Dependencia</option>
                                         <?php 
                                             if(isset($dependencias)) { 
