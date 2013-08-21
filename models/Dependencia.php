@@ -7,7 +7,6 @@
         public function __construct() {
             $this->idDependencia = 0;
             $this->descripcion = "";
-            $this->dependencias = array();
         }
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">

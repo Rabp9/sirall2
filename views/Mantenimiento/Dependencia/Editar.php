@@ -83,7 +83,7 @@
                 });
             });
         </script>
-        <title>SIRALL2 - Crear Dependencia</title>
+        <title>SIRALL2 - Editar Dependencia</title>
     </head>
     <body>
         <aside>
@@ -103,8 +103,8 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Crear Dependencia</h2>
-                        <h4>Crea una Dependencia</h4>
+                        <h2>Editar Dependencia</h2>
+                        <h4>Edita la Dependencia</h4>
                     </hgroup>
                 </header>
                 <form id="frmCrearDependencia" method="POST" action="?controller=Dependencia&action=CrearPOST">

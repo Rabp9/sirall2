@@ -47,5 +47,22 @@
             $rs = $result->fetch();
             return $rs['nextID'];
         }
+        
+        public static function crear(Dependencia $dependencia) {
+            if($dependencia->getSuperIdDependencia() != 0) {
+                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(descripcion, superIdDependencia) values(:descripcion, :superIdDependencia)");
+                $result->bindParam(':superIdDependencia', $dependencia->getSuperIdDependencia());
+            }
+            else
+                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(descripcion) values(:descripcion)");
+            $result->bindParam(':descripcion', $dependencia->getDescripcion());
+            return $result->execute();
+        }
+        
+        public static function getVwDependencia() {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Dependencia");
+            $result->execute();
+            return $result;
+        }
     }
 ?>
