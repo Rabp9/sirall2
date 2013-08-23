@@ -17,12 +17,7 @@
     <body>
         <aside>
             <header>
-                <a id="aInicio" href="/SIRALL2/">
-                    <figure>
-                        <img id="imgLogo" src="">
-                        <h1>CABECERA</h1>
-                    </figure>
-                </a>
+                <?php include_once 'views/Home/header.php';?>
             </header>
             <nav>
                 <?php include_once 'views/Home/nav.php';?>
@@ -78,7 +73,13 @@
                                     </div>
                                     <?php } else { echo "<i>No pertenece a ninguna Dependencia</i>"; } ?>
                                 </td>
-                            </tr
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Editar</a> |
+                                    <a href="?controller=Dependencia&action=Eliminar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Eliminar</a>
+                                </td>
+                            </tr>
                             <tr>
                                 <td colspan="2"><a href="?controller=Dependencia">Regresar</a></td>
                             </tr>

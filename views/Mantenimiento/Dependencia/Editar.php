@@ -88,12 +88,7 @@
     <body>
         <aside>
             <header>
-                <a id="aInicio" href="/SIRALL2/">
-                    <figure>
-                        <img id="imgLogo" src="">
-                        <h1>CABECERA</h1>
-                    </figure>
-                </a>
+                <?php include_once 'views/Home/header.php';?>
             </header>
             <nav>
                 <?php include_once 'views/Home/nav.php';?>

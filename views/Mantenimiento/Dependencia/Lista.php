@@ -10,7 +10,32 @@
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('.tblLista').dataTable( {
+                var botones = function() {
+                    $('.select')
+                        .button({
+                            icons: {
+                                secondary: "ui-icon-triangle-1-s"
+                            }
+                        })                  
+                        .click(function() {
+                            var menu = $( this ).next().show().position({
+                                my: "left top",
+                                at: "left bottom",
+                                of: this
+                            });
+                            $('*').not($(this)).click(function() {
+                                menu.hide();
+                            });
+                            return false;
+                        })
+                        .next()
+                            .hide()
+                            .menu();
+                };
+                botones();
+                $('.tblLista')
+                .bind('page',   function () { botones(); })
+                .dataTable( {
                     "sPaginationType": "full_numbers",
                     "sScrollY": "600px",
                     "bJQueryUI": true,
@@ -30,8 +55,8 @@
                         "sSearch": "Buscar"
                     }
                 });
+               
             });
-            
         </script>
         
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
@@ -43,12 +68,7 @@
     <body>
         <aside>
             <header>
-                <a id="aInicio" href="/SIRALL2/">
-                    <figure>
-                        <img id="imgLogo" src="">
-                        <h1>CABECERA</h1>
-                    </figure>
-                </a>
+                <?php include_once 'views/Home/header.php';?>
             </header>
             <nav>
                 <?php include_once 'views/Home/nav.php';?>
@@ -81,9 +101,12 @@
                             <td><?php echo $dependencia['descripcion']; ?></td>
                             <td><?php echo $dependencia['superDependencia']; ?></td>
                             <td>
-                                <a href="?controller=Dependencia&action=Detalle&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/detalle.png"></a> |
-                                <a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/editar.png"></a> |
-                                <a href="Views/Marca/?controller=Marca&accion=Eliminar&idMarca=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/eliminar.png"></a>
+                                <button class="select">Acciones</button>
+                                <ul>
+                                    <li><a href="?controller=Dependencia&action=Detalle&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
+                                    <li><a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
+                                    <li><a href="Views/Marca/?controller=Marca&accion=Eliminar&idMarca=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                </ul>
                             </td>
                         </tr>
                         <?php
