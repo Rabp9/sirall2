@@ -109,7 +109,7 @@
                 </header>
                 <form id="frmCrearDependencia" method="POST" action="?controller=Dependencia&action=CrearPOST">
                     <fieldset>
-                        <legend>Crear Dependencia</legend>
+                        <legend>Editar Dependencia</legend>
                         <table>
                             <tr>
                                 <td><label for="txtIdDependencia"><abbr title="Código identificador">ID.</abbr> Dependencia</label></td>

@@ -30,6 +30,18 @@
             }
         }
         
+        public static function DetalleAction() {
+            if(isset($_GET['idDependencia'])) {
+                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($_GET['idDependencia']);
+                $superDependencia = DependenciaDAO::getDependenciaByIdDependencia($dependencia->getSuperIdDependencia());
+                require_once '/views/Mantenimiento/Dependencia/Detalle.php';
+            }
+        }
+        
+        public static function EditarAction() {
+            require_once '/views/Mantenimiento/Dependencia/Editar.php';
+        }
+
         private static function dependenciasToXML($dependencias) {
             $xml = '<?xml version="1.0" encoding="UTF-8"?>';
             $xml .= "\n<Dependencias>\n";

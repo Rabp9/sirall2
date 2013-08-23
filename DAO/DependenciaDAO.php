@@ -20,6 +20,18 @@
                 return false;
         }
         
+        public static function getDependenciaByIdDependencia($idDependencia) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Dependencia where idDependencia = :idDependencia");
+            $result->bindParam(':idDependencia', $idDependencia);
+            $result->execute();
+            $rs = $result->fetch();
+            $dependencia = new Dependencia();
+            $dependencia->setIdDependencia($rs['idDependencia']);
+            $dependencia->setDescripcion($rs['descripcion']);
+            $dependencia->setSuperIdDependencia($rs['superIdDependencia']);
+            return $dependencia;
+        }
+        
         public static function getDependenciaBySuperIdDependencia($superIdDependencia) {
             if($superIdDependencia != null){
                 $result = BaseDatos::getDbh()->prepare("SELECT * FROM Dependencia where superIdDependencia = :superIdDependencia");

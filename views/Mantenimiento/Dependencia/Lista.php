@@ -81,8 +81,8 @@
                             <td><?php echo $dependencia['descripcion']; ?></td>
                             <td><?php echo $dependencia['superDependencia']; ?></td>
                             <td>
-                                <a href="Views/Marca/?controller=Marca&accion=Detalle&idMarca=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/detalle.png"></a> |
-                                <a href="Views/Marca/?controller=Marca&accion=Editar&idMarca=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/editar.png"></a> |
+                                <a href="?controller=Dependencia&action=Detalle&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/detalle.png"></a> |
+                                <a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/editar.png"></a> |
                                 <a href="Views/Marca/?controller=Marca&accion=Eliminar&idMarca=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/eliminar.png"></a>
                             </td>
                         </tr>
