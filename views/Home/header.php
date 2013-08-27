@@ -1,6 +1,6 @@
-<a id="aInicio" href="/SIRALL2/">
+<a href="/SIRALL2/">
     <figure>
-        <img id="imgLogo" src="resources/images/fondo.png">
-        <h1>SIRALL2</h1>
+        <img src="resources/images/fondo.png">
+        <figcaption><h1>SIRALL2</h1></figcaption>
     </figure>
 </a>

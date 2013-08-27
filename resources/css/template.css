@@ -97,3 +97,26 @@ ul.ui-menu {
 .tblLista ul {
     position: absolute;
 }
+
+header a:link {
+    text-decoration: none;
+}
+
+header figure {
+    height: 100%;
+    margin: 0px;
+}
+
+header figure img {
+    height: 60%;
+}
+
+header figure figcaption {
+    color: #fff;
+    font-style: italic;
+    text-shadow: #3292C0 0.1em 0.1em 0.1em;
+}
+
+h1 {
+    margin: 0px;
+}

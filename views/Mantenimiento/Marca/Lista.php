@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      
+       
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/jquery.dataTables_themeroller.css"/>
@@ -19,7 +19,7 @@
                             icons: {
                                 secondary: "ui-icon-triangle-1-s"
                             }
-                        })
+                        })                  
                         .click(function() {
                             var menu = $( this ).next().show().position({
                                 my: "left top",

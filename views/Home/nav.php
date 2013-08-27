@@ -5,7 +5,7 @@
             <li><a href="#">Equipo</a></li>
             <li><a href="#">Repuesto</a></li>
             <li><a href="#">Usuario</a></li>
-            <li><a href="#">Marca</a></li>
+            <li><a href="?controller=Marca">Marca</a></li>
             <li><a href="#">Modelo</a></li>
             <li><a href="?controller=TipoEquipo">Tipo de Equipo</a></li>
             <li><a href="?controller=Dependencia">Dependencia</a></li>

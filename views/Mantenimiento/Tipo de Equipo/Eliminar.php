@@ -3,16 +3,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
+        <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
+       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.js"></script>
-        <script type="text/javascript" src="resources/js/funciones.js"></script>
         <script type="text/javascript" src="resources/js/jquery.codaPopupBubbles.js"></script>
         <script>
             $(document).ready(function() {
                 $( '#confirmar' ).dialog({
                     autoOpen: false,
-                    modal: true,
                     modal: true,
                     show: {
                         effect: "blind",
@@ -34,15 +35,12 @@
                 
                 $('#enviar').button().focus();
                 
-                $('#frmEliminarTipoEquipo').click(function() {
+                $('#enviar').click(function() {
                     $('#confirmar').dialog('open');
                 });
             });
         </script>
         
-        <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
-        <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
-            
         <title>SIRALL2 - Eliminar Tipo de Equipo</title>
     </head>
     <body>
