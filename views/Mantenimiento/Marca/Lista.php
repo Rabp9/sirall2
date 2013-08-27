@@ -81,7 +81,7 @@
             });
         </script>
         
-        <title>SIRALL2 - Lista Tipo de Equipo</title>
+        <title>SIRALL2 - Lista Marca</title>
     </head>
     <body>
         <aside>
@@ -96,7 +96,7 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Lista Tipo de Equipo</h2>
+                        <h2>Lista Marca</h2>
                         <h4>Lista de Tipo de Equipos registrados</h4>
                     </hgroup>
                 </header>       
