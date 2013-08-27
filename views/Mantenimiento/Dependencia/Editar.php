@@ -16,7 +16,7 @@
                 isRequired($('#txtNombres'));
                 isRequired($('#txtDescripcion'));
                 isRequired($('#txtApellidoMaterno'));
-                setValue($('#txtIdDependencia'), <?php echo $nextID; ?>);
+                setValue($('#txtIdDependencia'), <?php echo $dependencia->getIdDependencia(); ?>);
                 isReadOnly($('#txtIdDependencia'));
                 
                 var cboId = 1;
@@ -112,7 +112,7 @@
                             </tr>
                             <tr>
                                 <td><label for="txtDescripcion">Descripcion</label></td>
-                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
+                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción" value="<?php echo $dependencia->getDescripcion(); ?>"></td>  
                             </tr>
                             <tr>
                                 <td><label for="cboDependenciaSuperior">Dependencia Superior</label></td>

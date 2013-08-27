@@ -39,7 +39,12 @@
         }
         
         public static function EditarAction() {
-            require_once '/views/Mantenimiento/Dependencia/Editar.php';
+            if(isset($_GET['idDependencia'])) {
+                $dependencias = DependenciaDAO::getDependenciaBySuperIdDependencia(null);
+                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($_GET['idDependencia']);    
+                $superDependencia = DependenciaDAO::getDependenciaByIdDependencia($dependencia->getSuperIdDependencia());
+                require_once '/views/Mantenimiento/Dependencia/Editar.php';
+            }
         }
 
         private static function dependenciasToXML($dependencias) {

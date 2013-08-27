@@ -18,7 +18,8 @@
                 isRequired($('#txtApellidoMaterno'));
                 setValue($('#txtIdDependencia'), <?php echo $nextID; ?>);
                 isReadOnly($('#txtIdDependencia'));
-                
+                $('#btnEnviar').button();
+                $('#btnBorrar').button();
                 var cboId = 1;
                 var changeSelect = function(event) {
                     var id = $(this).val();

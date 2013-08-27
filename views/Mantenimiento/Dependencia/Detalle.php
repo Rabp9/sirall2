@@ -31,61 +31,59 @@
                         <h4>Detalla la información de la Dependencia</h4>
                     </hgroup>
                 </header>
-                <form id="frmCrearDependencia" method="POST" action="?controller=Dependencia&action=CrearPOST">
-                    <fieldset>
-                        <legend>Detalle Dependencia</legend>
-                        <table>
-                            <tr>
-                                <td><strong><abbr title="Código identificador">ID.</abbr> Dependencia:</strong></td>
-                                <td><?php echo $dependencia->getIdDependencia(); ?></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Descripción:</strong></td>
-                                <td><?php echo $dependencia->getDescripcion(); ?></td>  
-                            </tr>
-                            <tr>
-                                <td><strong>Dependencia Superior:</strong></td>
-                                <td>
-                                    <?php if($superDependencia->getDescripcion() != NULL) { ?>
-                                    <div class="bubbleInfo">
-                                        <span class="trigger"><?php echo $superDependencia->getDescripcion(); ?></span>
-                                        <table class="popup">
-                                            <tr>
-                                                <td><strong><abbr title="Código identificador">ID.</abbr> Dependencia:</strong></td>
-                                                <td><?php echo $superDependencia->getIdDependencia(); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Descripción:</strong></td>
-                                                <td><?php echo $superDependencia->getDescripcion(); ?></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Sub Dependencias:</strong></td>
-                                                <td>
-                                                    <?php
-                                                        if($superDependencia->getSuperIdDependencia() != NULL) {
-                                                            echo $superDependencia->getSuperIdDependencia();
-                                                        }
-                                                        else { echo "<i>No pertenece a ninguna Dependencia</i>"; }
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <?php } else { echo "<i>No pertenece a ninguna Dependencia</i>"; } ?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Editar</a> |
-                                    <a href="?controller=Dependencia&action=Eliminar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Eliminar</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><a href="?controller=Dependencia">Regresar</a></td>
-                            </tr>
-                        </table>
-                    </fieldset>               
-                </form>
+                <fieldset>
+                    <legend>Detalle Dependencia</legend>
+                    <table>
+                        <tr>
+                            <td><strong><abbr title="Código identificador">ID.</abbr> Dependencia:</strong></td>
+                            <td><?php echo $dependencia->getIdDependencia(); ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Descripción:</strong></td>
+                            <td><?php echo $dependencia->getDescripcion(); ?></td>  
+                        </tr>
+                        <tr>
+                            <td><strong>Dependencia Superior:</strong></td>
+                            <td>
+                                <?php if($superDependencia->getDescripcion() != NULL) { ?>
+                                <div class="bubbleInfo">
+                                    <span class="trigger"><?php echo $superDependencia->getDescripcion(); ?></span>
+                                    <table class="popup">
+                                        <tr>
+                                            <td><strong><abbr title="Código identificador">ID.</abbr> Dependencia:</strong></td>
+                                            <td><?php echo $superDependencia->getIdDependencia(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Descripción:</strong></td>
+                                            <td><?php echo $superDependencia->getDescripcion(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Sub Dependencias:</strong></td>
+                                            <td>
+                                                <?php
+                                                    if($superDependencia->getSuperIdDependencia() != NULL) {
+                                                        echo $superDependencia->getSuperIdDependencia();
+                                                    }
+                                                    else { echo "<i>No pertenece a ninguna Dependencia</i>"; }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <?php } else { echo "<i>No pertenece a ninguna Dependencia</i>"; } ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Editar</a> |
+                                <a href="?controller=Dependencia&action=Eliminar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Eliminar</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><a href="?controller=Dependencia">Regresar</a></td>
+                        </tr>
+                    </table>
+                </fieldset>
             </article>
         </section>
     </body>

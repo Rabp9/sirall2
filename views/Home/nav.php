@@ -7,7 +7,7 @@
             <li><a href="#">Usuario</a></li>
             <li><a href="#">Marca</a></li>
             <li><a href="#">Modelo</a></li>
-            <li><a href="#">Tipo de Equipo</a></li>
+            <li><a href="?controller=TipoEquipo">Tipo de Equipo</a></li>
             <li><a href="?controller=Dependencia">Dependencia</a></li>
         </ul>
     </li>
