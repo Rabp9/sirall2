@@ -108,6 +108,7 @@
                         <tr>
                             <th><abbr title="Código identificador">ID.</abbr> Marca</th>
                             <th>Descripción</th>
+                            <th>Indicación</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -117,8 +118,9 @@
                                 foreach ($marcas as $marca) {
                         ?>
                         <tr>
-                            <td><?php echo $tipoEquipo->getIdTipoEquipo(); ?></td>
-                            <td><?php echo $tipoEquipo->getDescripcion(); ?></td>
+                            <td><?php echo $marca->getIdMarca(); ?></td>
+                            <td><?php echo $marca->getDescripcion(); ?></td>
+                            <td><?php echo $marca->getIndicacion(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
