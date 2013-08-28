@@ -124,9 +124,9 @@
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=TipoEquipo&action=Detalle&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=TipoEquipo&action=Editar&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=TipoEquipo&action=Eliminar&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Marca&action=Detalle&idMarca=<?php echo $Marca->getIdMarca(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
+                                    <li><a href="?controller=Marca&action=Editar&idMarca=<?php echo $Marca->getIdMarca(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
+                                    <li><a href="?controller=Marca&action=Eliminar&idMarca=<?php echo $Marca->getIdMarca(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>
