@@ -8,64 +8,66 @@
         }
 
         public static function CrearAction() {
-            $nextID = TipoEquipoDAO::getNextID();
-            require_once '/views/Mantenimiento/Tipo de Equipo/Crear.php';
+            $nextID = MarcaDAO::getNextID();
+            require_once '/views/Mantenimiento/Marca/Crear.php';
         }
                 
         public static function CrearPOSTAction() {
             if(isset($_POST)) {
-                $tipoEquipo = new TipoEquipo();
-                $tipoEquipo->setIdTipoEquipo($_POST['idTipoEquipo']);
-                $tipoEquipo->setDescripcion($_POST['descripcion']);
-                TipoEquipoDAO::crear($tipoEquipo);
+                $marca = new Marca();
+                $marca->setIdMarca($_POST['idMarca']);
+                $marca->setDescripcion($_POST['descripcion']);
+                $marca->setIndicacion($_POST['indicacion']);
+                MarcaDAO::crear($marca);
             }
-            $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
-            $mensaje = "Tipo de Equipo guardado Correctamente";
-            require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
+            $marcas = MarcaDAO::getAllMarca();
+            $mensaje = "Marca guardada correctamente";
+            require_once '/views/Mantenimiento/Marca/Lista.php';
         }
         
         public static function DetalleAction() {
-            if(isset($_GET['idTipoEquipo'])) {
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($_GET['idTipoEquipo']);
-                require_once '/views/Mantenimiento/Tipo de Equipo/Detalle.php';
+            if(isset($_GET['idMarca'])) {
+                $marca = MarcaDAO::getMarcaByIdMarca($_GET['idMarca']);
+                require_once '/views/Mantenimiento/Marca/Detalle.php';
             }
         }
         
         public static function EditarAction() {
-            if(isset($_GET['idTipoEquipo'])) {
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($_GET['idTipoEquipo']);
-                require_once '/views/Mantenimiento/Tipo de Equipo/Editar.php';
+            if(isset($_GET['idMarca'])) {
+                $marca = MarcaDAO::getMarcaByIdMarca($_GET['idMarca']);
+                require_once '/views/Mantenimiento/Marca/Editar.php';
             }
         }
         
         public static function EditarPOSTAction() {
             if(isset($_POST)) {
-                $tipoEquipo = new TipoEquipo();
-                $tipoEquipo->setIdTipoEquipo($_POST['idTipoEquipo']);
-                $tipoEquipo->setDescripcion($_POST['descripcion']);
-                TipoEquipoDAO::editar($tipoEquipo);
+                $marca = new Marca();
+                $marca->setIdMarca($_POST['idMarca']);
+                $marca->setDescripcion($_POST['descripcion']);
+                $marca->setIndicacion($_POST['indicacion']);
+                MarcaDAO::editar($marca);
             }
-            $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
-            $mensaje = "Tipo de Equipo modificado Correctamente";
-            require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
+            $marcas = MarcaDAO::getAllMarca();
+            $mensaje = "Marca modificada correctamente";
+            require_once '/views/Mantenimiento/Marca/Lista.php';
         }
         
         public static function EliminarAction() {
-            if(isset($_GET['idTipoEquipo'])) {
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($_GET['idTipoEquipo']);
-                require_once '/views/Mantenimiento/Tipo de Equipo/Eliminar.php';
+            if(isset($_GET['idMarca'])) {
+                $marca = MarcaDAO::getMarcaByIdMarca($_GET['idMarca']);
+                require_once '/views/Mantenimiento/Marca/Eliminar.php';
             }
         }
         
         public static function EliminarPOSTAction() {
             if(isset($_POST)) {
-                $tipoEquipo = new TipoEquipo();
-                $tipoEquipo->setIdTipoEquipo($_POST['idTipoEquipo']);
-                TipoEquipoDAO::eliminar($tipoEquipo);
+                $marca = new Marca();
+                $marca->setIdMarca($_POST['idMarca']);
+                MarcaDAO::eliminar($marca);
             }
-            $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
-            $mensaje = "Tipo de Equipo eliminado Correctamente";
-            require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
+            $marcas = MarcaDAO::getAllMarca();
+            $mensaje = "Marca eliminada correctamente";
+            require_once '/views/Mantenimiento/Marca/Lista.php';
         }
     }
 ?>

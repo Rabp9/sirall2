@@ -1,18 +1,16 @@
 <?php
-    require_once './Marca.php';
-    require_once './TipoEquipo.php';
-    
+
     class Modelo {
         private $idModelo;
-        private $marca;
-        private $tipoEquipo;
+        private $idMarca;
+        private $idTipoEquipo;
         private $descripcion;
         private $indicacion;
         
         public function __construct() {
             $this->idModelo = 0;
-            $this->marca = new Marca();
-            $this->tipoEquipo = new TipoEquipo();
+            $this->idMarca = 0;
+            $this->idTipoEquipo = 0;
             $this->descripcion = "";
             $this->indicacion = "";
         }
@@ -22,12 +20,12 @@
             $this->idModelo = $idModelo;
         }
         
-        public function setMarca(Marca $marca) {
-            $this->marca = $marca;
+        public function setIdMarca($idMarca) {
+            $this->idMarca = $idMarca;
         }
         
-        public function setTipoEquipó(TipoEquipo $tipoEquipo) {
-            $this->tipoEquipo = $tipoEquipo;
+        public function setIdTipoEquipo($idTipoEquipo) {
+            $this->idTipoEquipo = $idTipoEquipo;
         }
         
         public function setDescripcion($descripcion) {
@@ -43,12 +41,12 @@
             return $this->idModelo;
         }
         
-        public function getMarca() {
-            return $this->marca;
+        public function getIdMarca() {
+            return $this->idMarca;
         }
         
-        public function getTipoEquipo() {
-            return $this->tipoEquipo;
+        public function getIdTipoEquipo() {
+            return $this->idTipoEquipo;
         }
         
         public function getDescripcion() {

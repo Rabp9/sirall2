@@ -11,50 +11,55 @@
                 $marca = new Marca();
                 $marca->setIdMarca($rs['idMarca']);
                 $marca->setDescripcion($rs['descripcion']);
+                $marca->setIndicacion($rs['indicacion']);
                 $marcas[] = $marca; 
             }
-            if(isset($tipoEquipos))
-                return $tipoEquipos;
+            if(isset($marcas))
+                return $marcas;
             else
                 return false;
         }
         
         public static function getNextID() {
-            $result = BaseDatos::getDbh()->prepare("call sp_GetNextIdTipoEquipo");
+            $result = BaseDatos::getDbh()->prepare("call sp_GetNextIdMarca");
             $result->execute();
             $rs = $result->fetch();
             return $rs['nextID'];
         }
         
         
-        public static function crear(TipoEquipo $tipoEquipo) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO TipoEquipo(descripcion) values(:descripcion)");
-            $result->bindParam(':descripcion', $tipoEquipo->getDescripcion());
+        public static function crear(Marca $marca) {
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Marca(descripcion, indicacion) values(:descripcion, :indicacion)");
+            $result->bindParam(':descripcion', $marca->getDescripcion());
+            $result->bindParam(':indicacion', $marca->getIndicacion());
             return $result->execute();
         }
         
-        public static function editar(TipoEquipo $tipoEquipo) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE TipoEquipo SET descripcion = :descripcion WHERE idTipoEquipo = :idTipoEquipo");
-            $result->bindParam(':descripcion', $tipoEquipo->getDescripcion());
-            $result->bindParam(':idTipoEquipo', $tipoEquipo->getIdTipoEquipo());
+        public static function editar(Marca $marca) {
+            $result = BaseDatos::getDbh()->prepare("UPDATE Marca SET descripcion = :descripcion, indicacion = :indicacion WHERE idMarca = :idMarca");
+            $result->bindParam(':descripcion', $marca->getDescripcion());
+            $result->bindParam(':indicacion', $marca->getIndicacion());
+            $result->bindParam(':idMarca', $marca->getIdMarca());
             return $result->execute();
         }
         
-        public static function eliminar(TipoEquipo $tipoEquipo) {
-            $result = BaseDatos::getDbh()->prepare("DELETE FROM TipoEquipo WHERE idTipoEquipo = :idTipoEquipo");
-            $result->bindParam(':idTipoEquipo', $tipoEquipo->getIdTipoEquipo());
+        public static function eliminar(Marca $marca) {
+            $result = BaseDatos::getDbh()->prepare("DELETE FROM Marca WHERE idMarca = :idMarca");
+            $result->bindParam(':idMarca', $marca->getIdMarca());
             return $result->execute();
         }
         
-        public static function getTipoEquipoByIdTipoEquipo($idTipoEquipo) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM TipoEquipo where idTipoEquipo = :idTipoEquipo");
-            $result->bindParam(':idTipoEquipo', $idTipoEquipo);
+        public static function getMarcaByIdMarca($idMarca) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Marca where idMarca = :idMarca");
+            $result->bindParam(':idMarca', $idMarca);
             $result->execute();
             $rs = $result->fetch();
-            $tipoEquipo = new TipoEquipo();
-            $tipoEquipo->setIdTipoEquipo($rs['idTipoEquipo']);
-            $tipoEquipo->setDescripcion($rs['descripcion']);
-            return $tipoEquipo;
+            $marca = new Marca();
+            $marca->setIdMarca($rs['idMarca']);
+            $marca->setIdMarca($rs['idMarca']);
+            $marca->setDescripcion($rs['descripcion']);
+            $marca->setIndicacion($rs['indicacion']);
+            return $marca;
         }
     }
 ?>

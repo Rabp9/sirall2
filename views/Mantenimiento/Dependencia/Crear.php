@@ -129,7 +129,7 @@
                                             }
                                         ?>
                                     </select>
-                                </td>  
+                                </td>
                             </tr>
                             <tr>
                                 <td></td>

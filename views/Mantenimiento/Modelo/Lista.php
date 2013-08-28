@@ -81,7 +81,7 @@
             });
         </script>
         
-        <title>SIRALL2 - Lista Marca</title>
+        <title>SIRALL2 - Lista Modelo</title>
     </head>
     <body>
         <aside>
@@ -96,8 +96,8 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Lista Marca</h2>
-                        <h4>Lista de Marcas registradas</h4>
+                        <h2>Lista Modelo</h2>
+                        <h4>Lista de Modelos registrados</h4>
                     </hgroup>
                 </header>       
                 <?php if(isset($mensaje)) { ?>
@@ -106,7 +106,9 @@
                 <table class="tblLista">
                     <thead>
                         <tr>
-                            <th><abbr title="Código identificador">ID.</abbr> Marca</th>
+                            <th><abbr title="Código identificador">ID.</abbr> Modelo</th>
+                            <th>Tipo de Equipo</th>
+                            <th>Marca</th>
                             <th>Descripción</th>
                             <th>Indicación</th>
                             <th></th>
@@ -114,19 +116,21 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(is_array($marcas)) {
-                                foreach ($marcas as $marca) {
+                            if(isset($modelos)) {
+                                while ($modelo = $modelos->fetch()) {
                         ?>
                         <tr>
-                            <td><?php echo $marca->getIdMarca(); ?></td>
-                            <td><?php echo $marca->getDescripcion(); ?></td>
-                            <td><?php echo $marca->getIndicacion(); ?></td>
+                            <td><?php echo $modelo['idModelo']; ?></td>
+                            <td><?php echo $modelo['Tipo de Equipo']; ?></td>
+                            <td><?php echo $modelo['Marca']; ?></td>
+                            <td><?php echo $modelo['descripcion']; ?></td>
+                            <td><?php echo $modelo['indicacion']; ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Marca&action=Detalle&idMarca=<?php echo $marca->getIdMarca(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Marca&action=Editar&idMarca=<?php echo $marca->getIdMarca(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=Marca&action=Eliminar&idMarca=<?php echo $marca->getIdMarca(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Modelo&action=Detalle&idModelo=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
+                                    <li><a href="?controller=Modelo&action=Editar&idModelo=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
+                                    <li><a href="Views/Marca/?controller=Marca&accion=Eliminar&idMarca=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -137,7 +141,7 @@
                     </tbody>
                     <tfoot>          
                         <tr>
-                            <td colspan="2"><a class="crearLink" href="?controller=Marca&action=Crear">Crear Marca</a></td>
+                            <td colspan="2"><a class="crearLink" href="?controller=Modelo&action=Crear">Crear Modelo</a></td>
                         </tr>
                     </tfoot>
                 </table>
