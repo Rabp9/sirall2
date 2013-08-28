@@ -97,7 +97,7 @@
                 <header>
                     <hgroup>
                         <h2>Lista Marca</h2>
-                        <h4>Lista de Tipo de Equipos registrados</h4>
+                        <h4>Lista de Marcas registradas</h4>
                     </hgroup>
                 </header>       
                 <?php if(isset($mensaje)) { ?>
@@ -106,15 +106,15 @@
                 <table class="tblLista">
                     <thead>
                         <tr>
-                            <th><abbr title="Código identificador">ID.</abbr> Equipo</th>
+                            <th><abbr title="Código identificador">ID.</abbr> Marca</th>
                             <th>Descripción</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            if(is_array($tipoEquipos)) {
-                                foreach ($tipoEquipos as $tipoEquipo) {
+                            if(is_array($marcas)) {
+                                foreach ($marcas as $marca) {
                         ?>
                         <tr>
                             <td><?php echo $tipoEquipo->getIdTipoEquipo(); ?></td>
