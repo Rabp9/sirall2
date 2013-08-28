@@ -137,7 +137,7 @@
                     </tbody>
                     <tfoot>          
                         <tr>
-                            <td colspan="2"><a class="crearLink" href="?controller=TipoEquipo&action=Crear">Crear Tipo de Equipo</a></td>
+                            <td colspan="2"><a class="crearLink" href="?controller=Marca&action=Crear">Crear Marca</a></td>
                         </tr>
                     </tfoot>
                 </table>
