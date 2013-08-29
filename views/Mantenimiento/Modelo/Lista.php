@@ -130,7 +130,7 @@
                                 <ul>
                                     <li><a href="?controller=Modelo&action=Detalle&idModelo=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
                                     <li><a href="?controller=Modelo&action=Editar&idModelo=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="Views/Marca/?controller=Marca&accion=Eliminar&idMarca=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Modelo&action=Eliminar&idModelo=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>
