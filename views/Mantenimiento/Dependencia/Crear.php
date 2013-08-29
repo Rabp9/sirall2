@@ -18,6 +18,7 @@
                 isRequired($('#txtApellidoMaterno'));
                 setValue($('#txtIdDependencia'), <?php echo $nextID; ?>);
                 isReadOnly($('#txtIdDependencia'));
+                $('#txtDescripcion').focus();
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 var cboId = 1;
@@ -122,7 +123,7 @@
                                     <select id="cbo0">
                                         <option disabled selected>Selecciona una Dependencia</option>
                                         <?php 
-                                            if(isset($dependencias)) { 
+                                            if($dependencias) { 
                                                 foreach ($dependencias as $dependencia) {
                                                     echo "<option value='" . $dependencia->getIdDependencia() . "'>" . $dependencia->getDescripcion() . "</option>";
                                                 }

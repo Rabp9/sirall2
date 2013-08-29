@@ -28,6 +28,9 @@
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
                 DependenciaDAO::crear($dependencia);
             }
+            $dependencias = DependenciaDAO::getVwDependencia();
+            $mensaje = "Modelo guardada correctamente";
+            require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -46,7 +49,15 @@
                 require_once '/views/Mantenimiento/Dependencia/Editar.php';
             }
         }
-
+        
+        public static function EliminarAction() {
+            if(isset($_GET['idDependencia'])) {
+                $dependencias = DependenciaDAO::getDependenciaBySuperIdDependencia(null);
+                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($_GET['idDependencia']);    
+                $superDependencia = DependenciaDAO::getDependenciaByIdDependencia($dependencia->getSuperIdDependencia());
+                require_once '/views/Mantenimiento/Dependencia/Editar.php';
+            }
+        }
         private static function dependenciasToXML($dependencias) {
             $xml = '<?xml version="1.0" encoding="UTF-8"?>';
             $xml .= "\n<Dependencias>\n";

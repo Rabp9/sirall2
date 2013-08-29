@@ -53,18 +53,22 @@
             if(isset($_POST)) {
                 $modelo = new Modelo();
                 $modelo->setIdModelo($_POST['idModelo']);
+                $modelo->setIdTipoEquipo($_POST['idTipoEquipo']);
+                $modelo->setIdMarca($_POST['idMarca']);
                 $modelo->setDescripcion($_POST['descripcion']);
                 $modelo->setIndicacion($_POST['indicacion']);
                 ModeloDAO::editar($modelo);
             }
-            $modelos = ModeloDAO::getAllModelo();
-            $mensaje = "Modelo modificada correctamente";
+            $modelos = ModeloDAO::getVwModelo();
+            $mensaje = "Modelo modificado correctamente";
             require_once '/views/Mantenimiento/Modelo/Lista.php';
         }
         
         public static function EliminarAction() {
             if(isset($_GET['idModelo'])) {
                 $modelo = ModeloDAO::getModeloByIdModelo($_GET['idModelo']);
+                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
+                $marca = MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca());
                 require_once '/views/Mantenimiento/Modelo/Eliminar.php';
             }
         }
@@ -75,7 +79,7 @@
                 $modelo->setIdModelo($_POST['idModelo']);
                 ModeloDAO::eliminar($modelo);
             }
-            $modelos = ModeloDAO::getAllModelo();
+            $modelos = ModeloDAO::getVwModelo();
             $mensaje = "Modelo eliminada correctamente";
             require_once '/views/Mantenimiento/Modelo/Lista.php';
         }

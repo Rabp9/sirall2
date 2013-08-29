@@ -105,7 +105,7 @@
                                 <ul>
                                     <li><a href="?controller=Dependencia&action=Detalle&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
                                     <li><a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="Views/Marca/?controller=Marca&accion=Eliminar&idMarca=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Dependencia&accion=Eliminar&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>

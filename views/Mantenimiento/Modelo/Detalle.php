@@ -39,11 +39,39 @@
                         </tr>
                         <tr>
                             <td><strong>Tipo de Equipo:</strong></td>
-                            <td><?php echo $tipoEquipo->getDescripcion(); ?></td>  
+                            <td>
+                                <div class="bubbleInfo">
+                                    <span class="trigger"><?php echo $tipoEquipo->getDescripcion(); ?></span>
+                                    <table class="popup">
+                                        <tr>
+                                            <td><strong><abbr title="Código identificador">ID.</abbr> Tipo de Equipo:</strong></td>
+                                            <td><?php echo $tipoEquipo->getIdTipoEquipo(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Descripción:</strong></td>
+                                            <td><?php echo $tipoEquipo->getDescripcion(); ?></td>  
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>  
                         </tr>
                         <tr>
                             <td><strong>Marca:</strong></td>
-                            <td><?php echo $marca->getDescripcion(); ?></td>  
+                            <td>
+                                <div class="bubbleInfo">
+                                    <span class="trigger"><?php echo $marca->getDescripcion(); ?></span>
+                                    <table class="popup">
+                                        <tr>
+                                            <td><strong><abbr title="Código identificador">ID.</abbr> Marca:</strong></td>
+                                            <td><?php echo $marca->getIdMarca(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Descripción:</strong></td>
+                                            <td><?php echo $marca->getDescripcion(); ?></td>  
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>  
                         </tr>
                         <tr>
                             <td><strong>Descripción:</strong></td>

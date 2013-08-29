@@ -52,11 +52,14 @@
                                 <td><label for="cboTipoEquipo">Tipo de Equipo</label></td>
                                 <td>
                                     <select id="cboTipoEquipo" name="idTipoEquipo">
-                                        <option disabled selected>Selecciona un Tipo de Equipo</option>
+                                        <option disabled>Selecciona un Tipo de Equipo</option>
                                         <?php 
                                             if($tipoEquipos) { 
                                                 foreach ($tipoEquipos as $tipoEquipo) {
-                                                    echo "<option value='" . $tipoEquipo->getIdTipoEquipo() . "'>" . $tipoEquipo->getDescripcion() . "</option>";
+                                                    if($tipoEquipo->getIdTipoEquipo() == $modelo->getIdTipoEquipo())
+                                                        echo "<option value='" . $tipoEquipo->getIdTipoEquipo() . "' selected>" . $tipoEquipo->getDescripcion() . "</option>";
+                                                    else
+                                                        echo "<option value='" . $tipoEquipo->getIdTipoEquipo() . "'>" . $tipoEquipo->getDescripcion() . "</option>";
                                                 }
                                             }
                                         ?>
@@ -67,11 +70,14 @@
                                 <td><label for="cboMarca">Marca</label></td>
                                 <td>
                                     <select id="cboMarca" name="idMarca" required="true">
-                                        <option disabled selected>Selecciona una Marca</option>
+                                        <option disabled>Selecciona una Marca</option>
                                         <?php 
                                             if($marcas) { 
                                                 foreach ($marcas as $marca) {
-                                                    echo "<option value='" . $marca->getIdMarca() . "'>" . $marca->getDescripcion() . "</option>";
+                                                    if($marca->getIdMarca() == $modelo->getIdMarca())
+                                                        echo "<option value='" . $marca->getIdMarca() . "' selected>" . $marca->getDescripcion() . "</option>";
+                                                    else
+                                                        echo "<option value='" . $marca->getIdMarca() . "'>" . $marca->getDescripcion() . "</option>";
                                                 }
                                             }
                                         ?>

@@ -61,37 +61,73 @@
                     </hgroup>
                 </header>
                 <form id="frmEliminarModelo" method="POST" action="?controller=Modelo&action=EliminarPOST">
-                     <fieldset>
-                        <legend>Eliminar Modelo</legend>
-                        <input id="idModelo" type="hidden" value="<?php echo $Modelo->getIdModelo(); ?>" name="idModelo"/>
-                        <table>
-                            <tr>
-                                <td><strong><abbr title="Código identificador">ID.</abbr> Modelo:</strong></td>
-                                <td><?php echo $Modelo->getIdModelo(); ?></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Descripción:</strong></td>
-                                <td><?php echo $Modelo->getDescripcion(); ?></td>  
-                            </tr>
-                            <tr>
-                                <td><strong>Indicación:</strong></td>
-                                <td><?php echo $Modelo->getIndicacion(); ?></td>  
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button id="enviar" type="button" value="" name="enviar">Eliminar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><a href="?controller=Modelo">Regresar</a></td>
-                            </tr>
-                        </table>
-                    </fieldset>
+                <fieldset>
+                    <legend>Detalle Modelo</legend>
+                    <input id="idModelo" type="hidden" value="<?php echo $modelo->getIdModelo(); ?>" name="idModelo"/>
+                    <table>
+                        <tr>
+                            <td><strong><abbr title="Código identificador">ID.</abbr> Modelo:</strong></td>
+                            <td><?php echo $modelo->getIdModelo(); ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tipo de Equipo:</strong></td>
+                            <td>
+                                <div class="bubbleInfo">
+                                    <span class="trigger"><?php echo $tipoEquipo->getDescripcion(); ?></span>
+                                    <table class="popup">
+                                        <tr>
+                                            <td><strong><abbr title="Código identificador">ID.</abbr> Tipo de Equipo:</strong></td>
+                                            <td><?php echo $tipoEquipo->getIdTipoEquipo(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Descripción:</strong></td>
+                                            <td><?php echo $tipoEquipo->getDescripcion(); ?></td>  
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td><strong>Marca:</strong></td>
+                            <td>
+                                <div class="bubbleInfo">
+                                    <span class="trigger"><?php echo $marca->getDescripcion(); ?></span>
+                                    <table class="popup">
+                                        <tr>
+                                            <td><strong><abbr title="Código identificador">ID.</abbr> Marca:</strong></td>
+                                            <td><?php echo $marca->getIdMarca(); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Descripción:</strong></td>
+                                            <td><?php echo $marca->getDescripcion(); ?></td>  
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>  
+                        </tr>
+                        <tr>
+                            <td><strong>Descripción:</strong></td>
+                            <td><?php echo $modelo->getDescripcion(); ?></td>  
+                        </tr>
+                        <tr>
+                            <td><strong>Indicación:</strong></td>
+                            <td><?php echo $modelo->getIndicacion(); ?></td>  
+                        </tr>
+                        <tr>
+                              <td></td>
+                              <td>
+                                  <button id="enviar" type="button" value="" name="enviar">Eliminar</button>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td colspan="2"><a href="?controller=Modelo">Regresar</a></td>
+                          </tr>
+                    </table>
+                </fieldset>
                 </form>
                 <!-- Ventana de diálogo confirmar -->
                 <div id="confirmar" title="Advertencia">
-                    <p>¿Está seguro de eliminar la Modelo?</p>
+                    <p>¿Está seguro de eliminar el Modelo?</p>
                 </div>
             </article>
         </section>
