@@ -25,7 +25,7 @@
                     },
                     buttons: {
                         "Sí": function() {
-                            $('#frmEliminarMarca').submit();
+                            $('#frmEliminarModelo').submit();
                         },
                         "No": function() {
                             $(this).dialog("close");
@@ -41,7 +41,7 @@
             });
         </script>
         
-        <title>SIRALL2 - Eliminar Marca</title>
+        <title>SIRALL2 - Eliminar Modelo</title>
     </head>
     <body>
         <aside>
@@ -56,26 +56,26 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Eliminar Marca</h2>
-                        <h4>¿Está seguro de eliminar la Marca?</h4>
+                        <h2>Eliminar Modelo</h2>
+                        <h4>¿Está seguro de eliminar el Modelo?</h4>
                     </hgroup>
                 </header>
-                <form id="frmEliminarMarca" method="POST" action="?controller=Marca&action=EliminarPOST">
+                <form id="frmEliminarModelo" method="POST" action="?controller=Modelo&action=EliminarPOST">
                      <fieldset>
-                        <legend>Eliminar Marca</legend>
-                        <input id="idMarca" type="hidden" value="<?php echo $marca->getIdMarca(); ?>" name="idMarca"/>
+                        <legend>Eliminar Modelo</legend>
+                        <input id="idModelo" type="hidden" value="<?php echo $Modelo->getIdModelo(); ?>" name="idModelo"/>
                         <table>
                             <tr>
-                                <td><strong><abbr title="Código identificador">ID.</abbr> Marca:</strong></td>
-                                <td><?php echo $marca->getIdMarca(); ?></td>
+                                <td><strong><abbr title="Código identificador">ID.</abbr> Modelo:</strong></td>
+                                <td><?php echo $Modelo->getIdModelo(); ?></td>
                             </tr>
                             <tr>
                                 <td><strong>Descripción:</strong></td>
-                                <td><?php echo $marca->getDescripcion(); ?></td>  
+                                <td><?php echo $Modelo->getDescripcion(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Indicación:</strong></td>
-                                <td><?php echo $marca->getIndicacion(); ?></td>  
+                                <td><?php echo $Modelo->getIndicacion(); ?></td>  
                             </tr>
                             <tr>
                                 <td></td>
@@ -84,14 +84,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=Marca">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Modelo">Regresar</a></td>
                             </tr>
                         </table>
                     </fieldset>
                 </form>
                 <!-- Ventana de diálogo confirmar -->
                 <div id="confirmar" title="Advertencia">
-                    <p>¿Está seguro de eliminar la Marca?</p>
+                    <p>¿Está seguro de eliminar la Modelo?</p>
                 </div>
             </article>
         </section>
