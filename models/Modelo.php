@@ -14,7 +14,9 @@
             $this->descripcion = "";
             $this->indicacion = "";
         }
-        
+       
+        // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
+   
         //Sets
         public function setIdModelo($idModelo) {
             $this->idModelo = $idModelo;
@@ -55,6 +57,23 @@
         
         public function getIndicacion() {
             return $this->indicacion;
+        }
+        
+        // </editor-fold>
+        
+        public function toArray(){
+            return get_object_vars($this);
+        }
+        
+        public function toXML() {
+            $xml = "<Modelo>\n";
+            $xml .= "\t<idModelo>" . $this->getIdModelo() . "</idModelo>\n";
+            $xml .= "\t<idMarca>" . $this->getIdMarca() . "</idMarca>\n";
+            $xml .= "\t<idTipoEquipo>" . $this->getIdTipoEquipo() . "</idTipoEquipo>\n";
+            $xml .= "\t<descripcion>" . $this->getDescripcion() . "</descripcion>\n";
+            $xml .= "\t<indicacion>" . $this->getIndicacion() . "</indicacion>\n";
+            $xml = $xml . "</Modelo>";
+            return $xml;
         }
     }
 ?>

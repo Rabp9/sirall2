@@ -10,6 +10,8 @@
             while ($rs = $result->fetch()) {
                 $modelo = new Modelo();
                 $modelo->setIdModelo($rs['idModelo']);
+                $modelo->setIdMarca($rs['idMarca']);
+                $modelo->setIdTipoEquipo($rs['idTipoEquipo']);
                 $modelo->setDescripcion($rs['descripcion']);
                 $modelo->setIndicacion($rs['indicacion']);
                 $modelos[] = $modelo; 
@@ -65,6 +67,25 @@
             $modelo->setDescripcion($rs['descripcion']);
             $modelo->setIndicacion($rs['indicacion']);
             return $modelo;
+        }
+        
+        public static function getModeloByIdMarca($idMarca) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo where idMarca = :idMarca");
+            $result->bindParam(':idMarca', $idMarca);
+            $result->execute();
+            while ($rs = $result->fetch()) {
+                $modelo = new Modelo();
+                $modelo->setIdModelo($rs['idModelo']);
+                $modelo->setIdMarca($rs['idMarca']);
+                $modelo->setIdTipoEquipo($rs['idTipoEquipo']);
+                $modelo->setDescripcion($rs['descripcion']);
+                $modelo->setIndicacion($rs['indicacion']);
+                $modelos[] = $modelo; 
+            }
+            if(isset($modelos))
+                return $modelos;
+            else
+                return false;
         }
         
         public static function getVwModelo() {

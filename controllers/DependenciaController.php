@@ -58,6 +58,7 @@
                 require_once '/views/Mantenimiento/Dependencia/Editar.php';
             }
         }
+        
         private static function dependenciasToXML($dependencias) {
             $xml = '<?xml version="1.0" encoding="UTF-8"?>';
             $xml .= "\n<Dependencias>\n";
