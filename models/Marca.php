@@ -19,8 +19,8 @@
             $this->descripcion = $descripcion;
         }
         
-        public function setIndicacion($Indicacion) {
-            $this->indicacion = $Indicacion;
+        public function setIndicacion($indicacion) {
+            $this->indicacion = $indicacion;
         }
         
         //Gets

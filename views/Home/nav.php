@@ -2,13 +2,14 @@
     <li>
         <a href="#">Mantenimiento</a>
         <ul>
+            <li><a href="?controller=Red">Red</a></li>
+            <li><a href="?controller=Dependencia">Dependencia</a></li>
             <li><a href="?controller=Equipo">Equipo</a></li>
             <li><a href="#">Repuesto</a></li>
             <li><a href="#">Usuario</a></li>
             <li><a href="?controller=Marca">Marca</a></li>
             <li><a href="?controller=Modelo">Modelo</a></li>
             <li><a href="?controller=TipoEquipo">Tipo de Equipo</a></li>
-            <li><a href="?controller=Dependencia">Dependencia</a></li>
         </ul>
     </li>
     <li><a href="?controller=NuevoLote">Nuevo Lote</a></li>

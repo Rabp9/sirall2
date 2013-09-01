@@ -56,7 +56,6 @@
             $rs = $result->fetch();
             $marca = new Marca();
             $marca->setIdMarca($rs['idMarca']);
-            $marca->setIdMarca($rs['idMarca']);
             $marca->setDescripcion($rs['descripcion']);
             $marca->setIndicacion($rs['indicacion']);
             return $marca;

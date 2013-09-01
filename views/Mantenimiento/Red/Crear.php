@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
+      
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
       
@@ -13,15 +13,15 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
-                setValue($('#txtIdMarca'), <?php echo $marca->getIdMarca(); ?>);
-                isReadOnly($('#txtIdMarca'));
+                setValue($('#txtIdRed'), <?php echo $nextID; ?>);
+                isReadOnly($('#txtIdRed'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
-                $('#txtDescripcion').select();
+                $('#txtDescripcion').focus();
             });
         </script>
         
-        <title>SIRALL2 - Editar Marca</title>
+        <title>SIRALL2 - Crear Red</title>
     </head>
     <body>
         <aside>
@@ -36,25 +36,25 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Editar Marca</h2>
-                        <h4>Edita la Marca</h4>
+                        <h2>Crear Red</h2>
+                        <h4>Crea una Red</h4>
                     </hgroup>
                 </header>
-                <form id="frmCrearMarca" method="POST" action="?controller=Marca&action=EditarPOST">
+                <form id="frmCrearRed" method="POST" action="?controller=Red&action=CrearPOST">
                     <fieldset>
-                        <legend>Editar Marca</legend>
+                        <legend>Crear Red</legend>
                         <table>
                             <tr>
-                                <td><label for="txtIdMarca"><abbr title="Código identificador">ID.</abbr> Marca</label></td>
-                                <td><input id="txtIdMarca" type="text" name="idMarca"></td>
+                                <td><label for="txtIdRed"><abbr title="Código identificador">ID.</abbr> Red</label></td>
+                                <td><input id="txtIdRed" type="text" name="idRed"></td>
                             </tr>
                             <tr>
-                                <td><label for="txtDescripcion">Descripción</label></td>
-                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción" value="<?php echo $marca->getDescripcion(); ?>"></td>  
+                                <td><label for="txtDescripcion">Descripcion</label></td>
+                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>
-                                <td><label for="txtIndicacion">Indicación</label></td>
-                                <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicacion" ><?php echo $marca->getIndicacion(); ?></textarea></td>  
+                                <td><label for="txtDirección">Dirección</label></td>
+                                <td><textarea id="txtdireccion" name="direccion" placeholder="Escribe una dirección"></textarea></td>  
                             </tr>
                             <tr>
                                 <td></td>
@@ -64,7 +64,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=Marca">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Red">Regresar</a></td>
                             </tr>
                         </table>
                     </fieldset>               
