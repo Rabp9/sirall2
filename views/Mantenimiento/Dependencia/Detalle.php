@@ -43,6 +43,10 @@
                             <td><?php echo $dependencia->getDescripcion(); ?></td>  
                         </tr>
                         <tr>
+                            <td><strong>Red:</strong></td>
+                            <td><?php echo $red->getDescripcion(); ?></td>  
+                        </tr>
+                        <tr>
                             <td><strong>Dependencia Superior:</strong></td>
                             <td>
                                 <?php if($superDependencia->getDescripcion() != NULL) { ?>

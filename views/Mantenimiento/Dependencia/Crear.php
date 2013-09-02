@@ -23,54 +23,68 @@
                 $('#btnBorrar').button();
                 var cboId = 1;
                 var changeSelect = function(event) {
-                    var id = $(this).val();
+                    var id = 0
+                    if($(this).attr('id') !== $('#cboRed').attr('id'))
+                        id = $(this).val();
                     $.ajax({
                         url: 'Index.php',
                         type: 'GET',
                         data: {
                             controller: 'Dependencia',
                             action: 'SubDependencias',
-                            superIdDependencia: id
+                            superIdDependencia: id,
+                            idRed: $('#cboRed').val()
                         },
                         success: function(data) {
                             //limpiar                   
                             var $target = $(event.target);
-                            var nivel = $target.attr('id').charAt($target.attr('id').length-1);
-                            if(nivel !== 'a')
-                                cboId = parseInt(nivel) + 1;
-                            $('#cbo').find('select').each(function() {
-                               // if($(this).attr('id') != $('#cboDependencia').attr('id')) {
-                                    //si nivel de this es mayor a nivel
-                                    var thisNivel = $(this).attr('id').charAt($(this).attr('id').length-1);
-                                    if(thisNivel > nivel)
-                                        $(this).remove();
-                                //}
-                            });
-                            $('#cbo').find('br').each(function(index) {
-                                if(index >= nivel)
-                                    $(this).remove();
-                            });
-                            $('#cbo').find('span').each(function(index) {
-                                if(index >= nivel)
-                                    $(this).remove();
-                            });
-                            if($(data).find('dependencia').length !== 0 ) {
-                                //limpiar
-                                
-                                
-                                var $cbo = "<select id='cbo" + cboId + "'></select>";
-                                var txt = '';
-                                for(i = 0; i < nivel; i++)
-                                    txt += '&nbsp;&nbsp;';
-                                $('#cbo').append('<br/>' + txt +'<span class="ui-icon ui-icon-arrowreturnthick-1-e" style="display:inline-block;"></span>' + $cbo);
-                                $('#cbo' + cboId).append("<option disabled selected>Selecciona una Dependencia</option>");
+                            if($target.attr('id') === $('#cboRed').attr('id')) {
+                                $('#cbo0').html('<option disabled selected>Selecciona una Dependencia</option>');
                                 $(data).find('Dependencia').each(function() {
-                                    var option = new Option($(this).find('descripcion').text(), $(this).find('idDependencia').text());
-                                    $('#cbo' + cboId).append(option);
+                                    if($(this).find('superIdDependencia').text() !== '') {
+                                        var option = new Option($(this).find('descripcion').text(), $(this).find('idDependencia').text());
+                                        $('#cbo0').append(option);
+                                    }
                                 });
-                                $('#cbo' + cboId).change(changeSelect);
-                                cboId += 1;
-                           }
+                            }
+                            else {
+                                var nivel = $target.attr('id').charAt($target.attr('id').length-1);
+                                if(nivel !== 'a')
+                                    cboId = parseInt(nivel) + 1;
+                                $('#cbo').find('select').each(function() {
+                                   // if($(this).attr('id') != $('#cboDependencia').attr('id')) {
+                                        //si nivel de this es mayor a nivel
+                                        var thisNivel = $(this).attr('id').charAt($(this).attr('id').length-1);
+                                        if(thisNivel > nivel)
+                                            $(this).remove();
+                                    //}
+                                });
+                                $('#cbo').find('br').each(function(index) {
+                                    if(index >= nivel)
+                                        $(this).remove();
+                                });
+                                $('#cbo').find('span').each(function(index) {
+                                    if(index >= nivel)
+                                        $(this).remove();
+                                });
+                                if($(data).find('dependencia').length !== 0 ) {
+                                    //limpiar
+
+
+                                    var $cbo = "<select id='cbo" + cboId + "'></select>";
+                                    var txt = '';
+                                    for(i = 0; i < nivel; i++)
+                                        txt += '&nbsp;&nbsp;';
+                                    $('#cbo').append('<br/>' + txt +'<span class="ui-icon ui-icon-arrowreturnthick-1-e" style="display:inline-block;"></span>' + $cbo);
+                                    $('#cbo' + cboId).append("<option disabled selected>Selecciona una Dependencia</option>");
+                                    $(data).find('Dependencia').each(function() {
+                                        var option = new Option($(this).find('descripcion').text(), $(this).find('idDependencia').text());
+                                        $('#cbo' + cboId).append(option);
+                                    });
+                                    $('#cbo' + cboId).change(changeSelect);
+                                    cboId += 1;
+                               }
+                            }
                         }
                     })
                 };
@@ -117,18 +131,26 @@
                                 <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>
+                                <td><label for="cboRed">Red</label></td>
+                                <td>
+                                    <select id="cboRed" name="idRed">
+                                        <option disabled selected>Selecciona una Red</option>
+                                        <?php 
+                                            if($redes) { 
+                                                foreach ($redes as $red) {
+                                                    echo "<option value='" . $red->getIdRed() . "'>" . $red->getDescripcion() . "</option>";
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><label for="cboDependenciaSuperior">Dependencia Superior</label></td>
                                 <td id="cbo">
                                     <input id="cboDependencia" type="hidden" name="superIdDependencia"/>
                                     <select id="cbo0">
                                         <option disabled selected>Selecciona una Dependencia</option>
-                                        <?php 
-                                            if($dependencias) { 
-                                                foreach ($dependencias as $dependencia) {
-                                                    echo "<option value='" . $dependencia->getIdDependencia() . "'>" . $dependencia->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
                                     </select>
                                 </td>
                             </tr>

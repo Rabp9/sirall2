@@ -1,11 +1,13 @@
 <?php
     class Dependencia {
         private $idDependencia;
+        private $idRed;
         private $descripcion;
         private $superIdDependencia;
         
         public function __construct() {
             $this->idDependencia = 0;
+            $this->idRed = 0;
             $this->descripcion = "";
         }
         
@@ -14,6 +16,10 @@
         //Sets
         public function setIdDependencia($idDependencia) {
             $this->idDependencia = $idDependencia;
+        }
+        
+        public function setIdRed($idRed) {
+            $this->idRed = $idRed;
         }
         
         public function setDescripcion($descripcion) {
@@ -27,6 +33,10 @@
         //Gets
         public function getIdDependencia() {
             return $this->idDependencia;
+        }
+        
+        public function getIdRed() {
+            return $this->idRed;
         }
         
         public function getDescripcion() {
@@ -47,6 +57,7 @@
         public function toXML() {
             $xml = "<Dependencia>\n";
             $xml .= "\t<idDependencia>" . $this->getIdDependencia() . "</idDependencia>\n";
+            $xml .= "\t<idRed>" . $this->getIdRed() . "</idRed>\n";
             $xml .= "\t<descripcion>" . $this->getDescripcion() . "</descripcion>\n";
             $xml .= "\t<superIdDependencia>" . $this->getSuperIdDependencia() . "</superIdDependencia>\n";
             $xml = $xml . "</Dependencia>";

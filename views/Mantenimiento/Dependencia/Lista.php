@@ -87,6 +87,7 @@
                         <tr>
                             <th><abbr title="Código identificador">ID.</abbr> Dependencia</th>
                             <th>Descripción</th>
+                            <th>Red</th>
                             <th>Dependencia Superior</th>
                             <th></th>
                         </tr>
@@ -99,6 +100,7 @@
                         <tr>
                             <td><?php echo $dependencia['idDependencia']; ?></td>
                             <td><?php echo $dependencia['descripcion']; ?></td>
+                            <td><?php echo $dependencia['red']; ?></td>
                             <td><?php echo $dependencia['superDependencia']; ?></td>
                             <td>
                                 <button class="select">Acciones</button>

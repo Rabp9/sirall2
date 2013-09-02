@@ -1,4 +1,5 @@
 <?php
+    require_once '/DAO/RedDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     
     class DependenciaController {
@@ -9,22 +10,17 @@
 
         public static function CrearAction() {
             $nextID = DependenciaDAO::getNextID();
+            $redes = RedDAO::getAllRed();
             $dependencias = DependenciaDAO::getDependenciaBySuperIdDependencia(null);
             require_once '/views/Mantenimiento/Dependencia/Crear.php';
         }
         
-        public static function SubDependenciasAction() {
-            if(isset($_GET['superIdDependencia'])) {
-                $dependencias = DependenciaDAO::getDependenciaBySuperIdDependencia($_GET['superIdDependencia']);
-                echo self::dependenciasToXML($dependencias);
-            }
-        }
-                
         public static function CrearPOSTAction() {
             if(isset($_POST)) {
                 $dependencia = new Dependencia();
                 $dependencia->setIdDependencia($_POST['idDependencia']);
                 $dependencia->setDescripcion($_POST['descripcion']);
+                $dependencia->setIdRed($_POST['idRed']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
                 DependenciaDAO::crear($dependencia);
             }
@@ -58,7 +54,7 @@
                 require_once '/views/Mantenimiento/Dependencia/Editar.php';
             }
         }
-        
+     
         private static function dependenciasToXML($dependencias) {
             $xml = '<?xml version="1.0" encoding="UTF-8"?>';
             $xml .= "\n<Dependencias>\n";
@@ -67,6 +63,16 @@
                     $xml .= $dependencia->toXML() . "\n";
             $xml .= "</Dependencias>\n";
             return $xml;
+        }    
+        
+        public static function SubDependenciasAction() {
+            if(isset($_GET['superIdDependencia'])) {
+                if($_GET['superIdDependencia'] != 0)
+                    $dependencias = DependenciaDAO::getDependenciaBySuperIdDependencia($_GET['superIdDependencia']);
+                else
+                    $dependencias = DependenciaDAO::getDependenciaByIdRed($_GET['idRed']);
+                echo self::dependenciasToXML($dependencias);
+            }
         }
     }
 ?>
