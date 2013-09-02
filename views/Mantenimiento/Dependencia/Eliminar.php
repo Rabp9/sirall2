@@ -74,8 +74,39 @@
                                 <td><?php echo $dependencia->getDescripcion(); ?></td>  
                             </tr>
                             <tr>
-                                <td><strong>Indicación:</strong></td>
-                                <td><?php echo $dependencia->getIndicacion(); ?></td>  
+                                <td><strong>Red:</strong></td>
+                                <td><?php echo $red->getDescripcion(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Dependencia Superior:</strong></td>
+                                <td>
+                                    <?php if($superDependencia->getDescripcion() != NULL) { ?>
+                                    <div class="bubbleInfo">
+                                        <span class="trigger"><?php echo $superDependencia->getDescripcion(); ?></span>
+                                        <table class="popup">
+                                            <tr>
+                                                <td><strong><abbr title="Código identificador">ID.</abbr> Dependencia:</strong></td>
+                                                <td><?php echo $superDependencia->getIdDependencia(); ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Descripción:</strong></td>
+                                                <td><?php echo $superDependencia->getDescripcion(); ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Sub Dependencias:</strong></td>
+                                                <td>
+                                                    <?php
+                                                        if($superDependencia->getSuperIdDependencia() != NULL) {
+                                                            echo $superDependencia->getSuperIdDependencia();
+                                                        }
+                                                        else { echo "<i>No pertenece a ninguna Dependencia</i>"; }
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <?php } else { echo "<i>No pertenece a ninguna Dependencia</i>"; } ?>
+                                </td>
                             </tr>
                             <tr>
                                 <td></td>

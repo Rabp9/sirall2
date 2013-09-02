@@ -57,8 +57,8 @@
         }
         
         public static function getDependenciaByIdRed($idRed) {
-                $result = BaseDatos::getDbh()->prepare("SELECT * FROM Dependencia where idRed = :idRed");
-                $result->bindParam(':idRed', $idRed);
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Dependencia where idRed = :idRed");
+            $result->bindParam(':idRed', $idRed);
             $result->execute();
             while($rs = $result->fetch()) {
                 $dependencia = new Dependencia();
@@ -90,6 +90,25 @@
                 $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(idRed, descripcion) values(:idRed, :descripcion)");
             $result->bindParam(':idRed', $dependencia->getIdRed());
             $result->bindParam(':descripcion', $dependencia->getDescripcion());
+            return $result->execute();
+        }
+        
+        public static function editar(Dependencia $dependencia) {
+            if($dependencia->getSuperIdDependencia() != 0) {
+                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idRed = :idRed, descripcion = :descripcion, superIdDependencia = :superIdDependencia WHERE idDependencia = :idDependencia");
+                $result->bindParam(':superIdDependencia', $dependencia->getSuperIdDependencia());
+            }
+            else
+                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idRed = :idRed, descripcion = :descripcion, superIdDependencia = null  WHERE idDependencia = :idDependencia");
+            $result->bindParam(':idRed', $dependencia->getIdRed());
+            $result->bindParam(':descripcion', $dependencia->getDescripcion());
+            $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
+            return $result->execute();
+        }
+         
+        public static function eliminar(Dependencia $dependencia) {
+            $result = BaseDatos::getDbh()->prepare("DELETE FROM Dependencia WHERE idDependencia = :idDependencia");
+            $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
             return $result->execute();
         }
         

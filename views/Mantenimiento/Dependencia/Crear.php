@@ -23,7 +23,7 @@
                 $('#btnBorrar').button();
                 var cboId = 1;
                 var changeSelect = function(event) {
-                    var id = 0
+                    var id = 0;
                     if($(this).attr('id') !== $('#cboRed').attr('id'))
                         id = $(this).val();
                     $.ajax({
@@ -36,12 +36,12 @@
                             idRed: $('#cboRed').val()
                         },
                         success: function(data) {
-                            //limpiar                   
+                            //limpiar
                             var $target = $(event.target);
                             if($target.attr('id') === $('#cboRed').attr('id')) {
                                 $('#cbo0').html('<option disabled selected>Selecciona una Dependencia</option>');
                                 $(data).find('Dependencia').each(function() {
-                                    if($(this).find('superIdDependencia').text() !== '') {
+                                    if($(this).find('superIdDependencia').text() === '') {
                                         var option = new Option($(this).find('descripcion').text(), $(this).find('idDependencia').text());
                                         $('#cbo0').append(option);
                                     }
@@ -94,8 +94,8 @@
                 $('#frmCrearDependencia').submit(function() {
                     if($('#cbo select:last').val() !== null)
                         $('#cboDependencia').val($('#cbo select:last').val());
-                    else 
-                        $('#cboDependencia').val($('#cbo select:nth-last-child(3)').val());
+                    else
+                        $('#cboDependencia').val($('#cbo select:nth-last-child(4)').val());
                 });
             });
         </script>

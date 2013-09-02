@@ -46,6 +46,7 @@
         public function getSuperIdDependencia() {
             return $this->superIdDependencia;
         }
+        
         // </editor-fold>
   
         //Funciones extras

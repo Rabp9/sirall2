@@ -1,10 +1,10 @@
 <?php
-    include '../models/Usuario.php';
+    require_once '/DAO/UsuarioDAO.php';
     
     class UsuarioController {
-        public function crearUsuario() {
-            $usuario = new Usuario();
-            
+        public static function UsuarioAction() {
+            $usuarios = UsuarioDAO::getVwUsuario();
+            require_once '/views/Mantenimiento/Usuario/Lista.php';
         }
     }
 
