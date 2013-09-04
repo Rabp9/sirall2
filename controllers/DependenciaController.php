@@ -11,7 +11,7 @@
         public static function CrearAction() {
             $nextID = DependenciaDAO::getNextID();
             $redes = RedDAO::getAllRed();
-            $dependencias = DependenciaDAO::getDependenciaBySuperIdDependencia(null);
+            $dependencias = DependenciaDAO::getAllDependencia();
             require_once '/views/Mantenimiento/Dependencia/Crear.php';
         }
         

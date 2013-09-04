@@ -109,8 +109,10 @@
                             <th><abbr title="Código identificador">ID.</abbr> Usuario</th>
                             <th>Dependencia</th>
                             <th>Red</th>
-                            <th>Descripción</th>
-                            <th>Indicación</th>
+                            <th>Nombre Completo</th>
+                            <th>Correo</th>
+                            <th>Username</th>
+                            <th>Rol</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -121,10 +123,12 @@
                         ?>
                         <tr>
                             <td><?php echo $usuario['idUsuario']; ?></td>
-                            <td><?php echo $usuario['Tipo de Equipo']; ?></td>
-                            <td><?php echo $usuario['Marca']; ?></td>
-                            <td><?php echo $usuario['descripcion']; ?></td>
-                            <td><?php echo $usuario['indicacion']; ?></td>
+                            <td><?php echo $usuario['Dependencia']; ?></td>
+                            <td><?php echo $usuario['Red']; ?></td>
+                            <td><?php echo $usuario['Nombre Completo']; ?></td>
+                            <td><?php echo $usuario['Correo']; ?></td>
+                            <td><?php echo $usuario['Username']; ?></td>
+                            <td><?php echo $usuario['Rol']; ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
