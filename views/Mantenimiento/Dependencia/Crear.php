@@ -30,6 +30,7 @@
                 $( '#dependenciaSelect' ).dialog({
                     autoOpen: false,
                     modal: true,
+                    width: 600,
                     show: {
                         effect: "blind",
                         duration: 1000
@@ -51,6 +52,11 @@
                     persist: "cookie"
                 });
                 
+                $('#ulDependencia li ').hover(function() {
+                    $("#ulDependencia li a").removeClass('hover');
+                    $(this).addClass('hover');
+                }); 
+                
                 $("#ulDependencia li a").click(function() {
                     $("#ulDependencia li a").removeClass('selected');
                     $(this).addClass('selected');
@@ -58,10 +64,14 @@
                 
                 $('#btnSeleccionar').click(function() {
                     var $dependenciaSeleccionada = $("#ulDependencia li a.selected");
-                    //var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
-                    $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text());
-                    $('#hdnTipo').attr('value', $dependenciaSeleccionada.attr('title'));
-                    $('#hdnDependencia').attr('value', $dependenciaSeleccionada.find('input').val());
+                    var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
+                    $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
+                    var tipo = $dependenciaSeleccionada.attr('title');
+                    $('#hdnRed').attr('value', $redSeleccionada.find('input').val());
+                    if(tipo === 'Dependencia')
+                        $('#hdnDependencia').attr('value', $dependenciaSeleccionada.find('input').val());
+                    else
+                        $('#hdnDependencia').attr('value', 0);
                     $('#dependenciaSelect').dialog('close');
                 });
             });
@@ -103,8 +113,8 @@
                                 <td>
                                     <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
                                     <span id="txtDependenciaSeleccionada"></span>
-                                    <input id="hdnTipo" type="hidden" name="tipo" value=""/>
-                                    <input id="hdnDependencia" type="hidden" name="dependencia" value=""/>
+                                    <input id="hdnRed" type="hidden" name="idRed" value=""/>
+                                    <input id="hdnDependencia" type="hidden" name="superIdDependencia" value=""/>
                                 </td>
                             </tr>
                             <tr>
@@ -158,7 +168,7 @@
                                 }
                                 
                                 if(is_array($redes)) {
-                                    echo "<ul id='ulDependencia' class='treeview-red'>";
+                                    echo "<ul id='ulDependencia' class='treeview-blue'>";
                                     foreach($redes as $red) {
                                         echo "<li><a title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</a>";
                                         echo "<ul>";

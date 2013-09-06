@@ -7,9 +7,12 @@
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.js"></script>
         <script type="text/javascript" src="resources/js/funciones.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
 
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/jquery.treeview.css"/>
 
         <script type="text/javascript">
             $(document).ready(function() {
@@ -19,103 +22,63 @@
                 setValue($('#txtIdDependencia'), <?php echo $dependencia->getIdDependencia(); ?>);
                 isReadOnly($('#txtIdDependencia'));
                 $('#txtDescripcion').focus();
+                $('#btnDependenciaSuperior').button();
+                $('#btnSeleccionar').button();
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
-                $.ajax({
-                    url: 'Index.php',
-                    type: 'GET',
-                    data: {
-                        controller: 'Dependencia',
-                        action: 'SubDependencias',
-                        superIdDependencia: 0,
-                        idRed: $('#cboRed').val()
+                
+                $( '#dependenciaSelect' ).dialog({
+                    autoOpen: false,
+                    modal: true,
+                    width: 600,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
                     },
-                    success: function(data) {
-                        //limpiar
-                        $('#cbo0').html('<option disabled selected>Selecciona una Dependencia</option>');
-                        $(data).find('Dependencia').each(function() {
-                            if($(this).find('superIdDependencia').text() === '') {
-                                var option = new Option($(this).find('descripcion').text(), $(this).find('idDependencia').text());
-                                $('#cbo0').append(option);
-                            }
-                        });
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
                     }
                 });
-                var cboId = 1;
-                var changeSelect = function(event) {
-                    var id = 0;
-                    if($(this).attr('id') !== $('#cboRed').attr('id'))
-                        id = $(this).val();
-                    $.ajax({
-                        url: 'Index.php',
-                        type: 'GET',
-                        data: {
-                            controller: 'Dependencia',
-                            action: 'SubDependencias',
-                            superIdDependencia: id,
-                            idRed: $('#cboRed').val()
-                        },
-                        success: function(data) {
-                            //limpiar
-                            var $target = $(event.target);
-                            if($target.attr('id') === $('#cboRed').attr('id')) {
-                                $('#cbo0').html('<option disabled selected>Selecciona una Dependencia</option>');
-                                $(data).find('Dependencia').each(function() {
-                                    if($(this).find('superIdDependencia').text() === '') {
-                                        var option = new Option($(this).find('descripcion').text(), $(this).find('idDependencia').text());
-                                        $('#cbo0').append(option);
-                                    }
-                                });
-                            }
-                            else {
-                                var nivel = $target.attr('id').charAt($target.attr('id').length-1);
-                                if(nivel !== 'a')
-                                    cboId = parseInt(nivel) + 1;
-                                $('#cbo').find('select').each(function() {
-                                   // if($(this).attr('id') != $('#cboDependencia').attr('id')) {
-                                        //si nivel de this es mayor a nivel
-                                        var thisNivel = $(this).attr('id').charAt($(this).attr('id').length-1);
-                                        if(thisNivel > nivel)
-                                            $(this).remove();
-                                    //}
-                                });
-                                $('#cbo').find('br').each(function(index) {
-                                    if(index >= nivel)
-                                        $(this).remove();
-                                });
-                                $('#cbo').find('span').each(function(index) {
-                                    if(index >= nivel)
-                                        $(this).remove();
-                                });
-                                if($(data).find('dependencia').length !== 0 ) {
-                                    //limpiar
-
-
-                                    var $cbo = "<select id='cbo" + cboId + "'></select>";
-                                    var txt = '';
-                                    for(i = 0; i < nivel; i++)
-                                        txt += '&nbsp;&nbsp;';
-                                    $('#cbo').append('<br/>' + txt +'<span class="ui-icon ui-icon-arrowreturnthick-1-e" style="display:inline-block;"></span>' + $cbo);
-                                    $('#cbo' + cboId).append("<option disabled selected>Selecciona una Dependencia</option>");
-                                    $(data).find('Dependencia').each(function() {
-                                        var option = new Option($(this).find('descripcion').text(), $(this).find('idDependencia').text());
-                                        $('#cbo' + cboId).append(option);
-                                    });
-                                    $('#cbo' + cboId).change(changeSelect);
-                                    cboId += 1;
-                               }
-                            }
-                        }
-                    })
-                };
                 
-                $('select').change(changeSelect);
+                var idDependencia = <?php echo $dependencia->getIdDependencia(); ?>;
+                $("#ulDependencia li a").not($("a[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().parent().parent().find('a:eq(0)').addClass('selected');
+                var $dependenciaSeleccionada = $("#ulDependencia li a.selected"); 
+                var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
+                $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
+                   
+                $('#btnDependenciaSuperior').click(function() {
+                    $('#dependenciaSelect').dialog('open');
+                });
                 
-                $('#frmEditarDependencia').submit(function() {
-                    if($('#cbo select:last').val() !== null)
-                        $('#cboDependencia').val($('#cbo select:last').val());
+                $("#ulDependencia").treeview({
+                    animated: "fast",
+                    collapsed: false,
+                    unique: false,
+                    persist: "cookie"
+                });
+                
+                $('#ulDependencia li ').hover(function() {
+                    $("#ulDependencia li a").removeClass('hover');
+                    $(this).addClass('hover');
+                }); 
+                
+                $("#ulDependencia li a").click(function() {
+                    $("#ulDependencia li a").removeClass('selected');
+                    $(this).addClass('selected');
+                });
+                
+                $('#btnSeleccionar').click(function() {
+                    var $dependenciaSeleccionada = $("#ulDependencia li a.selected");
+                    var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
+                    $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
+                    var tipo = $dependenciaSeleccionada.attr('title');
+                    $('#hdnRed').attr('value', $redSeleccionada.find('input').val());
+                    if(tipo === 'Dependencia')
+                        $('#hdnDependencia').attr('value', $dependenciaSeleccionada.find('input').val());
                     else
-                        $('#cboDependencia').val($('#cbo select:nth-last-child(4)').val());
+                        $('#hdnDependencia').attr('value', 0);
+                    $('#dependenciaSelect').dialog('close');
                 });
             });
         </script>
@@ -151,31 +114,13 @@
                                 <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción" value="<?php echo $dependencia->getDescripcion(); ?>"></td>  
                             </tr>
                             <tr>
-                                <td><label for="cboRed">Red</label></td>
+                                <td><label for="btnDependenciaSuperior">Dependencia Superior</label></td>
                                 <td>
-                                    <select id="cboRed" name="idRed">
-                                        <option disabled selected>Selecciona una Red</option>
-                                        <?php 
-                                            if($redes) { 
-                                                foreach ($redes as $red) {
-                                                    if($red->getIdRed() == $dependencia->getIdRed())
-                                                        echo "<option value='" . $red->getIdRed() . "' selected>" . $red->getDescripcion() . "</option>";
-                                                    else
-                                                        echo "<option value='" . $red->getIdRed() . "'>" . $red->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
+                                    <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
+                                    <span id="txtDependenciaSeleccionada"></span>
+                                    <input id="hdnRed" type="hidden" name="idRed" value=""/>
+                                    <input id="hdnDependencia" type="hidden" name="superIdDependencia" value=""/>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td><label for="cboDependenciaSuperior">Dependencia Superior</label></td>
-                                <td id="cbo">
-                                    <input id="cboDependencia" type="hidden" name="superIdDependencia"/>
-                                    <select id="cbo0">
-                                        <option disabled selected>Selecciona una Dependencia</option>
-                                    </select>
-                                </td>  
                             </tr>
                             <tr>
                                 <td></td>
@@ -188,6 +133,59 @@
                                 <td colspan="2"><a href="?controller=Dependencia">Regresar</a></td>
                             </tr>
                         </table>
+                        <div id="dependenciaSelect" title="Seleccionar Dependencia Superior">         
+                            <p>Selecciona una Dependencia Superior</p>
+                            <?php
+                                function tieneHijos($padre, $dependencias) {
+                                    foreach ($dependencias as $dependencia) {
+                                        if($padre->getIdDependencia() == $dependencia->getSuperIdDependencia()) 
+                                            return true;
+                                    }
+                                    return false;
+                                }
+                                
+                                function mostrarHijosRed($padre, $dependencias) {
+                                    foreach ($dependencias as $dependencia) {
+                                        if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
+                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                            if(tieneHijos($dependencia, $dependencias)) {
+                                                echo "<ul>";
+                                                mostrarHijos($dependencia, $dependencias);
+                                                echo "</ul>";
+                                            }
+                                            echo "</li>";
+                                        }
+                                    }
+                                }
+                                
+                                function mostrarHijos($padre, $dependencias) {
+                                    foreach ($dependencias as $dependencia) {
+                                        if($padre->getIdDependencia() == $dependencia->getSuperIdDependencia()) {
+                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                            if(tieneHijos($dependencia, $dependencias)) {
+                                                echo "<ul>";
+                                                mostrarHijos($dependencia, $dependencias);
+                                                echo "</ul>";
+                                            }
+                                            echo "</li>";
+                                        }
+                                    }
+                                }
+                                
+                                if(is_array($redes)) {
+                                    echo "<ul id='ulDependencia' class='treeview-blue'>";
+                                    foreach($redes as $red) {
+                                        echo "<li><a title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</a>";
+                                        echo "<ul>";
+                                        mostrarHijosRed($red, $dependencias);
+                                        echo "</ul>";
+                                        echo "</li>";
+                                    }
+                                    echo "</ul>";
+                                }
+                            ?>
+                            <button id="btnSeleccionar" type="button">Seleccionar</button>
+                        </div>
                     </fieldset>               
                 </form>
             </article>

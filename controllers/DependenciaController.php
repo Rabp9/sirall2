@@ -42,6 +42,7 @@
             if(isset($_GET['idDependencia'])) {
                 $dependencia = DependenciaDAO::getDependenciaByIdDependencia($_GET['idDependencia']);
                 $redes = RedDAO::getAllRed();
+                $dependencias = DependenciaDAO::getAllDependencia();
                 require_once '/views/Mantenimiento/Dependencia/Editar.php';
             }
         }
