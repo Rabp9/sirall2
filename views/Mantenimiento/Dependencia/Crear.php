@@ -58,8 +58,11 @@
                 
                 $('#btnSeleccionar').click(function() {
                     var $dependenciaSeleccionada = $("#ulDependencia li a.selected");
-                    alert($dependenciaSeleccionada.text());
-                    alert($dependenciaSeleccionada.parents(''));
+                    //var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
+                    $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text());
+                    $('#hdnTipo').attr('value', $dependenciaSeleccionada.attr('title'));
+                    $('#hdnDependencia').attr('value', $dependenciaSeleccionada.find('input').val());
+                    $('#dependenciaSelect').dialog('close');
                 });
             });
         </script>
@@ -97,7 +100,12 @@
                             </tr>
                             <tr>
                                 <td><label for="btnDependenciaSuperior">Dependencia Superior</label></td>
-                                <td><button id="btnDependenciaSuperior" type="button">Seleccionar</button></td>
+                                <td>
+                                    <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
+                                    <span id="txtDependenciaSeleccionada"></span>
+                                    <input id="hdnTipo" type="hidden" name="tipo" value=""/>
+                                    <input id="hdnDependencia" type="hidden" name="dependencia" value=""/>
+                                </td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -124,7 +132,7 @@
                                 function mostrarHijosRed($padre, $dependencias) {
                                     foreach ($dependencias as $dependencia) {
                                         if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
-                                            echo "<li><a id=" . $dependencia->getIdDependencia() . " title='Dependencia'>" . $dependencia->getDescripcion() . "</a>";
+                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
                                             if(tieneHijos($dependencia, $dependencias)) {
                                                 echo "<ul>";
                                                 mostrarHijos($dependencia, $dependencias);
@@ -138,7 +146,7 @@
                                 function mostrarHijos($padre, $dependencias) {
                                     foreach ($dependencias as $dependencia) {
                                         if($padre->getIdDependencia() == $dependencia->getSuperIdDependencia()) {
-                                            echo "<li><a id=" . $dependencia->getIdDependencia() . " title='Dependencia'>" . $dependencia->getDescripcion() . "</a>";
+                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
                                             if(tieneHijos($dependencia, $dependencias)) {
                                                 echo "<ul>";
                                                 mostrarHijos($dependencia, $dependencias);
@@ -152,7 +160,7 @@
                                 if(is_array($redes)) {
                                     echo "<ul id='ulDependencia' class='treeview-red'>";
                                     foreach($redes as $red) {
-                                        echo "<li><a id=" . $red->getIdRed() . " title='Red'>" . $red->getDescripcion() . "</a>";
+                                        echo "<li><a title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</a>";
                                         echo "<ul>";
                                         mostrarHijosRed($red, $dependencias);
                                         echo "</ul>";
