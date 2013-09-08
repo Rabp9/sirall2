@@ -8,16 +8,19 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="resources/js/template.js"></script>
-        <script type="text/javascript" src="resources/js/funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.default.js"></script>
+        <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-              //  isRequiusuario($('#txtDescripcion'));
-               // setValue($('#txtIdUsuario'), <?php echo $nextID; ?>);
-               // isReadOnly($('#txtIdUsuario'));
-               // $('#btnEnviar').button();
-              //  $('#btnBorrar').button();
-              //  $('#txtDescripcion').focus();
+                isRequired($('#txtNombres'));
+                isRequired($('#txtApellidoPaterno'));
+                isRequired($('#txtApellidoMaterno'));
+                // required dependencia
+                setValue($('#txtIdUsuario'), <?php echo $nextID; ?>);
+                isReadOnly($('#txtIdUsuario'));
+                $('#btnEnviar').button();
+                $('#btnBorrar').button();
+                $('#txtNombres').focus();
                 $('#asistente').tabs();
                 
                 $('div#asistente div:not(:first)').append("<button class='prev' type='button'>Anterior</button>");
@@ -31,6 +34,8 @@
                     var selected = $("#asistente").tabs("option", "active");
                     $("#asistente").tabs("option", "active", selected + 1);
                 });
+                $('button.next').button();
+                $('button.prev').button();
             });
         </script>
         
@@ -109,6 +114,14 @@
                             </div>
                             <div id="sistema">
                                 <table>
+                                    <tr>
+                                        <td><label for="cboRol">Rol</label></td>
+                                        <td>
+                                            <select id="cboRol" name="rol">   
+                                                <option disabled selected>Selecciona un Rol</option>
+                                            </select>
+                                        </td>  
+                                    </tr>
                                     <tr>
                                         <td><label for="txtUsername">Username</label></td>
                                         <td><input id="txtUsername" type="text" name="username" placeholder="Escribe el username"/></td>  

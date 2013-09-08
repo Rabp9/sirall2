@@ -123,3 +123,15 @@ header figure figcaption {
 h1 {
     margin: 0px;
 }
+
+div#asistente div {
+    overflow: hidden;
+}
+
+.next {
+    float: right;
+}
+
+.prev {
+    float: left;
+}

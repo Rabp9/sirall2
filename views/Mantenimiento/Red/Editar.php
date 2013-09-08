@@ -8,11 +8,12 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="resources/js/template.js"></script>
-        <script type="text/javascript" src="resources/js/funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.default.js"></script>
+        <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
+                isRequired($('#txtDireccion'));
                 setValue($('#txtIdRed'), <?php echo $red->getIdRed(); ?>);
                 isReadOnly($('#txtIdRed'));
                 $('#btnEnviar').button();

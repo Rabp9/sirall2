@@ -35,5 +35,18 @@
         public function getDireccion() {
             return $this->direccion;
         }
+        
+        public function toArray(){
+            return get_object_vars($this);
+        }
+        
+        public function toXML() {
+            $xml = "<Red>\n";
+            $xml .= "\t<idRed>" . $this->getIdRed() . "</idDependencia>\n";
+            $xml .= "\t<descripcion>" . $this->getDescripcion() . "</descripcion>\n";
+            $xml .= "\t<direccion>" . $this->getDireccion() . "</direccion>\n";
+            $xml = $xml . "</Red>";
+            return $xml;
+        }
     }
 ?>
