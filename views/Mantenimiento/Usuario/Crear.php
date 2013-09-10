@@ -5,11 +5,16 @@
       
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/jquery.treeview.css"/>
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.dependenciaSelect.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
+        
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtNombres'));
@@ -117,7 +122,7 @@
                                     <tr>
                                         <td><label for="cboRol">Rol</label></td>
                                         <td>
-                                            <select id="cboRol" name="rol">   
+                                            <select id="cboRol" name="idRol">   
                                                 <option disabled selected>Selecciona un Rol</option>
                                             </select>
                                         </td>  
@@ -125,10 +130,6 @@
                                     <tr>
                                         <td><label for="txtUsername">Username</label></td>
                                         <td><input id="txtUsername" type="text" name="username" placeholder="Escribe el username"/></td>  
-                                    </tr>
-                                    <tr>
-                                        <td><label for="txtPassword">Password</label></td>
-                                        <td><input id="txtPassword" type="text" name="password" placeholder="Escribe el password"/></td>  
                                     </tr>
                                 </table>
                             </div>
@@ -144,7 +145,60 @@
                             <tr>
                                 <td colspan="2"><a href="?controller=Usuario">Regresar</a></td>
                             </tr>
-                        </table>
+                        </table>     
+                        <div id="dependenciaSelect" title="Seleccionar Dependencia">         
+                            <p>Selecciona una Dependencia</p>
+                            <?php
+                                function tieneHijos($padre, $dependencias) {
+                                    foreach ($dependencias as $dependencia) {
+                                        if($padre->getIdDependencia() == $dependencia->getSuperIdDependencia()) 
+                                            return true;
+                                    }
+                                    return false;
+                                }
+                                
+                                function mostrarHijosRed($padre, $dependencias) {
+                                    foreach ($dependencias as $dependencia) {
+                                        if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
+                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                            if(tieneHijos($dependencia, $dependencias)) {
+                                                echo "<ul>";
+                                                mostrarHijos($dependencia, $dependencias);
+                                                echo "</ul>";
+                                            }
+                                            echo "</li>";
+                                        }
+                                    }
+                                }
+                                
+                                function mostrarHijos($padre, $dependencias) {
+                                    foreach ($dependencias as $dependencia) {
+                                        if($padre->getIdDependencia() == $dependencia->getSuperIdDependencia()) {
+                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                            if(tieneHijos($dependencia, $dependencias)) {
+                                                echo "<ul>";
+                                                mostrarHijos($dependencia, $dependencias);
+                                                echo "</ul>";
+                                            }
+                                            echo "</li>";
+                                        }
+                                    }
+                                }
+                                
+                                if(is_array($redes)) {
+                                    echo "<ul id='ulDependencia' class='treeview-blue'>";
+                                    foreach($redes as $red) {
+                                        echo "<li><a title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</a>";
+                                        echo "<ul>";
+                                        mostrarHijosRed($red, $dependencias);
+                                        echo "</ul>";
+                                        echo "</li>";
+                                    }
+                                    echo "</ul>";
+                                }
+                            ?>
+                            <button id="btnSeleccionar" type="button">Seleccionar</button>
+                        </div>
                     </fieldset>               
                 </form>
             </article>

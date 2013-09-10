@@ -1,39 +1,29 @@
 <?php
-    class Red {
-        private $idRed;
+    class Rol {
+        private $idRol;
         private $descripcion;
-        private $direccion;
         
         public function __construct() {
             $this->idRed = 0;
             $this->descripcion = "";
-            $this->direccion = "";
         }
         
         //Sets
-        public function setIdRed($idRed) {
-            $this->idRed = $idRed;
+        public function setIdRol($idRol) {
+            $this->idRol = $idRol;
         }
         
         public function setDescripcion($descripcion) {
             $this->descripcion = $descripcion;
         }
         
-        public function setDireccion($direccion) {
-            $this->direccion = $direccion;
-        }
-        
         //Gets
-        public function getIdRed() {
-            return $this->idRed;
+        public function getIdRol() {
+            return $this->idRol;
         }
         
         public function getDescripcion() {
             return $this->descripcion;
-        }
-        
-        public function getDireccion() {
-            return $this->direccion;
         }
         
         public function toArray(){
@@ -41,11 +31,10 @@
         }
         
         public function toXML() {
-            $xml = "<Red>\n";
-            $xml .= "\t<idRed>" . $this->getIdRed() . "</idRed>\n";
+            $xml = "<Rol>\n";
+            $xml .= "\t<idRol>" . $this->getIdRed() . "</idRol>\n";
             $xml .= "\t<descripcion>" . $this->getDescripcion() . "</descripcion>\n";
-            $xml .= "\t<direccion>" . $this->getDireccion() . "</direccion>\n";
-            $xml = $xml . "</Red>";
+            $xml = $xml . "</Rol>";
             return $xml;
         }
     }
