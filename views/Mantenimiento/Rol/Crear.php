@@ -22,28 +22,61 @@
                 $('#chbRestDependencia').button();
                 $('#txtDescripcion').focus();
                 (function ($) {
-    $.fn.styleTable = function (options) {
-        var defaults = {
-            css: 'ui-styled-table'
-        };
-        options = $.extend(defaults, options);
+                $.fn.styleTable = function (options) {
+                    var defaults = {
+                        css: 'ui-styled-table'
+                    };
+                    options = $.extend(defaults, options);
 
-        return this.each(function () {
-            $this = $(this);
-            $this.addClass(options.css);
+                    return this.each(function () {
+                        $this = $(this);
+                        $this.addClass(options.css);
 
-            $this.on('mouseover mouseout', 'tbody tr', function (event) {
-                $(this).children().toggleClass("ui-state-hover",
-                                               event.type == 'mouseover');
-            });
+                        $this.on('mouseover mouseout', 'tbody tr', function (event) {
+                            $(this).children().toggleClass("ui-state-hover",
+                                                           event.type == 'mouseover');
+                        });
 
-            $this.find("th").addClass("ui-widget-header");
-            $this.find("td").addClass("ui-widget-content");
-            $this.find("tr:last-child").addClass("last-child");
-        });
-    };
-})(jQuery);
-$('#tblPermisos').styleTable();
+                        $this.find("th").addClass("ui-widget-header");
+                        $this.find("td").addClass("ui-widget-content");
+                        $this.find("tr:last-child").addClass("last-child");
+                    });
+                };
+                })(jQuery);
+                $('#tblPermisos').styleTable(event);
+                $('#tblPermisos tbody td').click(function() {
+                        var $checkbox = $(this).find('input.chPermiso');
+                        $checkbox.prop('checked', !$checkbox.prop('checked'));
+                });
+                
+                $('#tblPermisos input').click(function(event) {
+                    var $input = $(this);
+                    var r = false;
+                    $('#tblPermisos tbody tr:first td').each(function(index) {
+                        if($(this).find('input').attr('name') === $input.attr('name')) 
+                            r = true;
+                    });
+                    if(!r)
+                        event.stopPropagation();
+                });
+                
+                $('#tblPermisos tbody tr:first td').click(function() {
+                    var $td = $(this);
+                    var col;
+                    $(this).parent().children().each(function(index) {
+                        if($td.find('input').attr('name') === $(this).find('input').attr('name'))
+                            col = index;
+                    });
+                    $('#tblPermisos tbody tr').each(function() {
+                        $(this).children().each(function(index) {
+                            if(col === index) {
+                                var $checkbox = $(this).find('input.chPermiso');
+                                $checkbox.prop('checked', !$checkbox.prop('checked'));
+                                $td.find('input').prop('checked', $checkbox.prop('checked'));
+                            }
+                        });
+                    });
+                });
             });
         </script>
         
@@ -111,7 +144,7 @@ $('#tblPermisos').styleTable();
                                     <td><input class="chPermiso" type="checkbox" name="mst2"></td>
                                     <td><input class="chPermiso" type="checkbox" name="mst3"></td>
                                     <td><input class="chPermiso" type="checkbox" name="mst4"></td>
-                                    <td><input class="chPermiso" type="checkbox" name="mst5"></td>
+                                    <td><input class="chPermiso st" type="checkbox" name="mst5"></td>
                                     <td><input class="chPermiso" type="checkbox" name="mst6"></td>
                                     <td><input class="chPermiso" type="checkbox" name="mst7"></td>
                                 </tr>
