@@ -18,6 +18,14 @@
                 $rol->setIdRol($_POST['idRol']);
                 $rol->setDescripcion($_POST['descripcion']);
                 RolDAO::crear($rol);
+                foreach($_POST as $key => $value) {
+                    if($value == on) {
+                        $permiso = new Permiso();
+                        $permiso->setIdRol($rol->getIdRol());
+                        $permiso->setDescripcion($key);
+                        RolDAO::crear($rol);
+                    }
+                }
             }
             $roles = RolDAO::getAllRol();
             $mensaje = "Rol guardada correctamente";

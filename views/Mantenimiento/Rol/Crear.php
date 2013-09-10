@@ -144,7 +144,7 @@
                                     <td><input class="chPermiso" type="checkbox" name="mst2"></td>
                                     <td><input class="chPermiso" type="checkbox" name="mst3"></td>
                                     <td><input class="chPermiso" type="checkbox" name="mst4"></td>
-                                    <td><input class="chPermiso st" type="checkbox" name="mst5"></td>
+                                    <td><input class="chPermiso" type="checkbox" name="mst5"></td>
                                     <td><input class="chPermiso" type="checkbox" name="mst6"></td>
                                     <td><input class="chPermiso" type="checkbox" name="mst7"></td>
                                 </tr>
