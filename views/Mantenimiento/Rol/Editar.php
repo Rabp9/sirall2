@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      
+       
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
       
@@ -13,7 +13,6 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
-                setValue($('#txtIdRol'), <?php echo $nextID; ?>);
                 isReadOnly($('#txtIdRol'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
@@ -83,10 +82,16 @@
                     else
                         $('#chbRestDependencia').button({ disabled: true });
                 });
+                
+                var $permisos = <?php echo $a; ?>;
+                alert($permisos);
+                /*$permisos.find('permiso').each(function() {
+                    alert($(this).text());
+                });*/
             });
         </script>
         
-        <title>SIRALL2 - Crear Rol</title>
+        <title>SIRALL2 - Editar Rol</title>
     </head>
     <body>
         <aside>
@@ -101,24 +106,24 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Crear Rol</h2>
-                        <h4>Crea un Rol</h4>
+                        <h2>Editar Rol</h2>
+                        <h4>Edita el Rol</h4>
                     </hgroup>
                 </header>
-                <form id="frmCrearRol" method="POST" action="?controller=Rol&action=CrearPOST">
+                <form id="frmCrearRol" method="POST" action="?controller=Rol&action=EditarPOST">
                     <fieldset>
-                        <legend>Crear Rol</legend>
+                        <legend>Editar Rol</legend>
                         <table>
                             <tr>
                                 <td><label for="txtIdRol"><abbr title="Código identificador">ID.</abbr> Rol</label></td>
                                 <td><input id="txtIdRol" type="text" name="idRol"></td>
                             </tr>
                             <tr>
-                                <td><label for="txtDescripcion">Descripcion</label></td>
-                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
+                                <td><label for="txtDescripcion">Descripción</label></td>
+                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción" value="<?php echo $rol->getDescripcion(); ?>"></td>  
                             </tr>
                         </table>
-                        
+
                         <table id="tblPermisos">
                             <caption>Permisos</caption>
                             <thead>
@@ -188,6 +193,7 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        
                         <table>
                             <tr>
                                 <td></td>

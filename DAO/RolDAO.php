@@ -55,7 +55,6 @@
             $rol = new Rol();
             $rol->setIdRol($rs['idRol']);
             $rol->setDescripcion($rs['descripcion']);
-            $rol->setDireccion($rs['direccion']);
             return $rol;
         }
     }
