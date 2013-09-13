@@ -50,6 +50,12 @@
             $result->execute();
             $rs = $result->fetchAll();
             return $rs;
+        }       
+        
+        public static function eliminarbyIdRol($idRol) {
+            $result = BaseDatos::getDbh()->prepare("DELETE FROM Permiso WHERE idRol = :idRol");
+            $result->bindParam(':idRol', $idRol);
+            return$result->execute();
         }
     }
 ?>

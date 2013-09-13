@@ -10,16 +10,18 @@
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
+                setValue($('#txtIdRol'), <?php echo $rol->getIdRol(); ?>);
                 isReadOnly($('#txtIdRol'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#chbRestRed').button();
                 $('#chbRestDependencia').button();
                 $( "#chbRestDependencia" ).button({ disabled: true });
-                $('#txtDescripcion').focus();
+                $('#txtDescripcion').select();
                 (function ($) {
                 $.fn.styleTable = function (options) {
                     var defaults = {
@@ -83,11 +85,20 @@
                         $('#chbRestDependencia').button({ disabled: true });
                 });
                 
-                var $permisos = <?php echo $a; ?>;
-                alert($permisos);
-                /*$permisos.find('permiso').each(function() {
-                    alert($(this).text());
-                });*/
+                var $permisos = $('<?php echo $permisos; ?>');
+                
+                $permisos.find('descripcion').each(function () {
+                    $('input.chPermiso[name=' + $(this).text() + ']').prop('checked', 1);
+                    if($(this).text() === 'restRed') {
+                        $('#chbRestRed').prop('checked', 1);
+                        $('#chbRestRed').button( "refresh" );
+                        $('#chbRestDependencia').button({ disabled: false });
+                    }
+                    if($(this).text() === 'restDependencia') {
+                        $('#chbRestDependencia').prop('checked', 1);
+                        $('#chbRestDependencia').button( "refresh" );
+                    }
+                });
             });
         </script>
         

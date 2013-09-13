@@ -3,7 +3,7 @@
     
     class MarcaController {
         public static function MarcaAction() {
-            $marcas = MarcaDAO::getAllMarca();
+            $marcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Marca/Lista.php';
         }
 
@@ -18,10 +18,11 @@
                 $marca->setIdMarca($_POST['idMarca']);
                 $marca->setDescripcion($_POST['descripcion']);
                 $marca->setIndicacion($_POST['indicacion']);
-                MarcaDAO::crear($marca);
+                MarcaDAO::crear($marca) ? 
+                    $mensaje = "Marca guardada correctamente" : 
+                    $mensaje = "La Marca no fue guardada correctamente";
             }
-            $marcas = MarcaDAO::getAllMarca();
-            $mensaje = "Marca guardada correctamente";
+            $marcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Marca/Lista.php';
         }
         
@@ -45,10 +46,11 @@
                 $marca->setIdMarca($_POST['idMarca']);
                 $marca->setDescripcion($_POST['descripcion']);
                 $marca->setIndicacion($_POST['indicacion']);
-                MarcaDAO::editar($marca);
+                MarcaDAO::editar($marca) ?
+                    $mensaje = "Marca modificada correctamente" :
+                    $mensaje = "La Marca no fue modificada correctamente";
             }
-            $marcas = MarcaDAO::getAllMarca();
-            $mensaje = "Marca modificada correctamente";
+            $marcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Marca/Lista.php';
         }
         
@@ -63,10 +65,11 @@
             if(isset($_POST)) {
                 $marca = new Marca();
                 $marca->setIdMarca($_POST['idMarca']);
-                MarcaDAO::eliminar($marca);
+                MarcaDAO::eliminar($marca) ?
+                    $mensaje = "Marca eliminada correctamente" :
+                    $mensaje = "La Marca no fue eliminada correctamente";
             }
-            $marcas = MarcaDAO::getAllMarca();
-            $mensaje = "Marca eliminada correctamente";
+            $marcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Marca/Lista.php';
         }
     }

@@ -8,8 +8,8 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="resources/js/template.js"></script>
-        <script type="text/javascript" src="resources/js/funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.default.js"></script>
+        <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
@@ -90,7 +90,7 @@
                             </tr>
                             <tr>
                                 <td><label for="txtIndicacion">Indicación</label></td>
-                                <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicacion" ><?php echo $modelo->getIndicacion(); ?></textarea></td>  
+                                <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" ><?php echo $modelo->getIndicacion(); ?></textarea></td>  
                             </tr>
                             <tr>
                                 <td></td>

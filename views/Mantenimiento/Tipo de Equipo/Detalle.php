@@ -8,7 +8,7 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="resources/js/template.js"></script>
+        <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/jquery.codaPopupBubbles.js"></script>
             
         <title>SIRALL2 - Detalle Tipo de Equipo</title>

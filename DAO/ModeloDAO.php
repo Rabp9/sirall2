@@ -23,7 +23,7 @@
         }
         
         public static function getNextID() {
-            $result = BaseDatos::getDbh()->prepare("call sp_GetNextIdModelo");
+            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdModelo");
             $result->execute();
             $rs = $result->fetch();
             return $rs['nextID'];

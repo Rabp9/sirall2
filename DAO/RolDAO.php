@@ -34,9 +34,8 @@
         }
         
         public static function editar(Rol $rol) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Rol SET descripcion = :descripcion, direccion = :direccion WHERE idRol = :idRol");
+            $result = BaseDatos::getDbh()->prepare("UPDATE Rol SET descripcion = :descripcion WHERE idRol = :idRol");
             $result->bindParam(':descripcion', $rol->getDescripcion());
-            $result->bindParam(':direccion', $rol->getDireccion());
             $result->bindParam(':idRol', $rol->getIdRol());
             return $result->execute();
         }

@@ -24,10 +24,11 @@
                 $modelo->setIdMarca($_POST['idMarca']);
                 $modelo->setDescripcion($_POST['descripcion']);
                 $modelo->setIndicacion($_POST['indicacion']);
-                ModeloDAO::crear($modelo);
+                ModeloDAO::crear($modelo) ?
+                    $mensaje = "Modelo guardado correctamente" :
+                    $mensaje = "El Modelo no fue guardado correctamente";
             }
             $modelos = ModeloDAO::getVwModelo();
-            $mensaje = "Modelo guardada correctamente";
             require_once '/views/Mantenimiento/Modelo/Lista.php';
         }
         
@@ -57,10 +58,12 @@
                 $modelo->setIdMarca($_POST['idMarca']);
                 $modelo->setDescripcion($_POST['descripcion']);
                 $modelo->setIndicacion($_POST['indicacion']);
-                ModeloDAO::editar($modelo);
+                ModeloDAO::editar($modelo) ?
+                    $mensaje = "Modelo modificado correctamente" :
+                    $mensaje = "El Modelo no fue modificado correctamente";
+                        
             }
             $modelos = ModeloDAO::getVwModelo();
-            $mensaje = "Modelo modificado correctamente";
             require_once '/views/Mantenimiento/Modelo/Lista.php';
         }
         
@@ -77,10 +80,11 @@
             if(isset($_POST)) {
                 $modelo = new Modelo();
                 $modelo->setIdModelo($_POST['idModelo']);
-                ModeloDAO::eliminar($modelo);
+                ModeloDAO::eliminar($modelo) ?
+                    $mensaje = "Modelo eliminado correctamente" :
+                    $mensaje = "El Modelo no fue eliminado correctamente";
             }
             $modelos = ModeloDAO::getVwModelo();
-            $mensaje = "Modelo eliminada correctamente";
             require_once '/views/Mantenimiento/Modelo/Lista.php';
         }
     }

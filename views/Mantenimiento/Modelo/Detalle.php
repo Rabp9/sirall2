@@ -8,7 +8,7 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="resources/js/template.js"></script>
+        <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/jquery.codaPopupBubbles.js"></script>
             
         <title>SIRALL2 - Detalle Modelo</title>
@@ -39,21 +39,7 @@
                         </tr>
                         <tr>
                             <td><strong>Tipo de Equipo:</strong></td>
-                            <td>
-                                <div class="bubbleInfo">
-                                    <span class="trigger"><?php echo $tipoEquipo->getDescripcion(); ?></span>
-                                    <table class="popup">
-                                        <tr>
-                                            <td><strong><abbr title="Código identificador">ID.</abbr> Tipo de Equipo:</strong></td>
-                                            <td><?php echo $tipoEquipo->getIdTipoEquipo(); ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Descripción:</strong></td>
-                                            <td><?php echo $tipoEquipo->getDescripcion(); ?></td>  
-                                        </tr>
-                                    </table>
-                                </div>
-                            </td>  
+                            <td><?php echo $tipoEquipo->getDescripcion(); ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Marca:</strong></td>

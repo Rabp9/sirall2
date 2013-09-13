@@ -11,7 +11,7 @@
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.eliminar.js"></script>
         
-        <title>SIRALL2 - Eliminar Tipo de Equipo</title>
+        <title>SIRALL2 - Eliminar Rol</title>
     </head>
     <body>
         <aside>
@@ -26,22 +26,34 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Eliminar Tipo de Equipo</h2>
-                        <h4>¿Está seguro de eliminar el Tipo de Equipo?</h4>
+                        <h2>Eliminar Rol</h2>
+                        <h4>¿Está seguro de eliminar el Rol?</h4>
                     </hgroup>
                 </header>
-                <form id="frmEliminarTipoEquipo" method="POST" action="?controller=TipoEquipo&action=EliminarPOST">
-                     <fieldset>
-                        <legend>Eliminar Tipo de Equipo</legend>
-                        <input id="idTipoEquipo" type="hidden" value="<?php echo $tipoEquipo->getIdTipoEquipo(); ?>" name="idTipoEquipo"/>
+                <form id="frmEliminarRol" method="POST" action="?controller=Rol&action=EliminarPOST">
+                    <fieldset>
+                        <legend>Detalle Rol</legend>
+                        <input id="idRol" type="hidden" value="<?php echo $rol->getIdRol(); ?>" name="idRol"/>
                         <table>
                             <tr>
-                                <td><strong><abbr title="Código identificador">ID.</abbr> Tipo de Equipo:</strong></td>
-                                <td><?php echo $tipoEquipo->getIdTipoEquipo(); ?></td>
+                                <td><strong><abbr title="Código identificador">ID.</abbr> Rol:</strong></td>
+                                <td><?php echo $rol->getIdRol(); ?></td>
                             </tr>
                             <tr>
                                 <td><strong>Descripción:</strong></td>
-                                <td><?php echo $tipoEquipo->getDescripcion(); ?></td>  
+                                <td><?php echo $rol->getDescripcion(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Permisos:</strong></td>
+                                <td>
+                                    <div style="height: 300px; overflow-y: scroll;">
+                                    <?php
+                                        foreach ($permisos as $permiso) {
+                                            echo $permiso[0];
+                                        }
+                                    ?>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -50,14 +62,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=TipoEquipo">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Red">Regresar</a></td>
                             </tr>
                         </table>
                     </fieldset>
                 </form>
                 <!-- Ventana de diálogo confirmar -->
                 <div id="confirmar" title="Advertencia">
-                    <p>¿Está seguro de eliminar el Tipo de Equipo?</p>
+                    <p>¿Está seguro de eliminar el Rol?</p>
                 </div>
             </article>
         </section>

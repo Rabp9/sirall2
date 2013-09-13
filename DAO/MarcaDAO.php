@@ -21,7 +21,7 @@
         }
         
         public static function getNextID() {
-            $result = BaseDatos::getDbh()->prepare("call sp_GetNextIdMarca");
+            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdMarca");
             $result->execute();
             $rs = $result->fetch();
             return $rs['nextID'];
@@ -59,6 +59,12 @@
             $marca->setDescripcion($rs['descripcion']);
             $marca->setIndicacion($rs['indicacion']);
             return $marca;
+        }
+        
+        public static function getVwMarca() {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Marca");
+            $result->execute();
+            return $result;
         }
     }
 ?>

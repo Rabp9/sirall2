@@ -9,77 +9,9 @@
        
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="resources/js/template.js"></script>
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var botones = function() {
-                    $('.select')
-                        .button({
-                            icons: {
-                                secondary: "ui-icon-triangle-1-s"
-                            }
-                        })
-                        .click(function() {
-                            var menu = $( this ).next().show().position({
-                                my: "left top",
-                                at: "left bottom",
-                                of: this
-                            });
-                            $('*').not($(this)).click(function() {
-                                menu.hide();
-                            });
-                            return false;
-                        })
-                        .next()
-                            .hide()
-                            .menu();
-                };
-                botones();
-                $('.tblLista')
-                .bind('page',   function () { botones(); })
-                .dataTable( {
-                    "sPaginationType": "full_numbers",
-                    "sScrollY": "600px",
-                    "bJQueryUI": true,
-                    "bScrollCollapse": true,        
-                    "oLanguage": {
-                        "sLengthMenu": "Mostrar _MENU_ registros por página",
-                        "sZeroRecords": "No se ecnontró ningún registro",
-                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ ",
-                        "sInfoEmpty": "No se muestra ningún registro",
-                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "oPaginate": {
-                            "sFirst": "|<",
-                            "sLast": ">|",
-                            "sNext": ">>",
-                            "sPrevious": "<<",
-                        },
-                        "sSearch": "Buscar"
-                    }
-                });
-                $( "#mensaje" ).dialog({
-                    closeOnEscape: true,
-                    show: 'fade',
-                    hide: 'fade',
-                    open: function(event, ui){
-                        setTimeout("$('#mensaje').dialog('close')",3000);
-                    },
-                    position: { 
-                        at: "right top", 
-                        of: window
-                    },
-                    buttons: [
-                        {
-                            text: "OK",
-                            click: function() {
-                                $( this ).dialog( "close" );
-                            }
-                        }
-                    ]
-                });
-            });
-        </script>
+        <script type="text/javascript" src="resources/js/template.default.js"></script>
+        <script type="text/javascript" src="resources/js/template.lista.js"></script>
         
         <title>SIRALL2 - Lista Tipo de Equipo</title>
     </head>
@@ -108,23 +40,27 @@
                         <tr>
                             <th><abbr title="Código identificador">ID.</abbr> Equipo</th>
                             <th>Descripción</th>
+                            <th>N° Modelos</th>
+                            <th>N° Equipos</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            if(is_array($tipoEquipos)) {
-                                foreach ($tipoEquipos as $tipoEquipo) {
+                            if(isset($tipoEquipos)) {
+                                while ($tipoEquipo = $tipoEquipos->fetch()) {
                         ?>
                         <tr>
-                            <td><?php echo $tipoEquipo->getIdTipoEquipo(); ?></td>
-                            <td><?php echo $tipoEquipo->getDescripcion(); ?></td>
+                            <td><?php echo $tipoEquipo['idTipoEquipo']; ?></td>
+                            <td><?php echo $tipoEquipo['descripcion']; ?></td>
+                            <td><?php echo $tipoEquipo['Nro Modelos']; ?></td>
+                            <td><?php echo $tipoEquipo['Nro Equipos']; ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=TipoEquipo&action=Detalle&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=TipoEquipo&action=Editar&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=TipoEquipo&action=Eliminar&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=TipoEquipo&action=Detalle&idTipoEquipo=<?php echo $tipoEquipo['idTipoEquipo']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
+                                    <li><a href="?controller=TipoEquipo&action=Editar&idTipoEquipo=<?php echo $tipoEquipo['idTipoEquipo']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
+                                    <li><a href="?controller=TipoEquipo&action=Eliminar&idTipoEquipo=<?php echo $tipoEquipo['idTipoEquipo']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>

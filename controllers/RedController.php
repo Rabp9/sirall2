@@ -18,7 +18,9 @@
                 $red->setIdRed($_POST['idRed']);
                 $red->setDescripcion($_POST['descripcion']);
                 $red->setDireccion($_POST['direccion']);
-                RedDAO::crear($red);
+                RedDAO::crear($red) ?
+                    $mensaje = "Red guardada correctamente" :
+                    $mensaje = "La Red no fue guardada correctamente";
             }
             $redes = RedDAO::getAllRed();
             $mensaje = "Red guardada correctamente";

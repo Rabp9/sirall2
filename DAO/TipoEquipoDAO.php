@@ -20,7 +20,7 @@
         }
         
         public static function getNextID() {
-            $result = BaseDatos::getDbh()->prepare("call sp_GetNextIdTipoEquipo");
+            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdTipoEquipo");
             $result->execute();
             $rs = $result->fetch();
             return $rs['nextID'];
@@ -55,6 +55,12 @@
             $tipoEquipo->setIdTipoEquipo($rs['idTipoEquipo']);
             $tipoEquipo->setDescripcion($rs['descripcion']);
             return $tipoEquipo;
+        }        
+        
+        public static function getVwTipoEquipo() {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_TipoEquipo");
+            $result->execute();
+            return $result;
         }
     }
 ?>

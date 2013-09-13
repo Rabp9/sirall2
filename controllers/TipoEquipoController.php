@@ -3,7 +3,7 @@
     
     class TipoEquipoController {
         public static function TipoEquipoAction() {
-            $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
+            $tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
 
@@ -17,10 +17,11 @@
                 $tipoEquipo = new TipoEquipo();
                 $tipoEquipo->setIdTipoEquipo($_POST['idTipoEquipo']);
                 $tipoEquipo->setDescripcion($_POST['descripcion']);
-                TipoEquipoDAO::crear($tipoEquipo);
+                TipoEquipoDAO::crear($tipoEquipo) ?
+                    $mensaje = "Tipo de Equipo guardado Correctamente" :
+                    $mensaje = "El Tipo de Equipo no fue guardado Correctamente";
             }
-            $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
-            $mensaje = "Tipo de Equipo guardado Correctamente";
+            $tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
         
@@ -43,10 +44,11 @@
                 $tipoEquipo = new TipoEquipo();
                 $tipoEquipo->setIdTipoEquipo($_POST['idTipoEquipo']);
                 $tipoEquipo->setDescripcion($_POST['descripcion']);
-                TipoEquipoDAO::editar($tipoEquipo);
+                TipoEquipoDAO::editar($tipoEquipo) ?
+                    $mensaje = "Tipo de Equipo modificado Correctamente" :
+                    $mensaje = "El Tipo de Equipo no fue modificado Correctamente";
             }
-            $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
-            $mensaje = "Tipo de Equipo modificado Correctamente";
+            $tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
         
@@ -61,10 +63,11 @@
             if(isset($_POST)) {
                 $tipoEquipo = new TipoEquipo();
                 $tipoEquipo->setIdTipoEquipo($_POST['idTipoEquipo']);
-                TipoEquipoDAO::eliminar($tipoEquipo);
+                TipoEquipoDAO::eliminar($tipoEquipo) ?
+                    $mensaje = "Tipo de Equipo eliminado Correctamente" :
+                    $mensaje = "El Tipo de Equipo no fue eliminado Correctamente";
             }
-            $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
-            $mensaje = "Tipo de Equipo eliminado Correctamente";
+            $tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
     }

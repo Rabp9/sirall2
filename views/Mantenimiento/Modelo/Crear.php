@@ -8,11 +8,12 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="resources/js/template.js"></script>
-        <script type="text/javascript" src="resources/js/funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.default.js"></script>
+        <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
+                isRequired($('#cboTipoEquipo'));
                 isRequired($('#cboMarca'));
                 setValue($('#txtIdModelo'), <?php echo $nextID; ?>);
                 isReadOnly($('#txtIdModelo'));
@@ -53,7 +54,7 @@
                                 <td><label for="cboTipoEquipo">Tipo de Equipo</label></td>
                                 <td>
                                     <select id="cboTipoEquipo" name="idTipoEquipo">
-                                        <option disabled selected>Selecciona un Tipo de Equipo</option>
+                                        <option disabled selected value="">Selecciona un Tipo de Equipo</option>
                                         <?php 
                                             if($tipoEquipos) { 
                                                 foreach ($tipoEquipos as $tipoEquipo) {
@@ -68,7 +69,7 @@
                                 <td><label for="cboMarca">Marca</label></td>
                                 <td>
                                     <select id="cboMarca" name="idMarca" required="true">
-                                        <option disabled selected>Selecciona una Marca</option>
+                                        <option disabled selected value="">Selecciona una Marca</option>
                                         <?php 
                                             if($marcas) { 
                                                 foreach ($marcas as $marca) {
@@ -80,7 +81,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label for="txtDescripcion">Descripcion</label></td>
+                                <td><label for="txtDescripcion">Descripción</label></td>
                                 <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>

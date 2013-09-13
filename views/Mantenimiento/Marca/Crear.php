@@ -8,8 +8,8 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="resources/js/template.js"></script>
-        <script type="text/javascript" src="resources/js/funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.default.js"></script>
+        <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
@@ -49,12 +49,12 @@
                                 <td><input id="txtIdMarca" type="text" name="idMarca"></td>
                             </tr>
                             <tr>
-                                <td><label for="txtDescripcion">Descripcion</label></td>
+                                <td><label for="txtDescripcion">Descripción</label></td>
                                 <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>
                                 <td><label for="txtIndicacion">Indicación</label></td>
-                                <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicacion" ></textarea></td>  
+                                <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" ></textarea></td>  
                             </tr>
                             <tr>
                                 <td></td>
