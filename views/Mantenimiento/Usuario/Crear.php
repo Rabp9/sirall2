@@ -20,7 +20,7 @@
                 isRequired($('#txtNombres'));
                 isRequired($('#txtApellidoPaterno'));
                 isRequired($('#txtApellidoMaterno'));
-                // required dependencia
+                isRequired($('#cboRol'));
                 setValue($('#txtIdUsuario'), <?php echo $nextID; ?>);
                 isReadOnly($('#txtIdUsuario'));
                 $('#btnEnviar').button();
@@ -41,6 +41,13 @@
                 });
                 $('button.next').button();
                 $('button.prev').button();
+                   
+                $('form').submit(function() {
+                    if(!$('#txtDependenciaSeleccionada').text().length) {
+                        alert('Debes elegir una dependencia');
+                        return false;
+                    }
+                });
             });
         </script>
         
@@ -100,7 +107,7 @@
                                             <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
                                             <span id="txtDependenciaSeleccionada"></span>
                                             <input id="hdnRed" type="hidden" name="idRed" value=""/>
-                                            <input id="hdnDependencia" type="hidden" name="superIdDependencia" value=""/>
+                                            <input id="hdnDependencia" type="hidden" name="idDependencia" value=""/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -123,7 +130,14 @@
                                         <td><label for="cboRol">Rol</label></td>
                                         <td>
                                             <select id="cboRol" name="idRol">   
-                                                <option disabled selected>Selecciona un Rol</option>
+                                                <option disabled selected value="">Selecciona un Rol</option>
+                                                <?php 
+                                                    if($roles) { 
+                                                        foreach ($roles as $rol) {
+                                                            echo "<option value='" . $rol->getIdRol() . "'>" . $rol->getDescripcion() . "</option>";
+                                                        }
+                                                    }
+                                                ?>
                                             </select>
                                         </td>  
                                     </tr>

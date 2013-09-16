@@ -12,3 +12,9 @@ Mantenimiento/Rol/
     Rol/Editar.php
     Rol/Eliminar.php
     Rol/Lista.php
+Mantenimiento/Red/
+    Red/Crear.php
+    Red/Detalle.php
+    Red/Editar.php
+    Red/Eliminar.php
+    Red/Lista.php

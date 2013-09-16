@@ -47,10 +47,11 @@
                 $red->setIdRed($_POST['idRed']);
                 $red->setDescripcion($_POST['descripcion']);
                 $red->setDireccion($_POST['direccion']);
-                RedDAO::editar($red);
+                RedDAO::editar($red) ?
+                    $mensaje = "Red modificada correctamente" :
+                    $mensaje = "La Red no fue modificada correctamente";
             }
             $redes = RedDAO::getAllRed();
-            $mensaje = "Red modificada correctamente";
             require_once '/views/Mantenimiento/Red/Lista.php';
         }
         
@@ -65,10 +66,11 @@
             if(isset($_POST)) {
                 $red = new Red();
                 $red->setIdRed($_POST['idRed']);
-                RedDAO::eliminar($red);
+                RedDAO::eliminar($red) ?
+                    $mensaje = "Red eliminada correctamente" :
+                    $mensaje = "La Red no fue eliminada correctamente";
             }
             $redes = RedDAO::getAllRed();
-            $mensaje = "Red eliminada correctamente";
             require_once '/views/Mantenimiento/Red/Lista.php';
         }
         

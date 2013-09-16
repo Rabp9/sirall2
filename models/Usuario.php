@@ -3,29 +3,31 @@
         private $idUsuario;
         private $idDependencia;
         private $idRed;
+        private $idRol;
         private $nombres;
         private $apellidoPaterno;
         private $apellidoMaterno;
         private $correo;
         private $rpm;
         private $anexo;
-        private $rol;
         private $username;
         private $password;
+        private $estado;
 
         public function __construct() {
             $this->idUsuario = 0;
             $this->idDependencia = 0;
             $this->idRed = 0;
+            $this->idRol = 0;
             $this->nombres = "";
             $this->apellidoPaterno = "";
             $this->apellidoMaterno = "";
             $this->correo = "";
             $this->rpm = "";
             $this->anexo = "";
-            $this->rol = "";
             $this->username = "";
             $this->password = "";
+            $this->estado = "";
         }
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
@@ -41,6 +43,10 @@
         
         public function setIdRed($idRed) {
             $this->idRed = $idRed;
+        }
+        
+        public function setIdRol($idRol) {
+            $this->idRol = $idRol;
         }
         
         public function setNombres($nombres) {
@@ -77,7 +83,12 @@
         
         public function setPassword($password) {
             $this->password = $password;
+        }       
+        
+        public function setEstado($estado) {
+            $this->estado = $estado;
         }
+        
         //Gets
         public function getIdUsuario() {
             return $this->idUsuario;
@@ -89,6 +100,10 @@
         
         public function getIdRed() {
             return $this->idRed;
+        }
+        
+        public function getIdRol() {
+            return $this->idRol;
         }
         
         public function getNombres() {
@@ -126,6 +141,11 @@
         public function getPassword() {
             return $this->password;
         }
+        
+        public function getEstado() {
+            return $this->estado;
+        }
+        
         // </editor-fold>
         
         public function toArray(){
@@ -137,15 +157,16 @@
             $xml .= "\t<idUsuario>" . $this->getCodigoPatrimonial() . "</idUsuario>\n";
             $xml .= "\t<idDependencia>" . $this->getIdDependencia() . "</idDependencia>\n";
             $xml .= "\t<idRed>" . $this->getIdRed() . "</idRed>\n";
+            $xml .= "\t<idRol>" . $this->getIdRol() . "</idRol>\n";
             $xml .= "\t<nombres>" . $this->getNombres() . "</nombres>\n";
             $xml .= "\t<apellidoPaterno>" . $this->getApellidoPaterno() . "</apellidoPaterno>\n";
             $xml .= "\t<apellidoMaterno>" . $this->getApellidoMaterno() . "</apellidoMaterno>\n";
             $xml .= "\t<correo>" . $this->getCorreo() . "</correo>\n";
             $xml .= "\t<rpm>" . $this->getRpm() . "</rpm>\n";
             $xml .= "\t<anexo>" . $this->getAnexo() . "</anexo>\n";
-            $xml .= "\t<rol>" . $this->getRol() . "</rol>\n";
             $xml .= "\t<username>" . $this->getUsername() . "</username>\n";
             $xml .= "\t<password>" . $this->getPassword() . "</password>\n";
+            $xml .= "\t<estado>" . $this->getEstado() . "</estado>\n";
             $xml = $xml . "</Usuario>";
             return $xml;
         }

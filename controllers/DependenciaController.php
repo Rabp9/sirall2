@@ -22,10 +22,11 @@
                 $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setIdRed($_POST['idRed']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
-                DependenciaDAO::crear($dependencia);
+                DependenciaDAO::crear($dependencia) ?
+                    $mensaje = "Dependencia guardada correctamente" :
+                    $mensaje = "La Dependencia no fue guardada correctamente";
             }
             $dependencias = DependenciaDAO::getVwDependencia();
-            $mensaje = "Modelo guardada correctamente";
             require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
         
@@ -54,10 +55,11 @@
                 $dependencia->setIdRed($_POST['idRed']);
                 $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
-                DependenciaDAO::editar($dependencia);
+                DependenciaDAO::editar($dependencia) ?
+                    $mensaje = "Dependencia modificada correctamente" :
+                    $mensaje = "La Dependencia no fue modificada correctamente";
             }
             $dependencias = DependenciaDAO::getVwDependencia();
-            $mensaje = "Dependencia guardada correctamente";
             require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
         
@@ -74,10 +76,11 @@
             if(isset($_POST)) {
                 $dependencia = new Dependencia();
                 $dependencia->setIdDependencia($_POST['idDependencia']);
-                DependenciaDAO::eliminar($dependencia);
+                DependenciaDAO::eliminar($dependencia) ?
+                    $mensaje = "Dependencia eliminada correctamente" :
+                    $mensaje = "La Dependencia no fue eliminada correctamente" ;
             }
             $dependencias = DependenciaDAO::getVwDependencia();
-            $mensaje = "Dependencia eliminada correctamente";
             require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
         

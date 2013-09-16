@@ -17,14 +17,18 @@
             
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#txtNombres'));
                 isRequired($('#txtDescripcion'));
-                isRequired($('#txtApellidoMaterno'));
                 setValue($('#txtIdDependencia'), <?php echo $nextID; ?>);
                 isReadOnly($('#txtIdDependencia'));
                 $('#txtDescripcion').focus();
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
+                $('form').submit(function() {
+                    if(!$('#txtDependenciaSeleccionada').text().length) {
+                        alert('Debes elegir una dependencia');
+                        return false;
+                    }
+                });
             });
         </script>
         <title>SIRALL2 - Crear Dependencia</title>
@@ -91,15 +95,17 @@
                                 }
                                 
                                 function mostrarHijosRed($padre, $dependencias) {
-                                    foreach ($dependencias as $dependencia) {
-                                        if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
-                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
-                                            if(tieneHijos($dependencia, $dependencias)) {
-                                                echo "<ul>";
-                                                mostrarHijos($dependencia, $dependencias);
-                                                echo "</ul>";
+                                    if(is_array($dependencias)) {
+                                        foreach ($dependencias as $dependencia) {
+                                            if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
+                                                echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                                if(tieneHijos($dependencia, $dependencias)) {
+                                                    echo "<ul>";
+                                                    mostrarHijos($dependencia, $dependencias);
+                                                    echo "</ul>";
+                                                }
+                                                echo "</li>";
                                             }
-                                            echo "</li>";
                                         }
                                     }
                                 }

@@ -37,14 +37,18 @@ $(document).ready(function() {
 
     $('#btnSeleccionar').click(function() {
         var $dependenciaSeleccionada = $("#ulDependencia li a.selected");
-        var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
-        $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
-        var tipo = $dependenciaSeleccionada.attr('title');
-        $('#hdnRed').attr('value', $redSeleccionada.find('input').val());
-        if(tipo === 'Dependencia')
-            $('#hdnDependencia').attr('value', $dependenciaSeleccionada.find('input').val());
+        if($($dependenciaSeleccionada).length) {
+            var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
+            $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
+            var tipo = $dependenciaSeleccionada.attr('title');
+            $('#hdnRed').attr('value', $redSeleccionada.find('input').val());
+            if(tipo === 'Dependencia')
+                $('#hdnDependencia').attr('value', $dependenciaSeleccionada.find('input').val());
+            else
+                $('#hdnDependencia').attr('value', 0);
+            $('#dependenciaSelect').dialog('close');
+        }
         else
-            $('#hdnDependencia').attr('value', 0);
-        $('#dependenciaSelect').dialog('close');
+            alert('Selecciona una dependencia');
     });
 });

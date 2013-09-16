@@ -31,7 +31,10 @@
                         <h2>Lista Dependencia</h2>
                         <h4>Lista de Dependencias registradas</h4>
                     </hgroup>
-                </header>
+                </header>  
+                <?php if(isset($mensaje)) { ?>
+                <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
+                <?php } ?>
                 <table class="tblLista">
                     <thead>
                         <tr>
