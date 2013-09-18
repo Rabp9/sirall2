@@ -20,14 +20,6 @@
                 return false;
         }
         
-        public static function getNextID() {
-            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdMarca");
-            $result->execute();
-            $rs = $result->fetch();
-            return $rs['nextID'];
-        }
-        
-        
         public static function crear(Marca $marca) {
             $result = BaseDatos::getDbh()->prepare("INSERT INTO Marca(descripcion, indicacion) values(:descripcion, :indicacion)");
             $result->bindParam(':descripcion', $marca->getDescripcion());
@@ -59,6 +51,13 @@
             $marca->setDescripcion($rs['descripcion']);
             $marca->setIndicacion($rs['indicacion']);
             return $marca;
+        }
+        
+        public static function getNextID() {
+            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdMarca");
+            $result->execute();
+            $rs = $result->fetch();
+            return $rs['nextID'];
         }
         
         public static function getVwMarca() {

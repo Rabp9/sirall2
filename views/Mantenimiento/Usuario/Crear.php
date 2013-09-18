@@ -14,7 +14,6 @@
         <script type="text/javascript" src="resources/js/template.dependenciaSelect.js"></script>
         <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
-        
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtNombres'));
@@ -115,7 +114,7 @@
                                         <td><input id="txtCorreo" type="text" name="correo" placeholder="Escribe el correo"/></td>  
                                     </tr>
                                     <tr>
-                                        <td><label for="txtRpm">Rpm</label></td>
+                                        <td><label for="txtRpm">RPM</label></td>
                                         <td><input id="txtRpm" type="tel" name="rpm" placeholder="Escribe el número de RPM"/></td>  
                                     </tr>
                                     <tr>
