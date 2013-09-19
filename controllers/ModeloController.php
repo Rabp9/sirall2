@@ -87,5 +87,22 @@
             $modelos = ModeloDAO::getVwModelo();
             require_once '/views/Mantenimiento/Modelo/Lista.php';
         }
+                
+        public static function modeloAJAXAction() {
+            if(isset($_GET['idMarca']) && isset($_GET['idTipoEquipo'])) {
+                $modelos = ModeloDAO::getModeloByIdMarca_IdTipoEquipo($_GET['idMarca'], $_GET['idTipoEquipo']);
+                echo self::modelosToXML($modelos);
+            }
+        }
+        
+        private static function modelosToXML($modelos) {
+            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+            $xml .= "\n<Modelos>\n";
+            if(is_array($modelos))
+                foreach($modelos as $modelo)
+                    $xml .= $modelo->toXML() . "\n";
+            $xml .= "</Modelos>\n";
+            return $xml;
+        }
     }
 ?>

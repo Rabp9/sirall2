@@ -12,13 +12,33 @@
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-              /*  isRequiequipo($('#txtDescripcion'));
-                isRequiequipo($('#txtDireccion'));
-                setValue($('#txtIdEquipo'), <?php echo $nextID; ?>);
-                isReadOnly($('#txtIdEquipo'));
+                isRequired($('#txtCodigoPatrimonial'));
+                isRequired($('#txtSerie'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
-                $('#txtDescripcion').focus();*/
+                $('#txtCodigoPatrimonial').focus();
+                
+                var cboModelo = function() {
+                    $.ajax({
+                        url: 'Index.php',
+                        type: 'GET',
+                        data: {
+                            controller: 'Modelo',
+                            action: 'modeloAJAX',
+                            idMarca: $('#cboMarca').val(),
+                            idTipoEquipo: $('#cboTipoEquipo').val()
+                        },
+                        success: function(data) {
+                            $('#cboModelo').html("<option disabled selected value=''>Selecciona un Modelo</option>");
+                            $(data).find('Modelo').each(function() {
+                                var option = new Option($(this).find('descripcion').text(), $(this).find('idModelo').text());
+                                $('#cboModelo').append(option);
+                            });
+                        }
+                    })
+                }; 
+                $('#cboMarca').change(cboModelo);                
+                $('#cboTipoEquipo').change(cboModelo);
             });
         </script>
         
@@ -88,44 +108,16 @@
                                 <td>
                                     <select id="cboModelo" name="idModelo">
                                         <option disabled selected value="">Selecciona un Modelo</option>
-                                        <?php 
-                                            if($modelos) { 
-                                                foreach ($modelos as $modelo) {
-                                                    echo "<option value='" . $modelo->getIdModelo() . "'>" . $modelo->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td><label for="cboRed">Red</label></td>
+                                <td><label for="btnDependenciaSuperior">Dependencia Superior</label></td>
                                 <td>
-                                    <select id="cboRed" name="idRed">
-                                        <option disabled selected value="">Selecciona una Red</option>
-                                        <?php 
-                                            if($redes) { 
-                                                foreach ($redes as $red) {
-                                                    echo "<option value='" . $red->getIdRed() . "'>" . $red->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="cboDependencia">Dependencia</label></td>
-                                <td>
-                                    <select id="cboDependencia" name="idDependencia">
-                                        <option disabled selected value="">Selecciona una Dependencia</option>
-                                        <?php 
-                                            if($dependencias) { 
-                                                foreach ($dependencias as $dependencia) {
-                                                    echo "<option value='" . $dependencia->getIdDependencia() . "'>" . $dependencia->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
+                                    <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
+                                    <span id="txtDependenciaSeleccionada"></span>
+                                    <input id="hdnRed" type="hidden" name="idRed" value=""/>
+                                    <input id="hdnDependencia" type="hidden" name="idDependencia" value=""/>
                                 </td>
                             </tr>
                             <tr>
@@ -142,6 +134,10 @@
                                         ?>
                                     </select>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtIndicacion">Indicación</label></td>
+                                <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" ></textarea></td>  
                             </tr>
                             <tr>
                                 <td></td>

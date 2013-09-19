@@ -29,7 +29,6 @@
             return $rs['nextID'];
         }
         
-        
         public static function crear(Modelo $modelo) {
             $result = BaseDatos::getDbh()->prepare("INSERT INTO Modelo(idTipoEquipo, idMarca, descripcion, indicacion) values(:idTipoEquipo, :idMarca, :descripcion, :indicacion)");
             $result->bindParam(':idTipoEquipo', $modelo->getIdTipoEquipo());
@@ -72,6 +71,26 @@
         public static function getModeloByIdMarca($idMarca) {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo where idMarca = :idMarca");
             $result->bindParam(':idMarca', $idMarca);
+            $result->execute();
+            while ($rs = $result->fetch()) {
+                $modelo = new Modelo();
+                $modelo->setIdModelo($rs['idModelo']);
+                $modelo->setIdMarca($rs['idMarca']);
+                $modelo->setIdTipoEquipo($rs['idTipoEquipo']);
+                $modelo->setDescripcion($rs['descripcion']);
+                $modelo->setIndicacion($rs['indicacion']);
+                $modelos[] = $modelo; 
+            }
+            if(isset($modelos))
+                return $modelos;
+            else
+                return false;
+        }
+        
+        public static function getModeloByIdMarca_IdTipoEquipo($idMarca, $idTipoEquipo) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo where idMarca = :idMarca AND idTipoEquipo = :idTipoEquipo");
+            $result->bindParam(':idMarca', $idMarca);
+            $result->bindParam(':idTipoEquipo', $idTipoEquipo);
             $result->execute();
             while ($rs = $result->fetch()) {
                 $modelo = new Modelo();
