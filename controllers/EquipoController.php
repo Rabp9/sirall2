@@ -1,5 +1,10 @@
 <?php
     require_once '/DAO/EquipoDAO.php';
+    require_once '/DAO/MarcaDAO.php';
+    require_once '/DAO/TipoEquipoDAO.php';
+    require_once '/DAO/ModeloDAO.php';
+    require_once '/DAO/RedDAO.php';
+    require_once '/DAO/DependenciaDAO.php';
     
     class EquipoController {
         public static function EquipoAction() {
@@ -11,6 +16,9 @@
             $nextID = EquipoDAO::getNextID();
             $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
             $marcas = MarcaDAO::getAllMarca();
+            $modelos = ModeloDAO::getAllModelo();
+            $redes = RedDAO::getAllRed();
+            $dependencias = DependenciaDAO::getAllDependencia();
             require_once '/views/Mantenimiento/Equipo/Crear.php';
         }
                 
