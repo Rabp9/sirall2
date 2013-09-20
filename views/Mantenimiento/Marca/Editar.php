@@ -40,7 +40,7 @@
                         <h4>Edita la Marca</h4>
                     </hgroup>
                 </header>
-                <form id="frmCrearMarca" method="POST" action="?controller=Marca&action=EditarPOST">
+                <form id="frmEditarMarca" method="POST" action="?controller=Marca&action=EditarPOST">
                     <fieldset>
                         <legend>Editar Marca</legend>
                         <table>

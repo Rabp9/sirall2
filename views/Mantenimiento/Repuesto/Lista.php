@@ -40,29 +40,27 @@
                         <tr>
                             <th><abbr title="Código identificador">ID.</abbr> Repuesto</th>
                             <th>Descripción</th>
-                            <th>Indicación</th>
-                            <th>N° Modelos</th>
-                            <th>N° Equipos</th>
+                            <th>Unidad de Medida</th>
+                            <th>Stock</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($marcas)) {
-                                while ($marca = $marcas->fetch()) {
+                            if(is_array($repuestos)) {
+                                foreach ($repuestos as $repuesto) {
                         ?>
                         <tr>
-                            <td><?php echo $marca['idRepuesto']; ?></td>
-                            <td><?php echo $marca['descripcion']; ?></td>
-                            <td><?php echo $marca['indicacion']; ?></td>
-                            <td><?php echo $marca['Nro Modelos']; ?></td>
-                            <td><?php echo $marca['Nro Equipos']; ?></td>
+                            <td><?php echo $repuesto->getIdRepuesto(); ?></td>
+                            <td><?php echo $repuesto->getDescripcion(); ?></td>
+                            <td><?php echo $repuesto->getUnidadMedida(); ?></td>
+                            <td><?php echo $repuesto->getStock(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Repuesto&action=Detalle&idRepuesto=<?php echo $marca['idRepuesto']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Repuesto&action=Editar&idRepuesto=<?php echo $marca['idRepuesto']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=Repuesto&action=Eliminar&idRepuesto=<?php echo $marca['idRepuesto']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Repuesto&action=Detalle&idRepuesto=<?php echo $repuesto->getIdRepuesto(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
+                                    <li><a href="?controller=Repuesto&action=Editar&idRepuesto=<?php echo $repuesto->getIdRepuesto(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
+                                    <li><a href="?controller=Repuesto&action=Eliminar&idRepuesto=<?php echo $repuesto->getIdRepuesto(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>

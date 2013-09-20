@@ -5,7 +5,7 @@
             <li><a href="?controller=Red">Red</a></li>
             <li><a href="?controller=Dependencia">Dependencia</a></li>
             <li><a href="?controller=Equipo">Equipo</a></li>
-            <li><a href="#">Repuesto</a></li>
+            <li><a href="?controller=Repuesto">Repuesto</a></li>
             <li><a href="?controller=Rol">Rol</a></li>
             <li><a href="?controller=Usuario">Usuario</a></li>
             <li><a href="?controller=Marca">Marca</a></li>
