@@ -26,23 +26,33 @@
         public static function CrearPOSTAction() {
             if(isset($_POST)) {
                 $equipo = new Equipo();
-                $equipo->setIdEquipo($_POST['idEquipo']);
-                $equipo->setIdTipoEquipo($_POST['idTipoEquipo']);
+                $equipo->setCodigoPatrimonial($_POST['codigoPatrimonial']);
+                $equipo->setSerie($_POST['serie']);
+                $equipo->setIdModelo($_POST['idModelo']);
                 $equipo->setIdMarca($_POST['idMarca']);
-                $equipo->setDescripcion($_POST['descripcion']);
+                $equipo->setIdTipoEquipo($_POST['idTipoEquipo']);
+                $equipo->setIdUsuario($_POST['idUsuario']);
+                $equipo->setIdDependencia($_POST['idDependencia']);
+                $equipo->setIdRed($_POST['idRed']);
                 $equipo->setIndicacion($_POST['indicacion']);
-                EquipoDAO::crear($equipo);
+                $equipo->setEstado('activo');
+                EquipoDAO::crear($equipo) ?
+                    $mensaje = "Equipo guardado correctamente" :
+                    $mensaje = "El Equipo no fue guardado correctamente";
             }
             $equipos = EquipoDAO::getVwEquipo();
-            $mensaje = "Equipo guardada correctamente";
             require_once '/views/Mantenimiento/Equipo/Lista.php';
         }
         
         public static function DetalleAction() {
-            if(isset($_GET['idEquipo'])) {
-                $equipo = EquipoDAO::getEquipoByIdEquipo($_GET['idEquipo']);
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($equipo->getIdTipoEquipo());
+            if(isset($_GET['codigoPatrimonial'])) {
+                $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']);
+                $modelo = ModeloDAO::getModeloByIdModelo($equipo->getIdModelo());
                 $marca = MarcaDAO::getMarcaByIdMarca($equipo->getIdMarca());
+                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($equipo->getIdTipoEquipo());
+                $usuario = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
+                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($equipo->getIdDependencia());
+                $red = RedDAO::getRedByIdRed($equipo->getIdRed());
                 require_once '/views/Mantenimiento/Equipo/Detalle.php';
             }
         }

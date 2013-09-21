@@ -62,7 +62,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=Red">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Rol">Regresar</a></td>
                             </tr>
                         </table>
                     </fieldset>

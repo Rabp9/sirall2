@@ -182,15 +182,17 @@
                                 }
                                 
                                 function mostrarHijosRed($padre, $dependencias) {
-                                    foreach ($dependencias as $dependencia) {
-                                        if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
-                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
-                                            if(tieneHijos($dependencia, $dependencias)) {
-                                                echo "<ul>";
-                                                mostrarHijos($dependencia, $dependencias);
-                                                echo "</ul>";
+                                    if(is_array($dependencias)) {
+                                        foreach ($dependencias as $dependencia) {
+                                            if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
+                                                echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                                if(tieneHijos($dependencia, $dependencias)) {
+                                                    echo "<ul>";
+                                                    mostrarHijos($dependencia, $dependencias);
+                                                    echo "</ul>";
+                                                }
+                                                echo "</li>";
                                             }
-                                            echo "</li>";
                                         }
                                     }
                                 }

@@ -65,7 +65,7 @@
             $this->correo = $correo;
         }
         
-        public function setRpn($rpm) {
+        public function setRpm($rpm) {
             $this->rpm = $rpm;
         }
         
@@ -154,7 +154,7 @@
         
         public function toXML() {
             $xml = "<Usuario>\n";
-            $xml .= "\t<idUsuario>" . $this->getCodigoPatrimonial() . "</idUsuario>\n";
+            $xml .= "\t<idUsuario>" . $this->getIdUsuario() . "</idUsuario>\n";
             $xml .= "\t<idDependencia>" . $this->getIdDependencia() . "</idDependencia>\n";
             $xml .= "\t<idRed>" . $this->getIdRed() . "</idRed>\n";
             $xml .= "\t<idRol>" . $this->getIdRol() . "</idRol>\n";

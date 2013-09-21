@@ -69,12 +69,39 @@
             $usuario->setApellidoPaterno($rs['apellidoPaterno']);
             $usuario->setApellidoMaterno($rs['apellidoMaterno']);
             $usuario->setCorreo($rs['correo']);
-            $usuario->setRpn($rs['rpm']);
+            $usuario->setRpm($rs['rpm']);
             $usuario->setAnexo($rs['anexo']);
             $usuario->setUsername($rs['username']);
             $usuario->setPassword($rs['password']);
             $usuario->setEstado($rs['estado']);
             return $usuario;
+        }
+        
+        public static function getUsuarioByIdDependencia($idDependencia) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Usuario where idDependencia = :idDependencia");
+            $result->bindParam(':idDependencia', $idDependencia);
+            $result->execute();
+            while ($rs = $result->fetch()) {
+                $usuario = new Usuario();
+                $usuario->setIdUsuario($rs['idUsuario']);
+                $usuario->setIdDependencia($rs['idDependencia']);
+                $usuario->setIdRed($rs['idRed']);
+                $usuario->setIdRol($rs['idRol']);
+                $usuario->setNombres($rs['nombres']);
+                $usuario->setApellidoPaterno($rs['apellidoPaterno']);
+                $usuario->setApellidoMaterno($rs['apellidoMaterno']);
+                $usuario->setCorreo($rs['correo']);
+                $usuario->setRpm($rs['rpm']);
+                $usuario->setAnexo($rs['anexo']);
+                $usuario->setUsername($rs['username']);
+                $usuario->setPassword($rs['password']);
+                $usuario->setEstado($rs['estado']);
+                $usuarios[] = $usuario; 
+            }
+            if(isset($usuarios))
+                return $usuarios;
+            else
+                return false;
         }
     }
 ?>

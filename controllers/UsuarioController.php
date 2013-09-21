@@ -104,5 +104,22 @@
             $usuarios = UsuarioDAO::getVwUsuario();
             require_once '/views/Mantenimiento/Usuario/Lista.php';
         }
+        
+        public static function usuarioAJAXAction() {
+            if(isset($_GET['idDependencia'])) {
+                $usuarios = UsuarioDAO::getUsuarioByIdDependencia($_GET['idDependencia']);
+                echo self::usuariosToXML($usuarios);
+            }   
+        }
+        
+        private static function usuariosToXML($usuarios) {
+            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+            $xml .= "\n<Usuarios>\n";
+            if(is_array($usuarios))
+                foreach($usuarios as $usuario)
+                    $xml .= $usuario->toXML() . "\n";
+            $xml .= "</Usuarios>\n";
+            return $xml;
+        }    
     }
 ?>

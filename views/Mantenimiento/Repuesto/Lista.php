@@ -13,7 +13,7 @@
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.lista.js"></script>
         
-        <title>SIRALL2 - Lista Equipo</title>
+        <title>SIRALL2 - Lista Repuesto</title>
     </head>
     <body>
         <aside>
@@ -28,8 +28,8 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Lista Equipo</h2>
-                        <h4>Lista de Equipos registrados</h4>
+                        <h2>Lista Repuesto</h2>
+                        <h4>Lista de Repuestos registrados</h4>
                     </hgroup>
                 </header>       
                 <?php if(isset($mensaje)) { ?>
@@ -38,35 +38,31 @@
                 <table class="tblLista">
                     <thead>
                         <tr>
-                            <th>Código Patrimonial</th>
-                            <th>Serie</th>
-                            <th>Tipo de Equipo</th>
-                            <th>Modelo</th>
-                            <th>Marca</th>
-                            <th>Usuario</th>
-                            <th>Dependencia</th>
+                            <th><abbr title="Código identificador">ID.</abbr> Repuesto</th>
+                            <th>Descripción</th>
+                            <th>Indicación</th>
+                            <th>N° Modelos</th>
+                            <th>N° Equipos</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($equipos)) {
-                                while ($equipo = $equipos->fetch()) {
+                            if(isset($marcas)) {
+                                while ($marca = $marcas->fetch()) {
                         ?>
                         <tr>
-                            <td><?php echo $equipo['codigoPatrimonial']; ?></td>
-                            <td><?php echo $equipo['serie']; ?></td>
-                            <td><?php echo $equipo['TipoEquipo']; ?></td>
-                            <td><?php echo $equipo['Modelo']; ?></td>
-                            <td><?php echo $equipo['Marca']; ?></td>
-                            <td><?php echo $equipo['Usuario']; ?></td>
-                            <td><?php echo $equipo['Dependencia']; ?></td>
+                            <td><?php echo $marca['idRepuesto']; ?></td>
+                            <td><?php echo $marca['descripcion']; ?></td>
+                            <td><?php echo $marca['indicacion']; ?></td>
+                            <td><?php echo $marca['Nro Modelos']; ?></td>
+                            <td><?php echo $marca['Nro Equipos']; ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Equipo&action=Detalle&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Equipo&action=Editar&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=Equipo&action=Eliminar&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Repuesto&action=Detalle&idRepuesto=<?php echo $marca['idRepuesto']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
+                                    <li><a href="?controller=Repuesto&action=Editar&idRepuesto=<?php echo $marca['idRepuesto']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
+                                    <li><a href="?controller=Repuesto&action=Eliminar&idRepuesto=<?php echo $marca['idRepuesto']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -77,7 +73,7 @@
                     </tbody>
                     <tfoot>          
                         <tr>
-                            <td colspan="2"><a class="crearLink" href="?controller=Equipo&action=Crear">Crear Equipo</a></td>
+                            <td colspan="2"><a class="crearLink" href="?controller=Repuesto&action=Crear">Crear Repuesto</a></td>
                         </tr>
                     </tfoot>
                 </table>

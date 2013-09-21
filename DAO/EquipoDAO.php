@@ -31,11 +31,17 @@
         
         
         public static function crear(Equipo $equipo) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(idTipoEquipo, idMarca, descripcion, indicacion) values(:idTipoEquipo, :idMarca, :descripcion, :indicacion)");
-            $result->bindParam(':idTipoEquipo', $equipo->getIdTipoEquipo());
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, idMarca, idTipoEquipo, idUsuario, idDependencia, idRed, indicacion, estado) values(:codigoPatrimonial, :serie, :idModelo, :idMarca, :idTipoEquipo, :idUsuario, :idDependencia, :idRed, :indicacion, :estado)");
+            $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
+            $result->bindParam(':serie', $equipo->getSerie());
+            $result->bindParam(':idModelo', $equipo->getIdModelo());
             $result->bindParam(':idMarca', $equipo->getIdMarca());
-            $result->bindParam(':descripcion', $equipo->getDescripcion());
+            $result->bindParam(':idTipoEquipo', $equipo->getIdTipoEquipo());
+            $result->bindParam(':idUsuario', $equipo->getIdUsuario());
+            $result->bindParam(':idDependencia', $equipo->getIdDependencia());
+            $result->bindParam(':idRed', $equipo->getIdRed());
             $result->bindParam(':indicacion', $equipo->getIndicacion());
+            $result->bindParam(':estado', $equipo->getEstado());
             return $result->execute();
         }
         
@@ -55,17 +61,22 @@
             return $result->execute();
         }
         
-        public static function getEquipoByIdEquipo($idEquipo) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Equipo where idEquipo = :idEquipo");
-            $result->bindParam(':idEquipo', $idEquipo);
+        public static function getEquipoByCodigoPatrimonial($codigoPatrimonial) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Equipo where codigoPatrimonial = :codigoPatrimonial");
+            $result->bindParam(':codigoPatrimonial', $codigoPatrimonial);
             $result->execute();
             $rs = $result->fetch();
             $equipo = new Equipo();
-            $equipo->setIdEquipo($rs['idEquipo']);
-            $equipo->setIdTipoEquipo($rs['idTipoEquipo']);
+            $equipo->setCodigoPatrimonial($rs['codigoPatrimonial']);
+            $equipo->setSerie($rs['serie']);
+            $equipo->setIdModelo($rs['idModelo']);
             $equipo->setIdMarca($rs['idMarca']);
-            $equipo->setDescripcion($rs['descripcion']);
+            $equipo->setIdTipoEquipo($rs['idTipoEquipo']);
+            $equipo->setIdUsuario($rs['idUsuario']);
+            $equipo->setIdDependencia($rs['idDependencia']);
+            $equipo->setIdRed($rs['idRed']);
             $equipo->setIndicacion($rs['indicacion']);
+            $equipo->setEstado($rs['estado']);
             return $equipo;
         }
         
