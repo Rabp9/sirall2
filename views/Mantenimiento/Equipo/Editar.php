@@ -13,8 +13,10 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
-                setValue($('#txtIdEquipo'), <?php echo $equipo->getIdEquipo(); ?>);
-                isReadOnly($('#txtIdEquipo'));
+                setValue($('#txtCodigoPatrimonial'), <?php echo $equipo->getCodigoPatrimonial(); ?>);
+                setValue($('#txtSerie'), '<?php echo $equipo->getSerie(); ?>');
+                isReadOnly($('#txtCodigoPatrimonial'));
+                isReadOnly($('#txtSerie'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtDescripcion').select();
@@ -37,7 +39,7 @@
                 <header>
                     <hgroup>
                         <h2>Editar Equipo</h2>
-                        <h4>Edita la Equipo</h4>
+                        <h4>Edita el Equipo</h4>
                     </hgroup>
                 </header>
                 <form id="frmEditarEquipo" method="POST" action="?controller=Equipo&action=EditarPOST">
@@ -45,16 +47,30 @@
                         <legend>Editar Equipo</legend>
                         <table>
                             <tr>
-                                <td><label for="txtIdEquipo"><abbr title="Código identificador">ID.</abbr> Equipo</label></td>
-                                <td><input id="txtIdEquipo" type="text" name="idEquipo"></td>
+                                <td><label for="txtCodigoPatrimonial">Código Patrimonial</label></td>
+                                <td><input id="txtCodigoPatrimonial" type="text" name="idEquipo"></td>
                             </tr>
                             <tr>
-                                <td><label for="txtDescripcion">Descripción</label></td>
-                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción" value="<?php echo $equipo->getDescripcion(); ?>"></td>  
+                                <td><label for="txtSerie">Serie</label></td>
+                                <td><input id="txtSerie" type="text" name="serie" placeholder="Escribe la serie"></td>  
                             </tr>
                             <tr>
-                                <td><label for="txtIndicacion">Indicación</label></td>
-                                <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicacion" ><?php echo $equipo->getIndicacion(); ?></textarea></td>  
+                                <td><label for="cboTipoEquipo">Tipo de Equipo</label></td>
+                                <td>
+                                    <select id="cboTipoEquipo" name="idTipoEquipo">
+                                        <option disabled selected value="">Selecciona un Tipo de Equipo</option>
+                                        <?php 
+                                            if($tipoEquipos) { 
+                                                foreach ($tipoEquipos as $tipoEquipo) {        
+                                                    if($tipoEquipo->getIdTipoEquipo() == $equipo->getIdTipoEquipo())
+                                                        echo "<option value='" . $tipoEquipo->getIdTipoEquipo() . "' selected>" . $tipoEquipo->getDescripcion() . "</option>";
+                                                    else
+                                                        echo "<option value='" . $tipoEquipo->getIdTipoEquipo() . "'>" . $tipoEquipo->getDescripcion() . "</option>";
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td></td>

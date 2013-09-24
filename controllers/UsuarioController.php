@@ -29,7 +29,7 @@
                 $usuario->setApellidoPaterno($_POST['apellidoPaterno']);
                 $usuario->setApellidoMaterno($_POST['apellidoMaterno']);
                 $usuario->setCorreo($_POST['correo']);
-                $usuario->setRpn($_POST['rpm']);
+                $usuario->setRpm($_POST['rpm']);
                 $usuario->setAnexo($_POST['anexo']);
                 $usuario->setUsername($_POST['username']);
                 UsuarioDAO::crear($usuario) ?

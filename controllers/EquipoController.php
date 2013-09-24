@@ -58,10 +58,10 @@
         }
         
         public static function EditarAction() {
-            if(isset($_GET['idEquipo'])) {
-                $equipo = EquipoDAO::getEquipoByIdEquipo($_GET['idEquipo']);
+            if(isset($_GET['codigoPatrimonial'])) {
+                $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']);
                 $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
-                $marcas = MarcaDAO::getAllMarca();
+                //$marcas = MarcaDAO::getAllMarca();
                 require_once '/views/Mantenimiento/Equipo/Editar.php';
             }
         }
