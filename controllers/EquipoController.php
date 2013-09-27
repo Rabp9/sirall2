@@ -61,7 +61,7 @@
             if(isset($_GET['codigoPatrimonial'])) {
                 $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']);
                 $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
-                //$marcas = MarcaDAO::getAllMarca();
+                $marcas = MarcaDAO::getAllMarca();
                 require_once '/views/Mantenimiento/Equipo/Editar.php';
             }
         }
