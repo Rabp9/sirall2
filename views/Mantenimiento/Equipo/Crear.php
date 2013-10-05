@@ -145,7 +145,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label for="btnDependenciaSuperior">Dependencia Superior</label></td>
+                                <td><label for="btnDependenciaSuperior">Dependencia</label></td>
                                 <td>
                                     <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
                                     <span id="txtDependenciaSeleccionada"></span>

@@ -82,10 +82,14 @@
         }
         
         public static function EliminarAction() {
-            if(isset($_GET['idEquipo'])) {
-                $equipo = EquipoDAO::getEquipoByIdEquipo($_GET['idEquipo']);
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($equipo->getIdTipoEquipo());
+            if(isset($_GET['codigoPatrimonial'])) {
+                $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']);
+                $modelo = ModeloDAO::getModeloByIdModelo($equipo->getIdModelo());
                 $marca = MarcaDAO::getMarcaByIdMarca($equipo->getIdMarca());
+                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($equipo->getIdTipoEquipo());
+                $usuario = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
+                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($equipo->getIdDependencia());
+                $red = RedDAO::getRedByIdRed($equipo->getIdRed());
                 require_once '/views/Mantenimiento/Equipo/Eliminar.php';
             }
         }
@@ -93,7 +97,7 @@
         public static function EliminarPOSTAction() {
             if(isset($_POST)) {
                 $equipo = new Equipo();
-                $equipo->setIdEquipo($_POST['idEquipo']);
+                $equipo->setCodigoPatrimonial($_POST['codigoPatrimonial']);
                 EquipoDAO::eliminar($equipo);
             }
             $equipos = EquipoDAO::getVwEquipo();
