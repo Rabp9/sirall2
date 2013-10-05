@@ -31,7 +31,7 @@
                     </hgroup>
                 </header>
                 <form id="frmEliminarMarca" method="POST" action="?controller=Marca&action=EliminarPOST">
-                     <fieldset>
+                    <fieldset>
                         <legend>Eliminar Marca</legend>
                         <input id="idMarca" type="hidden" value="<?php echo $marca->getIdMarca(); ?>" name="idMarca"/>
                         <table>
