@@ -1,0 +1,22 @@
+Archivos listos:
+
+Mantenimiento/Marca/
+    Marca/Crear.php
+    Marca/Detalle.php
+    Marca/Editar.php
+    Marca/Eliminar.php
+    Marca/Lista.php
+Mantenimiento/Rol/
+    Rol/Crear.php
+    Rol/Detalle.php
+    Rol/Editar.php
+    Rol/Eliminar.php
+    Rol/Lista.php
+Mantenimiento/Red/
+    Red/Crear.php
+    Red/Detalle.php
+    Red/Editar.php
+    Red/Eliminar.php
+    Red/Lista.php
+
+19 de Setiembre terminar Mantenimiento de Equipos y de repuestos, nuevo Lote
