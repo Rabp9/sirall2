@@ -14,7 +14,6 @@
             $nextID = UsuarioDAO::getNextID();
             $redes = RedDAO::getAllRed();
             $dependencias = DependenciaDAO::getAllDependencia();
-            $roles = RolDAO::getAllRol();
             require_once '/views/Mantenimiento/Usuario/Crear.php';
         }
         
@@ -23,15 +22,13 @@
                 $usuario = new Usuario();
                 $usuario->setIdUsuario($_POST['idUsuario']);
                 $usuario->setIdDependencia($_POST['idDependencia']);
-                $usuario->setIdRed($_POST['idRed']);
-                $usuario->setIdRol($_POST['idRol']);
                 $usuario->setNombres($_POST['nombres']);
                 $usuario->setApellidoPaterno($_POST['apellidoPaterno']);
                 $usuario->setApellidoMaterno($_POST['apellidoMaterno']);
                 $usuario->setCorreo($_POST['correo']);
                 $usuario->setRpm($_POST['rpm']);
                 $usuario->setAnexo($_POST['anexo']);
-                $usuario->setUsername($_POST['username']);
+                $usuario->setEstado(1); //Activado
                 UsuarioDAO::crear($usuario) ?
                     $mensaje = "Usuario guardado correctamente" :
                     $mensaje = "El Usuario no fue guardado correctamente";
@@ -45,8 +42,7 @@
             if(isset($_GET['idUsuario'])) {
                 $usuario = UsuarioDAO::getUsuarioByIdUsuario($_GET['idUsuario']);
                 $dependencia = DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia());
-                $red = RedDAO::getRedByIdRed($usuario->getIdRed());
-                $rol = RolDAO::getRolByIdRol($usuario->getIdRol());
+                $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
                 require_once '/views/Mantenimiento/Usuario/Detalle.php';
             }
         }
@@ -54,9 +50,8 @@
         public static function EditarAction() {
             if(isset($_GET['idUsuario'])) {
                 $usuario = UsuarioDAO::getUsuarioByIdUsuario($_GET['idUsuario']);
-                $redes = RedDAO::getAllRed();
-                $dependencias = DependenciaDAO::getAllDependencia();
-                $roles = RolDAO::getAllRol();
+                $redes = RedDAO::getAllRed();      
+                $dependencias = DependenciaDAO::getAllDependencia();   
                 require_once '/views/Mantenimiento/Usuario/Editar.php';
             }
         }
@@ -66,15 +61,13 @@
                 $usuario = new Usuario();
                 $usuario->setIdUsuario($_POST['idUsuario']);
                 $usuario->setIdDependencia($_POST['idDependencia']);
-                $usuario->setIdRed($_POST['idRed']);
-                $usuario->setIdRol($_POST['idRol']);
                 $usuario->setNombres($_POST['nombres']);
                 $usuario->setApellidoPaterno($_POST['apellidoPaterno']);
                 $usuario->setApellidoMaterno($_POST['apellidoMaterno']);
                 $usuario->setCorreo($_POST['correo']);
-                $usuario->setRpn($_POST['rpm']);
+                $usuario->setRpm($_POST['rpm']);
                 $usuario->setAnexo($_POST['anexo']);
-                $usuario->setUsername($_POST['username']);
+                $usuario->setEstado(1);
                 UsuarioDAO::editar($usuario) ?
                     $mensaje = "Usuario modificado correctamente" :
                     $mensaje = "El Usuario no fue modificado correctamente";
@@ -87,8 +80,7 @@
             if(isset($_GET['idUsuario'])) {
                 $usuario = UsuarioDAO::getUsuarioByIdUsuario($_GET['idUsuario']);
                 $dependencia = DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia());
-                $red = RedDAO::getRedByIdRed($usuario->getIdRed());
-                $rol = RolDAO::getRolByIdRol($usuario->getIdRol());
+                $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
                 require_once '/views/Mantenimiento/Usuario/Eliminar.php';
             }
         }

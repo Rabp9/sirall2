@@ -18,7 +18,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
-                setValue($('#txtIdDependencia'), <?php echo $nextID; ?>);
+                setValue($('#txtIdDependencia'), '<?php echo $nextID; ?>');
                 isReadOnly($('#txtIdDependencia'));
                 $('#txtDescripcion').focus();
                 $('#btnEnviar').button();
@@ -50,7 +50,6 @@
                         <h4>Crea una Dependencia</h4>
                     </hgroup>
                 </header>
-
                 <form id="frmCrearDependencia" method="POST" action="?controller=Dependencia&action=CrearPOST">
                     <fieldset>
                         <legend>Crear Dependencia</legend>

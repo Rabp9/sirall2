@@ -19,7 +19,7 @@
                 $('#btnBorrar').button();
                 $('#chbRestRed').button();
                 $('#chbRestDependencia').button();
-                $( "#chbRestDependencia" ).button({ disabled: true });
+                $("#chbRestDependencia" ).button({ disabled: true });
                 $('#txtDescripcion').focus();
                 (function ($) {
                 $.fn.styleTable = function (options) {

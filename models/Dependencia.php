@@ -4,11 +4,15 @@
         private $idRed;
         private $descripcion;
         private $superIdDependencia;
+        private $idUsuarioJefe;
+        private $estado;
         
         public function __construct() {
-            $this->idDependencia = 0;
-            $this->idRed = 0;
+            $this->idDependencia = "";
+            $this->idRed = "";
             $this->descripcion = "";
+            $this->idUsuarioJefe = "";
+            $this->estado = 1;
         }
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
@@ -29,7 +33,15 @@
         public function setSuperIdDependencia($superIdDependencia) {
             $this->superIdDependencia = $superIdDependencia;
         }
-
+        
+        public function setIdUsuarioJefe($idUsuarioJefe) {
+            $this->idUsuarioJefe = $idUsuarioJefe;
+        }
+        
+        public function setEstado($estado) {
+            $this->estado = $estado;
+        }
+        
         //Gets
         public function getIdDependencia() {
             return $this->idDependencia;
@@ -47,6 +59,14 @@
             return $this->superIdDependencia;
         }
         
+        public function getIdUsuariojefe() {
+            return $this->idUsuarioJefe;
+        }
+        
+        public function getEstado() {
+            return $this->estado;
+        }
+        
         // </editor-fold>
   
         //Funciones extras
@@ -61,6 +81,8 @@
             $xml .= "\t<idRed>" . $this->getIdRed() . "</idRed>\n";
             $xml .= "\t<descripcion>" . $this->getDescripcion() . "</descripcion>\n";
             $xml .= "\t<superIdDependencia>" . $this->getSuperIdDependencia() . "</superIdDependencia>\n";
+            $xml .= "\t<idUsuarioJefe>" . $this->getIdUsuariojefe() . "</idUsuarioJefe>\n";
+            $xml .= "\t<estado>" . $this->getEstado() . "</estado>\n";
             $xml = $xml . "</Dependencia>";
             return $xml;
         }

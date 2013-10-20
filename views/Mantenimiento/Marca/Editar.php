@@ -13,7 +13,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
-                setValue($('#txtIdMarca'), <?php echo $marca->getIdMarca(); ?>);
+                setValue($('#txtIdMarca'), '<?php echo $marca->getIdMarca(); ?>');
                 isReadOnly($('#txtIdMarca'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();

@@ -17,6 +17,7 @@
                 $tipoEquipo = new TipoEquipo();
                 $tipoEquipo->setIdTipoEquipo($_POST['idTipoEquipo']);
                 $tipoEquipo->setDescripcion($_POST['descripcion']);
+                $tipoEquipo->setEstado(1);
                 TipoEquipoDAO::crear($tipoEquipo) ?
                     $mensaje = "Tipo de Equipo guardado Correctamente" :
                     $mensaje = "El Tipo de Equipo no fue guardado Correctamente";
@@ -44,6 +45,7 @@
                 $tipoEquipo = new TipoEquipo();
                 $tipoEquipo->setIdTipoEquipo($_POST['idTipoEquipo']);
                 $tipoEquipo->setDescripcion($_POST['descripcion']);
+                $tipoEquipo->setEstado(1);
                 TipoEquipoDAO::editar($tipoEquipo) ?
                     $mensaje = "Tipo de Equipo modificado Correctamente" :
                     $mensaje = "El Tipo de Equipo no fue modificado Correctamente";

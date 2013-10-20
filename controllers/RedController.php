@@ -18,6 +18,7 @@
                 $red->setIdRed($_POST['idRed']);
                 $red->setDescripcion($_POST['descripcion']);
                 $red->setDireccion($_POST['direccion']);
+                $red->setEstado(1);
                 RedDAO::crear($red) ?
                     $mensaje = "Red guardada correctamente" :
                     $mensaje = "La Red no fue guardada correctamente";
@@ -47,6 +48,7 @@
                 $red->setIdRed($_POST['idRed']);
                 $red->setDescripcion($_POST['descripcion']);
                 $red->setDireccion($_POST['direccion']);
+                $red->setEstado(1);
                 RedDAO::editar($red) ?
                     $mensaje = "Red modificada correctamente" :
                     $mensaje = "La Red no fue modificada correctamente";

@@ -46,17 +46,13 @@
                             <td><?php echo $red->getDescripcion(); ?></td>  
                         </tr>
                         <tr>
-                            <td><strong>Rol:</strong></td>
-                            <td><?php echo $rol->getDescripcion(); ?></td>  
-                        </tr>
-                        <tr>
                             <td><strong>Nombres:</strong></td>
                             <td><?php echo $usuario->getNombres(); ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Apellido Paterno:</strong></td>
                             <td><?php echo $usuario->getApellidoPaterno(); ?></td>  
-                        </tr>>
+                        </tr>
                         <tr>
                             <td><strong>Apellido Materno:</strong></td>
                             <td><?php echo $usuario->getApellidoMaterno(); ?></td>  
@@ -72,14 +68,6 @@
                         <tr>
                             <td><strong>Anexo:</strong></td>
                             <td><?php echo $usuario->getAnexo(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Username:</strong></td>
-                            <td><?php echo $usuario->getUsername(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Password:</strong></td>
-                            <td><?php echo preg_replace("/[A-Za-z0-9]/", "*", $usuario->getPassword()); ?></td>  
                         </tr>
                         <tr>
                             <td>

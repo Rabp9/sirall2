@@ -21,22 +21,25 @@
         }
         
         public static function crear(Marca $marca) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Marca(descripcion, indicacion) values(:descripcion, :indicacion)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Marca(idMarca, descripcion, indicacion, estado) values(:idMarca, :descripcion, :indicacion, :estado)");
+            $result->bindParam(':idMarca', $marca->getIdMarca());
             $result->bindParam(':descripcion', $marca->getDescripcion());
             $result->bindParam(':indicacion', $marca->getIndicacion());
+            $result->bindParam(':estado', $marca->getEstado());
             return $result->execute();
         }
         
         public static function editar(Marca $marca) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Marca SET descripcion = :descripcion, indicacion = :indicacion WHERE idMarca = :idMarca");
+            $result = BaseDatos::getDbh()->prepare("UPDATE Marca SET descripcion = :descripcion, indicacion = :indicacion, estado = :estado WHERE idMarca = :idMarca");
             $result->bindParam(':descripcion', $marca->getDescripcion());
             $result->bindParam(':indicacion', $marca->getIndicacion());
             $result->bindParam(':idMarca', $marca->getIdMarca());
+            $result->bindParam(':estado', $marca->getEstado());
             return $result->execute();
         }
         
         public static function eliminar(Marca $marca) {
-            $result = BaseDatos::getDbh()->prepare("DELETE FROM Marca WHERE idMarca = :idMarca");
+            $result = BaseDatos::getDbh()->prepare("UPDATE Marca SET estado = 2 WHERE idMarca = :idMarca");
             $result->bindParam(':idMarca', $marca->getIdMarca());
             return $result->execute();
         }
@@ -57,7 +60,15 @@
             $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdMarca");
             $result->execute();
             $rs = $result->fetch();
-            return $rs['nextID'];
+            $n = $rs['nextID'] + 1;
+            if($n < 10) 
+                return 'M000' . $n;
+            elseif ($n < 100)
+                return 'M00' . $n;
+            elseif ($n < 1000)
+                return 'M0' . $n;
+            else
+                return 'M' . $n;
         }
         
         public static function getVwMarca() {

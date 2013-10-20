@@ -18,6 +18,7 @@
                 $marca->setIdMarca($_POST['idMarca']);
                 $marca->setDescripcion($_POST['descripcion']);
                 $marca->setIndicacion($_POST['indicacion']);
+                $marca->setEstado(1);
                 MarcaDAO::crear($marca) ? 
                     $mensaje = "Marca guardada correctamente" : 
                     $mensaje = "La Marca no fue guardada correctamente";
@@ -46,6 +47,7 @@
                 $marca->setIdMarca($_POST['idMarca']);
                 $marca->setDescripcion($_POST['descripcion']);
                 $marca->setIndicacion($_POST['indicacion']);
+                $marca->setEstado(1);
                 MarcaDAO::editar($marca) ?
                     $mensaje = "Marca modificada correctamente" :
                     $mensaje = "La Marca no fue modificada correctamente";

@@ -19,9 +19,10 @@
             if(isset($_POST)) {
                 $dependencia = new Dependencia();
                 $dependencia->setIdDependencia($_POST['idDependencia']);
-                $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setIdRed($_POST['idRed']);
+                $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
+                $dependencia->setEstado(1);
                 DependenciaDAO::crear($dependencia) ?
                     $mensaje = "Dependencia guardada correctamente" :
                     $mensaje = "La Dependencia no fue guardada correctamente";
@@ -55,6 +56,7 @@
                 $dependencia->setIdRed($_POST['idRed']);
                 $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
+                $dependencia->setEstado(1);
                 DependenciaDAO::editar($dependencia) ?
                     $mensaje = "Dependencia modificada correctamente" :
                     $mensaje = "La Dependencia no fue modificada correctamente";

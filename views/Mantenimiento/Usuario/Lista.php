@@ -41,9 +41,7 @@
                             <th><abbr title="Código identificador">ID.</abbr> Usuario</th>
                             <th>Dependencia</th>
                             <th>Red</th>
-                            <th>Rol</th>
                             <th>Nombre Completo</th>
-                            <th>Username</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -56,9 +54,7 @@
                             <td><?php echo $usuario['idUsuario']; ?></td>
                             <td><?php echo $usuario['Dependencia']; ?></td>
                             <td><?php echo $usuario['Red']; ?></td>
-                            <td><?php echo $usuario['Rol']; ?></td>
                             <td><?php echo $usuario['Nombre Completo']; ?></td>
-                            <td><?php echo $usuario['username']; ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>

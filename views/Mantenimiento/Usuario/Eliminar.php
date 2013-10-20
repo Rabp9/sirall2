@@ -35,65 +35,53 @@
                      <fieldset>
                         <legend>Eliminar Usuario</legend>
                         <input id="idUsuario" type="hidden" value="<?php echo $usuario->getIdUsuario(); ?>" name="idUsuario"/>
-                    <table>
-                        <tr>
-                            <td><strong><abbr title="Código identificador">ID.</abbr> Usuario:</strong></td>
-                            <td><?php echo $usuario->getIdUsuario(); ?></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Dependencia:</strong></td>
-                            <td><?php echo $dependencia->getDescripcion(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Red:</strong></td>
-                            <td><?php echo $red->getDescripcion(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Rol:</strong></td>
-                            <td><?php echo $rol->getDescripcion(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Nombres:</strong></td>
-                            <td><?php echo $usuario->getNombres(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Apellido Paterno:</strong></td>
-                            <td><?php echo $usuario->getApellidoPaterno(); ?></td>  
-                        </tr>>
-                        <tr>
-                            <td><strong>Apellido Materno:</strong></td>
-                            <td><?php echo $usuario->getApellidoMaterno(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Correo:</strong></td>
-                            <td><?php echo $usuario->getCorreo(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>RPM:</strong></td>
-                            <td><?php echo $usuario->getRpm(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Anexo:</strong></td>
-                            <td><?php echo $usuario->getAnexo(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Username:</strong></td>
-                            <td><?php echo $usuario->getUsername(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Password:</strong></td>
-                            <td><?php echo preg_replace("/[A-Za-z0-9]/", "*", $usuario->getPassword()); ?></td>  
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="?controller=Usuario&action=Editar&idUsuario=<?php echo $usuario->getIdUsuario(); ?>">Editar</a> |
-                                <a href="?controller=Usuario&action=Eliminar&idUsuario=<?php echo $usuario->getIdUsuario(); ?>">Eliminar</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><a href="?controller=Usuario">Regresar</a></td>
-                        </tr>
-                    </table>
+                        <table>
+                            <tr>
+                                <td><strong><abbr title="Código identificador">ID.</abbr> Usuario:</strong></td>
+                                <td><?php echo $usuario->getIdUsuario(); ?></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dependencia:</strong></td>
+                                <td><?php echo $dependencia->getDescripcion(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Red:</strong></td>
+                                <td><?php echo $red->getDescripcion(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Nombres:</strong></td>
+                                <td><?php echo $usuario->getNombres(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Apellido Paterno:</strong></td>
+                                <td><?php echo $usuario->getApellidoPaterno(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Apellido Materno:</strong></td>
+                                <td><?php echo $usuario->getApellidoMaterno(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Correo:</strong></td>
+                                <td><?php echo $usuario->getCorreo(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>RPM:</strong></td>
+                                <td><?php echo $usuario->getRpm(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Anexo:</strong></td>
+                                <td><?php echo $usuario->getAnexo(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button id="enviar" type="button" value="" name="enviar">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><a href="?controller=Red">Regresar</a></td>
+                            </tr>
+                        </table>
                     </fieldset>
                 </form>
                 <!-- Ventana de diálogo confirmar -->

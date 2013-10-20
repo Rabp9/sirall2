@@ -14,7 +14,8 @@
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
                 isRequired($('#txtDireccion'));
-                setValue($('#txtIdRed'), <?php echo $red->getIdRed(); ?>);
+                setValue($('#txtIdRed'), '<?php echo $red->getIdRed(); ?>');
+                setValue($('#txtDescripcion'), '<?php echo $red->getDescripcion(); ?>');
                 isReadOnly($('#txtIdRed'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
@@ -51,7 +52,7 @@
                             </tr>
                             <tr>
                                 <td><label for="txtDescripcion">Descripción</label></td>
-                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción" value="<?php echo $red->getDescripcion(); ?>"></td>  
+                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>
                                 <td><label for="txtDireccion">Dirección</label></td>

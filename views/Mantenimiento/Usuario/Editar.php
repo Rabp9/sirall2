@@ -20,14 +20,14 @@
                 isRequired($('#txtApellidoPaterno'));
                 isRequired($('#txtApellidoMaterno'));
                 isRequired($('#cboRol'));
-                setValue($('#txtIdUsuario'), <?php echo $usuario->getIdUsuario(); ?>);
+                setValue($('#txtIdUsuario'), '<?php echo $usuario->getIdUsuario(); ?>');
+                setValue($('#hdnDependencia'), '<?php echo $usuario->getIdDependencia(); ?>');
                 setValue($('#txtNombres'), '<?php echo $usuario->getNombres(); ?>');
                 setValue($('#txtApellidoPaterno'), '<?php echo $usuario->getApellidoPaterno(); ?>');
                 setValue($('#txtApellidoMaterno'), '<?php echo $usuario->getApellidoMaterno(); ?>');
                 setValue($('#txtCorreo'), '<?php echo $usuario->getCorreo(); ?>');
                 setValue($('#txtRpm'), '<?php echo $usuario->getRpm(); ?>');
                 setValue($('#txtAnexo'), '<?php echo $usuario->getAnexo(); ?>');
-                setValue($('#txtUsername'), '<?php echo $usuario->getUsername(); ?>');
                 isReadOnly($('#txtIdUsuario'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
@@ -49,12 +49,11 @@
                 $('button.next').button();
                 $('button.prev').button();
                 
-                var idDependencia = <?php echo $usuario->getIdDependencia(); ?>;
+                var idDependencia = '<?php echo $usuario->getIdDependencia(); ?>';
                 $("#ulDependencia li a").not($("a[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().find('a:eq(0)').addClass('selected');
                 var $dependenciaSeleccionada = $("#ulDependencia li a.selected"); 
                 var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
                 $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
-    
             });
         </script>
         
@@ -84,7 +83,6 @@
                             <ul>
                                 <li><a href="#personal">Información personal</a></li>
                                 <li><a href="#institucional">Información Institucional</a></li>
-                                <li><a href="#sistema">Información del Sistema</a></li>
                             </ul>
                             <div id="personal">
                                 <table>
@@ -128,32 +126,6 @@
                                     <tr>
                                         <td><label for="txtAnexo">Anexo</label></td>
                                         <td><input id="txtAnexo" type="tel" name="anexo" placeholder="Escribe el número de anexo"/></td>  
-                                    </tr>
-                                </table>
-                            </div>
-                            <div id="sistema">
-                                <table>
-                                    <tr>
-                                        <td><label for="cboRol">Rol</label></td>
-                                        <td>
-                                            <select id="cboRol" name="idRol">   
-                                                <option disabled selected value="">Selecciona un Rol</option>
-                                                <?php 
-                                                    if($roles) { 
-                                                        foreach ($roles as $rol) {
-                                                            if($rol->getIdRol() == $usuario->getIdRol())
-                                                                echo "<option value='" . $rol->getIdRol() . "' selected>" . $rol->getDescripcion() . "</option>";
-                                                            else
-                                                                echo "<option value='" . $rol->getIdRol() . "'>" . $rol->getDescripcion() . "</option>";
-                                                        }
-                                                    }
-                                                ?>
-                                            </select>
-                                        </td>  
-                                    </tr>
-                                    <tr>
-                                        <td><label for="txtUsername">Username</label></td>
-                                        <td><input id="txtUsername" type="text" name="username" placeholder="Escribe el username"/></td>  
                                     </tr>
                                 </table>
                             </div>

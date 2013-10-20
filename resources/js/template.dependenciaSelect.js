@@ -45,7 +45,7 @@ $(document).ready(function() {
             if(tipo === 'Dependencia')
                 $('#hdnDependencia').attr('value', $dependenciaSeleccionada.find('input').val());
             else
-                $('#hdnDependencia').attr('value', 0);
+                $('#hdnDependencia').attr('value', null);
             $('#dependenciaSelect').dialog('close');
         }
         else

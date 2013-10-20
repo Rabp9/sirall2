@@ -19,13 +19,13 @@
                 isRequired($('#txtNombres'));
                 isRequired($('#txtDescripcion'));
                 isRequired($('#txtApellidoMaterno'));
-                setValue($('#txtIdDependencia'), <?php echo $dependencia->getIdDependencia(); ?>);
+                setValue($('#txtIdDependencia'), '<?php echo $dependencia->getIdDependencia(); ?>');
                 isReadOnly($('#txtIdDependencia'));
                 $('#txtDescripcion').focus();
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 
-                var idDependencia = <?php echo $dependencia->getIdDependencia(); ?>;
+                var idDependencia = '<?php echo $dependencia->getIdDependencia(); ?>';
                 $("#ulDependencia li a").not($("a[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().parent().parent().find('a:eq(0)').addClass('selected');
                 var $dependenciaSeleccionada = $("#ulDependencia li a.selected"); 
                 var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
