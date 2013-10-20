@@ -32,7 +32,8 @@
                 </header>
                 <form id="frmEliminarEquipo" method="POST" action="?controller=Equipo&action=EliminarPOST">
                     <fieldset>
-                        <legend>Detalle Equipo</legend>
+                        <legend>Eliminar Equipo</legend>
+                        <input id="codigoPatrimonial" type="hidden" value="<?php echo $equipo->getCodigoPatrimonial(); ?>" name="codigoPatrimonial"/>
                         <table>
                             <tr>
                                 <td><strong>Código Patrimonial:</strong></td>
@@ -71,9 +72,9 @@
                                 <td><?php echo $equipo->getIndicacion(); ?></td>  
                             </tr>
                             <tr>
+                                <td></td>
                                 <td>
-                                    <a href="?controller=Equipo&action=Editar&idEquipo=<?php echo $equipo->getCodigoPatrimonial(); ?>">Editar</a> |
-                                    <a href="?controller=Equipo&action=Eliminar&idEquipo=<?php echo $equipo->getCodigoPatrimonial(); ?>">Eliminar</a>
+                                    <button id="enviar" type="button" value="" name="enviar">Eliminar</button>
                                 </td>
                             </tr>
                             <tr>
@@ -84,7 +85,7 @@
                 </form>
                 <!-- Ventana de diálogo confirmar -->
                 <div id="confirmar" title="Advertencia">
-                    <p>¿Está seguro de eliminar la Equipo?</p>
+                    <p>¿Está seguro de eliminar el Equipo?</p>
                 </div>
             </article>
         </section>

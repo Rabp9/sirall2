@@ -56,8 +56,8 @@
         }
         
         public static function eliminar(Equipo $equipo) {
-            $result = BaseDatos::getDbh()->prepare("DELETE FROM Equipo WHERE idEquipo = :idEquipo");
-            $result->bindParam(':idEquipo', $equipo->getIdEquipo());
+            $result = BaseDatos::getDbh()->prepare("DELETE FROM Equipo WHERE codigoPatrimonial = :codigoPatrimonial");
+            $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             return $result->execute();
         }
         
