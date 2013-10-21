@@ -26,7 +26,15 @@
             $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdModelo");
             $result->execute();
             $rs = $result->fetch();
-            return $rs['nextID'];
+            $n = $rs['nextID'] + 1;
+            if($n < 10) 
+                return 'C000' . $n;
+            elseif ($n < 100)
+                return 'C00' . $n;
+            elseif ($n < 1000)
+                return 'C0' . $n;
+            else
+                return 'C' . $n;
         }
         
         public static function crear(Modelo $modelo) {

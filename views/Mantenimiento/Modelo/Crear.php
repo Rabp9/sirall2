@@ -15,11 +15,25 @@
                 isRequired($('#txtDescripcion'));
                 isRequired($('#cboTipoEquipo'));
                 isRequired($('#cboMarca'));
-                setValue($('#txtIdModelo'), <?php echo $nextID; ?>);
+                setValue($('#txtIdModelo'), '<?php echo $nextID; ?>');
                 isReadOnly($('#txtIdModelo'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtDescripcion').focus();
+                
+                var availableTags = [
+                    "ActionScript",
+                    "AppleScript"
+                ];
+                var n = '<?php echo sizeof($tipoEquipos); ?>';
+                for(i = 0; i < n; i++) {
+                    availableTags.push("<?php echo $tipoEquipos[] ?>");
+                }
+                availableTags.push("aaaa");
+                $("#txtIdTipoEquipo").autocomplete({
+                    source: availableTags
+                });
+                $("#txtIdTipoEquipo").autocomplete({ autoFocus: true });
             });
         </script>
         
@@ -51,9 +65,9 @@
                                 <td><input id="txtIdModelo" type="text" name="idModelo"></td>
                             </tr>
                             <tr>
-                                <td><label for="cboTipoEquipo">Tipo de Equipo</label></td>
-                                <td>
-                                    <select id="cboTipoEquipo" name="idTipoEquipo">
+                                <td><label for="txtTipoEquipo">Tipo de Equipo</label></td>
+                                <td><input id="txtIdTipoEquipo" type="text" name="idTipoEquipo">
+                                <!--   <select id="cboTipoEquipo" name="idTipoEquipo">
                                         <option disabled selected value="">Selecciona un Tipo de Equipo</option>
                                         <?php 
                                             if($tipoEquipos) { 
@@ -63,6 +77,7 @@
                                             }
                                         ?>
                                     </select>
+                                 -->
                                 </td>
                             </tr>
                             <tr>
