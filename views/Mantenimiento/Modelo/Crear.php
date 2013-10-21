@@ -21,19 +21,57 @@
                 $('#btnBorrar').button();
                 $('#txtDescripcion').focus();
                 
-                var availableTags = [
-                    "ActionScript",
-                    "AppleScript"
-                ];
-                var n = '<?php echo sizeof($tipoEquipos); ?>';
-                for(i = 0; i < n; i++) {
-                    availableTags.push("<?php echo $tipoEquipos[] ?>");
-                }
-                availableTags.push("aaaa");
+                // Tipo de Equipo
+                var tipoEquipoTags = new Array();
+                <?php
+                    if($tipoEquipos) { 
+                        foreach ($tipoEquipos as $tipoEquipo) {
+                ?>
+                        tipoEquipoTags.push('<?php echo $tipoEquipo->getIdTipoEquipo(); ?>');
+                <?php
+                        }
+                    }
+                ?>
+                        
                 $("#txtIdTipoEquipo").autocomplete({
-                    source: availableTags
+                    source: tipoEquipoTags
                 });
                 $("#txtIdTipoEquipo").autocomplete({ autoFocus: true });
+                $('#btnIdTipoEquipo').button({
+                    icons: {
+                        primary: "ui-icon-search"
+                    },
+                    text: false
+                });
+                $('#btnIdTipoEquipo').css('height', parseInt($("#txtIdTipoEquipo").css('height')) + 8);
+                $("#txtIdTipoEquipo").css('width', parseInt($("#txtIdTipoEquipo").css('width')) - 48);
+                
+                        
+                // Marca
+                var marcaTags = new Array();
+                <?php
+                    if($marcas) { 
+                        foreach ($marcas as $marca) {
+                ?>
+                        marcaTags.push('<?php echo $marca->getIdMarca(); ?>');
+                <?php
+                        }
+                    }
+                ?>
+                        
+                $("#txtIdMarca").autocomplete({
+                    source: marcaTags
+                });
+                $("#txtIdMarca").autocomplete({ autoFocus: true });
+                $('#btnIdMarca').button({
+                    icons: {
+                        primary: "ui-icon-search"
+                    },
+                    text: false
+                });
+                $('#btnIdMarca').css('height', parseInt($("#txtIdMarca").css('height')) + 8);
+                $("#txtIdMarca").css('width', parseInt($("#txtIdMarca").css('width')) - 48);
+                
             });
         </script>
         
@@ -65,34 +103,27 @@
                                 <td><input id="txtIdModelo" type="text" name="idModelo"></td>
                             </tr>
                             <tr>
-                                <td><label for="txtTipoEquipo">Tipo de Equipo</label></td>
-                                <td><input id="txtIdTipoEquipo" type="text" name="idTipoEquipo">
-                                <!--   <select id="cboTipoEquipo" name="idTipoEquipo">
-                                        <option disabled selected value="">Selecciona un Tipo de Equipo</option>
-                                        <?php 
-                                            if($tipoEquipos) { 
-                                                foreach ($tipoEquipos as $tipoEquipo) {
-                                                    echo "<option value='" . $tipoEquipo->getIdTipoEquipo() . "'>" . $tipoEquipo->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                 -->
+                                <td colspan="2"><center>Tipo de Equipo</center></td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtIdTipoEquipo">Código identificador</label></td>
+                                <td>
+                                    <input id="txtIdTipoEquipo" type="text" name="idTipoEquipo">
+                                    <button type="button" id="btnIdTipoEquipo"></button>
                                 </td>
                             </tr>
                             <tr>
-                                <td><label for="cboMarca">Marca</label></td>
+                                <td><label for="txtTipoEquipo">Descripción</label></td>
+                                <td><input id="txtTipoEquipo" type="text" readonly="true"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><center>Marca</center></td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtIdTipoEquipo">Código identificador</label></td>
                                 <td>
-                                    <select id="cboMarca" name="idMarca" required="true">
-                                        <option disabled selected value="">Selecciona una Marca</option>
-                                        <?php 
-                                            if($marcas) { 
-                                                foreach ($marcas as $marca) {
-                                                    echo "<option value='" . $marca->getIdMarca() . "'>" . $marca->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
+                                    <input id="txtIdMarca" type="text" name="idMarca">
+                                    <button type="button" id="btnIdMarca"></button>
                                 </td>
                             </tr>
                             <tr>
