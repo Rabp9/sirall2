@@ -88,16 +88,12 @@
                 $usuario = new Usuario();
                 $usuario->setIdUsuario($rs['idUsuario']);
                 $usuario->setIdDependencia($rs['idDependencia']);
-                $usuario->setIdRed($rs['idRed']);
-                $usuario->setIdRol($rs['idRol']);
                 $usuario->setNombres($rs['nombres']);
                 $usuario->setApellidoPaterno($rs['apellidoPaterno']);
                 $usuario->setApellidoMaterno($rs['apellidoMaterno']);
                 $usuario->setCorreo($rs['correo']);
                 $usuario->setRpm($rs['rpm']);
                 $usuario->setAnexo($rs['anexo']);
-                $usuario->setUsername($rs['username']);
-                $usuario->setPassword($rs['password']);
                 $usuario->setEstado($rs['estado']);
                 $usuarios[] = $usuario; 
             }

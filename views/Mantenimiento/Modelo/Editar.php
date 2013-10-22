@@ -168,7 +168,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><label for="txtTipoEquipo">TipoEquipo</label></td>
+                                    <td><label for="txtTipoEquipo">Tipo de Equipo</label></td>
                                     <td><input id="txtTipoEquipo" type="text" readonly="true"></td>
                                 </tr>
                             </table>
