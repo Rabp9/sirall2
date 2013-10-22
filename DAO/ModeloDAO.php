@@ -38,26 +38,29 @@
         }
         
         public static function crear(Modelo $modelo) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Modelo(idTipoEquipo, idMarca, descripcion, indicacion) values(:idTipoEquipo, :idMarca, :descripcion, :indicacion)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Modelo(idModelo, idTipoEquipo, idMarca, descripcion, indicacion, estado) values(:idModelo, :idTipoEquipo, :idMarca, :descripcion, :indicacion, :estado)");
+            $result->bindParam(':idModelo', $modelo->getIdModelo());
             $result->bindParam(':idTipoEquipo', $modelo->getIdTipoEquipo());
             $result->bindParam(':idMarca', $modelo->getIdMarca());
             $result->bindParam(':descripcion', $modelo->getDescripcion());
             $result->bindParam(':indicacion', $modelo->getIndicacion());
+            $result->bindParam(':estado', $modelo->getEstado());
             return $result->execute();
         }
         
         public static function editar(Modelo $modelo) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Modelo SET idTipoEquipo = :idTipoEquipo, idMarca = :idMarca, descripcion = :descripcion, indicacion = :indicacion WHERE idModelo = :idModelo");
+            $result = BaseDatos::getDbh()->prepare("UPDATE Modelo SET idTipoEquipo = :idTipoEquipo, idMarca = :idMarca, descripcion = :descripcion, indicacion = :indicacion, estado = :estado WHERE idModelo = :idModelo");
             $result->bindParam(':idTipoEquipo', $modelo->getIdTipoEquipo());
             $result->bindParam(':idMarca', $modelo->getIdMarca());
             $result->bindParam(':descripcion', $modelo->getDescripcion());
             $result->bindParam(':indicacion', $modelo->getIndicacion());
             $result->bindParam(':idModelo', $modelo->getIdModelo());
+            $result->bindParam(':estado', $modelo->getEstado());
             return $result->execute();
         }
         
         public static function eliminar(Modelo $modelo) {
-            $result = BaseDatos::getDbh()->prepare("DELETE FROM Modelo WHERE idModelo = :idModelo");
+            $result = BaseDatos::getDbh()->prepare("UPDATE Modelo SET estado = 2 WHERE idModelo = :idModelo");
             $result->bindParam(':idModelo', $modelo->getIdModelo());
             return $result->execute();
         }

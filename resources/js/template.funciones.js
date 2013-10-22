@@ -3,7 +3,7 @@ function isRequired($ctrl) {
 }
 
 function setValue($ctrl, $val) {
-    $($ctrl).attr('value', $val);
+    $ctrl.val($val);
 }
 
 function isReadOnly($ctrl) {

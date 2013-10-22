@@ -24,6 +24,7 @@
                 $modelo->setIdMarca($_POST['idMarca']);
                 $modelo->setDescripcion($_POST['descripcion']);
                 $modelo->setIndicacion($_POST['indicacion']);
+                $modelo->setEstado(1);
                 ModeloDAO::crear($modelo) ?
                     $mensaje = "Modelo guardado correctamente" :
                     $mensaje = "El Modelo no fue guardado correctamente";
@@ -44,6 +45,8 @@
         public static function EditarAction() {
             if(isset($_GET['idModelo'])) {
                 $modelo = ModeloDAO::getModeloByIdModelo($_GET['idModelo']);
+                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
+                $marca = MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca());
                 $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
                 $marcas = MarcaDAO::getAllMarca();
                 require_once '/views/Mantenimiento/Modelo/Editar.php';
@@ -58,6 +61,7 @@
                 $modelo->setIdMarca($_POST['idMarca']);
                 $modelo->setDescripcion($_POST['descripcion']);
                 $modelo->setIndicacion($_POST['indicacion']);
+                $modelo->setEstado(1);
                 ModeloDAO::editar($modelo) ?
                     $mensaje = "Modelo modificado correctamente" :
                     $mensaje = "El Modelo no fue modificado correctamente";

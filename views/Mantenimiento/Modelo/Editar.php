@@ -12,12 +12,126 @@
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#txtDescripcion'));
-                setValue($('#txtIdModelo'), <?php echo $modelo->getIdModelo(); ?>);
+                isRequired($('#txtDescripcion'));  
+                setValue($('#txtIdTipoEquipo'), '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>');
+                setValue($('#txtTipoEquipo'), '<?php echo $tipoEquipo->getDescripcion(); ?>');
+                setValue($('#txtIdMarca'), '<?php echo $marca->getIdMarca(); ?>');
+                setValue($('#txtMarca'), '<?php echo $marca->getDescripcion(); ?>');
+                setValue($('#txtIdModelo'), '<?php echo $modelo->getIdModelo(); ?>');
+                setValue($('#txtDescripcion'), '<?php echo $modelo->getDescripcion(); ?>');
+                setValue($('#txtIndicacion'), '<?php echo $modelo->getIndicacion(); ?>');
                 isReadOnly($('#txtIdModelo'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
-                $('#txtDescripcion').select();
+                $('#txtIdTipoEquipo').select();
+                
+                // Tipo de Equipo
+                var tipoEquipoTags = new Array();
+                <?php
+                    if($tipoEquipos) { 
+                        foreach ($tipoEquipos as $tipoEquipo) {
+                ?>
+                        tipoEquipoTags.push('<?php echo $tipoEquipo->getIdTipoEquipo(); ?>');
+                <?php
+                        }
+                    }
+                ?>
+                        
+                $("#txtIdTipoEquipo").autocomplete({
+                    source: tipoEquipoTags
+                });
+                $("#txtIdTipoEquipo").autocomplete({ autoFocus: true });
+                $('#btnIdTipoEquipo').button({
+                    icons: {
+                        primary: "ui-icon-search"
+                    },
+                    text: false
+                });
+                $('#btnIdTipoEquipo').css('height', parseInt($("#txtIdTipoEquipo").css('height')) + 8);
+                $("#txtIdTipoEquipo").css('width', parseInt($("#txtIdTipoEquipo").css('width')) - 48);
+                
+                var comprobarTipoEquipo = function() {
+                    var idTipoEquipo = $('#txtIdTipoEquipo').val();
+                    var r = false;
+                    <?php
+                        if($tipoEquipos) { 
+                            foreach ($tipoEquipos as $tipoEquipo) {
+                    ?>
+                                if(idTipoEquipo === '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>') {
+                                    $('#txtTipoEquipo').val('<?php echo $tipoEquipo->getDescripcion(); ?>');
+                                    r = true;
+                                }
+                    <?php
+                            }
+                    ?>
+                                if(!r)  $('#txtTipoEquipo').val('');
+                    <?php
+                        }
+                    ?>
+                }; 
+                
+                $('#txtIdTipoEquipo').keyup(comprobarTipoEquipo);
+                $('#txtIdTipoEquipo').on( "autocompleteclose", comprobarTipoEquipo);
+                
+                // Marca
+                var marcaTags = new Array();
+                <?php
+                    if($marcas) { 
+                        foreach ($marcas as $marca) {
+                ?>
+                        marcaTags.push('<?php echo $marca->getIdMarca(); ?>');
+                <?php
+                        }
+                    }
+                ?>
+                        
+                $("#txtIdMarca").autocomplete({
+                    source: marcaTags
+                });
+                $("#txtIdMarca").autocomplete({ autoFocus: true });
+                $('#btnIdMarca').button({
+                    icons: {
+                        primary: "ui-icon-search"
+                    },
+                    text: false
+                });
+                $('#btnIdMarca').css('height', parseInt($("#txtIdMarca").css('height')) + 8);
+                $('#txtIdMarca').css('width', parseInt($("#txtIdMarca").css('width')) - 48);
+                var comprobarMarca = function() {
+                    var idMarca = $('#txtIdMarca').val();
+                    var r = false;
+                    <?php
+                        if($marcas) { 
+                            foreach ($marcas as $marca) {
+                    ?>
+                                if(idMarca === '<?php echo $marca->getIdMarca(); ?>') {
+                                    $('#txtMarca').val('<?php echo $marca->getDescripcion(); ?>');
+                                    r = true;
+                                }
+                    <?php
+                            }
+                    ?>
+                                if(!r)  $('#txtMarca').val('');
+                    <?php
+                        }
+                    ?>
+                }; 
+                
+                $('#txtIdMarca').keyup(comprobarMarca);
+                $('#txtIdMarca').on( "autocompleteclose", comprobarMarca);
+                
+                $('#frmEditarModelo').submit(function() {
+                    if($('#txtTipoEquipo').val() === '') {
+                        alert('Ingrese un tipo de equipo');
+                        $('#txtIdTipoEquipo').focus();
+                        return false;
+                    }
+                    if($('#txtMarca').val() === '') {
+                        alert('Ingrese una marca');
+                        $('#txtIdMarca').focus();
+                        return false;
+                    }   
+                });
             });
         </script>
         
@@ -40,58 +154,59 @@
                         <h4>Edita el Modelo</h4>
                     </hgroup>
                 </header>
-                <form id="frmCrearModelo" method="POST" action="?controller=Modelo&action=EditarPOST">
+                <form id="frmEditarModelo" method="POST" action="?controller=Modelo&action=EditarPOST">
                     <fieldset>
                         <legend>Editar Modelo</legend>
+                        <fieldset>
+                            <legend>Tipo de Equipo</legend>
+                            <table>
+                                 <tr>
+                                    <td><label for="txtIdTipoEquipo">Código identificador</label></td>
+                                    <td>
+                                        <input id="txtIdTipoEquipo" type="text" name="idTipoEquipo">
+                                        <button type="button" id="btnIdTipoEquipo"></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="txtTipoEquipo">TipoEquipo</label></td>
+                                    <td><input id="txtTipoEquipo" type="text" readonly="true"></td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Marca</legend>
+                            <table>
+                                 <tr>
+                                    <td><label for="txtIdMarca">Código identificador</label></td>
+                                    <td>
+                                        <input id="txtIdMarca" type="text" name="idMarca">
+                                        <button type="button" id="btnIdMarca"></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="txtMarca">Marca</label></td>
+                                    <td><input id="txtMarca" type="text" readonly="true"></td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Información de Modelo</legend>
+                            <table>
+                                 <tr>
+                                    <td><label for="txtIdModelo"><abbr title="Código identificador">ID.</abbr> Modelo</label></td>
+                                    <td><input id="txtIdModelo" type="text" name="idModelo"></td>
+                                </tr>
+                                    <tr>
+                                    <td><label for="txtDescripcion">Descripción</label></td>
+                                    <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
+                                </tr>
+                                <tr>
+                                    <td><label for="txtIndicacion">Indicación</label></td>
+                                    <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" ></textarea></td>  
+                                </tr>
+                            </table>
+                        </fieldset>
                         <table>
-                            <tr>
-                                <td><label for="txtIdModelo"><abbr title="Código identificador">ID.</abbr> Modelo</label></td>
-                                <td><input id="txtIdModelo" type="text" name="idModelo"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="cboTipoEquipo">Tipo de Equipo</label></td>
-                                <td>
-                                    <select id="cboTipoEquipo" name="idTipoEquipo">
-                                        <option disabled>Selecciona un Tipo de Equipo</option>
-                                        <?php 
-                                            if($tipoEquipos) { 
-                                                foreach ($tipoEquipos as $tipoEquipo) {
-                                                    if($tipoEquipo->getIdTipoEquipo() == $modelo->getIdTipoEquipo())
-                                                        echo "<option value='" . $tipoEquipo->getIdTipoEquipo() . "' selected>" . $tipoEquipo->getDescripcion() . "</option>";
-                                                    else
-                                                        echo "<option value='" . $tipoEquipo->getIdTipoEquipo() . "'>" . $tipoEquipo->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="cboMarca">Marca</label></td>
-                                <td>
-                                    <select id="cboMarca" name="idMarca" required="true">
-                                        <option disabled>Selecciona una Marca</option>
-                                        <?php 
-                                            if($marcas) { 
-                                                foreach ($marcas as $marca) {
-                                                    if($marca->getIdMarca() == $modelo->getIdMarca())
-                                                        echo "<option value='" . $marca->getIdMarca() . "' selected>" . $marca->getDescripcion() . "</option>";
-                                                    else
-                                                        echo "<option value='" . $marca->getIdMarca() . "'>" . $marca->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="txtDescripcion">Descripción</label></td>
-                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción" value="<?php echo $modelo->getDescripcion(); ?>"></td>  
-                            </tr>
-                            <tr>
-                                <td><label for="txtIndicacion">Indicación</label></td>
-                                <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" ><?php echo $modelo->getIndicacion(); ?></textarea></td>  
-                            </tr>
                             <tr>
                                 <td></td>
                                 <td>

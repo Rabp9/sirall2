@@ -6,13 +6,16 @@
         private $idTipoEquipo;
         private $descripcion;
         private $indicacion;
-        
+        private $estado;
+
+
         public function __construct() {
             $this->idModelo = 0;
             $this->idMarca = 0;
             $this->idTipoEquipo = 0;
             $this->descripcion = "";
             $this->indicacion = "";
+            $this->estado = 1;
         }
        
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
@@ -38,6 +41,9 @@
             $this->indicacion = $indicacion;
         }
         
+        public function setEstado($estado) {
+            $this->estado = $estado;
+        }
         //Gets
         public function getIdModelo() {
             return $this->idModelo;
@@ -59,6 +65,9 @@
             return $this->indicacion;
         }
         
+        public function getEstado() {
+            return $this->estado;
+        }
         // </editor-fold>
         
         public function toArray(){
@@ -72,6 +81,7 @@
             $xml .= "\t<idTipoEquipo>" . $this->getIdTipoEquipo() . "</idTipoEquipo>\n";
             $xml .= "\t<descripcion>" . $this->getDescripcion() . "</descripcion>\n";
             $xml .= "\t<indicacion>" . $this->getIndicacion() . "</indicacion>\n";
+            $xml .= "\t<estado>" . $this->getEstado() . "</estado>\n";
             $xml = $xml . "</Modelo>";
             return $xml;
         }

@@ -19,7 +19,7 @@
                 isReadOnly($('#txtIdModelo'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
-                $('#txtDescripcion').focus();
+                $('#txtIdTipoEquipo').focus();
                 
                 // Tipo de Equipo
                 var tipoEquipoTags = new Array();
@@ -46,7 +46,29 @@
                 $('#btnIdTipoEquipo').css('height', parseInt($("#txtIdTipoEquipo").css('height')) + 8);
                 $("#txtIdTipoEquipo").css('width', parseInt($("#txtIdTipoEquipo").css('width')) - 48);
                 
-                        
+                var comprobarTipoEquipo = function() {
+                    var idTipoEquipo = $('#txtIdTipoEquipo').val();
+                    var r = false;
+                    <?php
+                        if($tipoEquipos) { 
+                            foreach ($tipoEquipos as $tipoEquipo) {
+                    ?>
+                                if(idTipoEquipo === '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>') {
+                                    $('#txtTipoEquipo').val('<?php echo $tipoEquipo->getDescripcion(); ?>');
+                                    r = true;
+                                }
+                    <?php
+                            }
+                    ?>
+                                if(!r)  $('#txtTipoEquipo').val('');
+                    <?php
+                        }
+                    ?>
+                }; 
+                
+                $('#txtIdTipoEquipo').keyup(comprobarTipoEquipo);
+                $('#txtIdTipoEquipo').on( "autocompleteclose", comprobarTipoEquipo);
+                
                 // Marca
                 var marcaTags = new Array();
                 <?php
@@ -70,8 +92,42 @@
                     text: false
                 });
                 $('#btnIdMarca').css('height', parseInt($("#txtIdMarca").css('height')) + 8);
-                $("#txtIdMarca").css('width', parseInt($("#txtIdMarca").css('width')) - 48);
+                $('#txtIdMarca').css('width', parseInt($("#txtIdMarca").css('width')) - 48);
+                var comprobarMarca = function() {
+                    var idMarca = $('#txtIdMarca').val();
+                    var r = false;
+                    <?php
+                        if($marcas) { 
+                            foreach ($marcas as $marca) {
+                    ?>
+                                if(idMarca === '<?php echo $marca->getIdMarca(); ?>') {
+                                    $('#txtMarca').val('<?php echo $marca->getDescripcion(); ?>');
+                                    r = true;
+                                }
+                    <?php
+                            }
+                    ?>
+                                if(!r)  $('#txtMarca').val('');
+                    <?php
+                        }
+                    ?>
+                }; 
                 
+                $('#txtIdMarca').keyup(comprobarMarca);
+                $('#txtIdMarca').on( "autocompleteclose", comprobarMarca);
+                
+                $('#frmCrearModelo').submit(function() {
+                    if($('#txtTipoEquipo').val() === '') {
+                        alert('Ingrese un tipo de equipo');
+                        $('#txtIdTipoEquipo').focus();
+                        return false;
+                    }
+                    if($('#txtMarca').val() === '') {
+                        alert('Ingrese una marca');
+                        $('#txtIdMarca').focus();
+                        return false;
+                    }   
+                });
             });
         </script>
         
@@ -97,43 +153,56 @@
                 <form id="frmCrearModelo" method="POST" action="?controller=Modelo&action=CrearPOST">
                     <fieldset>
                         <legend>Crear Modelo</legend>
+                        <fieldset>
+                            <legend>Tipo de Equipo</legend>
+                            <table>
+                                 <tr>
+                                    <td><label for="txtIdTipoEquipo">Código identificador</label></td>
+                                    <td>
+                                        <input id="txtIdTipoEquipo" type="text" name="idTipoEquipo">
+                                        <button type="button" id="btnIdTipoEquipo"></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="txtTipoEquipo">TipoEquipo</label></td>
+                                    <td><input id="txtTipoEquipo" type="text" readonly="true"></td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Marca</legend>
+                            <table>
+                                 <tr>
+                                    <td><label for="txtIdMarca">Código identificador</label></td>
+                                    <td>
+                                        <input id="txtIdMarca" type="text" name="idMarca">
+                                        <button type="button" id="btnIdMarca"></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="txtMarca">Marca</label></td>
+                                    <td><input id="txtMarca" type="text" readonly="true"></td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Información de Modelo</legend>
+                            <table>
+                                 <tr>
+                                    <td><label for="txtIdModelo"><abbr title="Código identificador">ID.</abbr> Modelo</label></td>
+                                    <td><input id="txtIdModelo" type="text" name="idModelo"></td>
+                                </tr>
+                                    <tr>
+                                    <td><label for="txtDescripcion">Descripción</label></td>
+                                    <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
+                                </tr>
+                                <tr>
+                                    <td><label for="txtIndicacion">Indicación</label></td>
+                                    <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" ></textarea></td>  
+                                </tr>
+                            </table>
+                        </fieldset>
                         <table>
-                            <tr>
-                                <td><label for="txtIdModelo"><abbr title="Código identificador">ID.</abbr> Modelo</label></td>
-                                <td><input id="txtIdModelo" type="text" name="idModelo"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><center>Tipo de Equipo</center></td>
-                            </tr>
-                            <tr>
-                                <td><label for="txtIdTipoEquipo">Código identificador</label></td>
-                                <td>
-                                    <input id="txtIdTipoEquipo" type="text" name="idTipoEquipo">
-                                    <button type="button" id="btnIdTipoEquipo"></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="txtTipoEquipo">Descripción</label></td>
-                                <td><input id="txtTipoEquipo" type="text" readonly="true"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><center>Marca</center></td>
-                            </tr>
-                            <tr>
-                                <td><label for="txtIdTipoEquipo">Código identificador</label></td>
-                                <td>
-                                    <input id="txtIdMarca" type="text" name="idMarca">
-                                    <button type="button" id="btnIdMarca"></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><label for="txtDescripcion">Descripción</label></td>
-                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
-                            </tr>
-                            <tr>
-                                <td><label for="txtIndicacion">Indicación</label></td>
-                                <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" ></textarea></td>  
-                            </tr>
                             <tr>
                                 <td></td>
                                 <td>
