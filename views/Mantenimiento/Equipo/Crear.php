@@ -23,6 +23,7 @@
                 $('#txtIdTipoEquipo').focus();
                 $('#asistente').tabs();
                 
+                // INICIO TABS
                 $('div#asistente div:not(:first)').append("<button class='prev' type='button'>Anterior</button>");
                 $('.prev').click(function() {
                     var selected = $("#asistente").tabs("option", "active");
@@ -36,8 +37,10 @@
                 });
                 $('button.next').button();
                 $('button.prev').button();
-                   
-                // Tipo de Equipo
+                // FIN TABS
+                // 
+                // 
+                // INICIO Tipo de Equipo
                 var tipoEquipoTags = new Array();
                 <?php
                     if($tipoEquipos) { 
@@ -84,7 +87,9 @@
                 
                 $('#txtIdTipoEquipo').keyup(comprobarTipoEquipo);
                 $('#txtIdTipoEquipo').on( "autocompleteclose", comprobarTipoEquipo);
-                
+                // FIN Tipo de Equipo
+                //
+                //
                 // Marca
                 var marcaTags = new Array();
                 <?php
@@ -131,7 +136,10 @@
                 
                 $('#txtIdMarca').keyup(comprobarMarca);
                 $('#txtIdMarca').on( "autocompleteclose", comprobarMarca);
-                
+                // FIN Marca
+                //
+                //
+                // INICIO Validar Form
                 $('#frmCrearEquipo').submit(function() {
                     if($('#txtTipoEquipo').val() === '') {
                         alert('Ingrese un tipo de equipo');
@@ -145,6 +153,16 @@
                     }   
                 });
                 
+                $('form').submit(function() {
+                    if(!$('#txtDependenciaSeleccionada').text().length) {
+                        alert('Debes elegir una dependencia');
+                        return false;
+                    }
+                });
+                // FIN Validar Form
+                //
+                //
+                // INICIO Modelo
                 var cboModelo = function() {
                     $.ajax({
                         url: 'Index.php',
@@ -166,16 +184,12 @@
                 }; 
                 $('#txtIdTipoEquipo').on( "autocompleteclose", cboModelo);
                 $('#txtIdMarca').on( "autocompleteclose", cboModelo);
-                $('form').submit(function() {
-                    if(!$('#txtDependenciaSeleccionada').text().length) {
-                        alert('Debes elegir una dependencia');
-                        return false;
-                    }
-                });
-                
-                
+                // FIN cboModelo
+                //
+                //
+                // INICIO Seleccionar Dependencia
                 $('#btnSeleccionar').click(function() {
-                    var $dependenciaSeleccionada = $("#ulDependencia li a.selected");
+                    var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
                     if($($dependenciaSeleccionada).length) {
                         $.ajax({
                             url: 'Index.php',
@@ -195,7 +209,47 @@
                         })
                     }
                 });
+                // FIN Seleccionar Dependencia
+                //
+                //
+                // INICIO Estilizar Tabla
+                (function ($) {
+                $.fn.styleTable = function (options) {
+                    var defaults = {
+                        css: 'ui-styled-table'
+                    };
+                    options = $.extend(defaults, options);
+
+                    return this.each(function () {
+                        $this = $(this);
+                        $this.addClass(options.css);
+
+                        $this.on('mouseover mouseout', 'tbody tr', function (event) {
+                            $(this).children().toggleClass("ui-state-hover",
+                                                           event.type == 'mouseover');
+                        });
+
+                        $this.find("th").addClass("ui-widget-header");
+                        $this.find("td").addClass("ui-widget-content");
+                        $this.find("tr:last-child").addClass("last-child");
+                    });
+                };
+                })(jQuery);
+                $('#tblDetalle').styleTable(event);
+                // FIN Estilizar Tabla
             });
+            
+            // INICIO presionar tecla
+            function teclaPress(e) {
+                var $this = $(e.target);
+                var row_index = $this.parent().parent().index();
+                var rows_count = $('#tblDetalle tbody tr').length;
+                if(row_index === (rows_count - 1) && $this.val() !== '')
+                    $('#tblDetalle tbody').append("<tr><td><input type='text' value='' onkeyup='teclaPress(event);' name='clave[]'></td><td><input type='text' value='' name='valor[]'></td></tr>");
+                if(row_index === (rows_count - 2) && $this.val() === '')
+                    $('#tblDetalle tbody tr:eq(' + (row_index - 1) + ')').remove();
+            };
+            // FIN presionar tecla
         </script>
         
         <title>SIRALL2 - Crear Equipo</title>
@@ -314,7 +368,20 @@
                             </table>
                             </div>
                             <div id="detalle">
-                                asdas
+                                <table id="tblDetalle">
+                                    <thead>
+                                        <tr>
+                                            <th>Clave</th>
+                                            <th>Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" value="" onkeyup="teclaPress(event);" name="clave[]"></td>
+                                            <td><input type="text" value="" name="valor[]"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div id="dependenciaSelect" title="Seleccionar Dependencia">         
@@ -332,7 +399,7 @@
                                     if(is_array($dependencias)) {
                                         foreach ($dependencias as $dependencia) {
                                             if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
-                                                echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                                echo "<li><button type='button' title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</button>";
                                                 if(tieneHijos($dependencia, $dependencias)) {
                                                     echo "<ul>";
                                                     mostrarHijos($dependencia, $dependencias);
@@ -347,7 +414,7 @@
                                 function mostrarHijos($padre, $dependencias) {
                                     foreach ($dependencias as $dependencia) {
                                         if($padre->getIdDependencia() == $dependencia->getSuperIdDependencia()) {
-                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                            echo "<li><button type='button' title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</button>";
                                             if(tieneHijos($dependencia, $dependencias)) {
                                                 echo "<ul>";
                                                 mostrarHijos($dependencia, $dependencias);
@@ -361,7 +428,7 @@
                                 if(is_array($redes)) {
                                     echo "<ul id='ulDependencia' class='treeview-blue'>";
                                     foreach($redes as $red) {
-                                        echo "<li><a title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</a>";
+                                        echo "<li><button type='button' title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</button>";
                                         echo "<ul>";
                                         mostrarHijosRed($red, $dependencias);
                                         echo "</ul>";

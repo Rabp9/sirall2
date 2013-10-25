@@ -31,15 +31,13 @@
         
         
         public static function crear(Equipo $equipo) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, idMarca, idTipoEquipo, idUsuario, idDependencia, idRed, indicacion, estado) values(:codigoPatrimonial, :serie, :idModelo, :idMarca, :idTipoEquipo, :idUsuario, :idDependencia, :idRed, :indicacion, :estado)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, idMarca, idTipoEquipo, idUsuario, indicacion, estado) values(:codigoPatrimonial, :serie, :idModelo, :idMarca, :idTipoEquipo, :idUsuario, :indicacion, :estado)");
             $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             $result->bindParam(':serie', $equipo->getSerie());
             $result->bindParam(':idModelo', $equipo->getIdModelo());
             $result->bindParam(':idMarca', $equipo->getIdMarca());
             $result->bindParam(':idTipoEquipo', $equipo->getIdTipoEquipo());
             $result->bindParam(':idUsuario', $equipo->getIdUsuario());
-            $result->bindParam(':idDependencia', $equipo->getIdDependencia());
-            $result->bindParam(':idRed', $equipo->getIdRed());
             $result->bindParam(':indicacion', $equipo->getIndicacion());
             $result->bindParam(':estado', $equipo->getEstado());
             return $result->execute();
@@ -73,8 +71,6 @@
             $equipo->setIdMarca($rs['idMarca']);
             $equipo->setIdTipoEquipo($rs['idTipoEquipo']);
             $equipo->setIdUsuario($rs['idUsuario']);
-            $equipo->setIdDependencia($rs['idDependencia']);
-            $equipo->setIdRed($rs['idRed']);
             $equipo->setIndicacion($rs['indicacion']);
             $equipo->setEstado($rs['estado']);
             return $equipo;

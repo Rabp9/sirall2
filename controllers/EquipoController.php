@@ -6,6 +6,7 @@
     require_once '/DAO/RedDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     require_once '/DAO/UsuarioDAO.php';
+    require_once '/DAO/DatoDAO.php';
     
     class EquipoController {
         public static function EquipoAction() {
@@ -32,11 +33,19 @@
                 $equipo->setIdMarca($_POST['idMarca']);
                 $equipo->setIdTipoEquipo($_POST['idTipoEquipo']);
                 $equipo->setIdUsuario($_POST['idUsuario']);
-                $equipo->setIdDependencia($_POST['idDependencia']);
-                $equipo->setIdRed($_POST['idRed']);
                 $equipo->setIndicacion($_POST['indicacion']);
-                $equipo->setEstado('activo');
-                EquipoDAO::crear($equipo) ?
+                $equipo->setEstado(1);
+                $r = EquipoDAO::crear($equipo);
+                $n_dato = sizeof($_POST['clave']);
+                for($i = 0; $i < $n_dato; $i++ ) {
+                    $dato = new Dato();
+                    $dato->setCodigoPatrimonial($equipo->getCodigoPatrimonial());
+                    $dato->setSerie($equipo->getSerie());
+                    $dato->setClave($_POST['clave'][$i]);
+                    $dato->setValor($_POST['valor'][$i]);
+                    DatoDAO::crear($dato);
+                }
+                $r ?
                     $mensaje = "Equipo guardado correctamente" :
                     $mensaje = "El Equipo no fue guardado correctamente";
             }
@@ -51,8 +60,8 @@
                 $marca = MarcaDAO::getMarcaByIdMarca($equipo->getIdMarca());
                 $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($equipo->getIdTipoEquipo());
                 $usuario = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
-                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($equipo->getIdDependencia());
-                $red = RedDAO::getRedByIdRed($equipo->getIdRed());
+                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia());
+                $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
                 require_once '/views/Mantenimiento/Equipo/Detalle.php';
             }
         }
@@ -60,6 +69,9 @@
         public static function EditarAction() {
             if(isset($_GET['codigoPatrimonial'])) {
                 $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']);
+                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($equipo->getIdTipoEquipo());
+                $marca = MarcaDAO::getMarcaByIdMarca($equipo->getIdMarca());
+                //$modelo = ModeloDAO::getModeloByIdModelo($equipo->getIdModelo());
                 $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
                 $marcas = MarcaDAO::getAllMarca();
                 require_once '/views/Mantenimiento/Equipo/Editar.php';

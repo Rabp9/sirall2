@@ -41,8 +41,8 @@
                             <th>Código Patrimonial</th>
                             <th>Serie</th>
                             <th>Tipo de Equipo</th>
-                            <th>Modelo</th>
                             <th>Marca</th>
+                            <th>Modelo</th>
                             <th>Dependencia</th>
                             <th></th>
                         </tr>
@@ -56,8 +56,8 @@
                             <td><?php echo $equipo['codigoPatrimonial']; ?></td>
                             <td><?php echo $equipo['serie']; ?></td>
                             <td><?php echo $equipo['TipoEquipo']; ?></td>
-                            <td><?php echo $equipo['Modelo']; ?></td>
                             <td><?php echo $equipo['Marca']; ?></td>
+                            <td><?php echo $equipo['Modelo']; ?></td>
                             <td><?php echo $equipo['Dependencia']; ?></td>
                             <td>
                                 <button class="select">Acciones</button>

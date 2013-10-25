@@ -150,7 +150,7 @@
                                     if(is_array($dependencias)) {
                                         foreach ($dependencias as $dependencia) {
                                             if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
-                                                echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                                echo "<li><button type='button' title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</button>";
                                                 if(tieneHijos($dependencia, $dependencias)) {
                                                     echo "<ul>";
                                                     mostrarHijos($dependencia, $dependencias);
@@ -165,7 +165,7 @@
                                 function mostrarHijos($padre, $dependencias) {
                                     foreach ($dependencias as $dependencia) {
                                         if($padre->getIdDependencia() == $dependencia->getSuperIdDependencia()) {
-                                            echo "<li><a title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</a>";
+                                            echo "<li><button type='button' title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</button>";
                                             if(tieneHijos($dependencia, $dependencias)) {
                                                 echo "<ul>";
                                                 mostrarHijos($dependencia, $dependencias);
@@ -179,7 +179,7 @@
                                 if(is_array($redes)) {
                                     echo "<ul id='ulDependencia' class='treeview-blue'>";
                                     foreach($redes as $red) {
-                                        echo "<li><a title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</a>";
+                                        echo "<li><button type='button' title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</button>";
                                         echo "<ul>";
                                         mostrarHijosRed($red, $dependencias);
                                         echo "</ul>";

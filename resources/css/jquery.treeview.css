@@ -28,14 +28,14 @@
 	padding: 3px 0pt 3px 16px;
 }
 
-.treeview a.hover {
+.treeview button.hover {
         color: #3B6890;
-	background-color: #A1DAF2;
+	background-color: #A1DAF2 !important;
 }
 
-.treeview a.selected {
+.treeview button.selected {
         color: #fff;
-	background-color: #92C160;
+	background-color: #92C160 !important;
         padding: 1px;
 }
 
