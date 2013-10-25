@@ -2,12 +2,10 @@
     class Equipo {
         private $codigoPatrimonial;
         private $serie;
-        private $idModelo;
         private $idMarca;
+        private $idModelo;
         private $idTipoEquipo;
         private $idUsuario;
-        private $idDependencia;
-        private $idRed;
         private $indicacion;
         private $estado;
         
@@ -18,8 +16,6 @@
             $this->idMarca = 0;
             $this->idTipoEquipo= 0;
             $this->idUsuario = 0;
-            $this->idDependencia = 0;
-            $this->idRed = 0;
             $this->indicacion = "";
             $this->estado = "activo";
         }
@@ -49,14 +45,6 @@
 
         public function setIdUsuario($idUsuario) {
             $this->idUsuario = $idUsuario;
-        }
-             
-        public function setIdDependencia($idDependencia) {
-            $this->idDependencia = $idDependencia;
-        }
-
-        public function setIdRed($idRed) {
-            $this->idRed = $idRed;
         }
               
         public function setIndicacion($indicacion) {
@@ -92,14 +80,6 @@
             return $this->idUsuario;
         }        
         
-        public function getIdDependencia() {
-            return $this->idDependencia;
-        }        
-        
-        public function getIdRed() {
-            return $this->idRed;
-        }       
-        
         public function getIndicacion() {
             return $this->indicacion;
         }        
@@ -121,8 +101,6 @@
             $xml .= "\t<idMarca>" . $this->getIdMarca() . "</idMarca>\n";
             $xml .= "\t<idTipoEquipo>" . $this->getidTipoEquipo() . "</idTipoEquipo>\n";
             $xml .= "\t<idUsuario>" . $this->getIdUsuario() . "</idUsuario>\n";
-            $xml .= "\t<idDependencia>" . $this->getIdDependencia() . "</idDependencia>\n";
-            $xml .= "\t<idRed>" . $this->getIdRed() . "</idRed>\n";
             $xml .= "\t<indicacion>" . $this->getIndicacion() . "</indicacion>\n";
             $xml .= "\t<estado>" . $this->getEstado() . "</estado>\n";
             $xml = $xml . "</Equipo>";
