@@ -12,10 +12,10 @@
                 $permiso->setIdPermiso($rs['idPermiso']);
                 $permiso->setIdRol($rs['idRol']);
                 $permiso->setDescripcion($rs['descripcion']);
-                $permisoes[] = $permiso; 
+                $permisos[] = $permiso; 
             }
             if(isset($permisoes))
-                return $permisoes;
+                return $permisos;
             else
                 return false;
         }
@@ -36,10 +36,10 @@
                 $permiso->setIdPermiso($rs['idPermiso']);
                 $permiso->setIdRol($rs['idRol']);
                 $permiso->setDescripcion($rs['descripcion']);
-                $permisoes[] = $permiso; 
+                $permisos[] = $permiso; 
             }
             if(isset($permisoes))
-                return $permisoes;
+                return $permisos;
             else
                 return false;
         }

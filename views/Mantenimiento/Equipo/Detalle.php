@@ -71,8 +71,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="?controller=Equipo&action=Editar&idEquipo=<?php echo $equipo->getCodigoPatrimonial(); ?>">Editar</a> |
-                                <a href="?controller=Equipo&action=Eliminar&idEquipo=<?php echo $equipo->getCodigoPatrimonial(); ?>">Eliminar</a>
+                                <a href="?controller=Equipo&action=Editar&codigoPatrimonial=<?php echo $equipo->getCodigoPatrimonial(); ?>">Editar</a> |
+                                <a href="?controller=Equipo&action=Eliminar&codigoPatrimonial=<?php echo $equipo->getCodigoPatrimonial(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>

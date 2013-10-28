@@ -5,7 +5,7 @@
     class TipoEquipoDAO {
 
         public static function getAllTipoEquipo() {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM TipoEquipo");
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM TipoEquipo WHERE estado = 1");
             $result->execute();
             while ($rs = $result->fetch()) {
                 $tipoEquipo = new TipoEquipo();

@@ -13,7 +13,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
-                setValue($('#txtIdRepuesto'), <?php echo $repuesto->getIdRepuesto(); ?>);
+                setValue($('#txtIdRepuesto'), '<?php echo $repuesto->getIdRepuesto(); ?>');
                 isReadOnly($('#txtIdRepuesto'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();

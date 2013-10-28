@@ -18,6 +18,8 @@
                 $repuesto->setIdRepuesto($_POST['idRepuesto']);
                 $repuesto->setDescripcion($_POST['descripcion']);
                 $repuesto->setUnidadMedida($_POST['unidadMedida']);
+                $repuesto->setStock(0);
+                $repuesto->setEstado(1);
                 RepuestoDAO::crear($repuesto) ?
                     $mensaje = "Repuesto guardado correctamente" :
                     $mensaje = "El Repuesto no fue guardada correctamente";
@@ -47,6 +49,8 @@
                 $repuesto->setIdRepuesto($_POST['idRepuesto']);
                 $repuesto->setDescripcion($_POST['descripcion']);
                 $repuesto->setUnidadMedida($_POST['unidadMedida']);
+                // El stock no se actualiza
+                $repuesto->setEstado(1);
                 RepuestoDAO::editar($repuesto) ?
                     $mensaje = "Repuesto modificado correctamente" :
                     $mensaje = "Erootl Repuesto no fue modificado correctamente";

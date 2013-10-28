@@ -49,11 +49,13 @@
                 $('button.next').button();
                 $('button.prev').button();
                 
+                // INICIO Editar Seleccionar Dependencia
                 var idDependencia = '<?php echo $usuario->getIdDependencia(); ?>';
-                $("#ulDependencia li a").not($("a[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().find('a:eq(0)').addClass('selected');
-                var $dependenciaSeleccionada = $("#ulDependencia li a.selected"); 
-                var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("a[title='Red']"));
-                $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
+                $("#ulDependencia li button").not($("button[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().find('button:eq(0)').addClass('selected');
+                var $dependenciaSeleccionada = $("#ulDependencia li button.selected"); 
+                var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Red']"));
+                $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");   
+                // FIN Editar Seleccionar Dependencia
             });
         </script>
         

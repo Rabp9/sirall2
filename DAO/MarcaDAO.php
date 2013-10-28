@@ -5,7 +5,7 @@
     class MarcaDAO {
 
         public static function getAllMarca() {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Marca");
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Marca WHERE estado = 1");
             $result->execute();
             while ($rs = $result->fetch()) {
                 $marca = new Marca();

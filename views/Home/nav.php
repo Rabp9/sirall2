@@ -14,9 +14,16 @@
         </ul>
     </li>
     <li><a href="?controller=NuevoLote">Nuevo Lote</a></li>
+    <li><a href="?controller=AsignarJefeDependencia">Asignar Jefe de Dependencia</a></li>
     <li><a href="?controller=RegistrarUsuario">Registrar Usuario</a></li>
+    <li>
+        <a href="?controller=Repuesto">Repuesto</a>
+        <ul>
+            <li><a href="?controller=MovimientoRepuesto&action=Ingreso">Ingreso de Repuestos</a></li>
+            <li><a href="?controller=MovimientoRepuesto&action=Salida">Salida de Repuestos</a></li>
+        </ul>
+    </li>
     <li><a href="#">Desplazamiento</a></li>
     <li><a href="#">Reportes</a></li>
-    <li><a href="#">Repuesto</a></li>
     <li><a href="#">Cerrar Sesión</a></li>
 </ul>
