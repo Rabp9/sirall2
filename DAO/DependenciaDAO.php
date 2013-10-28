@@ -13,6 +13,7 @@
                 $dependencia->setDescripcion($rs['descripcion']);
                 $dependencia->setIdRed($rs['idRed']);
                 $dependencia->setSuperIdDependencia($rs['superIdDependencia']);
+                $dependencia->setIdUsuarioJefe($rs['idUsuarioJefe']);
                 $dependencia->setEstado($rs['estado']);
                 $dependencias[] = $dependencia; 
             }
@@ -32,6 +33,8 @@
             $dependencia->setDescripcion($rs['descripcion']);
             $dependencia->setIdRed($rs['idRed']);
             $dependencia->setSuperIdDependencia($rs['superIdDependencia']);
+            $dependencia->setIdUsuarioJefe($rs['idUsuarioJefe']);
+            $dependencia->setEstado($rs['estado']);
             return $dependencia;
         }
         
@@ -49,6 +52,8 @@
                 $dependencia->setDescripcion($rs['descripcion']);
                 $dependencia->setIdRed($rs['idRed']);
                 $dependencia->setSuperIdDependencia($superIdDependencia);
+                $dependencia->setIdUsuarioJefe($rs['idUsuarioJefe']);
+                $dependencia->setEstado($rs['estado']);
                 $dependencias[] = $dependencia;
             }
             if(isset($dependencias))
@@ -67,6 +72,8 @@
                 $dependencia->setDescripcion($rs['descripcion']);
                 $dependencia->setIdRed($rs['idRed']);
                 $dependencia->setSuperIdDependencia($rs['superIdDependencia']);
+                $dependencia->setIdUsuarioJefe($rs['idUsuarioJefe']);
+                $dependencia->setEstado($rs['estado']);
                 $dependencias[] = $dependencia;
             }
             if(isset($dependencias))
@@ -128,6 +135,21 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Dependencia");
             $result->execute();
             return $result;
+        }
+        
+        public static function asignarJefe(Dependencia $dependencia) {
+            if($dependencia->getSuperIdDependencia() != null) {
+                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idRed = :idRed, descripcion = :descripcion, superIdDependencia = :superIdDependencia, idUsuarioJefe = :idUsuarioJefe, estado = :estado WHERE idDependencia = :idDependencia");
+                $result->bindParam(':superIdDependencia', $dependencia->getSuperIdDependencia());
+            }
+            else
+                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idRed = :idRed, descripcion = :descripcion, superIdDependencia = null, idUsuarioJefe = :idUsuarioJefe, estado = :estado  WHERE idDependencia = :idDependencia");
+            $result->bindParam(':idRed', $dependencia->getIdRed());
+            $result->bindParam(':descripcion', $dependencia->getDescripcion());
+            $result->bindParam(':idUsuarioJefe', $dependencia->getIdUsuariojefe());
+            $result->bindParam(':estado', $dependencia->getEstado());
+            $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
+            return $result->execute();
         }
     }
 ?>

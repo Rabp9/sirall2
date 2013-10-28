@@ -21,6 +21,8 @@
             $redes = RedDAO::getAllRed();
             $dependencias = DependenciaDAO::getAllDependencia();
             $usuarios = UsuarioDAO::getAllUsuario();
+            $vw_tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+            $vw_marcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Equipo/Crear.php';
         }
                 
@@ -30,24 +32,23 @@
                 $equipo->setCodigoPatrimonial($_POST['codigoPatrimonial']);
                 $equipo->setSerie($_POST['serie']);
                 $equipo->setIdModelo($_POST['idModelo']);
-                $equipo->setIdMarca($_POST['idMarca']);
-                $equipo->setIdTipoEquipo($_POST['idTipoEquipo']);
                 $equipo->setIdUsuario($_POST['idUsuario']);
                 $equipo->setIndicacion($_POST['indicacion']);
                 $equipo->setEstado(1);
-                $r = EquipoDAO::crear($equipo);
-                $n_dato = sizeof($_POST['clave']);
-                for($i = 0; $i < $n_dato; $i++ ) {
-                    $dato = new Dato();
-                    $dato->setCodigoPatrimonial($equipo->getCodigoPatrimonial());
-                    $dato->setSerie($equipo->getSerie());
-                    $dato->setClave($_POST['clave'][$i]);
-                    $dato->setValor($_POST['valor'][$i]);
-                    DatoDAO::crear($dato);
-                }
-                $r ?
+                EquipoDAO::crear($equipo) ?
                     $mensaje = "Equipo guardado correctamente" :
                     $mensaje = "El Equipo no fue guardado correctamente";
+                $n_dato = sizeof($_POST['clave']);
+                for($i = 0; $i < $n_dato; $i++ ) {
+                    if($_POST['clave'][$i] != "") {
+                        $dato = new Dato();
+                        $dato->setCodigoPatrimonial($equipo->getCodigoPatrimonial());
+                        $dato->setSerie($equipo->getSerie());
+                        $dato->setClave($_POST['clave'][$i]);
+                        $dato->setValor($_POST['valor'][$i]);
+                        DatoDAO::crear($dato);
+                    }
+                }
             }
             $equipos = EquipoDAO::getVwEquipo();
             require_once '/views/Mantenimiento/Equipo/Lista.php';
@@ -57,8 +58,8 @@
             if(isset($_GET['codigoPatrimonial'])) {
                 $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']);
                 $modelo = ModeloDAO::getModeloByIdModelo($equipo->getIdModelo());
-                $marca = MarcaDAO::getMarcaByIdMarca($equipo->getIdMarca());
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($equipo->getIdTipoEquipo());
+                $marca = MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca());
+                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
                 $usuario = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
                 $dependencia = DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia());
                 $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
@@ -69,11 +70,17 @@
         public static function EditarAction() {
             if(isset($_GET['codigoPatrimonial'])) {
                 $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']);
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($equipo->getIdTipoEquipo());
-                $marca = MarcaDAO::getMarcaByIdMarca($equipo->getIdMarca());
-                //$modelo = ModeloDAO::getModeloByIdModelo($equipo->getIdModelo());
+                $modelo = ModeloDAO::getModeloByIdModelo($equipo->getIdModelo());
+                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
+                $marca = MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca());
+                $usuario = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
                 $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
                 $marcas = MarcaDAO::getAllMarca();
+                $redes = RedDAO::getAllRed();      
+                $dependencias = DependenciaDAO::getAllDependencia();
+                $datos = DatoDAO::getDatobyCodigoPatrimonial($equipo->getCodigoPatrimonial());
+                $vw_tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+                $vw_marcas = MarcaDAO::getVwMarca();
                 require_once '/views/Mantenimiento/Equipo/Editar.php';
             }
         }
@@ -81,15 +88,29 @@
         public static function EditarPOSTAction() {
             if(isset($_POST)) {
                 $equipo = new Equipo();
-                $equipo->setIdEquipo($_POST['idEquipo']);
-                $equipo->setIdTipoEquipo($_POST['idTipoEquipo']);
-                $equipo->setIdMarca($_POST['idMarca']);
-                $equipo->setDescripcion($_POST['descripcion']);
+                $equipo->setCodigoPatrimonial($_POST['codigoPatrimonial']);
+                $equipo->setSerie($_POST['serie']);
+                $equipo->setIdModelo($_POST['idModelo']);
+                $equipo->setIdUsuario($_POST['idUsuario']);
                 $equipo->setIndicacion($_POST['indicacion']);
-                EquipoDAO::editar($equipo);
+                $equipo->setEstado(1);
+                EquipoDAO::editar($equipo) ?
+                    $mensaje = "Equipo modificado correctamente" :
+                    $mensaje = "El Equipo no fue modificado correctamente";
+                DatoDAO::eliminarbyCodigoPatrimonial($equipo->getCodigoPatrimonial());
+                $n_dato = sizeof($_POST['clave']);
+                for($i = 0; $i < $n_dato; $i++ ) {
+                    if($_POST['clave'][$i] != "") {
+                        $dato = new Dato();
+                        $dato->setCodigoPatrimonial($equipo->getCodigoPatrimonial());
+                        $dato->setSerie($equipo->getSerie());
+                        $dato->setClave($_POST['clave'][$i]);
+                        $dato->setValor($_POST['valor'][$i]);
+                        DatoDAO::crear($dato);
+                    }
+                }
             }
             $equipos = EquipoDAO::getVwEquipo();
-            $mensaje = "Equipo modificado correctamente";
             require_once '/views/Mantenimiento/Equipo/Lista.php';
         }
         
@@ -97,11 +118,11 @@
             if(isset($_GET['codigoPatrimonial'])) {
                 $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']);
                 $modelo = ModeloDAO::getModeloByIdModelo($equipo->getIdModelo());
-                $marca = MarcaDAO::getMarcaByIdMarca($equipo->getIdMarca());
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($equipo->getIdTipoEquipo());
+                $marca = MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca());
+                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
                 $usuario = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
-                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($equipo->getIdDependencia());
-                $red = RedDAO::getRedByIdRed($equipo->getIdRed());
+                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia());
+                $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
                 require_once '/views/Mantenimiento/Equipo/Eliminar.php';
             }
         }
@@ -110,10 +131,11 @@
             if(isset($_POST)) {
                 $equipo = new Equipo();
                 $equipo->setCodigoPatrimonial($_POST['codigoPatrimonial']);
-                EquipoDAO::eliminar($equipo);
+                EquipoDAO::eliminar($equipo) ?
+                    $mensaje = "Equipo eliminado correctamente" :
+                    $mensaje = "El Equipo no fue eliminado correctamente";
             }
             $equipos = EquipoDAO::getVwEquipo();
-            $mensaje = "Equipo eliminada correctamente";
             require_once '/views/Mantenimiento/Equipo/Lista.php';
         }
     }

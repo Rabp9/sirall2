@@ -2,11 +2,11 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+      
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/jquery.treeview.css"/>
-   
+      
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
@@ -16,25 +16,36 @@
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#txtNombres'));
-                isRequired($('#txtDescripcion'));
-                isRequired($('#txtApellidoMaterno'));
-                setValue($('#txtIdDependencia'), '<?php echo $dependencia->getIdDependencia(); ?>');
-                isReadOnly($('#txtIdDependencia'));
-                $('#txtDescripcion').focus();
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 
-                // INICIO Editar Seleccionar Dependencia
-                var idDependencia = '<?php echo $dependencia->getIdDependencia(); ?>';
-                $("#ulDependencia li button").not($("button[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().parent().parent().find('button:eq(0)').addClass('selected');
-                var $dependenciaSeleccionada = $("#ulDependencia li button.selected"); 
-                var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Red']"));
-                $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
-                // FIN Editar Seleccionar Dependencia
+                // INICIO Seleccionar Dependencia
+                $('#btnSeleccionar').click(function() {
+                    var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
+                    if($($dependenciaSeleccionada).length) {
+                        $.ajax({
+                            url: 'Index.php',
+                            type: 'GET',
+                            data: {
+                                controller: 'Usuario',
+                                action: 'usuarioAJAX',
+                                idDependencia: $('#hdnDependencia').val()
+                            },
+                            success: function(data) {
+                                $('#cboUsuario').html("<option disabled selected value=''>Selecciona un Usuario</option>");
+                                $(data).find('Usuario').each(function() {
+                                    var option = new Option($(this).find('apellidoPaterno').text() + ' ' + $(this).find('apellidoMaterno').text() + ', ' + $(this).find('nombres').text(), $(this).find('idUsuario').text());
+                                    $('#cboUsuario').append(option);
+                                });
+                            }
+                        })
+                    }
+                });
+                // FIN Seleccionar Dependencia
             });
         </script>
-        <title>SIRALL2 - Editar Dependencia</title>
+        
+        <title>SIRALL2 - Asignar Jefe de Dependencia</title>
     </head>
     <body>
         <aside>
@@ -49,43 +60,39 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Editar Dependencia</h2>
-                        <h4>Edita la Dependencia</h4>
+                        <h2>Asignar Jefe de Dependencia</h2>
+                        <h4>Asigna el jefe o responsable de una Dependencia</h4>
                     </hgroup>
                 </header>
-                <form id="frmEditarDependencia" method="POST" action="?controller=Dependencia&action=EditarPOST">
+                <form id="frmAsignaJefeDependencia" method="POST" action="?controller=AsignarJefeDependencia&action=AsignarJefeDependenciaPOST">
                     <fieldset>
-                        <legend>Editar Dependencia</legend>
+                        <legend>Asignación de Jefe</legend>
                         <table>
-                            <tr>
-                                <td><label for="txtIdDependencia"><abbr title="Código identificador">ID.</abbr> Dependencia</label></td>
-                                <td><input id="txtIdDependencia" type="text" name="idDependencia"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="txtDescripcion">Descripcion</label></td>
-                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción" value="<?php echo $dependencia->getDescripcion(); ?>"></td>  
-                            </tr>
                             <tr>
                                 <td><label for="btnDependenciaSuperior">Dependencia Superior</label></td>
                                 <td>
                                     <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
                                     <span id="txtDependenciaSeleccionada"></span>
                                     <input id="hdnRed" type="hidden" name="idRed" value=""/>
-                                    <input id="hdnDependencia" type="hidden" name="superIdDependencia" value=""/>
+                                    <input id="hdnDependencia" type="hidden" name="idDependencia" value=""/>
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
+                                <td><label for="cboUsuario">Usuario</label></td>
                                 <td>
+                                    <select id="cboUsuario" name="idUsuario">
+                                        <option disabled selected value="">Selecciona un Usuario</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
                                     <button id="btnEnviar" type="submit">Enviar</button>
                                     <button id="btnBorrar" type="reset">Borrar</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td colspan="2"><a href="?controller=Dependencia">Regresar</a></td>
-                            </tr>
                         </table>
-                       <div id="dependenciaSelect" title="Seleccionar Dependencia">         
+                        <div id="dependenciaSelect" title="Seleccionar Dependencia">         
                             <p>Selecciona una Dependencia</p>
                             <?php
                                 function tieneHijos($padre, $dependencias) {
@@ -140,7 +147,7 @@
                             ?>
                             <button id="btnSeleccionar" type="button">Seleccionar</button>
                         </div>
-                    </fieldset>               
+                    </fieldset>
                 </form>
             </article>
         </section>

@@ -140,3 +140,18 @@ div#asistente div {
 #tblPermisos td {
     text-align: center;
 }
+div.fieldset12 {
+    overflow: hidden;
+}
+
+div.fieldset1 {
+    float: left;
+}
+    
+div.fieldset2 {
+    float: left;
+}
+div.tblIngresoAutomatico {
+    height: 300px;
+    overflow: auto;
+}

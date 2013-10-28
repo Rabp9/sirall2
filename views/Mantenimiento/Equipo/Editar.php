@@ -5,21 +5,31 @@
        
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/jquery.treeview.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/jquery.dataTables_themeroller.css"/>
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.dependenciaSelect.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
+        <script type="text/javascript" src="resources/js/template.lista.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtCodigoPatrimonial'));
                 isRequired($('#txtSerie'));
                 setValue($('#txtCodigoPatrimonial'), '<?php echo $equipo->getCodigoPatrimonial(); ?>');
                 setValue($('#txtSerie'), '<?php echo $equipo->getSerie(); ?>');
+                setValue($('#txtIndicacion'), '<?php echo $equipo->getIndicacion(); ?>');
                 setValue($('#txtIdTipoEquipo'), '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>');
                 setValue($('#txtTipoEquipo'), '<?php echo $tipoEquipo->getDescripcion(); ?>');
                 setValue($('#txtIdMarca'), '<?php echo $marca->getIdMarca(); ?>');
                 setValue($('#txtMarca'), '<?php echo $marca->getDescripcion(); ?>');
+                isReadOnly($('#txtCodigoPatrimonial'));
+                isReadOnly($('#txtSerie'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtIdTipoEquipo').focus();
@@ -41,7 +51,8 @@
                 $('button.prev').button();
                 // FIN TABS
                 // 
-                // INICIO Tipo de Equipo
+                // 
+               // INICIO Tipo de Equipo
                 var tipoEquipoTags = new Array();
                 <?php
                     if($tipoEquipos) { 
@@ -88,10 +99,45 @@
                 
                 $('#txtIdTipoEquipo').keyup(comprobarTipoEquipo);
                 $('#txtIdTipoEquipo').on( "autocompleteclose", comprobarTipoEquipo);
+                
+                $( '#divTipoEquipo' ).dialog({
+                    autoOpen: false,
+                    modal: true,
+                    height: 400,
+                    width: 1050,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
+                    },
+                    buttons: {
+                        "Cancelar": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $('#btnIdTipoEquipo').click(function() {
+                    $('#divTipoEquipo').dialog('open');
+                });
+                $('.btnSeleccionarTipoEquipo').button({
+                    icons: {
+                        primary: "ui-icon-check"
+                    },
+                    text: false
+                }).click(function() {
+                    var idTipoEquipo = $(this).parents('tr').find('td').eq(0).text();
+                    setValue($('#txtIdTipoEquipo'), idTipoEquipo);
+                    comprobarTipoEquipo();
+                    cboModelo();
+                    $('#divTipoEquipo').dialog('close');
+                });
                 // FIN Tipo de Equipo
-                // 
-                // 
-                // Marca
+                //
+                //
+                // INICIO Marca
                 var marcaTags = new Array();
                 <?php
                     if($marcas) { 
@@ -136,7 +182,42 @@
                 }; 
                 
                 $('#txtIdMarca').keyup(comprobarMarca);
-                $('#txtIdMarca').on( "autocompleteclose", comprobarMarca);
+                $('#txtIdMarca').on( "autocompleteclose", comprobarMarca); 
+                
+                $( '#divMarca' ).dialog({
+                    autoOpen: false,
+                    modal: true,
+                    height: 400,
+                    width: 1050,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
+                    },
+                    buttons: {
+                        "Cancelar": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $('#btnIdMarca').click(function() {
+                    $('#divMarca').dialog('open');
+                });
+                $('.btnSeleccionarMarca').button({
+                    icons: {
+                        primary: "ui-icon-check"
+                    },
+                    text: false
+                }).click(function() {
+                    var idMarca = $(this).parents('tr').find('td').eq(0).text();
+                    setValue($('#txtIdMarca'), idMarca);
+                    comprobarMarca();
+                    cboModelo();
+                    $('#divMarca').dialog('close');
+                });
                 // FIN Marca
                 //
                 //
@@ -163,7 +244,6 @@
                 // 
                 // 
                 // INICIO Modelo
-                cboModelo();
                 var cboModelo = function() {
                     $.ajax({
                         url: 'Index.php',
@@ -180,15 +260,29 @@
                                 var option = new Option($(this).find('descripcion').text(), $(this).find('idModelo').text());
                                 $('#cboModelo').append(option);
                             });
+                            // Sólo para editar
+                            setValue($("#cboModelo"), '<?php echo $modelo->getIdModelo(); ?>');
                         }
                     })
                 }; 
+                cboModelo();
                 $('#txtIdTipoEquipo').on( "autocompleteclose", cboModelo);
                 $('#txtIdMarca').on( "autocompleteclose", cboModelo);
                 // FIN cboModelo     
-                
+                // 
+                // 
+                // INICIO Editar Seleccionar Dependencia
+                var idDependencia = '<?php echo $usuario->getIdDependencia(); ?>';
+                $("#ulDependencia li button").not($("button[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().find('button:eq(0)').addClass('selected');
+                var $dependenciaSeleccionada = $("#ulDependencia li button.selected"); 
+                var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Red']"));
+                $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");   
+                $('#hdnDependencia').val('<?php echo $usuario->getIdDependencia(); ?>');
+                // FIN Editar Seleccionar Dependencia
+                // 
+                // 
                 // INICIO Seleccionar Dependencia
-                $('#btnSeleccionar').click(function() {
+                var btnSeleccionar = function() {
                     var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
                     if($($dependenciaSeleccionada).length) {
                         $.ajax({
@@ -205,10 +299,14 @@
                                     var option = new Option($(this).find('apellidoPaterno').text() + ' ' + $(this).find('apellidoMaterno').text() + ', ' + $(this).find('nombres').text(), $(this).find('idUsuario').text());
                                     $('#cboUsuario').append(option);
                                 });
+                                // Sólo para editar
+                                setValue($("#cboUsuario"), '<?php echo $equipo->getIdUsuario(); ?>');
                             }
                         })
                     }
-                });
+                };
+                btnSeleccionar();
+                $('#btnSeleccionar').click(btnSeleccionar);
                 // FIN Seleccionar Dependencia
                 // 
                 // 
@@ -237,6 +335,16 @@
                 })(jQuery);
                 $('#tblDetalle').styleTable(event);
                 // FIN Estilizar Tabla
+                //
+                //
+                // INICIO mostrar datos
+                <?php foreach($datos as $dato) { ?>
+                var clave = '<?php echo $dato->getClave(); ?>';
+                var valor = '<?php echo $dato->getValor(); ?>';
+                $('#tblDetalle tbody').append("<tr><td><input type='text' value='" + clave + "' onkeyup='teclaPress(event);' name='clave[]'></td><td><input type='text' value='" + valor + "' name='valor[]'></td></tr>");
+                <?php } ?>
+                $('#tblDetalle tbody').append("<tr><td><input type='text' value='' onkeyup='teclaPress(event);' name='clave[]'></td><td><input type='text' value='' name='valor[]'></td></tr>");
+               // FIN Mostrar Datos
             });
             
             // INICIO presionar tecla
@@ -271,7 +379,7 @@
                         <h4>Edita el Equipo</h4>
                     </hgroup>
                 </header>
-                <form id="frmEditarEquipo" method="POST" action="?controller=Equipo&action=CrearPOST">
+                <form id="frmEditarEquipo" method="POST" action="?controller=Equipo&action=EditarPOST">
                     <fieldset>
                         <legend>Crear Equipo</legend>
                         <div id="asistente">
@@ -367,7 +475,7 @@
                                 </tr>
                             </table>
                             </div>
-                            <div id="detalle">
+                            <div id="detalle" class="tblIngresoAutomatico">
                                 <table id="tblDetalle">
                                     <thead>
                                         <tr>
@@ -376,10 +484,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><input type="text" value="" onkeyup="teclaPress(event);" name="clave[]"></td>
-                                            <td><input type="text" value="" name="valor[]"></td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -451,7 +555,69 @@
                                 <td colspan="2"><a href="?controller=Equipo">Regresar</a></td>
                             </tr>
                         </table>
-                    </fieldset>               
+                    </fieldset>
+                    <!-- Dialog Modal para Tipo de Equipo -->
+                    <div id="divTipoEquipo" title="Elegir un Tipo de Equipo">
+                        <table class="tblLista">
+                            <thead>
+                                <tr>
+                                    <th><abbr title="Código identificador">ID.</abbr> Tipo Equipo</th>
+                                    <th>Descripción</th>
+                                    <th>N° Modelos</th>
+                                    <th>N° Equipos</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if(isset($vw_tipoEquipos)) {
+                                        while ($vw_tipoEquipo = $vw_tipoEquipos->fetch()) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $vw_tipoEquipo['idTipoEquipo']; ?></td>
+                                    <td><?php echo $vw_tipoEquipo['descripcion']; ?></td>
+                                    <td><?php echo $vw_tipoEquipo['Nro Modelos']; ?></td>
+                                    <td><?php echo $vw_tipoEquipo['Nro Equipos']; ?></td>
+                                    <td><button class="btnSeleccionarTipoEquipo"></button></td>
+                                </tr>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Dialog Modal para Marca -->
+                    <div id="divMarca" title="Elegir una Marca">
+                        <table class="tblLista">
+                            <thead>
+                                <tr>
+                                    <th><abbr title="Código identificador">ID.</abbr> Marca</th>
+                                    <th>Descripción</th>
+                                    <th>N° Modelos</th>
+                                    <th>N° Equipos</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if(isset($vw_marcas)) {
+                                        while ($vw_marca = $vw_marcas->fetch()) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $vw_marca['idMarca']; ?></td>
+                                    <td><?php echo $vw_marca['descripcion']; ?></td>
+                                    <td><?php echo $vw_marca['Nro Modelos']; ?></td>
+                                    <td><?php echo $vw_marca['Nro Equipos']; ?></td>
+                                    <td><button class="btnSeleccionarMarca"></button></td>
+                                </tr>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </form>
             </article>
         </section>

@@ -99,7 +99,7 @@
         }
         
         public static function getModeloByIdMarca_IdTipoEquipo($idMarca, $idTipoEquipo) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo where idMarca = :idMarca AND idTipoEquipo = :idTipoEquipo");
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo where idMarca = :idMarca AND idTipoEquipo = :idTipoEquipo AND estado = 1");
             $result->bindParam(':idMarca', $idMarca);
             $result->bindParam(':idTipoEquipo', $idTipoEquipo);
             $result->execute();
@@ -110,6 +110,7 @@
                 $modelo->setIdTipoEquipo($rs['idTipoEquipo']);
                 $modelo->setDescripcion($rs['descripcion']);
                 $modelo->setIndicacion($rs['indicacion']);
+                $modelo->setIndicacion($rs['estado']);
                 $modelos[] = $modelo; 
             }
             if(isset($modelos))

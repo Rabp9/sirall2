@@ -13,6 +13,8 @@
             $nextID = ModeloDAO::getNextID();
             $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
             $marcas = MarcaDAO::getAllMarca();
+            $vw_tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+            $vw_marcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Modelo/Crear.php';
         }
                 
@@ -49,6 +51,8 @@
                 $marca = MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca());
                 $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
                 $marcas = MarcaDAO::getAllMarca();
+                $vw_tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+                $vw_marcas = MarcaDAO::getVwMarca();
                 require_once '/views/Mantenimiento/Modelo/Editar.php';
             }
         }

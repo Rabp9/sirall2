@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/jquery.treeview.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/jquery.dataTables_themeroller.css"/>
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -14,6 +15,8 @@
         <script type="text/javascript" src="resources/js/template.dependenciaSelect.js"></script>
         <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
+        <script type="text/javascript" src="resources/js/template.lista.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtCodigoPatrimonial'));
@@ -87,10 +90,45 @@
                 
                 $('#txtIdTipoEquipo').keyup(comprobarTipoEquipo);
                 $('#txtIdTipoEquipo').on( "autocompleteclose", comprobarTipoEquipo);
+                
+                $( '#divTipoEquipo' ).dialog({
+                    autoOpen: false,
+                    modal: true,
+                    height: 400,
+                    width: 1050,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
+                    },
+                    buttons: {
+                        "Cancelar": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $('#btnIdTipoEquipo').click(function() {
+                    $('#divTipoEquipo').dialog('open');
+                });
+                $('.btnSeleccionarTipoEquipo').button({
+                    icons: {
+                        primary: "ui-icon-check"
+                    },
+                    text: false
+                }).click(function() {
+                    var idTipoEquipo = $(this).parents('tr').find('td').eq(0).text();
+                    setValue($('#txtIdTipoEquipo'), idTipoEquipo);
+                    comprobarTipoEquipo();
+                    cboModelo();
+                    $('#divTipoEquipo').dialog('close');
+                });
                 // FIN Tipo de Equipo
                 //
                 //
-                // Marca
+                // INICIO Marca
                 var marcaTags = new Array();
                 <?php
                     if($marcas) { 
@@ -135,7 +173,42 @@
                 }; 
                 
                 $('#txtIdMarca').keyup(comprobarMarca);
-                $('#txtIdMarca').on( "autocompleteclose", comprobarMarca);
+                $('#txtIdMarca').on( "autocompleteclose", comprobarMarca); 
+                
+                $( '#divMarca' ).dialog({
+                    autoOpen: false,
+                    modal: true,
+                    height: 400,
+                    width: 1050,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
+                    },
+                    buttons: {
+                        "Cancelar": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $('#btnIdMarca').click(function() {
+                    $('#divMarca').dialog('open');
+                });
+                $('.btnSeleccionarMarca').button({
+                    icons: {
+                        primary: "ui-icon-check"
+                    },
+                    text: false
+                }).click(function() {
+                    var idMarca = $(this).parents('tr').find('td').eq(0).text();
+                    setValue($('#txtIdMarca'), idMarca);
+                    comprobarMarca();
+                    cboModelo();
+                    $('#divMarca').dialog('close');
+                });
                 // FIN Marca
                 //
                 //
@@ -338,13 +411,6 @@
                                             <td>
                                                 <select id="cboUsuario" name="idUsuario">
                                                     <option disabled selected value="">Selecciona un Usuario</option>
-                                                    <?php 
-                                                        if($usuarios) { 
-                                                            foreach ($usuarios as $usuario) {
-                                                                echo "<option value='" . $usuario->getIdUsuario() . "'>" . $usuario->getApellidoPaterno() . "</option>";
-                                                            }
-                                                        }
-                                                    ?>
                                                 </select>
                                             </td>
                                         </tr>
@@ -451,7 +517,69 @@
                                 <td colspan="2"><a href="?controller=Equipo">Regresar</a></td>
                             </tr>
                         </table>
-                    </fieldset>               
+                    </fieldset>
+                    <!-- Dialog Modal para Tipo de Equipo -->
+                    <div id="divTipoEquipo" title="Elegir un Tipo de Equipo">
+                        <table class="tblLista">
+                            <thead>
+                                <tr>
+                                    <th><abbr title="Código identificador">ID.</abbr> Tipo Equipo</th>
+                                    <th>Descripción</th>
+                                    <th>N° Modelos</th>
+                                    <th>N° Equipos</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if(isset($vw_tipoEquipos)) {
+                                        while ($vw_tipoEquipo = $vw_tipoEquipos->fetch()) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $vw_tipoEquipo['idTipoEquipo']; ?></td>
+                                    <td><?php echo $vw_tipoEquipo['descripcion']; ?></td>
+                                    <td><?php echo $vw_tipoEquipo['Nro Modelos']; ?></td>
+                                    <td><?php echo $vw_tipoEquipo['Nro Equipos']; ?></td>
+                                    <td><button class="btnSeleccionarTipoEquipo"></button></td>
+                                </tr>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Dialog Modal para Marca -->
+                    <div id="divMarca" title="Elegir una Marca">
+                        <table class="tblLista">
+                            <thead>
+                                <tr>
+                                    <th><abbr title="Código identificador">ID.</abbr> Marca</th>
+                                    <th>Descripción</th>
+                                    <th>N° Modelos</th>
+                                    <th>N° Equipos</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if(isset($vw_marcas)) {
+                                        while ($vw_marca = $vw_marcas->fetch()) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $vw_marca['idMarca']; ?></td>
+                                    <td><?php echo $vw_marca['descripcion']; ?></td>
+                                    <td><?php echo $vw_marca['Nro Modelos']; ?></td>
+                                    <td><?php echo $vw_marca['Nro Equipos']; ?></td>
+                                    <td><button class="btnSeleccionarMarca"></button></td>
+                                </tr>
+                                <?php
+                                        }
+                                    }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </form>
             </article>
         </section>

@@ -9,10 +9,9 @@
        
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
-        <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.lista.js"></script>
-        
+        <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <title>SIRALL2 - Lista Tipo de Equipo</title>
     </head>
     <body>

@@ -31,12 +31,10 @@
         
         
         public static function crear(Equipo $equipo) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, idMarca, idTipoEquipo, idUsuario, indicacion, estado) values(:codigoPatrimonial, :serie, :idModelo, :idMarca, :idTipoEquipo, :idUsuario, :indicacion, :estado)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, idUsuario, indicacion, estado) values(:codigoPatrimonial, :serie, :idModelo, :idUsuario, :indicacion, :estado)");
             $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             $result->bindParam(':serie', $equipo->getSerie());
             $result->bindParam(':idModelo', $equipo->getIdModelo());
-            $result->bindParam(':idMarca', $equipo->getIdMarca());
-            $result->bindParam(':idTipoEquipo', $equipo->getIdTipoEquipo());
             $result->bindParam(':idUsuario', $equipo->getIdUsuario());
             $result->bindParam(':indicacion', $equipo->getIndicacion());
             $result->bindParam(':estado', $equipo->getEstado());
@@ -44,17 +42,17 @@
         }
         
         public static function editar(Equipo $equipo) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Equipo SET idTipoEquipo = :idTipoEquipo, idMarca = :idMarca, descripcion = :descripcion, indicacion = :indicacion WHERE idEquipo = :idEquipo");
-            $result->bindParam(':idTipoEquipo', $equipo->getIdTipoEquipo());
-            $result->bindParam(':idMarca', $equipo->getIdMarca());
-            $result->bindParam(':descripcion', $equipo->getDescripcion());
+            $result = BaseDatos::getDbh()->prepare("UPDATE Equipo SET idModelo = :idModelo, idUsuario = :idUsuario, indicacion = :indicacion, estado = :estado WHERE codigoPatrimonial = :codigoPatrimonial");
+            $result->bindParam(':idModelo', $equipo->getIdModelo());
+            $result->bindParam(':idUsuario', $equipo->getIdUsuario());
             $result->bindParam(':indicacion', $equipo->getIndicacion());
-            $result->bindParam(':idEquipo', $equipo->getIdEquipo());
+            $result->bindParam(':estado', $equipo->getEstado());
+            $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             return $result->execute();
         }
         
         public static function eliminar(Equipo $equipo) {
-            $result = BaseDatos::getDbh()->prepare("DELETE FROM Equipo WHERE codigoPatrimonial = :codigoPatrimonial");
+            $result = BaseDatos::getDbh()->prepare("UPDATE Equipo SET estado = 2 WHERE codigoPatrimonial = :codigoPatrimonial");
             $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             return $result->execute();
         }
@@ -68,8 +66,6 @@
             $equipo->setCodigoPatrimonial($rs['codigoPatrimonial']);
             $equipo->setSerie($rs['serie']);
             $equipo->setIdModelo($rs['idModelo']);
-            $equipo->setIdMarca($rs['idMarca']);
-            $equipo->setIdTipoEquipo($rs['idTipoEquipo']);
             $equipo->setIdUsuario($rs['idUsuario']);
             $equipo->setIndicacion($rs['indicacion']);
             $equipo->setEstado($rs['estado']);

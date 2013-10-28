@@ -1,13 +1,13 @@
 <?php
     class Dato {
-        private $idClave;
+        private $idDato;
         private $codigoPatrimonial;
         private $serie;
         private $clave;
         private $valor;
         
         public function __construct() {
-            $this->idClave = 0;
+            $this->idDato = "";
             $this->codigoPatrimonial = "";
             $this->serie = "";
             $this->clave = "#";
@@ -17,8 +17,8 @@
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
         
         //Sets
-        public function setIdClave($idClave) {
-            $this->idClave = $idClave;
+        public function setIdDato($idDato) {
+            $this->idDato = $idDato;
         }
         
         public function setCodigoPatrimonial($codigoPatrimonial) {
@@ -38,8 +38,8 @@
         }
  
         //Gets
-        public function getIdClave() {
-            return $this->idClave;
+        public function getIdDato() {
+            return $this->idDato;
         }
         
         public function getCodigoPatrimonial() {
@@ -65,7 +65,7 @@
         
         public function toXML() {
             $xml = "<Dato>\n";
-            $xml .= "\t<idClave>" . $this->getIdClave() . "</idClave>\n";
+            $xml .= "\t<idDato>" . $this->getIdDato() . "</idDato>\n";
             $xml .= "\t<codigoPatrimonial>" . $this->getCodigoPatrimonial() . "</codigoPatrimonial>\n";
             $xml .= "\t<serie>" . $this->getSerie() . "</serie>\n";
             $xml .= "\t<clave>" . $this->getClave() . "</clave>\n";

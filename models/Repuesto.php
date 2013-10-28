@@ -4,11 +4,14 @@
         private $descripcion;
         private $unidadMedida;
         private $stock;
+        private $estado;
         
         public function __construct() {
-            $this->idRepuesto = 0;
+            $this->idRepuesto = "";
             $this->descripcion = "";
-            $this->stock = "";
+            $this->unidadMedida = "";
+            $this->stock = 0;
+            $this->estado = 1;
         }
         
         //Sets
@@ -26,6 +29,10 @@
         
         public function setStock($stock) {
             $this->stock = $stock;
+        }    
+        
+        public function setEstado($estado) {
+            $this->estado = $estado;
         }
         
         //Gets
@@ -45,16 +52,21 @@
             return $this->stock;
         }
                 
+        public function getEstado() {
+            return $this->estado;
+        }
+                
         public function toArray(){
             return get_object_vars($this);
         }
         
         public function toXML() {
             $xml = "<Repuesto>\n";
-            $xml .= "\t<idRepuesto>" . $this->getIdRed() . "</idRepuesto>\n";
+            $xml .= "\t<idRepuesto>" . $this->getIdRepuesto() . "</idRepuesto>\n";
             $xml .= "\t<descripcion>" . $this->getDescripcion() . "</descripcion>\n";
-            $xml .= "\t<descripcion>" . $this->getUnidadMedida() . "</descripcion>\n";
-            $xml .= "\t<descripcion>" . $this->getStock() . "</descripcion>\n";
+            $xml .= "\t<unidadMedida>" . $this->getUnidadMedida() . "</unidadMedida>\n";
+            $xml .= "\t<stock>" . $this->getStock() . "</stock>\n";
+            $xml .= "\t<estado>" . $this->getEstado() . "</estado>\n";
             $xml = $xml . "</Repuesto>";
             return $xml;
         }
