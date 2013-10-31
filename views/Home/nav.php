@@ -23,7 +23,7 @@
             <li><a href="?controller=MovimientoRepuesto&action=Salida">Salida de Repuestos</a></li>
         </ul>
     </li>
-    <li><a href="#">Desplazamiento</a></li>
+    <li><a href="?controller=Desplazamiento">Desplazamiento</a></li>
     <li><a href="#">Reportes</a></li>
     <li><a href="#">Cerrar Sesión</a></li>
 </ul>
