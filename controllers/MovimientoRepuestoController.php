@@ -14,7 +14,9 @@
                 $ingresoRepuesto = new IngresoRepuesto();
                 $ingresoRepuesto->setIdRepuesto($repuesto->getIdRepuesto());
                 $ingresoRepuesto->setCantidad($_POST['cantidad']);
-                $ingresoRepuesto->setFecha($_POST['fecha']);
+                $fecha = new DateTime();
+                $fecha->createFromFormat('d-m-Y', $_POST['fecha']);
+                $ingresoRepuesto->setFecha($fecha->format('Y-m-d'));
                 $ingresoRepuesto->setObservacion($_POST['observacion']);
                 if(RepuestoDAO::ingreso($ingresoRepuesto))
                     require_once '/views/Movimiento Repuesto/ConfirmacionIngreso.php';
@@ -33,7 +35,9 @@
                 $salidaRepuesto = new SalidaRepuesto();
                 $salidaRepuesto->setIdRepuesto($repuesto->getIdRepuesto());
                 $salidaRepuesto->setCantidad($_POST['cantidad']);
-                $salidaRepuesto->setFecha($_POST['fecha']);
+                $fecha = new DateTime();
+                $fecha->createFromFormat('d-m-Y', $_POST['fecha']);
+                $salidaRepuesto->setFecha($fecha->format('Y-m-d'));
                 $salidaRepuesto->setObservacion($_POST['observacion']);
                 if(RepuestoDAO::salida($salidaRepuesto))
                     require_once '/views/Movimiento Repuesto/ConfirmacionSalida.php';

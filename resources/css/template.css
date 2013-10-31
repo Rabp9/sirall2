@@ -9,7 +9,7 @@ body {
     font-family: "Trebuchet MS", sans-serif;
     padding: 0px;
     margin: 0px;
-    font-size: 75%;
+    font-size: 65%;
 }
 
 aside {
@@ -154,4 +154,16 @@ div.fieldset2 {
 div.tblIngresoAutomatico {
     height: 300px;
     overflow: auto;
+}
+
+button.btnSeleccionarMarca {
+    height: 30px;
+}
+
+button.btnSeleccionarTipoEquipo {
+    height: 30px;
+}
+
+button.btnSeleccionarRepuesto {
+    height: 30px;
 }

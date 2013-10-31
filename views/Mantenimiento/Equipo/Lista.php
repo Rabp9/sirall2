@@ -65,6 +65,7 @@
                                     <li><a href="?controller=Equipo&action=Detalle&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
                                     <li><a href="?controller=Equipo&action=Editar&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
                                     <li><a href="?controller=Equipo&action=Eliminar&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Equipo&action=Eliminar&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>

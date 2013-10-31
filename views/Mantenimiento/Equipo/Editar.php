@@ -446,13 +446,6 @@
                                             <td>
                                                 <select id="cboUsuario" name="idUsuario">
                                                     <option disabled selected value="">Selecciona un Usuario</option>
-                                                    <?php 
-                                                        if($usuarios) { 
-                                                            foreach ($usuarios as $usuario) {
-                                                                echo "<option value='" . $usuario->getIdUsuario() . "'>" . $usuario->getApellidoPaterno() . "</option>";
-                                                            }
-                                                        }
-                                                    ?>
                                                 </select>
                                             </td>
                                         </tr>

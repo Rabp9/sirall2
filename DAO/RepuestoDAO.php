@@ -85,7 +85,7 @@
         }
         
         public static function ingreso(IngresoRepuesto $ingresoRepuesto) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO IngresoRepuesto(idRepuesto, cantidad, fecha, observacion) values(:idRepuesto, :cantidad, :fecha, :observacion)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO IngresoRepuesto (idRepuesto, cantidad, fecha, observacion) VALUES (:idRepuesto, :cantidad, :fecha, :observacion)");
             $result->bindParam(':idRepuesto', $ingresoRepuesto->getIdRepuesto());
             $result->bindParam(':cantidad', $ingresoRepuesto->getCantidad());
             $result->bindParam(':fecha', $ingresoRepuesto->getFecha());
