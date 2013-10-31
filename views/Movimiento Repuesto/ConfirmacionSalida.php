@@ -54,7 +54,13 @@
                         </tr>
                         <tr>
                             <td><strong>Fecha:</strong></td>
-                            <td><?php echo $salidaRepuesto->getFecha(); ?></td>  
+                            <td>
+                                <?php
+                                    $fecha = new DateTime();
+                                    $fecha->createFromFormat('Y-m-d', $salidaRepuesto->getFecha());
+                                    echo $fecha->format('d-m-Y'); 
+                                ?>
+                            </td>  
                         </tr>
                         <tr>
                             <td><strong>Observación:</strong></td>

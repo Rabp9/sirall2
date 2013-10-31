@@ -171,7 +171,7 @@
                                 </tr>
                                 <tr>
                                     <td><label for="txt">Observación</label></td>
-                                    <td><textarea id="txtFecha" name="observacion"></textarea></td>
+                                    <td><textarea id="txtFecha"  placeholder="Ingrese una observación" name="observacion"></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>
