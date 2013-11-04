@@ -33,5 +33,11 @@
                 require_once '/views/Desplazamiento/Desplazamiento.php';
             }
         }
+        
+        public static function DesplazamientoPOSTAction() {   
+            if(isset($_POST['codigoPatrimonial'])) {
+                echo 'dasdas';
+            }
+        }
     }
 ?>
