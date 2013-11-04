@@ -11,20 +11,66 @@
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.datepicker-es.js"></script>
         <script type="text/javascript" src="resources/js/template.dependenciaSelect.js"></script>
         <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#btnFlecha').button({
-                    icons: {
-                        secondary: "ui-icon-arrow-1-e"
-                    },
-                    text: false
+                isRequired($('#txtFecha'));
+                setValue($('#txtFecha'), '<?php echo date('d/m/Y'); ?>');
+                $('#buttonFlecha').button();
+                $("#txtFecha").datepicker(
+                { 
+                    changeYear: true,
+                    changeMonth: true
                 });
-                $('#btnFlecha').css('height', '100px');
-                $('#btnFlecha').css('width', '100px');
+                $('#buttonFlecha').css('height', '150px');
+                $('#buttonFlecha').css('width', '150px');
                 
+                // INICIO Editar Seleccionar Dependencia
+                var idDependencia = '<?php echo $usuario->getIdDependencia(); ?>';
+                $("#ulDependencia li button").not($("button[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().find('button:eq(0)').addClass('selected');
+                var $dependenciaSeleccionada = $("#ulDependencia li button.selected"); 
+                var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Red']"));
+                $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");   
+                $('#hdnDependencia').val('<?php echo $usuario->getIdDependencia(); ?>');
+                // FIN Editar Seleccionar Dependencia
+                // 
+                // 
+                // INICIO Seleccionar Dependencia
+                var btnSeleccionar = function() {
+                    var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
+                    if($($dependenciaSeleccionada).length) {
+                        $.ajax({
+                            url: 'Index.php',
+                            type: 'GET',
+                            data: {
+                                controller: 'Usuario',
+                                action: 'usuarioAJAX',
+                                idDependencia: $('#hdnDependencia').val()
+                            },
+                            success: function(data) {
+                                $('#cboUsuario').html("<option disabled selected value=''>Selecciona un Usuario</option>");
+                                $(data).find('Usuario').each(function() {
+                                    var option = new Option($(this).find('apellidoPaterno').text() + ' ' + $(this).find('apellidoMaterno').text() + ', ' + $(this).find('nombres').text(), $(this).find('idUsuario').text());
+                                    $('#cboUsuario').append(option);
+                                });
+                                // Sólo para editar
+                                setValue($("#cboUsuario"), '<?php echo $equipo->getIdUsuario(); ?>');
+                            }
+                        })
+                    }
+                };
+                btnSeleccionar();
+                $('#btnSeleccionar').click(btnSeleccionar);
+                // FIN Seleccionar Dependencia
+                //
+                //
+                // INICIO SELECCIONAR DEPENDENCIA 2
+                // 
+                // 
+                // 
                 $('#btnDependenciaSuperior2').button();
                 $('#btnSeleccionar2').button();
                 $('#dependenciaSelect2').dialog({
@@ -77,20 +123,8 @@
                     else
                         alert('Selecciona una dependencia');
                 });
-              
-                // INICIO Editar Seleccionar Dependencia
-                var idDependencia = '<?php echo $usuario->getIdDependencia(); ?>';
-                $("#ulDependencia li button").not($("button[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().find('button:eq(0)').addClass('selected');
-                var $dependenciaSeleccionada = $("#ulDependencia li button.selected"); 
-                var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Red']"));
-                $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");   
-                $('#hdnDependencia').val('<?php echo $usuario->getIdDependencia(); ?>');
-                // FIN Editar Seleccionar Dependencia 2
-                // 
-                // 
-                // INICIO Seleccionar Dependencia 2
-                var btnSeleccionar = function() {
-                    var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
+                $('#btnSeleccionar2').click(function() {
+                    var $dependenciaSeleccionada = $("#ulDependencia2 li button.selected");
                     if($($dependenciaSeleccionada).length) {
                         $.ajax({
                             url: 'Index.php',
@@ -98,25 +132,20 @@
                             data: {
                                 controller: 'Usuario',
                                 action: 'usuarioAJAX',
-                                idDependencia: $('#hdnDependencia').val()
+                                idDependencia: $('#hdnDependencia2').val()
                             },
                             success: function(data) {
-                                $('#cboUsuario').html("<option disabled selected value=''>Selecciona un Usuario</option>");
+                                $('#cboUsuario2').html("<option disabled selected value=''>Selecciona un Usuario</option>");
                                 $(data).find('Usuario').each(function() {
                                     var option = new Option($(this).find('apellidoPaterno').text() + ' ' + $(this).find('apellidoMaterno').text() + ', ' + $(this).find('nombres').text(), $(this).find('idUsuario').text());
-                                    $('#cboUsuario').append(option);
+                                    $('#cboUsuario2').append(option);
                                 });
-                                // Sólo para editar
-                                setValue($('#cboUsuario'), '<?php echo $equipo->getIdUsuario() ?>');
                             }
                         })
                     }
-                };
-                btnSeleccionar();
-                $('#btnSeleccionar').click(btnSeleccionar);
-                // FIN Seleccionar Dependencia
-                //
-                //
+                });
+                // 
+                // 
                 // INICIO Validar Form
                 $('form').submit(function() {
                     if(!$('#txtDependenciaSeleccionada').text().length) {
@@ -151,15 +180,18 @@
                         <h4>Registra el desplazamiento de los equipos</h4>
                     </hgroup>
                 </header>
-                <form id="frmDesplazamiento" method="POST" action="?controller=NuevoLote&action=NuevoLotePOST">
+                <form id="frmDesplazamiento" method="POST" action="?controller=Desplazamiento&action=DesplazamientoPOST">
                     <fieldset>
-                        <legend>Nuevo Lote</legend>
+                        <legend>Desplazamiento</legend>
                         <fieldset>
                             <legend>Detalle Equipo</legend>
                             <table>
                                 <tr>
                                     <td><strong>Código Patrimonial:</strong></td>
-                                    <td><?php echo $equipo->getCodigoPatrimonial(); ?></td>
+                                    <td>
+                                        <?php echo $equipo->getCodigoPatrimonial(); ?>
+                                        <input type="hidden" value="<?php echo $equipo->getCodigoPatrimonial(); ?>" name="codigoPatrimonial" />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><strong>Serie:</strong></td>
@@ -220,7 +252,7 @@
                                             </tr>
                                         </table>
                                     </td>
-                                    <td><button id="btnFlecha"></button></td>
+                                    <td><button id="buttonFlecha"><img src="resources/images/flecha-desplazamiento.png"/></button></td>
                                     <td style="width: 400px;">
                                         <table>
                                             <tr>
@@ -251,7 +283,7 @@
                                 </tr>
                                 <tr>
                                     <td><label for="txt">Observación</label></td>
-                                    <td><textarea id="txtFecha" name="observacion" placeholder="Ingrese una observación"></textarea></td>
+                                    <td><textarea id="txtFecha" name="observacion" placeholder="Ingrese una observación" class="textareaObservacion1"></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>

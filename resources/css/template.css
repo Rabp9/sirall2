@@ -167,3 +167,9 @@ button.btnSeleccionarTipoEquipo {
 button.btnSeleccionarRepuesto {
     height: 30px;
 }
+
+.textareaObservacion1 {
+    resize: none;
+    width: 600px;
+    height: 200px;
+}
