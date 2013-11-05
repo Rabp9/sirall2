@@ -1,5 +1,5 @@
 <?php
-    class Dependencia {
+    class Desplazamiento {
         private $idDesplazamiento;
         private $codigoPatrimonial;
         private $serie;

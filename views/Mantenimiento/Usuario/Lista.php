@@ -52,9 +52,9 @@
                         ?>
                         <tr>
                             <td><?php echo $usuario['idUsuario']; ?></td>
+                            <td><?php echo $usuario['Nombre Completo']; ?></td>
                             <td><?php echo $usuario['Dependencia']; ?></td>
                             <td><?php echo $usuario['Red']; ?></td>
-                            <td><?php echo $usuario['Nombre Completo']; ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
