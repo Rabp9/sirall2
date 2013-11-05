@@ -158,6 +158,9 @@
                     }
                 });
                 // FIN Validar Form
+                
+                $("#btnDependenciaSuperior").button( "option", "disabled", true );
+                $('#cboUsuario').prop('disabled', 'disabled');
             });
         </script>
         
