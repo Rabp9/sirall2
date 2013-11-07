@@ -12,6 +12,7 @@
         }        
         
         public static function RealizarMantenimientoByEquipoAction() {
+            $equipoMantenimiento = EquipoDAO::getVWEquipoByCodigoPatrimonial($codigoPatrimonial);
             require_once '/views/Realizar Mantenimiento/RealizarMantenimiento.php';
         }
     }
