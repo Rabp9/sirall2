@@ -37,7 +37,12 @@
                 ?>
                         
                 $("#txtIdTipoEquipo").autocomplete({
-                    source: tipoEquipoTags
+                    source: 
+                        function(request, response) {
+                            var results = $.ui.autocomplete.filter(tipoEquipoTags, request.term);
+
+                            response(results.slice(0, 10));
+                        }
                 });
                 $("#txtIdTipoEquipo").autocomplete({ autoFocus: true });
                 $('#btnIdTipoEquipo').button({
@@ -121,7 +126,12 @@
                 ?>
                         
                 $("#txtIdMarca").autocomplete({
-                    source: marcaTags
+                    source: 
+                        function(request, response) {
+                            var results = $.ui.autocomplete.filter(marcaTags, request.term);
+
+                            response(results.slice(0, 10));
+                        }
                 });
                 $("#txtIdMarca").autocomplete({ autoFocus: true });
                 $('#btnIdMarca').button({
