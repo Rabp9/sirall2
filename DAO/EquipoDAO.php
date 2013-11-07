@@ -95,6 +95,12 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Equipo");
             $result->execute();
             return $result;
+        }   
+        
+        public static function getVwEquipoMantenimiento() {    
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_EquipoMantenimiento");
+            $result->execute();
+            return $result;
         }
     }
 ?>
