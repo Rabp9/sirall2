@@ -24,6 +24,7 @@
         </ul>
     </li>
     <li><a href="?controller=Desplazamiento">Desplazamiento</a></li>
+    <li><a href="?controller=RealizarMantenimiento">Realizar Mantenimiento</a></li>
     <li><a href="#">Reportes</a></li>
     <li><a href="#">Cerrar Sesión</a></li>
 </ul>
