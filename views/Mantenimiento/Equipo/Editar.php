@@ -23,7 +23,7 @@
                 isRequired($('#txtSerie'));
                 setValue($('#txtCodigoPatrimonial'), '<?php echo $equipo->getCodigoPatrimonial(); ?>');
                 setValue($('#txtSerie'), '<?php echo $equipo->getSerie(); ?>');
-                setValue($('#txtIndicacion'), '<?php echo $equipo->getIndicacion(); ?>');
+                setValue($('#txtIndicacion'), '<?php echo $equipo->getIndicacion(); ?>');                
                 setValue($('#txtIdTipoEquipo'), '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>');
                 setValue($('#txtTipoEquipo'), '<?php echo $tipoEquipo->getDescripcion(); ?>');
                 setValue($('#txtIdMarca'), '<?php echo $marca->getIdMarca(); ?>');
@@ -51,8 +51,7 @@
                 $('button.prev').button();
                 // FIN TABS
                 // 
-                // 
-               // INICIO Tipo de Equipo
+                // INICIO Tipo de Equipo
                 var tipoEquipoTags = new Array();
                 <?php
                     if($tipoEquipos) { 
@@ -62,8 +61,7 @@
                 <?php
                         }
                     }
-                ?>
-                        
+                ?>             
                 $("#txtIdTipoEquipo").autocomplete({
                     source: 
                         function(request, response) {
@@ -72,16 +70,15 @@
                             response(results.slice(0, 10));
                         }
                 });
-                $("#txtIdTipoEquipo").autocomplete({ autoFocus: true });
+                $("#txtIdTipoEquipo").autocomplete({ autoFocus: true });      
                 $('#btnIdTipoEquipo').button({
                     icons: {
                         primary: "ui-icon-search"
                     },
                     text: false
-                });
+                });            
                 $('#btnIdTipoEquipo').css('height', parseInt($("#txtIdTipoEquipo").css('height')) + 8);
                 $("#txtIdTipoEquipo").css('width', parseInt($("#txtIdTipoEquipo").css('width')) - 48);
-                
                 var comprobarTipoEquipo = function() {
                     var idTipoEquipo = $('#txtIdTipoEquipo').val();
                     var r = false;
@@ -100,8 +97,7 @@
                     <?php
                         }
                     ?>
-                }; 
-                
+                };              
                 $('#txtIdTipoEquipo').keyup(comprobarTipoEquipo);
                 $('#txtIdTipoEquipo').on( "autocompleteclose", comprobarTipoEquipo);
                 
@@ -127,20 +123,7 @@
                 $('#btnIdTipoEquipo').click(function() {
                     $('#divTipoEquipo').dialog('open');
                 });
-                $('.btnSeleccionarTipoEquipo').button({
-                    icons: {
-                        primary: "ui-icon-check"
-                    },
-                    text: false
-                }).click(function() {
-                    var idTipoEquipo = $(this).parents('tr').find('td').eq(0).text();
-                    setValue($('#txtIdTipoEquipo'), idTipoEquipo);
-                    comprobarTipoEquipo();
-                    cboModelo();
-                    $('#divTipoEquipo').dialog('close');
-                });
                 // FIN Tipo de Equipo
-                //
                 //
                 // INICIO Marca
                 var marcaTags = new Array();
@@ -171,6 +154,7 @@
                 });
                 $('#btnIdMarca').css('height', parseInt($("#txtIdMarca").css('height')) + 8);
                 $('#txtIdMarca').css('width', parseInt($("#txtIdMarca").css('width')) - 48);
+               
                 var comprobarMarca = function() {
                     var idMarca = $('#txtIdMarca').val();
                     var r = false;
@@ -189,11 +173,10 @@
                     <?php
                         }
                     ?>
-                }; 
-                
+                };
                 $('#txtIdMarca').keyup(comprobarMarca);
                 $('#txtIdMarca').on( "autocompleteclose", comprobarMarca); 
-                
+             
                 $( '#divMarca' ).dialog({
                     autoOpen: false,
                     modal: true,
@@ -215,18 +198,6 @@
                 });
                 $('#btnIdMarca').click(function() {
                     $('#divMarca').dialog('open');
-                });
-                $('.btnSeleccionarMarca').button({
-                    icons: {
-                        primary: "ui-icon-check"
-                    },
-                    text: false
-                }).click(function() {
-                    var idMarca = $(this).parents('tr').find('td').eq(0).text();
-                    setValue($('#txtIdMarca'), idMarca);
-                    comprobarMarca();
-                    cboModelo();
-                    $('#divMarca').dialog('close');
                 });
                 // FIN Marca
                 //
@@ -346,15 +317,18 @@
                 $('#tblDetalle').styleTable(event);
                 // FIN Estilizar Tabla
                 //
-                //
+                // 
                 // INICIO mostrar datos
-                <?php foreach($datos as $dato) { ?>
+                <?php 
+                    if(is_array($datos))
+                        foreach($datos as $dato) { 
+                ?>
                 var clave = '<?php echo $dato->getClave(); ?>';
                 var valor = '<?php echo $dato->getValor(); ?>';
                 $('#tblDetalle tbody').append("<tr><td><input type='text' value='" + clave + "' onkeyup='teclaPress(event);' name='clave[]'></td><td><input type='text' value='" + valor + "' name='valor[]'></td></tr>");
-                <?php } ?>
+                <?php   }   ?>
                 $('#tblDetalle tbody').append("<tr><td><input type='text' value='' onkeyup='teclaPress(event);' name='clave[]'></td><td><input type='text' value='' name='valor[]'></td></tr>");
-               // FIN Mostrar Datos
+                // FIN Mostrar Datos
             });
             
             // INICIO presionar tecla
@@ -590,6 +564,36 @@
                             </tbody>
                         </table>
                     </div>
+                    <script type="text/javascript">
+                        $('.btnSeleccionarTipoEquipo').button({
+                            icons: {
+                                primary: "ui-icon-check"
+                            },
+                            text: false
+                        }).click(function() {
+                            var idTipoEquipo = $(this).parents('tr').find('td').eq(0).text();
+                            setValue($('#txtIdTipoEquipo'), idTipoEquipo);
+                            //comprobarTipoEquipo();
+                            var idTipoEquipo = $('#txtIdTipoEquipo').val();
+                            var r = false;
+                            <?php
+                                if($tipoEquipos) { 
+                                    foreach ($tipoEquipos as $tipoEquipo) {
+                            ?>
+                                        if(idTipoEquipo === '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>') {
+                                            $('#txtTipoEquipo').val('<?php echo $tipoEquipo->getDescripcion(); ?>');
+                                            r = true;
+                                        }
+                            <?php
+                                    }
+                            ?>
+                                        if(!r)  $('#txtTipoEquipo').val('');
+                            <?php
+                                }
+                            ?>
+                            $('#divTipoEquipo').dialog('close');
+                        });
+                    </script>
                     <!-- Dialog Modal para Marca -->
                     <div id="divMarca" title="Elegir una Marca">
                         <table class="tblLista">
@@ -621,6 +625,36 @@
                             </tbody>
                         </table>
                     </div>
+                    <script type="text/javascript">
+                        $('.btnSeleccionarMarca').button({
+                            icons: {
+                                primary: "ui-icon-check"
+                            },
+                            text: false
+                        }).click(function() {
+                            var idMarca = $(this).parents('tr').find('td').eq(0).text();
+                            setValue($('#txtIdMarca'), idMarca);
+                            //comprobarMarca();
+                            var idMarca = $('#txtIdMarca').val();
+                            var r = false;
+                            <?php
+                                if($marcas) { 
+                                    foreach ($marcas as $marca) {
+                            ?>
+                                        if(idMarca === '<?php echo $marca->getIdMarca(); ?>') {
+                                            $('#txtMarca').val('<?php echo $marca->getDescripcion(); ?>');
+                                            r = true;
+                                        }
+                            <?php
+                                    }
+                            ?>
+                                        if(!r)  $('#txtMarca').val('');
+                            <?php
+                                }
+                            ?>
+                            $('#divMarca').dialog('close');
+                        });
+                    </script>
                 </form>
             </article>
         </section>
