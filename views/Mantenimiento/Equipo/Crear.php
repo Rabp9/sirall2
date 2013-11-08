@@ -118,18 +118,6 @@
                 $('#btnIdTipoEquipo').click(function() {
                     $('#divTipoEquipo').dialog('open');
                 });
-                $('.btnSeleccionarTipoEquipo').button({
-                    icons: {
-                        primary: "ui-icon-check"
-                    },
-                    text: false
-                }).click(function() {
-                    var idTipoEquipo = $(this).parents('tr').find('td').eq(0).text();
-                    setValue($('#txtIdTipoEquipo'), idTipoEquipo);
-                    comprobarTipoEquipo();
-                    cboModelo();
-                    $('#divTipoEquipo').dialog('close');
-                });
                 // FIN Tipo de Equipo
                 //
                 //
@@ -206,18 +194,6 @@
                 });
                 $('#btnIdMarca').click(function() {
                     $('#divMarca').dialog('open');
-                });
-                $('.btnSeleccionarMarca').button({
-                    icons: {
-                        primary: "ui-icon-check"
-                    },
-                    text: false
-                }).click(function() {
-                    var idMarca = $(this).parents('tr').find('td').eq(0).text();
-                    setValue($('#txtIdMarca'), idMarca);
-                    comprobarMarca();
-                    cboModelo();
-                    $('#divMarca').dialog('close');
                 });
                 // FIN Marca
                 //
@@ -559,6 +535,36 @@
                             </tbody>
                         </table>
                     </div>
+                    <script type="text/javascript">
+                        $('.btnSeleccionarTipoEquipo').button({
+                            icons: {
+                                primary: "ui-icon-check"
+                            },
+                            text: false
+                        }).click(function() {
+                            var idTipoEquipo = $(this).parents('tr').find('td').eq(0).text();
+                            setValue($('#txtIdTipoEquipo'), idTipoEquipo);
+                            //comprobarTipoEquipo();
+                            var idTipoEquipo = $('#txtIdTipoEquipo').val();
+                            var r = false;
+                            <?php
+                                if($tipoEquipos) { 
+                                    foreach ($tipoEquipos as $tipoEquipo) {
+                            ?>
+                                        if(idTipoEquipo === '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>') {
+                                            $('#txtTipoEquipo').val('<?php echo $tipoEquipo->getDescripcion(); ?>');
+                                            r = true;
+                                        }
+                            <?php
+                                    }
+                            ?>
+                                        if(!r)  $('#txtTipoEquipo').val('');
+                            <?php
+                                }
+                            ?>
+                            $('#divTipoEquipo').dialog('close');
+                        });
+                    </script>
                     <!-- Dialog Modal para Marca -->
                     <div id="divMarca" title="Elegir una Marca">
                         <table class="tblLista">
@@ -590,6 +596,36 @@
                             </tbody>
                         </table>
                     </div>
+                    <script type="text/javascript">
+                        $('.btnSeleccionarMarca').button({
+                            icons: {
+                                primary: "ui-icon-check"
+                            },
+                            text: false
+                        }).click(function() {
+                            var idMarca = $(this).parents('tr').find('td').eq(0).text();
+                            setValue($('#txtIdMarca'), idMarca);
+                            //comprobarMarca();
+                            var idMarca = $('#txtIdMarca').val();
+                            var r = false;
+                            <?php
+                                if($marcas) { 
+                                    foreach ($marcas as $marca) {
+                            ?>
+                                        if(idMarca === '<?php echo $marca->getIdMarca(); ?>') {
+                                            $('#txtMarca').val('<?php echo $marca->getDescripcion(); ?>');
+                                            r = true;
+                                        }
+                            <?php
+                                    }
+                            ?>
+                                        if(!r)  $('#txtMarca').val('');
+                            <?php
+                                }
+                            ?>
+                            $('#divMarca').dialog('close');
+                        });
+                    </script>
                 </form>
             </article>
         </section>

@@ -4,6 +4,7 @@
     class MarcaController {
         public static function MarcaAction() {
             $marcas = MarcaDAO::getVwMarca();
+            //echo var_dump($marcas->fetchAll());
             require_once '/views/Mantenimiento/Marca/Lista.php';
         }
 

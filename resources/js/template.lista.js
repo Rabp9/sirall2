@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    var botones = function() {
+    $('.tblLista').css('visibility', 'hidden');
+    var botones = function() { 
         $('.select')
             .button({
                 icons: {
@@ -25,6 +26,8 @@ $(document).ready(function() {
     $('.tblLista')
     .bind('page',   function () { botones(); })
     .dataTable( {
+        "bProcessing": true,
+        "bDeferRender": true,
         "sPaginationType": "full_numbers",
         "sScrollY": "600px",
         "bJQueryUI": true,
@@ -64,4 +67,5 @@ $(document).ready(function() {
             }
         ]
     });
+    $('.tblLista').css('visibility', 'visible'); 
 });
