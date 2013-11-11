@@ -69,6 +69,13 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_TipoEquipo");
             $result->execute();
             return $result;
+        }      
+        
+        public static function getVwTipoEquipoLimit($limite) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_TipoEquipo LIMIT 0, :limite");
+            $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
+            $result->execute();
+            return $result;
         }
     }
 ?>

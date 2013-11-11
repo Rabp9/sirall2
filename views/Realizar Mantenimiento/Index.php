@@ -81,8 +81,8 @@
                             <td><?php echo $equipo['Marca']; ?></td>
                             <td><?php echo $equipo['Modelo']; ?></td>
                             <td><?php echo $equipo['Dependencia']; ?></td>
-                            <td><?php echo $equipo['fecha']; ?></td>
-                            <td><?php echo $equipo['numero']; ?></td>
+                            <td><?php echo $equipo['fechaUltimo']; ?></td>
+                            <td><?php echo $equipo['numeroMan']; ?></td>
                             <td><a class="aRealizarMantenimiento" href="?controller=&action=RealizarMantenimientoByEquipo&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>">Realizar Mantenimiento</a></td>
                         </tr>
                         <?php

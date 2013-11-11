@@ -5,15 +5,19 @@
 
     class RealizarMantenimientoController {
         public static function RealizarMantenimientoAction() {
-            $redes = RedDAO::getAllRed();
-            $dependencias = DependenciaDAO::getAllDependencia();
             $equipos = EquipoDAO::getVwEquipoMantenimiento();
             require_once '/views/Realizar Mantenimiento/Index.php';
         }        
         
         public static function RealizarMantenimientoByEquipoAction() {
-            $equipoMantenimiento = EquipoDAO::getVWEquipoByCodigoPatrimonial($codigoPatrimonial);
-            require_once '/views/Realizar Mantenimiento/RealizarMantenimiento.php';
+            if(isset($_GET['codigoPatrimonial'])) {
+                $codigoPatrimonial = $_GET['codigoPatrimonial'];
+                $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($codigoPatrimonial);
+                $equipo->setEstado(3); // En mantenimiento
+                EquipoDAO::editar($equipo);
+                $equipo = EquipoDAO::getVwEquipoMantenimientoByCodigoPatrimonial($codigoPatrimonial);
+                require_once '/views/Realizar Mantenimiento/RealizarMantenimiento.php';
+            }
         }
     }
 ?>

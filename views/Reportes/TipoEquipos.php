@@ -21,7 +21,7 @@
             });
         </script>
         
-        <title>SIRALL2 - Reporte de Marcas</title>
+        <title>SIRALL2 - Reporte de Tipo de Equipos</title>
     </head>
     <body>
         <aside>
@@ -36,11 +36,11 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Reporte de Marcas</h2>
-                        <h4>Reportar la lista de Marcas</h4>
+                        <h2>Reporte de Tipo de Equipos</h2>
+                        <h4>Reportar la lista de Tipos de Equuipos</h4>
                     </hgroup>
                 </header>
-                <form id="frmReporteMarcas" method="POST" action="?controller=Reporte&action=ReporteMarcasPOST">
+                <form id="frmReporteTipoEquipos" method="POST" action="?controller=Reporte&action=ReporteTipoEquiposPOST">
                     <fieldset>
                         <legend>Opciones de Reporte</legend>
                         <table>
