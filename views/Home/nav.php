@@ -25,6 +25,18 @@
     </li>
     <li><a href="?controller=Desplazamiento">Desplazamiento</a></li>
     <li><a href="?controller=RealizarMantenimiento">Realizar Mantenimiento</a></li>
-    <li><a href="#">Reportes</a></li>
+    <li>
+        <a href="#">Reportes</a>
+        <ul>
+            <li><a href="?controller=Reporte&action=ReporteMarcas">Marca</a></li>
+            <li><a href="?controller=Reporte&action=ReporteTipoEquipos">Tipo de Equipo</a></li>
+            <li><a href="?controller=Modelo">Modelo</a></li>
+            <li><a href="?controller=Equipo">Equipo</a></li>
+            <li><a href="?controller=Repuesto">Repuesto</a></li>
+            <li><a href="?controller=Usuario">Usuario</a></li>
+            <li><a href="?controller=Usuario">Desplazamiento</a></li>
+            <li><a href="?controller=Usuario">Mantenimiento</a></li>
+        </ul>
+    </li>
     <li><a href="#">Cerrar Sesión</a></li>
 </ul>

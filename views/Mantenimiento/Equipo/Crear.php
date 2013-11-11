@@ -309,6 +309,26 @@
                     $('#tblDetalle tbody tr:eq(' + (row_index - 1) + ')').remove();
             };
             // FIN presionar tecla
+            
+            var cboModelo = function() {
+                $.ajax({
+                    url: 'Index.php',
+                    type: 'GET',
+                    data: {
+                        controller: 'Modelo',
+                        action: 'modeloAJAX',
+                        idMarca: $('#txtIdMarca').val(),
+                        idTipoEquipo: $('#txtIdTipoEquipo').val()
+                    },
+                    success: function(data) {
+                        $('#cboModelo').html("<option disabled selected value=''>Selecciona un Modelo</option>");
+                        $(data).find('Modelo').each(function() {
+                            var option = new Option($(this).find('descripcion').text(), $(this).find('idModelo').text());
+                            $('#cboModelo').append(option);
+                        });
+                    }
+                })
+            }; 
         </script>
         
         <title>SIRALL2 - Crear Equipo</title>
@@ -563,6 +583,7 @@
                                 }
                             ?>
                             $('#divTipoEquipo').dialog('close');
+                            cboModelo();
                         });
                     </script>
                     <!-- Dialog Modal para Marca -->
@@ -624,6 +645,7 @@
                                 }
                             ?>
                             $('#divMarca').dialog('close');
+                            cboModelo();
                         });
                     </script>
                 </form>

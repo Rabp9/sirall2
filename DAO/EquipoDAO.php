@@ -102,6 +102,13 @@
             $result->execute();
             return $result;
         }
+         
+        public static function getVwEquipoMantenimientoByCodigoPatrimonial($codigoPatrimonial) {    
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_EquipoMantenimiento where codigoPatrimonial = :codigoPatrimonial");
+            $result->bindParam(':codigoPatrimonial', $codigoPatrimonial);
+            $result->execute();
+            return $result->fetch();
+        }
         
         public static function getVWEquipoByCodigoPatrimonial($codigoPatrimonial) {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_EquipoMantenimiento where codigoPatrimonial = :codigoPatrimonial");
