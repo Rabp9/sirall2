@@ -18,7 +18,13 @@
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('.aRealizarMantenimiento').button();
+                $('.aRealizarMantenimiento').button({
+                    icons: {
+                        primary: "ui-icon-document"
+                    },
+                    text: false
+                });
+                $('.aRealizarMantenimiento').css('height', 30);
             });
         </script>
         
@@ -83,7 +89,7 @@
                             <td><?php echo $equipo['Dependencia']; ?></td>
                             <td><?php echo $equipo['fechaUltimo']; ?></td>
                             <td><?php echo $equipo['numeroMan']; ?></td>
-                            <td><a class="aRealizarMantenimiento" href="?controller=&action=RealizarMantenimientoByEquipo&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>">Realizar Mantenimiento</a></td>
+                            <td><a class="aRealizarMantenimiento" href="?controller=RealizarMantenimiento&action=InformeMantenimiento&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"></a></td>
                         </tr>
                         <?php
                                 }

@@ -1,0 +1,29 @@
+.sortable { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    width: 100%; 
+}
+
+.sortable li { 
+    margin: 1% 1% 1% 0;
+    padding: 1%; 
+    float: left; 
+    width: 20%; 
+    height: 20%; 
+    font-size: 2em; 
+    text-align: center; 
+}
+
+.sortable li a { 
+    width: 100%; 
+    height: 150px;
+}
+
+.ui-button-text {
+    padding: .4em 0 !important;
+}
+
+div#mantenimiento, div#transaccion {
+    overflow: hidden;
+}
