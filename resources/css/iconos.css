@@ -1,0 +1,15 @@
+.ui-icon-mantenimiento {
+    background-image: url(../../resources/images/mantenimiento.png) !important;
+}
+
+.ui-icon-repuesto {
+    background-image: url(../../resources/images/repuesto.png) !important;
+}
+
+.ui-icon-eliminar {
+    background-image: url(../../resources/images/eliminar.png) !important;
+}
+
+.ui-icon-red {
+    background-image: url(../../resources/images/red.png) !important;
+}

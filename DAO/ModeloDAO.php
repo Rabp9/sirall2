@@ -123,6 +123,12 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Modelo");
             $result->execute();
             return $result;
+        }      
+        public static function getVwModeloLimit($limite) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Modelo LIMIT 0, :limite");
+            $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
+            $result->execute();
+            return $result;
         }
     }
 ?>
