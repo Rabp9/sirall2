@@ -9,7 +9,7 @@ body {
     font-family: "Trebuchet MS", sans-serif;
     padding: 0px;
     margin: 0px;
-    font-size: 65%;
+    font-size: 59%;
 }
 
 aside {
@@ -172,4 +172,8 @@ button.btnSeleccionarRepuesto {
     resize: none;
     width: 600px;
     height: 200px;
+}
+
+#ulMenu.ui-menu, #ulMenu .ui-menu { 
+    width: 100%; 
 }

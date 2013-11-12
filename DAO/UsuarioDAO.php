@@ -101,6 +101,13 @@
                 return $usuarios;
             else
                 return false;
+        }        
+        
+        public static function getVwUsuarioLimit($limite) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Usuario LIMIT 0, :limite");
+            $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
+            $result->execute();
+            return $result;
         }
     }
 ?>

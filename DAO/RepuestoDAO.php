@@ -100,6 +100,13 @@
             $result->bindParam(':fecha', $salidaRepuesto->getFecha());
             $result->bindParam(':observacion', $salidaRepuesto->getObservacion());
             return $result->execute();
+        }       
+        
+        public static function getVwRepuestoLimit($limite) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Repuesto");
+            $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
+            $result->execute();
+            return $result;
         }
     }
 ?>

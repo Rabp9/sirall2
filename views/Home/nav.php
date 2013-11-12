@@ -1,42 +1,42 @@
 <ul id="ulMenu">
     <li>
-        <a href="#">Mantenimiento</a>
+        <a href="#"><span class="ui-icon ui-icon-mantenimiento"></span>Mantenimiento</a>
         <ul>
-            <li><a href="?controller=Red">Red</a></li>
-            <li><a href="?controller=Dependencia">Dependencia</a></li>
-            <li><a href="?controller=Equipo">Equipo</a></li>
-            <li><a href="?controller=Repuesto">Repuesto</a></li>
-            <li><a href="?controller=Rol">Rol</a></li>
-            <li><a href="?controller=Usuario">Usuario</a></li>
-            <li><a href="?controller=Marca">Marca</a></li>
-            <li><a href="?controller=Modelo">Modelo</a></li>
-            <li><a href="?controller=TipoEquipo">Tipo de Equipo</a></li>
+            <li><a href="?controller=Red"><span class="ui-icon ui-icon-red"></span>Red</a></li>
+            <li><a href="?controller=Dependencia"><span class="ui-icon ui-icon-flag"></span>Dependencia</a></li>
+            <li><a href="?controller=Equipo"><span class="ui-icon ui-icon-image"></span>Equipo</a></li>
+            <li><a href="?controller=Repuesto"><span class="ui-icon ui-icon-wrench"></span>Repuesto</a></li>
+            <li><a href="?controller=Rol"><span class="ui-icon ui-icon-key"></span>Rol</a></li>
+            <li><a href="?controller=Usuario"><span class="ui-icon ui-icon-person"></span>Usuario</a></li>
+            <li><a href="?controller=Marca"><span class="ui-icon ui-icon-suitcase"></span>Marca</a></li>
+            <li><a href="?controller=Modelo"><span class="ui-icon ui-icon-gear"></span>Modelo</a></li>
+            <li><a href="?controller=TipoEquipo"><span class="ui-icon ui-icon-newwin"></span>Tipo de Equipo</a></li>
         </ul>
     </li>
-    <li><a href="?controller=NuevoLote">Nuevo Lote</a></li>
-    <li><a href="?controller=AsignarJefeDependencia">Asignar Jefe de Dependencia</a></li>
-    <li><a href="?controller=RegistrarUsuario">Registrar Usuario</a></li>
+    <li><a href="?controller=NuevoLote"><span class="ui-icon ui-icon-plus"></span>Nuevo Lote</a></li>
+    <li><a href="?controller=AsignarJefeDependencia"><span class="ui-icon ui-icon-transferthick-e-w"></span>Asignar Jefe de Dependencia</a></li>
+    <li><a href="?controller=RegistrarUsuario"><span class="ui-icon ui-icon-person"></span>Registrar Usuario</a></li>
     <li>
-        <a href="?controller=Repuesto">Repuesto</a>
+        <a href="?controller=Repuesto"><span class="ui-icon ui-icon-wrench"></span>Repuesto</a>
         <ul>
-            <li><a href="?controller=MovimientoRepuesto&action=Ingreso">Ingreso de Repuestos</a></li>
-            <li><a href="?controller=MovimientoRepuesto&action=Salida">Salida de Repuestos</a></li>
+            <li><a href="?controller=MovimientoRepuesto&action=Ingreso"><span class="ui-icon ui-icon-plus"></span>Ingreso de Repuestos</a></li>
+            <li><a href="?controller=MovimientoRepuesto&action=Salida"><span class="ui-icon ui-icon-minus"></span>Salida de Repuestos</a></li>
         </ul>
     </li>
-    <li><a href="?controller=Desplazamiento">Desplazamiento</a></li>
-    <li><a href="?controller=RealizarMantenimiento">Realizar Mantenimiento</a></li>
+    <li><a href="?controller=Desplazamiento"><span class="ui-icon ui-icon-arrowreturnthick-1-e"></span>Desplazamiento</a></li>
+    <li><a href="?controller=RealizarMantenimiento"><span class="ui-icon ui-icon-circle-plus"></span>Realizar Mantenimiento</a></li>
     <li>
-        <a href="#">Reportes</a>
+        <a href="#"><span class="ui-icon ui-icon-clipboard"></span>Reportes</a>
         <ul>
-            <li><a href="?controller=Reporte&action=ReporteMarcas">Marca</a></li>
-            <li><a href="?controller=Reporte&action=ReporteTipoEquipos">Tipo de Equipo</a></li>
-            <li><a href="?controller=Modelo">Modelo</a></li>
-            <li><a href="?controller=Equipo">Equipo</a></li>
-            <li><a href="?controller=Repuesto">Repuesto</a></li>
-            <li><a href="?controller=Usuario">Usuario</a></li>
-            <li><a href="?controller=Usuario">Desplazamiento</a></li>
-            <li><a href="?controller=Usuario">Mantenimiento</a></li>
+            <li><a href="?controller=Reporte&action=ReporteMarcas"><span class="ui-icon ui-icon-suitcase"></span>Marca</a></li>
+            <li><a href="?controller=Reporte&action=ReporteTipoEquipos"><span class="ui-icon ui-icon-newwin"></span>Tipo de Equipo</a></li>
+            <li><a href="?controller=Reporte&action=ReporteModelos"><span class="ui-icon ui-icon-gear"></span>Modelo</a></li>
+            <li><a href="?controller=Reporte&action=ReporteEquipos"><span class="ui-icon ui-icon-image"></span>Equipo</a></li>
+            <li><a href="?controller=Reporte&action=ReporteRepuestos"><span class="ui-icon ui-icon-wrench"></span>Repuesto</a></li>
+            <li><a href="?controller=Reporte&action=ReporteUsuarios"><span class="ui-icon ui-icon-person"></span>Usuario</a></li>
+            <li><a href="?controller=Usuario"><span class="ui-icon ui-icon-arrowreturnthick-1-e"></span>Desplazamiento</a></li>
+            <li><a href="?controller=Usuario"><span class="ui-icon ui-icon-circle-plus"></span>Mantenimiento</a></li>
         </ul>
     </li>
-    <li><a href="#">Cerrar Sesión</a></li>
+    <li><a href="#"><span class="ui-icon ui-icon-circle-close"></span>Cerrar Sesión</a></li>
 </ul>

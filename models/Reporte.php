@@ -42,7 +42,7 @@
             // Restauración de colores y fuentes
             $this->SetFillColor(124, 169, 206);
             $this->SetTextColor(0);
-            $this->SetFont('');
+            $this->SetFont('helvetica','',10);
             // Datos
             $fill = false;
             while ($row = $data->fetch()) {

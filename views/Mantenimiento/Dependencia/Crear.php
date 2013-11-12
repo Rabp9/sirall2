@@ -21,7 +21,6 @@
                 setValue($('#txtIdDependencia'), '<?php echo $nextID; ?>');
                 isReadOnly($('#txtIdDependencia'));
                 $('#txtDescripcion').focus();
-                $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('form').submit(function() {
                     if(!$('#txtDependenciaSeleccionada').text().length) {
