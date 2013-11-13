@@ -25,7 +25,33 @@
                 $('#btnBorrar').button();
                 $('#txtIdTipoEquipo').focus();
                 $('#asistente').tabs();
-                
+                var availableTags = [
+                    "ActionScript",
+                    "AppleScript",
+                    "Asp",
+                    "BASIC",
+                    "C",
+                    "C++",
+                    "Clojure",
+                    "COBOL",
+                    "ColdFusion",
+                    "Erlang",
+                    "Fortran",
+                    "Groovy",
+                    "Haskell",
+                    "Java",
+                    "JavaScript",
+                    "Lisp",
+                    "Perl",
+                    "PHP",
+                    "Python",
+                    "Ruby",
+                    "Scala",
+                    "Scheme"
+                ];
+                $( "#tags" ).autocomplete({
+                    source: availableTags
+                });
                 // INICIO TABS
                 $('div#asistente div:not(:first)').append("<button class='prev' type='button'>Anterior</button>");
                 $('.prev').click(function() {
