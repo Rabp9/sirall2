@@ -9,6 +9,24 @@
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
+        <script type="text/javascript" src="resources/js/template.funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.datepicker-es.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                setValue($('#txtFechaFin'), '<?php echo date('d/m/Y'); ?>');
+                $("#txtFechaInicio").datepicker(
+                { 
+                    changeYear: true,
+                    changeMonth: true
+                });
+                $("#txtFechaFin").datepicker(
+                { 
+                    changeYear: true,
+                    changeMonth: true
+                });
+            });
+        </script> 
+        
         <title>SIRALL2 - Informe de Mantenimiento de Equipo</title>
     </head>
     <body>
@@ -79,7 +97,8 @@
                 </fieldset>
                 <fieldset>
                     <legend>Informe de Mantenimientoo</legend>
-                     <table>
+                    <form id="frmInformeMantenimiento" method="POST" action="?controller=MovimientoRepuesto&action=IngresoPOST">
+                        <table>
                             <tr>
                                 <td><label for="txtIdMantenimiento"><abbr title="Código identificador">ID.</abbr> Mantemiento</label></td>
                                 <td><input id="txtIdMantenimiento" type="text" name="idMantenimiento"></td>
@@ -90,17 +109,22 @@
                             </tr>
                             <tr>
                                 <td><label for="textareaDiagnostico">Diagnóstico</label></td>
-                                <td><textarea id="textareaDiagnostico" name="diagnostico" placeholder="Escriba un diagnóstico" class="textareaObservacion1"></textarea></td>  
+                                <td><textarea id="textareaDiagnostico" name="diagnostico" placeholder="Escriba un diagnóstico" class="textareaLargo"></textarea></td>  
                             </tr>
                             <tr>
                                 <td><label for="textareaInforme">Informe</label></td>
-                                <td><textarea id="textareaInforme" name="informe" placeholder="Escriba un informe" class="textareaObservacion1"></textarea></td>
+                                <td><textarea id="textareaInforme" name="informe" placeholder="Escriba un informe" class="textareaLargo"></textarea></td>
                             </tr>
                             <tr>
-                                <td><label for="textareaInforme">Informe</label></td>
-                                <td><textarea id="textareaInforme" name="informe" placeholder="Escriba un informe" class="textareaObservacion1"></textarea></td>
+                                <td><label for="txtFechaInicio">Fecha Inicio</label></td>
+                                <td><input id="txtFechaInicio" type="text" name="fechaInicio"></td>
                             </tr>
-                     </table>
+                            <tr>
+                                <td><label for="txtFechaFin">Fecha Fin</label></td>
+                                <td><input id="txtFechaFin" type="text" name="fechaFin"></td>
+                            </tr>
+                        </table>
+                    </form>
                 </fieldset>
             </article>
         </section>
