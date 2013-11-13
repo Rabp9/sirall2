@@ -17,7 +17,7 @@
                 $( "#tabsOpciones" ).tabs({
                     event: "mouseover"
                 });
-                $("#sortableMantenimiento a").button().removeClass('ui-state-default').addClass('ui-widget-content');
+                $(".sortable a").button().removeClass('ui-state-default').addClass('ui-widget-content');
             });
         </script>
         
@@ -43,37 +43,45 @@
                 <div class="ui-widget-content ui-corner-all">
                     <div id="tabsOpciones">
                         <ul>
-                            <li><a href="#mantenimiento">Mantenimiento</a></li>
-                            <li><a href="#transaccion">Transacciones</a></li>
-                            <li><a href="#reporte">Reportes</a></li>
+                            <li><a href="#mantenimiento"><h3>Mantenimiento</h3></a></li>
+                            <li><a href="#transaccion"><h3>Transacciones</h3></a></li>
+                            <li><a href="#reporte"><h3>Reportes</h3></a></li>
                         </ul>
                         <div id="mantenimiento">
                             <ul class="sortable">
                                 <li><a href="?controller=Red"><img src="resources/images/red - grande.png"/><br/>Red</a></li>
                                 <li><a href="?controller=Dependencia"><img src="resources/images/dependencia - grande.png"/><br/>Dependencia</a></li>
-                                <li><a href="?controller=Equipo"><img src="resources/images/red - grande.png"/><br/>Equipo</a></li>
-                                <li><a href="?controller=Repuesto"><img src="resources/images/red - grande.png"/><br/>Repuesto</a></li>
-                                <li><a href="?controller=Rol"><img src="resources/images/red - grande.png"/><br/>Rol</a></li>
-                                <li><a href="?controller=Usuario"><img src="resources/images/red - grande.png"/><br/>Usuario</a></li>
-                                <li><a href="?controller=Marca"><img src="resources/images/red - grande.png"/><br/>Marca</a></li>
-                                <li><a href="?controller=Modelo"><img src="resources/images/red - grande.png"/><br/>Modelo</a></li>
-                                <li><a href="?controller=TipoEquipo"><img src="resources/images/red - grande.png"/><br/>Tipo de Equipo</a></li>
+                                <li><a href="?controller=Equipo"><img src="resources/images/equipo - grande.png"/><br/>Equipo</a></li>
+                                <li><a href="?controller=Repuesto"><img src="resources/images/repuesto - grande.png"/><br/>Repuesto</a></li>
+                                <li><a href="?controller=Rol"><img src="resources/images/rol - grande.png"/><br/>Rol</a></li>
+                                <li><a href="?controller=Usuario"><img src="resources/images/usuario - grande.png"/><br/>Usuario</a></li>
+                                <li><a href="?controller=Marca"><img src="resources/images/marca - grande.png"/><br/>Marca</a></li>
+                                <li><a href="?controller=Modelo"><img src="resources/images/modelo - grande.png"/><br/>Modelo</a></li>
+                                <li><a href="?controller=TipoEquipo"><img src="resources/images/tipo de Equipo - grande.png"/><br/>Tipo de Equipo</a></li>
                             </ul>   
                         </div>
                         <div id="transaccion">
                             <ul class="sortable">
-                                <li><a href="?controller=NuevoLote"><span class="ui-icon ui-icon-plus"></span>Nuevo Lote</a></li>
-                                <li><a href="?controller=AsignarJefeDependencia"><span class="ui-icon ui-icon-transferthick-e-w"></span>Asignar Jefe de Dependencia</a></li>
-                                <li><a href="?controller=RegistrarUsuario"><span class="ui-icon ui-icon-person"></span>Registrar Usuario</a></li>
-                                <li><a href="?controller=MovimientoRepuesto&action=Ingreso"><span class="ui-icon ui-icon-plus"></span>Ingreso de Repuestos</a></li>
-                                <li><a href="?controller=MovimientoRepuesto&action=Salida"><span class="ui-icon ui-icon-minus"></span>Salida de Repuestos</a></li>
-                                <li><a href="?controller=Desplazamiento"><span class="ui-icon ui-icon-arrowreturnthick-1-e"></span>Desplazamiento</a></li>
-                                <li><a href="?controller=RealizarMantenimiento"><span class="ui-icon ui-icon-circle-plus"></span>Realizar Mantenimiento</a></li>
+                                <li><a href="?controller=NuevoLote"><img src="resources/images/plus - grande.png"/><br/>Nuevo Lote</a></li>
+                                <li><a href="?controller=AsignarJefeDependencia"><img src="resources/images/asignar Jefe - grande.png"/><br/>Asignar Jefe</a></li>
+                                <li><a href="?controller=RegistrarUsuario"><img src="resources/images/usuario - grande.png"/><br/>Registrar Usuario</a></li>
+                                <li><a href="?controller=MovimientoRepuesto&action=Ingreso"><img src="resources/images/plus - grande.png"/><br/>Ingreso de Repuestos</a></li>
+                                <li><a href="?controller=MovimientoRepuesto&action=Salida"><img src="resources/images/minus - grande.png"/><br/>Salida de Repuestos</a></li>
+                                <li><a href="?controller=Desplazamiento"><img src="resources/images/desplazamiento - grande.png"/><br/>Desplazar</a></li>
+                                <li><a href="?controller=RealizarMantenimiento"><img src="resources/images/mantenimiento - grande.png"/><br/>Realizar Mantenimiento</a></li>
                            </ul>   
                         </div>
                         <div id="reporte">
-                            <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-                            <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+                            <ul class="sortable">
+                                <li><a href="?controller=Reporte&action=ReporteMarcas"><img src="resources/images/marca - grande.png"/><br/>Marca</a></li>
+                                <li><a href="?controller=Reporte&action=ReporteTipoEquipos"><img src="resources/images/tipo de Equipo - grande.png"/><br/>Tipo de Equipo</a></li>
+                                <li><a href="?controller=Reporte&action=ReporteModelos"><img src="resources/images/modelo - grande.png"/><br/>Modelo</a></li>
+                                <li><a href="?controller=Reporte&action=ReporteEquipos"><img src="resources/images/equipo - grande.png"/><br/>Equipo</a></li>
+                                <li><a href="?controller=Reporte&action=ReporteRepuestos"><img src="resources/images/repuesto - grande.png"/><br/>Repuesto</a></li>
+                                <li><a href="?controller=Reporte&action=ReporteUsuarios"><img src="resources/images/usuario - grande.png"/><br/>Usuario</a></li>
+                                <li><a href="?controller=Usuario"><img src="resources/images/desplazamiento - grande.png"/><br/>Desplazar</a></li>
+                                <li><a href="?controller=Usuario"><img src="resources/images/mantenimiento - grande.png"/><br/>Mantenimiento</a></li>
+                            </ul>   
                         </div>
                     </div>
                 </div>

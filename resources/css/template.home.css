@@ -24,6 +24,6 @@
     padding: .4em 0 !important;
 }
 
-div#mantenimiento, div#transaccion {
+div#mantenimiento, div#transaccion, div#reporte {
     overflow: hidden;
 }
