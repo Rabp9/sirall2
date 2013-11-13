@@ -285,8 +285,8 @@
                                     <td><input id="txtFecha" type="text" name="fecha"></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="txt">Observación</label></td>
-                                    <td><textarea id="txtFecha" name="observacion" placeholder="Ingrese una observación" class="textareaObservacion1"></textarea></td>
+                                    <td><label for="textareaObservacion">Observación</label></td>
+                                    <td><textarea id="textareaObservacion" name="observacion" placeholder="Ingrese una observación" class="textareaObservacion1"></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>

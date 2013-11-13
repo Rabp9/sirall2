@@ -23,7 +23,7 @@
         public static function InformeMantenimientoAction() {
             if(isset($_GET['codigoPatrimonial'])) {
                 $codigoPatrimonial = $_GET['codigoPatrimonial'];
-                $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($codigoPatrimonial);
+                $equipo = EquipoDAO::getVwEquipoMantenimientoByCodigoPatrimonial($codigoPatrimonial);
                 require_once '/views/Realizar Mantenimiento/InformeMantenimiento.php';
             }
         }
