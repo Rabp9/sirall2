@@ -1,0 +1,31 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
+        <link rel="stylesheet" href="resources/css/jquery.ipaddress.css"/>
+        <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="http://view.jqueryui.com/ui/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="http://view.jqueryui.com/ui/jquery.ui.widget.js"></script>
+        <script type="text/javascript" src="http://view.jqueryui.com/mask/ui/jquery.ui.mask.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.caret.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.ipaddress.js"></script>
+        <script type="text/javascript">
+            $.fn.ready(function() {
+                $('#textTexto').mask({ mask: "999.999.999.999" });
+                $('#textIP').ipaddress();
+            });
+        </script>
+    </head>
+    <body>
+        <input id="textTexto" type="text" value=""/>
+        <input name="form[ip]" id="textIP" type="text" value="192.168.1.1"/>
+
+    </body>
+</html>

@@ -86,4 +86,7 @@
             return $xml;
         }
     }
+    
+    $modelo = new Modelo();
+    echo get_object_vars(var_dump($modelo));
 ?>

@@ -10,7 +10,7 @@
             $this->idDato = "";
             $this->codigoPatrimonial = "";
             $this->serie = "";
-            $this->clave = "#";
+            $this->clave = "";
             $this->valor = "";
         }
         
