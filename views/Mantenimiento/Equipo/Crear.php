@@ -16,6 +16,7 @@
         <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript" src="resources/js/template.lista.js"></script>
+        <script type="text/javascript" src="resources/js/template.dato.js"></script>
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
@@ -25,33 +26,7 @@
                 $('#btnBorrar').button();
                 $('#txtIdTipoEquipo').focus();
                 $('#asistente').tabs();
-                var availableTags = [
-                    "ActionScript",
-                    "AppleScript",
-                    "Asp",
-                    "BASIC",
-                    "C",
-                    "C++",
-                    "Clojure",
-                    "COBOL",
-                    "ColdFusion",
-                    "Erlang",
-                    "Fortran",
-                    "Groovy",
-                    "Haskell",
-                    "Java",
-                    "JavaScript",
-                    "Lisp",
-                    "Perl",
-                    "PHP",
-                    "Python",
-                    "Ruby",
-                    "Scala",
-                    "Scheme"
-                ];
-                $( "#tags" ).autocomplete({
-                    source: availableTags
-                });
+                $('#tblDetalle').dato();
                 // INICIO TABS
                 $('div#asistente div:not(:first)').append("<button class='prev' type='button'>Anterior</button>");
                 $('.prev').click(function() {
@@ -323,19 +298,7 @@
                 $('#tblDetalle').styleTable(event);
                 // FIN Estilizar Tabla
             });
-            
-            // INICIO presionar tecla
-            function teclaPress(e) {
-                var $this = $(e.target);
-                var row_index = $this.parent().parent().index();
-                var rows_count = $('#tblDetalle tbody tr').length;
-                if(row_index === (rows_count - 1) && $this.val() !== '')
-                    $('#tblDetalle tbody').append("<tr><td><input type='text' value='' onkeyup='teclaPress(event);' name='clave[]'></td><td><input type='text' value='' name='valor[]'></td></tr>");
-                if(row_index === (rows_count - 2) && $this.val() === '')
-                    $('#tblDetalle tbody tr:eq(' + (row_index - 1) + ')').remove();
-            };
-            // FIN presionar tecla
-            
+          
             var cboModelo = function() {
                 $.ajax({
                     url: 'Index.php',
@@ -427,6 +390,7 @@
                                                 <select id="cboModelo" name="idModelo">
                                                     <option disabled selected value="">Selecciona un Modelo</option>
                                                 </select>
+                                                <a href="?controller=Modelo&action=Crear">Crear nuevo Modelo</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -469,14 +433,17 @@
                                 <table id="tblDetalle">
                                     <thead>
                                         <tr>
-                                            <th>Clave</th>
-                                            <th>Valor</th>
+                                            <th>Componente SW / HW</th>
+                                            <th>Detalle</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input type="text" value="" onkeyup="teclaPress(event);" name="clave[]"></td>
-                                            <td><input type="text" value="" name="valor[]"></td>
+                                            <td class="clave">
+                                                <select name="clave[]"></select>
+                                            </td>
+                                            <td class="valor">
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

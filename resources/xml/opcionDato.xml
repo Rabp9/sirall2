@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<opciones>
+    <opcion>
+        <id>1</id>
+        <valor>IP</valor>
+    </opcion>
+    <opcion>
+        <id>2</id>
+        <valor>Fuente</valor>
+    </opcion>
+    <option>
+        <id>3</id>
+        <valor>Sistema Operativo</valor>
+        <subopciones>
+            <subopcion>Windows XP</subopcion>
+            <subopcion>Windows 7</subopcion>
+            <subopcion>Red Hat 5.1</subopcion>
+            <subopcion>Red Hat 5.2</subopcion>
+            <subopcion>Red Hat 5.3</subopcion>
+            <subopcion>Red Hat 5.4</subopcion>
+            <subopcion>Red Hat 5.5</subopcion>
+            <subopcion>Red Hat 6</subopcion>
+            <subopcion>Red Hat 6.1</subopcion>
+            <subopcion>Centos 5</subopcion>
+            <subopcion>Centos 6</subopcion>
+            <subopcion>Fedora</subopcion>
+            <subopcion>Debian</subopcion>
+        </subopciones>
+    </option>
+</opciones>
