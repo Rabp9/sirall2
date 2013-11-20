@@ -1,5 +1,5 @@
 <?php
-    require_once './AppModel.php';
+    require_once '/models/AppModel.php';
     /*
      * Clase Técnico de Mantenimiento
      */

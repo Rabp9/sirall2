@@ -11,6 +11,7 @@
             <li><a href="?controller=Marca"><span class="ui-icon ui-icon-suitcase"></span>Marca</a></li>
             <li><a href="?controller=Modelo"><span class="ui-icon ui-icon-gear"></span>Modelo</a></li>
             <li><a href="?controller=TipoEquipo"><span class="ui-icon ui-icon-newwin"></span>Tipo de Equipo</a></li>
+            <li><a href="?controller=Tecnico"><span class="ui-icon ui-icon-newwin"></span>Técnico</a></li>
         </ul>
     </li>
     <li><a href="?controller=NuevoLote"><span class="ui-icon ui-icon-plus"></span>Nuevo Lote</a></li>

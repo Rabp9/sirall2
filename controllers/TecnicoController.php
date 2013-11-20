@@ -1,14 +1,14 @@
 <?php
-    require_once './AppController.php';
+    require_once '/controllers/AppController.php';
     
-    class TecnicoController extends AppController {
+    class TecnicoController implements AppController {
         
         public static function TecnicoAction() {
-            $this->ListaAction();
+            TecnicoController::ListaAction();
         }
         
         public static function ListaAction() {
-            $tecnicos = 
+            $tecnicos =
             require_once '/views/Mantenimiento/Tecnico/Lista.php';
         }
 
