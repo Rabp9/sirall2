@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Tecnico/Lista.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -50,6 +52,7 @@
                                 foreach ($tecnicos as $tecnico) {
                         ?>
                         <tr>
+                            <td><?php echo $tecnico->getIdTecnico(); ?></td>
                             <td><?php echo $tecnico->getNombreCompleto(); ?></td>
                             <td><?php echo $tecnico->getRpm(); ?></td>
                             <td>

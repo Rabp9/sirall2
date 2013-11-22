@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Tipo de Equipo/Lista.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -46,20 +48,20 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($tipoEquipos)) {
-                                while ($tipoEquipo = $tipoEquipos->fetch()) {
+                            if(is_array($vwTipoEquipos)) {
+                                foreach ($vwTipoEquipos as $vwTipoEquipo) {
                         ?>
                         <tr>
-                            <td><?php echo $tipoEquipo['idTipoEquipo']; ?></td>
-                            <td><?php echo $tipoEquipo['descripcion']; ?></td>
-                            <td><?php echo $tipoEquipo['Nro Modelos']; ?></td>
-                            <td><?php echo $tipoEquipo['Nro Equipos']; ?></td>
+                            <td><?php echo $vwTipoEquipo->getIdTipoEquipo(); ?></td>
+                            <td><?php echo $vwTipoEquipo->getDescripcion(); ?></td>
+                            <td><?php echo $vwTipoEquipo->getNroModelos(); ?></td>
+                            <td><?php echo $vwTipoEquipo->getNroEquipos(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=TipoEquipo&action=Detalle&idTipoEquipo=<?php echo $tipoEquipo['idTipoEquipo']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=TipoEquipo&action=Editar&idTipoEquipo=<?php echo $tipoEquipo['idTipoEquipo']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=TipoEquipo&action=Eliminar&idTipoEquipo=<?php echo $tipoEquipo['idTipoEquipo']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=TipoEquipo&action=Detalle&idTipoEquipo=<?php echo $vwTipoEquipo->getIdTipoEquipo(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
+                                    <li><a href="?controller=TipoEquipo&action=Editar&idTipoEquipo=<?php echo $vwTipoEquipo->getIdTipoEquipo(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
+                                    <li><a href="?controller=TipoEquipo&action=Eliminar&idTipoEquipo=<?php echo $vwTipoEquipo->getIdTipoEquipo(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>

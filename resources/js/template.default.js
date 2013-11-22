@@ -1,3 +1,5 @@
+// File: /resources/js/template.default.js
+
 $(document).ready(function() {
     $('#ulMenu').menu();
     $('article').addClass('ui-widget');
@@ -14,4 +16,7 @@ $(document).ready(function() {
     $("a:contains('Detalle')").prepend("<span class='ui-icon ui-icon-search'></span>");
     $("a:contains('Editar')").prepend("<span class='ui-icon ui-icon-pencil'></span>");
     $("a:contains('Eliminar')").prepend("<span class='ui-icon ui-icon-trash'></span>");
+    $(".crearLink").button();
+    $(".aEditar").find('span').remove();
+    $(".aEliminar").find('span').remove();
 });

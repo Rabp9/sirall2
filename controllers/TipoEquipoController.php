@@ -1,9 +1,17 @@
+<!-- File: /controllers/TipoEquipoController.php -->
+
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/TipoEquipoDAO.php';
     
-    class TipoEquipoController {
+    class TipoEquipoController implements AppController {
+        
         public static function TipoEquipoAction() {
-            $tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+            TipoEquipoController::ListaAction();
+        }
+        
+        public static function ListaAction() {
+            $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
 

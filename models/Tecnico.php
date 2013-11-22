@@ -11,7 +11,7 @@
         private $rpm;
         private $estado;
         
-        public function __construct($idTecnico = "", $nombres = "", $apellidoPaterno = "", $apellidoMaterno = "", $rpm = "", $estado = "") {
+        public function __construct($idTecnico = "", $nombres = "", $apellidoPaterno = "", $apellidoMaterno = "", $rpm = "", $estado = 1) {
             $this->idTecnico = $idTecnico;
             $this->nombres = $nombres;
             $this->apellidoPaterno = $apellidoPaterno;
