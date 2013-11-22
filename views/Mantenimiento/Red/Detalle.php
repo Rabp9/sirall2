@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Red/Detalle.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -47,8 +49,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="?controller=Red&action=Editar&idRed=<?php echo $red->getIdRed(); ?>">Editar</a> |
-                                <a href="?controller=Red&action=Eliminar&idRed=<?php echo $red->getIdRed(); ?>">Eliminar</a>
+                                <a class="aEditar" href="?controller=Red&action=Editar&idRed=<?php echo $red->getIdRed(); ?>">Editar</a> |
+                                <a class="aEliminar" href="?controller=Red&action=Eliminar&idRed=<?php echo $red->getIdRed(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>

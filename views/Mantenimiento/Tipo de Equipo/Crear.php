@@ -8,6 +8,8 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.styleTable.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.list2cols.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
@@ -18,6 +20,10 @@
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtDescripcion').focus();
+                $('#tblDatos-l2c').list2cols({
+                    campo: "Datos",
+                    valor: "Valores"
+                });
             });
         </script>
         
@@ -43,26 +49,35 @@
                 <form id="frmCrearTipoEquipo" method="POST" action="?controller=TipoEquipo&action=CrearPOST">
                     <fieldset>
                         <legend>Crear Tipo de Equipo</legend>
-                        <table>
-                            <tr>
-                                <td><label for="txtIdTipoEquipo"><abbr title="Código identificador">ID.</abbr> Tipo de Equipo</label></td>
-                                <td><input id="txtIdTipoEquipo" type="text" name="idTipoEquipo"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="txtDescripcion">Descripción</label></td>
-                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <button id="btnEnviar" type="submit">Enviar</button>
-                                    <button id="btnBorrar" type="reset">Borrar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><a href="?controller=TipoEquipo">Regresar</a></td>
-                            </tr>
-                        </table>
+                        <fieldset>
+                            <legend>Información de Tipo de Equipo</legend>
+                            <table>
+                                <tr>
+                                    <td><label for="txtIdTipoEquipo"><abbr title="Código identificador">ID.</abbr> Tipo de Equipo</label></td>
+                                    <td><input id="txtIdTipoEquipo" type="text" name="idTipoEquipo"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="txtDescripcion">Descripción</label></td>
+                                    <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button id="btnEnviar" type="submit">Enviar</button>
+                                        <button id="btnBorrar" type="reset">Borrar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><a href="?controller=TipoEquipo">Regresar</a></td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Datos</legend>
+                            <table id="tblDatos-l2c">
+
+                            </table>
+                        </fieldset>
                     </fieldset>               
                 </form>
             </article>

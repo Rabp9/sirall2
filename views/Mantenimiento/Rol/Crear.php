@@ -8,6 +8,7 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.styleTable.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
@@ -21,28 +22,7 @@
                 $('#chbRestDependencia').button();
                 $("#chbRestDependencia" ).button({ disabled: true });
                 $('#txtDescripcion').focus();
-                (function ($) {
-                $.fn.styleTable = function (options) {
-                    var defaults = {
-                        css: 'ui-styled-table'
-                    };
-                    options = $.extend(defaults, options);
-
-                    return this.each(function () {
-                        $this = $(this);
-                        $this.addClass(options.css);
-
-                        $this.on('mouseover mouseout', 'tbody tr', function (event) {
-                            $(this).children().toggleClass("ui-state-hover",
-                                                           event.type == 'mouseover');
-                        });
-
-                        $this.find("th").addClass("ui-widget-header");
-                        $this.find("td").addClass("ui-widget-content");
-                        $this.find("tr:last-child").addClass("last-child");
-                    });
-                };
-                })(jQuery);
+                
                 $('#tblPermisos').styleTable(event);
                 $('#tblPermisos tbody td').click(function() {
                         var $checkbox = $(this).find('input.chPermiso');

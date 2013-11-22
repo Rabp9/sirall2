@@ -39,11 +39,6 @@ aside header {
     width: 100%;
 }
 
-.crearLink {
-    color: #333 !important;
-    text-decoration: underline !important;
-}
-
 label.error {
     background-color:#FCC; 
     border:solid 1px #C33; 

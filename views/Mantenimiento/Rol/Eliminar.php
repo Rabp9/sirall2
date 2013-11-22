@@ -18,7 +18,7 @@
             <header>
                 <?php include_once 'views/Home/header.php';?>
             </header>
-            <nav>
+            <nav class="ui-state-highlight">
                 <?php include_once 'views/Home/nav.php';?>
             </nav>
         </aside>
