@@ -36,7 +36,7 @@
         
         public static function DetalleAction() {
             if(isset($_GET['idTipoEquipo'])) {
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($_GET['idTipoEquipo']);
+                $tipoEquipo = TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']);
                 require_once '/views/Mantenimiento/Tipo de Equipo/Detalle.php';
             }
         }

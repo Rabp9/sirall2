@@ -1,52 +1,77 @@
+<!-- File: /models/Permiso.php -->
+
 <?php
-    class Permiso {
+    require_once '/models/AppModel.php';
+    /*
+     * Clase Permiso de roles
+     */
+    class Permiso implements AppModel {
         private $idPermiso;
         private $idRol;
         private $descripcion;
         
-        public function __construct() {
-            $this->idPermiso = 0;
-            $this->idRol = 0;
-            $this->descripcion = "";
+        public function __construct($idPermiso = 0, $idRol = 0, $descripcion = "") {
+            $this->idPermiso = $idPermiso;
+            $this->idRol = $idRol;
+            $this->descripcion  =$descripcion;
         }
+      
+        // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
         
-        //Sets
         public function setIdPermiso($idPermiso) {
             $this->idPermiso = $idPermiso;
+        }
+        
+        public function getIdPermiso() {
+            return $this->idPermiso;
         }
         
         public function setIdRol($idRol) {
             $this->idRol = $idRol;
         }
         
-        public function setDescripcion($descripcion) {
-            $this->descripcion = $descripcion;
-        }
-        
-        //Gets
-        public function getIdPermiso() {
-            return $this->idPermiso;
-        }
-        
         public function getIdRol() {
             return $this->idRol;
         }
         
+        public function setDescripcion($descripcion) {
+            $this->descripcion = $descripcion;
+        }
+               
         public function getDescripcion() {
             return $this->descripcion;
         }
-        
-        public function toArray(){
+                
+        // </editor-fold>
+       
+        public function toArray() {
             return get_object_vars($this);
-        }
+        }       
         
         public function toXML() {
-            $xml = "<Permiso>\n";
-            $xml .= "\t<idPermiso>" . $this->getIdRol() . "</idPermiso>\n";
-            $xml .= "\t<idRol>" . $this->getIdRol() . "</idRol>\n";
-            $xml .= "\t<descripcion>" . $this->getDescripcion() . "</descripcion>\n";
-            $xml = $xml . "</Permiso>";
+            $clase = get_class($this);
+            $atributos = $this->toArray();
+            $xml = "<$clase>\n";
+            foreach ($atributos as $nombre => $valor) {
+                $xml .= "\t<$nombre>" . $valor . "</$nombre>\n";
+            }
+            $xml = $xml . "</$clase>";
             return $xml;
+        }
+        
+        public function toJSON() {
+            return json_encode($this->toArray(), JSON_HEX_TAG );
+        }
+        
+        public function toString() {
+            $clase = get_class($this);
+            $atributos = $this->toArray();
+            $string = "$clase {";
+            foreach ($atributos as $nombre => $valor) {
+                $string .= "($nombre => $valor) " ;
+            }
+            $string .= "}";
+            return $string;
         }
     }
 ?>

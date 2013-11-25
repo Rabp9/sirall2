@@ -5,6 +5,7 @@
       
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/jquery.list2cols.css"/>
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -49,35 +50,26 @@
                 <form id="frmCrearTipoEquipo" method="POST" action="?controller=TipoEquipo&action=CrearPOST">
                     <fieldset>
                         <legend>Crear Tipo de Equipo</legend>
-                        <fieldset>
-                            <legend>Información de Tipo de Equipo</legend>
-                            <table>
-                                <tr>
-                                    <td><label for="txtIdTipoEquipo"><abbr title="Código identificador">ID.</abbr> Tipo de Equipo</label></td>
-                                    <td><input id="txtIdTipoEquipo" type="text" name="idTipoEquipo"></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="txtDescripcion">Descripción</label></td>
-                                    <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <button id="btnEnviar" type="submit">Enviar</button>
-                                        <button id="btnBorrar" type="reset">Borrar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><a href="?controller=TipoEquipo">Regresar</a></td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Datos</legend>
-                            <table id="tblDatos-l2c">
-
-                            </table>
-                        </fieldset>
+                        <table>
+                            <tr>
+                                <td><label for="txtIdTipoEquipo"><abbr title="Código identificador">ID.</abbr> Tipo de Equipo</label></td>
+                                <td><input id="txtIdTipoEquipo" type="text" name="idTipoEquipo"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtDescripcion">Descripción</label></td>
+                                <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button id="btnEnviar" type="submit">Enviar</button>
+                                    <button id="btnBorrar" type="reset">Borrar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><a href="?controller=TipoEquipo">Regresar</a></td>
+                            </tr>
+                        </table>
                     </fieldset>               
                 </form>
             </article>

@@ -1,69 +1,50 @@
-<!-- File: /models/Repuesto.php -->
+<!-- File: /models/Modelo.php -->
 
 <?php
     require_once '/models/AppModel.php';
     /*
-     * Clase Repuesto
+     * Clase Opción de Tipo de Equipo
      */
-    class Repuesto implements AppModel {
-        private $idRepuesto;
+    class Opcion implements AppModel {
+       
+        private $idOpcion;
+        private $idTipoEquipo;
         private $descripcion;
-        private $unidadMedida;
-        private $stock;
-        private $estado;
         
-        public function __construct($idRepuesto = "", $descripcion = "", $unidadMedida = "", $stock = 0, $estado = 0) {
-            $this->idRepuesto = $idRepuesto;
-            $this->descripcion = $descripcion;
-            $this->unidadMedida = $unidadMedida;
-            $this->stock = $stock;
-            $this->estado = $estado;
+        public function  __construct($idOpcion = 0, $idTipoEquipo = "", $descripcion = "") {
+            $idOpcion = $idOpcion;
+            $idTipoEquipo = $idTipoEquipo;
+            $descripcion = $descripcion;
         }
-      
+            
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
-
-        public function setIdRepuesto($idRepuesto) {
-            $this->idRepuesto = $idRepuesto;
+   
+        public function setIdOpcion($idOpcion) {
+            $this->idOpcion = $idOpcion;
         }
-
-        public function getIdRepuesto() {
-            return $this->idRepuesto;
+               
+        public function getIdOpcion() {
+            return $this->idOpcion;
+        }
+        
+        public function setIdTipoEquipo($idTipoEquipo) {
+            $this->idTipoEquipo = $idTipoEquipo;
+        }
+               
+        public function getIdTipoEquipo() {
+            return $this->idTipoEquipo;
         }
         
         public function setDescripcion($descripcion) {
             $this->descripcion = $descripcion;
         }
-        
+               
         public function getDescripcion() {
             return $this->descripcion;
         }
         
-        public function setUnidadMedida($unidadMedida) {
-            $this->unidadMedida = $unidadMedida;
-        }
-            
-        public function getUnidadMedida() {
-            return $this->unidadMedida;
-        }
-        
-        public function setStock($stock) {
-            $this->stock = $stock;
-        }    
-        
-        public function getStock() {
-            return $this->stock;
-        }
-        
-        public function setEstado($estado) {
-            $this->estado = $estado;
-        }
-        
-        public function getEstado() {
-            return $this->estado;
-        }
-        
         // </editor-fold>
-        
+       
         public function toArray() {
             return get_object_vars($this);
         }       

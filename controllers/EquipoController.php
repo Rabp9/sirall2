@@ -1,3 +1,5 @@
+<!-- File: /controllers/TipoEquipoController.php -->
+d
 <?php
     require_once '/DAO/EquipoDAO.php';
     require_once '/DAO/MarcaDAO.php';
@@ -16,13 +18,14 @@
 
         public static function CrearAction() {
             $nextID = EquipoDAO::getNextID();
-            $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
+            $tipoEquipos = TipoEquipoDAO::getAll();
             $marcas = MarcaDAO::getAllMarca();
             $redes = RedDAO::getAllRed();
             $dependencias = DependenciaDAO::getAllDependencia();
             $usuarios = UsuarioDAO::getAllUsuario();
-            $vw_tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+            $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             $vw_marcas = MarcaDAO::getVwMarca();
+            
             require_once '/views/Mantenimiento/Equipo/Crear.php';
         }
                 
