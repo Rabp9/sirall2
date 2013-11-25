@@ -79,30 +79,5 @@
             $string .= "}";
             return $string;
         }
-        
-        /*
-         * Activa a un Técnico
-         */
-        public function activar() {
-            if($this->get('Estado') == 1)
-                return false;
-            else {
-                $this->set('Estado', 1);
-                return true;
-            }
-        }
-        
-        /*
-         * Desactiva a un técnico
-         */
-        public function desactivar() {
-            if($this->get('Estado') == 2)
-                return false;
-            else {
-                $this->set('Estado', 2);
-                return true;
-            }
-        }
-
     }
 ?>

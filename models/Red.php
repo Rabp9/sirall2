@@ -1,3 +1,5 @@
+<!-- File: /models/Red.php -->
+
 <?php
     require_once '/models/AppModel.php';
     /*
@@ -18,6 +20,8 @@
             $this->estado = $estado;
         }
         
+        // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
+   
         public function setIdRed($idRed) {
             $this->idRed = $idRed;
         }
@@ -57,7 +61,9 @@
         public function getEstado() {
             return $this->estado;
         }
-        
+      
+        // </editor-fold>
+       
         public function toArray() {
             return get_object_vars($this);
         }       
@@ -89,25 +95,25 @@
         }
         
         /*
-         * Activa a un Técnico
+         * Activa a una Red
          */
         public function activar() {
-            if($this->get('Estado') == 1)
+            if($this->getEstado() == 1)
                 return false;
             else {
-                $this->set('Estado', 1);
+                $this->setEstado(1);
                 return true;
             }
         }
         
         /*
-         * Desactiva a un técnico
+         * Desactiva a una Red
          */
         public function desactivar() {
-            if($this->get('Estado') == 2)
+            if($this->getEstado() == 2)
                 return false;
             else {
-                $this->set('Estado', 2);
+                $this->setEstado(2);
                 return true;
             }
         }

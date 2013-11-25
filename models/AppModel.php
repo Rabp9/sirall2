@@ -1,3 +1,5 @@
+<!-- File: /models/AppModel.php -->
+
 <?php
     interface AppModel {
         function toArray();

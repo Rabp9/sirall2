@@ -20,12 +20,16 @@ and open the template in the editor.
             $.fn.ready(function() {
                 $('#textTexto').mask({ mask: "999.999.999.999" });
                 $('#textIP').ipaddress();
+                $('a').click(function() {
+                   $('#aa').val('dasdasds'); 
+                });
             });
         </script>
     </head>
     <body>
         <input id="textTexto" type="text" value=""/>
         <input name="form[ip]" id="textIP" type="text" value="192.168.1.1"/>
-
+        <a href="#">sdsadas</a>
+        <input type="hidden" id="aa"/>
     </body>
 </html>

@@ -27,6 +27,7 @@
                 $('#txtIdTipoEquipo').focus();
                 $('#asistente').tabs();
                 $('#tblDetalle').dato();
+                
                 // INICIO TABS
                 $('div#asistente div:not(:first)').append("<button class='prev' type='button'>Anterior</button>");
                 $('.prev').click(function() {
@@ -440,7 +441,6 @@
                                     <tbody>
                                         <tr>
                                             <td class="clave">
-                                                <select name="clave[]"></select>
                                             </td>
                                             <td class="valor">
                                             </td>
@@ -531,14 +531,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    if(isset($vw_tipoEquipos)) {
-                                        while ($vw_tipoEquipo = $vw_tipoEquipos->fetch()) {
+                                    if(is_array($vwTipoEquipos)) {
+                                        foreach ($vwTipoEquipos as $vwTipoEquipo) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $vw_tipoEquipo['idTipoEquipo']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['descripcion']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['Nro Modelos']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['Nro Equipos']; ?></td>
+                                    <td><?php echo $vwTipoEquipo->getIdTipoEquipo(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getDescripcion(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getNroModelos(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getNroEquipos(); ?></td>
                                     <td><button class="btnSeleccionarTipoEquipo"></button></td>
                                 </tr>
                                 <?php

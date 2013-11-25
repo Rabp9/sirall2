@@ -6,7 +6,7 @@
     
     class NuevoLoteController {
         public static function NuevoLoteAction() {
-            $tipoEquipos = TipoEquipoDAO::getAllTipoEquipo();
+            $tipoEquipos = TipoEquipoDAO::getAll();
             $marcas = MarcaDAO::getAllMarca();
             $vw_tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             $vw_marcas = MarcaDAO::getVwMarca();
