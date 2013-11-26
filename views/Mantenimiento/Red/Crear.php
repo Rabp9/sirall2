@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Red/Crear.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -56,6 +58,10 @@
                             <tr>
                                 <td><label for="txtDirección">Dirección</label></td>
                                 <td><textarea id="txtdireccion" name="direccion" placeholder="Escribe una dirección"></textarea></td>  
+                            </tr>
+                            <tr>
+                                <td><label for="txtTelefono">Teléfono</label></td>
+                                <td><input id="txtTelefono" type="text" name="telefono" placeholder="Escribe un teléfono"/></td>  
                             </tr>
                             <tr>
                                 <td></td>

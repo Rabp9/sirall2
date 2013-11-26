@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Dependencia/Lista.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -47,20 +49,20 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($dependencias)) {
-                                while ($dependencia = $dependencias->fetch()) {
+                            if(is_array($vwDependencias)) {
+                                foreach ($vwDependencias as $vwDependencia) {
                         ?>
                         <tr>
-                            <td><?php echo $dependencia['idDependencia']; ?></td>
-                            <td><?php echo $dependencia['descripcion']; ?></td>
-                            <td><?php echo $dependencia['red']; ?></td>
-                            <td><?php echo $dependencia['superDependencia']; ?></td>
+                            <td><?php echo $vwDependencia->getIdDependencia(); ?></td>
+                            <td><?php echo $vwDependencia->getDescripcion(); ?></td>
+                            <td><?php echo $vwDependencia->getRed(); ?></td>
+                            <td><?php echo $vwDependencia->getSuperDependencia(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Dependencia&action=Detalle&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=Dependencia&action=Eliminar&idDependencia=<?php echo $dependencia['idDependencia']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Dependencia&action=Detalle&idDependencia=<?php echo $vwDependencia->getIdDependencia(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
+                                    <li><a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $vwDependencia->getIdDependencia(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
+                                    <li><a href="?controller=Dependencia&action=Eliminar&idDependencia=<?php echo $vwDependencia->getIdDependencia(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>

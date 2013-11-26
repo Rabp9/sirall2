@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Dependencia/Editar.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -31,6 +33,9 @@
                 var $dependenciaSeleccionada = $("#ulDependencia li button.selected"); 
                 var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Red']"));
                 $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
+                $('#hdnRed').val($redSeleccionada.find('input').val());
+                if($redSeleccionada.find('input').val() !== $dependenciaSeleccionada.find('input').val())
+                    $('#hdnDependencia').val($dependenciaSeleccionada.find('input').val());
                 // FIN Editar Seleccionar Dependencia
             });
         </script>

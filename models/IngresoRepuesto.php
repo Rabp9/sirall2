@@ -3,7 +3,7 @@
 <?php
     require_once '/models/AppModel.php';
     /*
-     * Clase Equipo
+     * Clase Ingreso de Repuestos
      */
     class IngresoRepuesto implements AppModel {
         private $idIngresoRepuesto;

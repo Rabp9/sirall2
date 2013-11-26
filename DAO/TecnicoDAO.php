@@ -1,4 +1,4 @@
-<!-- File: /DAO/TecnicoAO.php -->
+<!-- File: /DAO/TecnicoDAO.php -->
 
 <?php
     require_once '/DAO/AppDAO.php';

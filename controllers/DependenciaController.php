@@ -1,17 +1,25 @@
+<!-- File: /controllers/DependenciaController.php -->
+
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/RedDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     
-    class DependenciaController {
+    class DependenciaController implements AppController {
+        
         public static function DependenciaAction() {
-            $dependencias = DependenciaDAO::getVwDependencia();
+            DependenciaController::ListaAction();
+        }
+        
+        public static function ListaAction() {
+            $vwDependencias = DependenciaDAO::getVwDependencia();
             require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
-
+        
         public static function CrearAction() {
             $nextID = DependenciaDAO::getNextID();
-            $redes = RedDAO::getAllRed();
-            $dependencias = DependenciaDAO::getAllDependencia();
+            $redes = RedDAO::getAll();
+            $dependencias = DependenciaDAO::getAll();
             require_once '/views/Mantenimiento/Dependencia/Crear.php';
         }
         
@@ -22,29 +30,28 @@
                 $dependencia->setIdRed($_POST['idRed']);
                 $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
-                $dependencia->setEstado(1);
                 DependenciaDAO::crear($dependencia) ?
                     $mensaje = "Dependencia guardada correctamente" :
                     $mensaje = "La Dependencia no fue guardada correctamente";
             }
-            $dependencias = DependenciaDAO::getVwDependencia();
+            $vwDependencias = DependenciaDAO::getVwDependencia();
             require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
         
         public static function DetalleAction() {
             if(isset($_GET['idDependencia'])) {
-                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($_GET['idDependencia']);
-                $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
-                $superDependencia = DependenciaDAO::getDependenciaByIdDependencia($dependencia->getSuperIdDependencia());
+                $dependencia = DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']);
+                $red = RedDAO::getBy("idRed", $dependencia->getIdRed());
+                $superDependencia = DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia());
                 require_once '/views/Mantenimiento/Dependencia/Detalle.php';
             }
         }
         
         public static function EditarAction() {
             if(isset($_GET['idDependencia'])) {
-                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($_GET['idDependencia']);
-                $redes = RedDAO::getAllRed();
-                $dependencias = DependenciaDAO::getAllDependencia();
+                $dependencia = DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']);
+                $redes = RedDAO::getAll();
+                $dependencias = DependenciaDAO::getAll();
                 require_once '/views/Mantenimiento/Dependencia/Editar.php';
             }
         }
@@ -56,20 +63,19 @@
                 $dependencia->setIdRed($_POST['idRed']);
                 $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
-                $dependencia->setEstado(1);
                 DependenciaDAO::editar($dependencia) ?
                     $mensaje = "Dependencia modificada correctamente" :
                     $mensaje = "La Dependencia no fue modificada correctamente";
             }
-            $dependencias = DependenciaDAO::getVwDependencia();
+            $vwDependencias = DependenciaDAO::getVwDependencia();
             require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
         
         public static function EliminarAction() {
             if(isset($_GET['idDependencia'])) {
-                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($_GET['idDependencia']);
-                $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
-                $superDependencia = DependenciaDAO::getDependenciaByIdDependencia($dependencia->getSuperIdDependencia());
+                $dependencia = DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']);
+                $red = RedDAO::getBy("idRed", $dependencia->getIdRed());
+                $superDependencia = DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia());
                 require_once '/views/Mantenimiento/Dependencia/Eliminar.php';
             }
         }
@@ -82,7 +88,7 @@
                     $mensaje = "Dependencia eliminada correctamente" :
                     $mensaje = "La Dependencia no fue eliminada correctamente" ;
             }
-            $dependencias = DependenciaDAO::getVwDependencia();
+            $vwDependencias = DependenciaDAO::getVwDependencia();
             require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
         

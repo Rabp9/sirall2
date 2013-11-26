@@ -1,19 +1,27 @@
+<!-- File: /controllers/UsuarioController.php -->
+    
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/UsuarioDAO.php';
     require_once '/DAO/RedDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     require_once '/DAO/RolDAO.php';
     
-    class UsuarioController {
+    class UsuarioController implements AppController {
+        
         public static function UsuarioAction() {
-            $usuarios = UsuarioDAO::getVwUsuario();
+            UsuarioController::ListaAction();
+        }
+        
+        public static function ListaAction() {
+            $vwUsuarios = UsuarioDAO::getVwUsuario();
             require_once '/views/Mantenimiento/Usuario/Lista.php';
         }
         
         public static function CrearAction() {
             $nextID = UsuarioDAO::getNextID();
-            $redes = RedDAO::getAllRed();
-            $dependencias = DependenciaDAO::getAllDependencia();
+            $redes = RedDAO::getAll();
+            $dependencias = DependenciaDAO::getAll();
             require_once '/views/Mantenimiento/Usuario/Crear.php';
         }
         
@@ -28,30 +36,29 @@
                 $usuario->setCorreo($_POST['correo']);
                 $usuario->setRpm($_POST['rpm']);
                 $usuario->setAnexo($_POST['anexo']);
-                $usuario->setEstado(1); //Activado
                 UsuarioDAO::crear($usuario) ?
                     $mensaje = "Usuario guardado correctamente" :
                     $mensaje = "El Usuario no fue guardado correctamente";
                     
             }
-            $usuarios = UsuarioDAO::getVwUsuario();
+            $vwUsuarios = UsuarioDAO::getVwUsuario();
             require_once '/views/Mantenimiento/Usuario/Lista.php';
         }
         
         public static function DetalleAction() {
             if(isset($_GET['idUsuario'])) {
-                $usuario = UsuarioDAO::getUsuarioByIdUsuario($_GET['idUsuario']);
-                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia());
-                $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
+                $usuario = UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']);
+                $dependencia = DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia());
+                $red = RedDAO::getBy("idRed", $dependencia->getIdRed());
                 require_once '/views/Mantenimiento/Usuario/Detalle.php';
             }
         }
         
         public static function EditarAction() {
             if(isset($_GET['idUsuario'])) {
-                $usuario = UsuarioDAO::getUsuarioByIdUsuario($_GET['idUsuario']);
-                $redes = RedDAO::getAllRed();      
-                $dependencias = DependenciaDAO::getAllDependencia();   
+                $usuario = UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']);
+                $redes = RedDAO::getAll();      
+                $dependencias = DependenciaDAO::getAll();   
                 require_once '/views/Mantenimiento/Usuario/Editar.php';
             }
         }
@@ -67,20 +74,19 @@
                 $usuario->setCorreo($_POST['correo']);
                 $usuario->setRpm($_POST['rpm']);
                 $usuario->setAnexo($_POST['anexo']);
-                $usuario->setEstado(1);
                 UsuarioDAO::editar($usuario) ?
                     $mensaje = "Usuario modificado correctamente" :
                     $mensaje = "El Usuario no fue modificado correctamente";
             }
-            $usuarios = UsuarioDAO::getVwUsuario();
+            $vwUsuarios = UsuarioDAO::getVwUsuario();
             require_once '/views/Mantenimiento/Usuario/Lista.php';
         }
         
         public static function EliminarAction() {
             if(isset($_GET['idUsuario'])) {
-                $usuario = UsuarioDAO::getUsuarioByIdUsuario($_GET['idUsuario']);
-                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia());
-                $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
+                $usuario = UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']);
+                $dependencia = DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia());
+                $red = RedDAO::getBy("idRed", $dependencia->getIdRed());
                 require_once '/views/Mantenimiento/Usuario/Eliminar.php';
             }
         }
@@ -93,13 +99,13 @@
                     $mensaje = "Usuario eliminado correctamente" :
                     $mensaje = "El Usuario no fue eliminado correctamente";
             }
-            $usuarios = UsuarioDAO::getVwUsuario();
+            $vwUsuarios = UsuarioDAO::getVwUsuario();
             require_once '/views/Mantenimiento/Usuario/Lista.php';
         }
         
         public static function usuarioAJAXAction() {
             if(isset($_GET['idDependencia'])) {
-                $usuarios = UsuarioDAO::getUsuarioByIdDependencia($_GET['idDependencia']);
+                $usuarios = UsuarioDAO::getBy("idDependencia", $_GET['idDependencia']);
                 echo self::usuariosToXML($usuarios);
             }   
         }

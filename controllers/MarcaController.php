@@ -1,13 +1,20 @@
+<!-- File: /controllers/MarcaController.php -->
+
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/MarcaDAO.php';
     
-    class MarcaController {
+    class MarcaController implements AppController {
+        
         public static function MarcaAction() {
-            $marcas = MarcaDAO::getVwMarca();
-            //echo var_dump($marcas->fetchAll());
+            MarcaController::ListaAction();
+        }
+        
+        public static function ListaAction() {
+            $vwMarcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Marca/Lista.php';
         }
-
+        
         public static function CrearAction() {
             $nextID = MarcaDAO::getNextID();
             require_once '/views/Mantenimiento/Marca/Crear.php';
@@ -24,7 +31,7 @@
                     $mensaje = "Marca guardada correctamente" : 
                     $mensaje = "La Marca no fue guardada correctamente";
             }
-            $marcas = MarcaDAO::getVwMarca();
+            $vwMarcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Marca/Lista.php';
         }
         
@@ -53,7 +60,7 @@
                     $mensaje = "Marca modificada correctamente" :
                     $mensaje = "La Marca no fue modificada correctamente";
             }
-            $marcas = MarcaDAO::getVwMarca();
+            $vwMarcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Marca/Lista.php';
         }
         
@@ -72,7 +79,7 @@
                     $mensaje = "Marca eliminada correctamente" :
                     $mensaje = "La Marca no fue eliminada correctamente";
             }
-            $marcas = MarcaDAO::getVwMarca();
+            $vwMarcas = MarcaDAO::getVwMarca();
             require_once '/views/Mantenimiento/Marca/Lista.php';
         }
     }

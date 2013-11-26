@@ -71,6 +71,7 @@
         public function getEstado() {
             return $this->estado;
         }
+        
         // </editor-fold>
        
         public function toArray() {
