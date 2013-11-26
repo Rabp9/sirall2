@@ -93,5 +93,29 @@
             $string .= "}";
             return $string;
         }
+        
+        /*
+         * Activa a un Repuesto
+         */
+        public function activar() {
+            if($this->getEstado() == 1)
+                return false;
+            else {
+                $this->setEstado(1);
+                return true;
+            }
+        }
+        
+        /*
+         * Desactiva a un Repuesto
+         */
+        public function desactivar() {
+            if($this->getEstado() == 2)
+                return false;
+            else {
+                $this->setEstado(2);
+                return true;
+            }
+        }
     }
 ?>

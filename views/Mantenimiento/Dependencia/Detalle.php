@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Dependencia/Detalle.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -78,8 +80,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Editar</a> |
-                                <a href="?controller=Dependencia&action=Eliminar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Eliminar</a>
+                                <a class="aEditar" href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Editar</a> |
+                                <a class="aEliminar" href="?controller=Dependencia&action=Eliminar&idDependencia=<?php echo $dependencia->getIdDependencia(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>

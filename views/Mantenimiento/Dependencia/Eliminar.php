@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Dependencia/Eliminar.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>

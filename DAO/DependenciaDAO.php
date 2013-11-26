@@ -1,10 +1,13 @@
+<!-- File: /DAO/DependenciaDAO.php -->
+    
 <?php
     require_once '/models/Dependencia.php';
+    require_once '/models/VwDependencia.php';
     require_once '/Libs/BaseDatos.php';
     
-    class DependenciaDAO {
+    class DependenciaDAO implements appDAO {
 
-        public static function getAllDependencia() {
+        public static function getAll() {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Dependencia WHERE estado = 1");
             $result->execute();
             while ($rs = $result->fetch()) {
@@ -17,15 +20,12 @@
                 $dependencia->setEstado($rs['estado']);
                 $dependencias[] = $dependencia; 
             }
-            if(isset($dependencias))
-                return $dependencias;
-            else
-                return false;
+            return isset($dependencias) ? $dependencias : false;
         }
         
-        public static function getDependenciaByIdDependencia($idDependencia) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Dependencia where idDependencia = :idDependencia");
-            $result->bindParam(':idDependencia', $idDependencia);
+        public static function getBy($campo, $valor) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Dependencia where $campo = :$campo");
+            $result->bindParam(":$campo", $valor);
             $result->execute();
             $rs = $result->fetch();
             $dependencia = new Dependencia();
@@ -36,6 +36,47 @@
             $dependencia->setIdUsuarioJefe($rs['idUsuarioJefe']);
             $dependencia->setEstado($rs['estado']);
             return $dependencia;
+        }
+        
+        public static function crear($dependencia) {
+            if($dependencia->getSuperIdDependencia() != null) {
+                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(idDependencia, idRed, descripcion, superIdDependencia, estado) values(:idDependencia, :idRed, :descripcion, :superIdDependencia, :estado)");
+                $result->bindParam(':superIdDependencia', $dependencia->getSuperIdDependencia());
+            }
+            else
+                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(idDependencia, idRed, descripcion, estado) values(:idDependencia, :idRed, :descripcion, :estado)");
+            $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
+            $result->bindParam(':idRed', $dependencia->getIdRed());
+            $result->bindParam(':descripcion', $dependencia->getDescripcion());
+            $result->bindParam(':estado', $dependencia->getEstado());
+            return $result->execute();
+        }
+        
+        public static function editar($dependencia) {
+            if($dependencia->getSuperIdDependencia() != null) {
+                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idRed = :idRed, descripcion = :descripcion, superIdDependencia = :superIdDependencia, estado = :estado WHERE idDependencia = :idDependencia");
+                $result->bindParam(':superIdDependencia', $dependencia->getSuperIdDependencia());
+            }
+            else
+                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idRed = :idRed, descripcion = :descripcion, superIdDependencia = null, estado = :estado  WHERE idDependencia = :idDependencia");
+            $result->bindParam(':idRed', $dependencia->getIdRed());
+            $result->bindParam(':descripcion', $dependencia->getDescripcion());
+            $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
+            $result->bindParam(':estado', $dependencia->getEstado());
+            return $result->execute();
+        }
+         
+        public static function eliminar($dependencia) {
+            $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET estado = 2 WHERE idDependencia = :idDependencia");
+            $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
+            return $result->execute();
+        }
+           
+        public static function getNextID() {
+            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdDependencia");
+            $result->execute();
+            $rs = $result->fetch();
+            return $rs['nextID'];
         }
         
         public static function getDependenciaBySuperIdDependencia($superIdDependencia) {
@@ -56,85 +97,21 @@
                 $dependencia->setEstado($rs['estado']);
                 $dependencias[] = $dependencia;
             }
-            if(isset($dependencias))
-                return $dependencias;
-            else
-                return false;
+            return isset($dependencias) ? $dependencias : false;
         }
-        
-        public static function getDependenciaByIdRed($idRed) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Dependencia where idRed = :idRed");
-            $result->bindParam(':idRed', $idRed);
-            $result->execute();
-            while($rs = $result->fetch()) {
-                $dependencia = new Dependencia();
-                $dependencia->setIdDependencia($rs['idDependencia']);
-                $dependencia->setDescripcion($rs['descripcion']);
-                $dependencia->setIdRed($rs['idRed']);
-                $dependencia->setSuperIdDependencia($rs['superIdDependencia']);
-                $dependencia->setIdUsuarioJefe($rs['idUsuarioJefe']);
-                $dependencia->setEstado($rs['estado']);
-                $dependencias[] = $dependencia;
-            }
-            if(isset($dependencias))
-                return $dependencias;
-            else
-                return false;
-        }
-        
-        public static function getNextID() {
-            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdDependencia");
-            $result->execute();
-            $rs = $result->fetch();
-            $n = $rs['nextID'] + 1;
-            if($n < 10) 
-                return 'D000' . $n;
-            elseif ($n < 100)
-                return 'D00' . $n;
-            elseif ($n < 1000)
-                return 'D0' . $n;
-            else
-                return 'D' . $n;
-        }
-        
-        public static function crear(Dependencia $dependencia) {
-            if($dependencia->getSuperIdDependencia() != null) {
-                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(idDependencia, idRed, descripcion, superIdDependencia, estado) values(:idDependencia, :idRed, :descripcion, :superIdDependencia, :estado)");
-                $result->bindParam(':superIdDependencia', $dependencia->getSuperIdDependencia());
-            }
-            else
-                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(idDependencia, idRed, descripcion, estado) values(:idDependencia, :idRed, :descripcion, :estado)");
-            $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
-            $result->bindParam(':idRed', $dependencia->getIdRed());
-            $result->bindParam(':descripcion', $dependencia->getDescripcion());
-            $result->bindParam(':estado', $dependencia->getEstado());
-            return $result->execute();
-        }
-        
-        public static function editar(Dependencia $dependencia) {
-            if($dependencia->getSuperIdDependencia() != null) {
-                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idRed = :idRed, descripcion = :descripcion, superIdDependencia = :superIdDependencia, estado = :estado WHERE idDependencia = :idDependencia");
-                $result->bindParam(':superIdDependencia', $dependencia->getSuperIdDependencia());
-            }
-            else
-                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idRed = :idRed, descripcion = :descripcion, superIdDependencia = null, estado = :estado  WHERE idDependencia = :idDependencia");
-            $result->bindParam(':idRed', $dependencia->getIdRed());
-            $result->bindParam(':descripcion', $dependencia->getDescripcion());
-            $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
-            $result->bindParam(':estado', $dependencia->getEstado());
-            return $result->execute();
-        }
-         
-        public static function eliminar(Dependencia $dependencia) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET estado = 2 WHERE idDependencia = :idDependencia");
-            $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
-            return $result->execute();
-        }
-        
+  
         public static function getVwDependencia() {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Dependencia");
             $result->execute();
-            return $result;
+            while ($rs = $result->fetch()) {
+                $vwDependencia = new VwDependencia();
+                $vwDependencia->setIdDependencia($rs['idDependencia']);
+                $vwDependencia->setDescripcion($rs['descripcion']);
+                $vwDependencia->setRed($rs['red']);
+                $vwDependencia->setSuperDependencia($rs['superDependencia']);
+                $vwDependencias[] = $vwDependencia; 
+            }
+            return isset($vwDependencias) ? $vwDependencias : false;
         }
         
         public static function asignarJefe(Dependencia $dependencia) {

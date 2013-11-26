@@ -17,7 +17,9 @@
             $this->nroModelos = $nroMoedelos;
             $this->nroEquipos = $nroEquipos;
         }
-       
+                       
+        // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
+ 
         public function setIdTipEquipo($idTipoEquipo) {
             $this->idTipoEquipo = $idTipoEquipo;
         }
@@ -49,7 +51,9 @@
         public function getNroEquipos() {
             return $this->nroEquipos;
         }
-       
+        
+        // </editor-fold>
+             
         public function toArray() {
             return get_object_vars($this);
         }       

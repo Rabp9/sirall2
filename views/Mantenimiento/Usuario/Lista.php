@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Usuario/lista.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -47,20 +49,20 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($usuarios)) {
-                                while ($usuario = $usuarios->fetch()) {
+                            if(is_array($vwUsuarios)) {
+                                foreach ($vwUsuarios as $vwUsuario) {
                         ?>
                         <tr>
-                            <td><?php echo $usuario['idUsuario']; ?></td>
-                            <td><?php echo $usuario['Nombre Completo']; ?></td>
-                            <td><?php echo $usuario['Dependencia']; ?></td>
-                            <td><?php echo $usuario['Red']; ?></td>
+                            <td><?php echo $vwUsuario->getIdUsuario(); ?></td>
+                            <td><?php echo $vwUsuario->getDependencia(); ?></td>
+                            <td><?php echo $vwUsuario->getRed(); ?></td>
+                            <td><?php echo $vwUsuario->getNombreCompleto(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Usuario&action=Detalle&idUsuario=<?php echo $usuario['idUsuario']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Usuario&action=Editar&idUsuario=<?php echo $usuario['idUsuario']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=Usuario&action=Eliminar&idUsuario=<?php echo $usuario['idUsuario']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Usuario&action=Detalle&idUsuario=<?php echo $vwUsuario->getIdUsuario(); ?>">Detalle</a></li>
+                                    <li><a href="?controller=Usuario&action=Editar&idUsuario=<?php echo $vwUsuario->getIdUsuario(); ?>">Editar</a></li>
+                                    <li><a href="?controller=Usuario&action=Eliminar&idUsuario=<?php echo $vwUsuario->getIdUsuario(); ?>">Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>

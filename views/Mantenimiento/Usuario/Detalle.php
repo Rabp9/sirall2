@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Usuario/Detalle.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -71,8 +73,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="?controller=Usuario&action=Editar&idUsuario=<?php echo $usuario->getIdUsuario(); ?>">Editar</a> |
-                                <a href="?controller=Usuario&action=Eliminar&idUsuario=<?php echo $usuario->getIdUsuario(); ?>">Eliminar</a>
+                                <a class="aEditar" href="?controller=Usuario&action=Editar&idUsuario=<?php echo $usuario->getIdUsuario(); ?>">Editar</a> |
+                                <a class="aEliminar" href="?controller=Usuario&action=Eliminar&idUsuario=<?php echo $usuario->getIdUsuario(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>

@@ -1,14 +1,20 @@
 <!-- File: /controllers/RedController.php -->
     
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/RedDAO.php';
     
-    class RedController {
+    class RedController implements AppController {
+        
         public static function RedAction() {
-            $redes = RedDAO::getAllRed();
+            RedController::ListaAction();
+        }
+        
+        public static function ListaAction() {
+            $redes = RedDAO::getAll();
             require_once '/views/Mantenimiento/Red/Lista.php';
         }
-
+        
         public static function CrearAction() {
             $nextID = RedDAO::getNextID();
             require_once '/views/Mantenimiento/Red/Crear.php';
@@ -16,30 +22,26 @@
                 
         public static function CrearPOSTAction() {
             if(isset($_POST)) {
-                $red = new Red();
-                $red->setIdRed($_POST['idRed']);
-                $red->setDescripcion($_POST['descripcion']);
-                $red->setDireccion($_POST['direccion']);
-                $red->setEstado(1);
+                $red = new Red($_POST['idRed'], $_POST['descripcion'], $_POST['direccion'], $_POST['telefono']);
                 RedDAO::crear($red) ?
                     $mensaje = "Red guardada correctamente" :
                     $mensaje = "La Red no fue guardada correctamente";
             }
-            $redes = RedDAO::getAllRed();
+            $redes = RedDAO::getAll();
             $mensaje = "Red guardada correctamente";
             require_once '/views/Mantenimiento/Red/Lista.php';
         }
         
         public static function DetalleAction() {
             if(isset($_GET['idRed'])) {
-                $red = RedDAO::getRedByIdRed($_GET['idRed']);
+                $red = RedDAO::getBy("idRed", $_GET['idRed']);
                 require_once '/views/Mantenimiento/Red/Detalle.php';
             }
         }
         
         public static function EditarAction() {
             if(isset($_GET['idRed'])) {
-                $red = RedDAO::getRedByIdRed($_GET['idRed']);
+                $red = RedDAO::getBy("idRed", $_GET['idRed']);
                 require_once '/views/Mantenimiento/Red/Editar.php';
             }
         }
@@ -55,13 +57,13 @@
                     $mensaje = "Red modificada correctamente" :
                     $mensaje = "La Red no fue modificada correctamente";
             }
-            $redes = RedDAO::getAllRed();
+            $redes = RedDAO::getAll();
             require_once '/views/Mantenimiento/Red/Lista.php';
         }
         
         public static function EliminarAction() {
             if(isset($_GET['idRed'])) {
-                $red = RedDAO::getRedByIdRed($_GET['idRed']);
+                $red = RedDAO::getBy("idRed", $_GET['idRed']);
                 require_once '/views/Mantenimiento/Red/Eliminar.php';
             }
         }
@@ -74,7 +76,7 @@
                     $mensaje = "Red eliminada correctamente" :
                     $mensaje = "La Red no fue eliminada correctamente";
             }
-            $redes = RedDAO::getAllRed();
+            $redes = RedDAO::getAll();
             require_once '/views/Mantenimiento/Red/Lista.php';
         }
         
@@ -86,6 +88,6 @@
                     $xml .= $red->toXML() . "\n";
             $xml .= "</Redes>\n";
             return $xml;
-        }    
+        }
     }
 ?>

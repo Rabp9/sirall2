@@ -48,21 +48,21 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($marcas)) {
-                                while ($marca = $marcas->fetch()) {
+                            if(is_array($vwMarcas)) {
+                                foreach ($vwMarcas as $vwMarca) {
                         ?>
                         <tr>
-                            <td><?php echo $marca['idMarca']; ?></td>
-                            <td><?php echo $marca['descripcion']; ?></td>
-                            <td><?php echo $marca['indicacion']; ?></td>
-                            <td><?php echo $marca['Nro Modelos']; ?></td>
-                            <td><?php echo $marca['Nro Equipos']; ?></td>
+                            <td><?php echo $vwMarca->getIdMarca(); ?></td>
+                            <td><?php echo $vwMarca->getDescripcion(); ?></td>
+                            <td><?php echo $vwMarca->getIndicacion(); ?></td>
+                            <td><?php echo $vwMarca->getNroModelos(); ?></td>
+                            <td><?php echo $vwMarca->getNroEquipos(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Marca&action=Detalle&idMarca=<?php echo $marca['idMarca']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Marca&action=Editar&idMarca=<?php echo $marca['idMarca']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=Marca&action=Eliminar&idMarca=<?php echo $marca['idMarca']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Marca&action=Detalle&idMarca=<?php echo $vwMarca->getIdMarca(); ?>">Detalle</a></li>
+                                    <li><a href="?controller=Marca&action=Editar&idMarca=<?php echo $vwMarca->getIdMarca(); ?>">Editar</a></li>
+                                    <li><a href="?controller=Marca&action=Eliminar&idMarca=<?php echo $vwMarca->getIdMarca(); ?>">Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>
