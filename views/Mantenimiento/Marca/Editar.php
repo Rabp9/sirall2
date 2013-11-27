@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Marca/Editar.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>

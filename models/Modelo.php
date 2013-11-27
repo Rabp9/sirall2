@@ -13,7 +13,7 @@
         private $indicacion;
         private $estado;
 
-        public function __construct($idModelo = "", $idMarca = "", $idTipoEquipo = "", $descripcion = "", $indicacion = "", $estado = "") {
+        public function __construct($idModelo = "", $idMarca = "", $idTipoEquipo = "", $descripcion = "", $indicacion = "", $estado = 1) {
             $this->idModelo = $idModelo;
             $this->idMarca = $idMarca;
             $this->idTipoEquipo = $idTipoEquipo;

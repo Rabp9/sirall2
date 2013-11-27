@@ -19,7 +19,7 @@
     </head>
     <body>
         <aside>
-            <header>
+            <header class="ui-state-hover">
                 <?php include_once 'views/Home/header.php';?>
             </header>
             <nav>

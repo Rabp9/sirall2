@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Tipo de Equipo/Detalle.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -43,8 +45,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="?controller=TipoEquipo&action=Editar&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>">Editar</a> |
-                                <a href="?controller=TipoEquipo&action=Eliminar&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>">Eliminar</a>
+                                <a class="aEditar" href="?controller=TipoEquipo&action=Editar&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>">Editar</a> |
+                                <a class="aEliminar" href="?controller=TipoEquipo&action=Eliminar&idTipoEquipo=<?php echo $tipoEquipo->getIdTipoEquipo(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>

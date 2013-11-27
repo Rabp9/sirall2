@@ -12,9 +12,9 @@
         private $descripcion;
         
         public function  __construct($idOpcion = 0, $idTipoEquipo = "", $descripcion = "") {
-            $idOpcion = $idOpcion;
-            $idTipoEquipo = $idTipoEquipo;
-            $descripcion = $descripcion;
+            $this->idOpcion = $idOpcion;
+            $this->idTipoEquipo = $idTipoEquipo;
+            $this->descripcion = $descripcion;
         }
             
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">

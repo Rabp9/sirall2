@@ -3,6 +3,7 @@
 <?php
     require_once '/controllers/AppController.php';
     require_once '/DAO/TipoEquipoDAO.php';
+    require_once '/DAO/OpcionDAO.php';
     
     class TipoEquipoController implements AppController {
         
@@ -30,20 +31,20 @@
                     $mensaje = "Tipo de Equipo guardado Correctamente" :
                     $mensaje = "El Tipo de Equipo no fue guardado Correctamente";
             }
-            $tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+            $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
         
         public static function DetalleAction() {
             if(isset($_GET['idTipoEquipo'])) {
-                $tipoEquipo = TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']);
+                $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']));
                 require_once '/views/Mantenimiento/Tipo de Equipo/Detalle.php';
             }
         }
         
         public static function EditarAction() {
             if(isset($_GET['idTipoEquipo'])) {
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($_GET['idTipoEquipo']);
+                $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']));
                 require_once '/views/Mantenimiento/Tipo de Equipo/Editar.php';
             }
         }
@@ -58,13 +59,13 @@
                     $mensaje = "Tipo de Equipo modificado Correctamente" :
                     $mensaje = "El Tipo de Equipo no fue modificado Correctamente";
             }
-            $tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+            $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
         
         public static function EliminarAction() {
             if(isset($_GET['idTipoEquipo'])) {
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($_GET['idTipoEquipo']);
+                $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']));
                 require_once '/views/Mantenimiento/Tipo de Equipo/Eliminar.php';
             }
         }
@@ -77,8 +78,25 @@
                     $mensaje = "Tipo de Equipo eliminado Correctamente" :
                     $mensaje = "El Tipo de Equipo no fue eliminado Correctamente";
             }
-            $tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+            $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
+        }
+        
+        public static function getOpcionesAction() {
+            if(isset($_GET['idTipoEquipo'])) {
+                $opciones = OpcionDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']);
+                echo self::opcionesToXML($opciones);
+            }   
+        }
+        
+        private static function opcionesToXML($opciones) {
+            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+            $xml .= "\n<Opciones>\n";
+            if(is_array($opciones))
+                foreach($opciones as $opcion)
+                    $xml .= $opcion->toXML() . "\n";
+            $xml .= "</Opciones>\n";
+            return $xml;
         }
     }
 ?>

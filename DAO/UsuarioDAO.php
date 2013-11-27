@@ -31,18 +31,20 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Usuario where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
             $result->execute();
-            $rs = $result->fetch();
-            $usuario = new Usuario();
-            $usuario->setIdUsuario($rs['idUsuario']);
-            $usuario->setIdDependencia($rs['idDependencia']);
-            $usuario->setNombres($rs['nombres']);
-            $usuario->setApellidoPaterno($rs['apellidoPaterno']);
-            $usuario->setApellidoMaterno($rs['apellidoMaterno']);
-            $usuario->setCorreo($rs['correo']);
-            $usuario->setRpm($rs['rpm']);
-            $usuario->setAnexo($rs['anexo']);
-            $usuario->setEstado($rs['estado']);
-            return $usuario;
+            while ($rs = $result->fetch()) {
+                $usuario = new Usuario();
+                $usuario->setIdUsuario($rs['idUsuario']);
+                $usuario->setIdDependencia($rs['idDependencia']);
+                $usuario->setNombres($rs['nombres']);
+                $usuario->setApellidoPaterno($rs['apellidoPaterno']);
+                $usuario->setApellidoMaterno($rs['apellidoMaterno']);
+                $usuario->setCorreo($rs['correo']);
+                $usuario->setRpm($rs['rpm']);
+                $usuario->setAnexo($rs['anexo']);
+                $usuario->setEstado($rs['estado']);
+                $usuarios[] = $usuario; 
+            }
+            return isset($usuarios) ? $usuarios : false;
         }
         
         public static function crear($usuario) {

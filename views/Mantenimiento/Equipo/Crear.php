@@ -84,6 +84,7 @@
                     ?>
                                 if(idTipoEquipo === '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>') {
                                     $('#txtTipoEquipo').val('<?php echo $tipoEquipo->getDescripcion(); ?>');
+                                    mostrarOpcionesTipoEquipo(idTipoEquipo);
                                     r = true;
                                 }
                     <?php
@@ -319,6 +320,38 @@
                     }
                 })
             }; 
+            
+            function mostrarOpcionesTipoEquipo(idTipoEquipo) {
+                // Vaciar opciones
+                var opciones = getOpciones(idTipoEquipo);
+            }
+            
+            function getOpciones(idTipoEquipo) {
+                $.ajax({
+                    url: "Index.php",
+                    type: "GET",            
+                    data: {
+                        controller: "TipoEquipo",
+                        action: "getOpciones",
+                        idTipoEquipo: idTipoEquipo
+                    },
+                    success: function( xmlResponse ) {
+                        var opcion = {
+                            idOpcion: "asddas",
+                            descripcion: "sadas"
+                        };
+                        var opciones = {};
+                        opciones.push(opcion);
+                 /*       $(xmlResponse).find("Opcion").each(function() {
+                            opciones.push({
+                                idOpcion: $(this).find('idOpcion').text() ,
+                                descripcion: $(this).find('descripcion').text() 
+                            });
+                        });*/
+                        alert(opciones[0].descripcion);
+                    }
+                });
+            }
         </script>
         
         <title>SIRALL2 - Crear Equipo</title>
@@ -418,7 +451,7 @@
                                 <table>
                                     <tr>
                                         <td><label for="txtCodigoPatrimonial">Código Patrimonial</label></td>
-                                        <td><input id="txtCodigoPatrimonial" type="text" name="codigoPatrimonial" placeholder="Escribe el código Patrimonial"></td>
+                                        <td><input id="txtCodigoPatrimonial" type="text" name="codigoPatrimonial" maxlength="8" placeholder="Escribe el código Patrimonial" pattern="^00[0-9]{6}"></td>
                                     </tr>
                                 <tr>
                                     <td><label for="txtSerie">Serie</label></td>
@@ -566,6 +599,7 @@
                             ?>
                                         if(idTipoEquipo === '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>') {
                                             $('#txtTipoEquipo').val('<?php echo $tipoEquipo->getDescripcion(); ?>');
+                                            mostrarOpcionesTipoEquipo(idTipoEquipo)
                                             r = true;
                                         }
                             <?php
@@ -593,14 +627,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    if(isset($vw_marcas)) {
-                                        while ($vw_marca = $vw_marcas->fetch()) {
+                                    if(is_array($vwMarcas)) {
+                                        foreach ($vwMarcas as $vwMarca) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $vw_marca['idMarca']; ?></td>
-                                    <td><?php echo $vw_marca['descripcion']; ?></td>
-                                    <td><?php echo $vw_marca['Nro Modelos']; ?></td>
-                                    <td><?php echo $vw_marca['Nro Equipos']; ?></td>
+                                    <td><?php echo $vwMarca->getIdMarca(); ?></td>
+                                    <td><?php echo $vwMarca->getDescripcion(); ?></td>
+                                    <td><?php echo $vwMarca->getNroModelos(); ?></td>
+                                    <td><?php echo $vwMarca->getNroEquipos(); ?></td>
                                     <td><button class="btnSeleccionarMarca"></button></td>
                                 </tr>
                                 <?php

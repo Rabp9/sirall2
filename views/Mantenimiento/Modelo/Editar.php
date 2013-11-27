@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Modelo/Editar.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -298,14 +300,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    if(isset($vw_tipoEquipos)) {
-                                        while ($vw_tipoEquipo = $vw_tipoEquipos->fetch()) {
+                                    if(is_array($vwTipoEquipos)) {
+                                        foreach ($vwTipoEquipos as $vwTipoEquipo) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $vw_tipoEquipo['idTipoEquipo']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['descripcion']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['Nro Modelos']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['Nro Equipos']; ?></td>
+                                    <td><?php echo $vwTipoEquipo->getIdTipoEquipo(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getDescripcion(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getNroModelos(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getNroEquipos(); ?></td>
                                     <td><button class="btnSeleccionarTipoEquipo"></button></td>
                                 </tr>
                                 <?php
@@ -359,14 +361,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    if(isset($vw_marcas)) {
-                                        while ($vw_marca = $vw_marcas->fetch()) {
+                                    if(is_array($vwMarcas)) {
+                                        foreach ($vwMarcas as $vwMarca) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $vw_marca['idMarca']; ?></td>
-                                    <td><?php echo $vw_marca['descripcion']; ?></td>
-                                    <td><?php echo $vw_marca['Nro Modelos']; ?></td>
-                                    <td><?php echo $vw_marca['Nro Equipos']; ?></td>
+                                    <td><?php echo $vwMarca->getIdMarca(); ?></td>
+                                    <td><?php echo $vwMarca->getDescripcion(); ?></td>
+                                    <td><?php echo $vwMarca->getNroModelos(); ?></td>
+                                    <td><?php echo $vwMarca->getNroEquipos(); ?></td>
                                     <td><button class="btnSeleccionarMarca"></button></td>
                                 </tr>
                                 <?php

@@ -1,10 +1,14 @@
+<!-- File: /DAO/ModeloDAO.php -->
+
 <?php
+    require_once '/DAO/AppDAO.php';
     require_once '/models/Modelo.php';
+    require_once '/models/VwModelo.php';
     require_once '/Libs/BaseDatos.php';
     
-    class ModeloDAO {
+    class ModeloDAO implements appDAO {
 
-        public static function getAllModelo() {
+        public static function getAll() {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo");
             $result->execute();
             while ($rs = $result->fetch()) {
@@ -16,72 +20,12 @@
                 $modelo->setIndicacion($rs['indicacion']);
                 $modelos[] = $modelo; 
             }
-            if(isset($modelos))
-                return $modelos;
-            else
-                return false;
+            return isset($modelos) ? $modelos : false;
         }
         
-        public static function getNextID() {
-            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdModelo");
-            $result->execute();
-            $rs = $result->fetch();
-            $n = $rs['nextID'] + 1;
-            if($n < 10) 
-                return 'C000' . $n;
-            elseif ($n < 100)
-                return 'C00' . $n;
-            elseif ($n < 1000)
-                return 'C0' . $n;
-            else
-                return 'C' . $n;
-        }
-        
-        public static function crear(Modelo $modelo) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Modelo(idModelo, idTipoEquipo, idMarca, descripcion, indicacion, estado) values(:idModelo, :idTipoEquipo, :idMarca, :descripcion, :indicacion, :estado)");
-            $result->bindParam(':idModelo', $modelo->getIdModelo());
-            $result->bindParam(':idTipoEquipo', $modelo->getIdTipoEquipo());
-            $result->bindParam(':idMarca', $modelo->getIdMarca());
-            $result->bindParam(':descripcion', $modelo->getDescripcion());
-            $result->bindParam(':indicacion', $modelo->getIndicacion());
-            $result->bindParam(':estado', $modelo->getEstado());
-            return $result->execute();
-        }
-        
-        public static function editar(Modelo $modelo) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Modelo SET idTipoEquipo = :idTipoEquipo, idMarca = :idMarca, descripcion = :descripcion, indicacion = :indicacion, estado = :estado WHERE idModelo = :idModelo");
-            $result->bindParam(':idTipoEquipo', $modelo->getIdTipoEquipo());
-            $result->bindParam(':idMarca', $modelo->getIdMarca());
-            $result->bindParam(':descripcion', $modelo->getDescripcion());
-            $result->bindParam(':indicacion', $modelo->getIndicacion());
-            $result->bindParam(':idModelo', $modelo->getIdModelo());
-            $result->bindParam(':estado', $modelo->getEstado());
-            return $result->execute();
-        }
-        
-        public static function eliminar(Modelo $modelo) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Modelo SET estado = 2 WHERE idModelo = :idModelo");
-            $result->bindParam(':idModelo', $modelo->getIdModelo());
-            return $result->execute();
-        }
-        
-        public static function getModeloByIdModelo($idModelo) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo where idModelo = :idModelo");
-            $result->bindParam(':idModelo', $idModelo);
-            $result->execute();
-            $rs = $result->fetch();
-            $modelo = new Modelo();
-            $modelo->setIdModelo($rs['idModelo']);
-            $modelo->setIdTipoEquipo($rs['idTipoEquipo']);
-            $modelo->setIdMarca($rs['idMarca']);
-            $modelo->setDescripcion($rs['descripcion']);
-            $modelo->setIndicacion($rs['indicacion']);
-            return $modelo;
-        }
-        
-        public static function getModeloByIdMarca($idMarca) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo where idMarca = :idMarca");
-            $result->bindParam(':idMarca', $idMarca);
+        public static function getBy($campo, $valor) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo where $campo = :$campo");
+            $result->bindParam(":$campo", $valor);
             $result->execute();
             while ($rs = $result->fetch()) {
                 $modelo = new Modelo();
@@ -92,12 +36,44 @@
                 $modelo->setIndicacion($rs['indicacion']);
                 $modelos[] = $modelo; 
             }
-            if(isset($modelos))
-                return $modelos;
-            else
-                return false;
+            return isset($modelos) ? $modelos : false;
         }
         
+        public static function crear($modelo) {
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Modelo(idModelo, idTipoEquipo, idMarca, descripcion, indicacion, estado) values(:idModelo, :idTipoEquipo, :idMarca, :descripcion, :indicacion, :estado)");
+            $result->bindParam(':idModelo', $modelo->getIdModelo());
+            $result->bindParam(':idTipoEquipo', $modelo->getIdTipoEquipo());
+            $result->bindParam(':idMarca', $modelo->getIdMarca());
+            $result->bindParam(':descripcion', $modelo->getDescripcion());
+            $result->bindParam(':indicacion', $modelo->getIndicacion());
+            $result->bindParam(':estado', $modelo->getEstado());
+            return $result->execute();
+        }
+        
+        public static function editar($modelo) {
+            $result = BaseDatos::getDbh()->prepare("UPDATE Modelo SET idTipoEquipo = :idTipoEquipo, idMarca = :idMarca, descripcion = :descripcion, indicacion = :indicacion, estado = :estado WHERE idModelo = :idModelo");
+            $result->bindParam(':idTipoEquipo', $modelo->getIdTipoEquipo());
+            $result->bindParam(':idMarca', $modelo->getIdMarca());
+            $result->bindParam(':descripcion', $modelo->getDescripcion());
+            $result->bindParam(':indicacion', $modelo->getIndicacion());
+            $result->bindParam(':idModelo', $modelo->getIdModelo());
+            $result->bindParam(':estado', $modelo->getEstado());
+            return $result->execute();
+        }
+        
+        public static function eliminar($modelo) {
+            $result = BaseDatos::getDbh()->prepare("UPDATE Modelo SET estado = 2 WHERE idModelo = :idModelo");
+            $result->bindParam(':idModelo', $modelo->getIdModelo());
+            return $result->execute();
+        }
+        
+        public static function getNextID() {
+            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdModelo");
+            $result->execute();
+            $rs = $result->fetch();
+            return $rs['nextID'];
+        }
+    
         public static function getModeloByIdMarca_IdTipoEquipo($idMarca, $idTipoEquipo) {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Modelo where idMarca = :idMarca AND idTipoEquipo = :idTipoEquipo AND estado = 1");
             $result->bindParam(':idMarca', $idMarca);
@@ -113,17 +89,25 @@
                 $modelo->setIndicacion($rs['estado']);
                 $modelos[] = $modelo; 
             }
-            if(isset($modelos))
-                return $modelos;
-            else
-                return false;
+            return isset($modelos) ? $modelos : false;
         }
         
         public static function getVwModelo() {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Modelo");
             $result->execute();
-            return $result;
+            while ($rs = $result->fetch()) {
+                $vwModelo = new VwModelo();
+                $vwModelo->setIdModelo($rs['idModelo']);
+                $vwModelo->setMarca($rs['marca']);
+                $vwModelo->setTipoEquipo($rs['tipoEquipo']);
+                $vwModelo->setDescripcion($rs['descripcion']);
+                $vwModelo->setIndicacion($rs['indicacion']);
+                $vwModelo->setNroEquipos($rs['nroEquipos']);
+                $vwModelos[] = $vwModelo;
+            }
+            return isset($vwModelos) ? $vwModelos : false;
         }      
+        
         public static function getVwModeloLimit($limite) {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Modelo LIMIT 0, :limite");
             $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);

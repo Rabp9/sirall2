@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Marca/Detalle.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -47,8 +49,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="?controller=Marca&action=Editar&idMarca=<?php echo $marca->getIdMarca(); ?>">Editar</a> |
-                                <a href="?controller=Marca&action=Eliminar&idMarca=<?php echo $marca->getIdMarca(); ?>">Eliminar</a>
+                                <a class="aEditar" href="?controller=Marca&action=Editar&idMarca=<?php echo $marca->getIdMarca(); ?>">Editar</a> |
+                                <a class="aEliminar" href="?controller=Marca&action=Eliminar&idMarca=<?php echo $marca->getIdMarca(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>

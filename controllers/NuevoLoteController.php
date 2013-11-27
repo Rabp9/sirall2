@@ -5,11 +5,12 @@
     require_once '/DAO/EquipoDAO.php';
     
     class NuevoLoteController {
+        
         public static function NuevoLoteAction() {
             $tipoEquipos = TipoEquipoDAO::getAll();
-            $marcas = MarcaDAO::getAllMarca();
-            $vw_tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
-            $vw_marcas = MarcaDAO::getVwMarca();
+            $marcas = MarcaDAO::getAll();
+            $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
+            $vwMarcas = MarcaDAO::getVwMarca();
             require_once '/views/Nuevo Lote/Index.php';
         }
         

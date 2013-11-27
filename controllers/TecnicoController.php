@@ -34,14 +34,14 @@
         
         public static function DetalleAction() {
             if(isset($_GET['idTecnico'])) {
-                $tecnico = TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']);
+                $tecnico = current(TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']));
                 require_once '/views/Mantenimiento/Tecnico/Detalle.php';
             }
         }
                 
         public static function EditarAction() {
             if(isset($_GET['idTecnico'])) {
-                $tecnico = TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']);
+                $tecnico = current(TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']));
                 require_once '/views/Mantenimiento/Tecnico/Editar.php';
             }
         }
@@ -59,7 +59,7 @@
         
         public static function EliminarAction() {
             if(isset($_GET['idTecnico'])) {
-                $tecnico = TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']);
+                $tecnico = current(TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']));
                 require_once '/views/Mantenimiento/Tecnico/Eliminar.php';
             }
         }

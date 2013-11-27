@@ -178,3 +178,7 @@ button.btnSeleccionarRepuesto {
 #ulMenu.ui-menu, #ulMenu .ui-menu { 
     width: 100%; 
 }
+
+.tblImpar {
+    background-color: #D2E9F2;
+}

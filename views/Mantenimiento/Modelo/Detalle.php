@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Modelo/Detalle.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -69,8 +71,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="?controller=Modelo&action=Editar&idModelo=<?php echo $modelo->getIdModelo(); ?>">Editar</a> |
-                                <a href="?controller=Modelo&action=Eliminar&idModelo=<?php echo $modelo->getIdModelo(); ?>">Eliminar</a>
+                                <a class="aEditar" href="?controller=Modelo&action=Editar&idModelo=<?php echo $modelo->getIdModelo(); ?>">Editar</a> |
+                                <a class="aEliminar" href="?controller=Modelo&action=Eliminar&idModelo=<?php echo $modelo->getIdModelo(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>

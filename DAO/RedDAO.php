@@ -26,14 +26,16 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Red where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
             $result->execute();
-            $rs = $result->fetch();
-            $red = new Red();
-            $red->setIdRed($rs['idRed']);
-            $red->setDescripcion($rs['descripcion']);
-            $red->setDireccion($rs['direccion']);
-            $red->setTelefono($rs['telefono']);
-            $red->setEstado($rs['estado']);
-            return $red;
+            while ($rs = $result->fetch()) {
+                $red = new Red();
+                $red->setIdRed($rs['idRed']);
+                $red->setDescripcion($rs['descripcion']);
+                $red->setDireccion($rs['direccion']);
+                $red->setTelefono($rs['telefono']);
+                $red->setEstado($rs['estado']);
+                $redes[] = $red; 
+            }
+            return isset($redes) ? $redes : false;
         }
                
         public static function crear($red) {
