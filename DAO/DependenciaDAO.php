@@ -27,15 +27,17 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Dependencia where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
             $result->execute();
-            $rs = $result->fetch();
-            $dependencia = new Dependencia();
-            $dependencia->setIdDependencia($rs['idDependencia']);
-            $dependencia->setDescripcion($rs['descripcion']);
-            $dependencia->setIdRed($rs['idRed']);
-            $dependencia->setSuperIdDependencia($rs['superIdDependencia']);
-            $dependencia->setIdUsuarioJefe($rs['idUsuarioJefe']);
-            $dependencia->setEstado($rs['estado']);
-            return $dependencia;
+            while ($rs = $result->fetch()) {
+                $dependencia = new Dependencia();
+                $dependencia->setIdDependencia($rs['idDependencia']);
+                $dependencia->setDescripcion($rs['descripcion']);
+                $dependencia->setIdRed($rs['idRed']);
+                $dependencia->setSuperIdDependencia($rs['superIdDependencia']);
+                $dependencia->setIdUsuarioJefe($rs['idUsuarioJefe']);
+                $dependencia->setEstado($rs['estado']);
+                $dependencias[] = $dependencia;
+            }
+            return isset($dependencias) ? $dependencias : false;
         }
         
         public static function crear($dependencia) {

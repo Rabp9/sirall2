@@ -23,6 +23,10 @@ $(document).ready(function() {
                 .menu();
     };
     botones();
+    
+    $.fn.dataTableExt.oJUIClasses.sStripeOdd = "tblImpar"; 
+    $.fn.dataTableExt.oJUIClasses.sStripeEven = "par"; 
+    
     $('.tblLista')
     .bind('page',   function () { botones(); })
     .dataTable( {
@@ -31,7 +35,8 @@ $(document).ready(function() {
         "sPaginationType": "full_numbers",
         "sScrollY": "600px",
         "bJQueryUI": true,
-        "bScrollCollapse": true,        
+        "bScrollCollapse": true,   
+        "sStripeOdd" : "impar",     
         "oLanguage": {
             "sLengthMenu": "Mostrar _MENU_ registros por página",
             "sZeroRecords": "No se ecnontró ningún registro",
@@ -47,6 +52,7 @@ $(document).ready(function() {
             "sSearch": "Buscar"
         }
     });
+    
     $( "#mensaje" ).dialog({
         closeOnEscape: true,
         show: 'fade',

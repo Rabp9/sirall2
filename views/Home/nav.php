@@ -5,7 +5,6 @@
             <li><a href="?controller=Red"><span class="ui-icon ui-icon-red"></span>Red</a></li>
             <li><a href="?controller=Dependencia"><span class="ui-icon ui-icon-flag"></span>Dependencia</a></li>
             <li><a href="?controller=Equipo"><span class="ui-icon ui-icon-image"></span>Equipo</a></li>
-            <li><a href="?controller=Repuesto"><span class="ui-icon ui-icon-wrench"></span>Repuesto</a></li>
             <li><a href="?controller=Rol"><span class="ui-icon ui-icon-key"></span>Rol</a></li>
             <li><a href="?controller=Usuario"><span class="ui-icon ui-icon-person"></span>Usuario</a></li>
             <li><a href="?controller=Marca"><span class="ui-icon ui-icon-suitcase"></span>Marca</a></li>

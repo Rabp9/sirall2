@@ -12,7 +12,7 @@
         private $stock;
         private $estado;
         
-        public function __construct($idRepuesto = "", $descripcion = "", $unidadMedida = "", $stock = 0, $estado = 0) {
+        public function __construct($idRepuesto = "", $descripcion = "", $unidadMedida = "", $stock = 0, $estado = 1) {
             $this->idRepuesto = $idRepuesto;
             $this->descripcion = $descripcion;
             $this->unidadMedida = $unidadMedida;

@@ -34,14 +34,14 @@
         
         public static function DetalleAction() {
             if(isset($_GET['idRed'])) {
-                $red = RedDAO::getBy("idRed", $_GET['idRed']);
+                $red = current(RedDAO::getBy("idRed", $_GET['idRed']));
                 require_once '/views/Mantenimiento/Red/Detalle.php';
             }
         }
         
         public static function EditarAction() {
             if(isset($_GET['idRed'])) {
-                $red = RedDAO::getBy("idRed", $_GET['idRed']);
+                $red = current(RedDAO::getBy("idRed", $_GET['idRed']));
                 require_once '/views/Mantenimiento/Red/Editar.php';
             }
         }
@@ -63,7 +63,7 @@
         
         public static function EliminarAction() {
             if(isset($_GET['idRed'])) {
-                $red = RedDAO::getBy("idRed", $_GET['idRed']);
+                $red = current(RedDAO::getBy("idRed", $_GET['idRed']));
                 require_once '/views/Mantenimiento/Red/Eliminar.php';
             }
         }

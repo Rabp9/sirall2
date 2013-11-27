@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Equipo/Lista.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -49,24 +51,24 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($equipos)) {
-                                while ($equipo = $equipos->fetch()) {
+                            if(is_array($vwEquipos)) {
+                                foreach ($vwEquipos as $vwEquipo) {
                         ?>
                         <tr>
-                            <td><?php echo $equipo['codigoPatrimonial']; ?></td>
-                            <td><?php echo $equipo['serie']; ?></td>
-                            <td><?php echo $equipo['TipoEquipo']; ?></td>
-                            <td><?php echo $equipo['Marca']; ?></td>
-                            <td><?php echo $equipo['Modelo']; ?></td>
-                            <td><?php echo $equipo['Dependencia']; ?></td>
+                            <td><?php echo $vwEquipo->getCodigoPatrimonial(); ?></td>
+                            <td><?php echo $vwEquipo->getSerie(); ?></td>
+                            <td><?php echo $vwEquipo->getTipoEquipo(); ?></td>
+                            <td><?php echo $vwEquipo->getMarca(); ?></td>
+                            <td><?php echo $vwEquipo->getModelo(); ?></td>
+                            <td><?php echo $vwEquipo->getDependencia(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Equipo&action=Detalle&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Equipo&action=Editar&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>">Editar</a></li>
-                                    <li><a href="?controller=Equipo&action=Eliminar&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
-                                    <li><a href="?controller=Desplazamiento&action=DesplazamientoByEquipo&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/desplazar.jpg"> Realizar Desplazamiento</a></li>
-                                    <li><a href="?controller=RealizarMantenimiento&action=RealizarMantenimientoByEquipo&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"><img src="resources/images/desplazar.jpg"> Realizar Mantenimiento</a></li>
+                                    <li><a href="?controller=Equipo&action=Detalle&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Detalle</a></li>
+                                    <li><a href="?controller=Equipo&action=Editar&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Editar</a></li>
+                                    <li><a href="?controller=Equipo&action=Eliminar&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Eliminar</a></li>
+                                    <li><a href="?controller=Desplazamiento&action=DesplazamientoByEquipo&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Desplazar</a></li>
+                                    <li><a href="?controller=RealizarMantenimiento&action=RealizarMantenimientoByEquipo&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Mantenimiento</a></li>
                                 </ul>
                             </td>
                         </tr>

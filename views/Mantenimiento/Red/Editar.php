@@ -18,6 +18,7 @@
                 isRequired($('#txtDireccion'));
                 setValue($('#txtIdRed'), '<?php echo $red->getIdRed(); ?>');
                 setValue($('#txtDescripcion'), '<?php echo $red->getDescripcion(); ?>');
+                setValue($('#txtTelefono'), '<?php echo $red->getTelefono(); ?>');
                 isReadOnly($('#txtIdRed'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
@@ -59,6 +60,10 @@
                             <tr>
                                 <td><label for="txtDireccion">Dirección</label></td>
                                 <td><textarea id="txtDireccion" name="direccion" placeholder="Escribe una dirección" ><?php echo $red->getDireccion(); ?></textarea></td>  
+                            </tr>
+                            <tr>
+                                <td><label for="txtTelefono">Teléfono</label></td>
+                                <td><input id="txtTelefono" type="text" name="telefono" placeholder="Escribe un teléfono"/></td>  
                             </tr>
                             <tr>
                                 <td></td>

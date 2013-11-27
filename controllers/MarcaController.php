@@ -37,14 +37,14 @@
         
         public static function DetalleAction() {
             if(isset($_GET['idMarca'])) {
-                $marca = MarcaDAO::getMarcaByIdMarca($_GET['idMarca']);
+                $marca = current(MarcaDAO::getBy("idMarca", $_GET['idMarca']));
                 require_once '/views/Mantenimiento/Marca/Detalle.php';
             }
         }
         
         public static function EditarAction() {
             if(isset($_GET['idMarca'])) {
-                $marca = MarcaDAO::getMarcaByIdMarca($_GET['idMarca']);
+                $marca = current(MarcaDAO::getBy("idMarca", $_GET['idMarca']));
                 require_once '/views/Mantenimiento/Marca/Editar.php';
             }
         }
@@ -66,7 +66,7 @@
         
         public static function EliminarAction() {
             if(isset($_GET['idMarca'])) {
-                $marca = MarcaDAO::getMarcaByIdMarca($_GET['idMarca']);
+                $marca = current(MarcaDAO::getBy("idMarca", $_GET['idMarca']));
                 require_once '/views/Mantenimiento/Marca/Eliminar.php';
             }
         }

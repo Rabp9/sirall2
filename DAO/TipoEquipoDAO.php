@@ -24,11 +24,13 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM TipoEquipo where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
             $result->execute();
-            $rs = $result->fetch();
-            $tipoEquipo = new TipoEquipo();
-            $tipoEquipo->setIdTipoEquipo($rs['idTipoEquipo']);
-            $tipoEquipo->setDescripcion($rs['descripcion']);
-            return $tipoEquipo;
+            while ($rs = $result->fetch()) {
+                $tipoEquipo = new TipoEquipo();
+                $tipoEquipo->setIdTipoEquipo($rs['idTipoEquipo']);
+                $tipoEquipo->setDescripcion($rs['descripcion']);
+                $tipoEquipos[] = $tipoEquipo; 
+            }
+            return isset($tipoEquipos) ? $tipoEquipos : false;
         }
                
         public static function crear($tipoEquipo) {

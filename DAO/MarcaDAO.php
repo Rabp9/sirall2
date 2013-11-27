@@ -3,6 +3,7 @@
 <?php
     require_once '/DAO/AppDAO.php';
     require_once '/models/Marca.php';
+    require_once '/models/VwMarca.php';
     require_once '/Libs/BaseDatos.php';
     
     class MarcaDAO implements appDAO {
@@ -24,12 +25,14 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Marca where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
             $result->execute();
-            $rs = $result->fetch();
-            $marca = new Marca();
-            $marca->setIdMarca($rs['idMarca']);
-            $marca->setDescripcion($rs['descripcion']);
-            $marca->setIndicacion($rs['indicacion']);
-            return $marca;
+            while ($rs = $result->fetch()) {
+                $marca = new Marca();
+                $marca->setIdMarca($rs['idMarca']);
+                $marca->setDescripcion($rs['descripcion']);
+                $marca->setIndicacion($rs['indicacion']);
+                $marcas[] = $marca; 
+            }
+            return isset($marcas) ? $marcas : false;
         }
         
         public static function crear($marca) {
@@ -64,7 +67,8 @@
         }
         
         public static function getVwMarca() {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Marca");
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Marca");    
+            $result->execute();
             while ($rs = $result->fetch()) {
                 $vwMarca = new VwMarca();
                 $vwMarca->setIdMarca($rs['idMarca']);
@@ -72,8 +76,7 @@
                 $vwMarca->setIndicacion($rs['indicacion']);
                 $vwMarca->setNroModelos($rs['nroModelos']);
                 $vwMarca->setNroEquipos($rs['nroEquipos']);
-                echo 'dasdsa';
-                $vwMarcas[] = $vwMarca; 
+                $vwMarcas[] = $vwMarca;
             }
             return isset($vwMarcas) ? $vwMarcas : false;
         }

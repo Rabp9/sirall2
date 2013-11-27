@@ -27,15 +27,17 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Tecnico where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
             $result->execute();
-            $rs = $result->fetch();
-            $tecnico = new Tecnico();
-            $tecnico->setIdTecnico($rs['idTecnico']);
-            $tecnico->setNombres($rs['nombres']);
-            $tecnico->setApellidoPaterno($rs['apellidoPaterno']);
-            $tecnico->setApellidoMaterno($rs['apellidoMaterno']);
-            $tecnico->setRpm($rs['rpm']);
-            $tecnico->setEstado($rs['estado']);
-            return $tecnico;
+            while ($rs = $result->fetch()) {
+                $tecnico = new Tecnico();
+                $tecnico->setIdTecnico($rs['idTecnico']);
+                $tecnico->setNombres($rs['nombres']);
+                $tecnico->setApellidoPaterno($rs['apellidoPaterno']);
+                $tecnico->setApellidoMaterno($rs['apellidoMaterno']);
+                $tecnico->setRpm($rs['rpm']);
+                $tecnico->setEstado($rs['estado']);
+                $tecnicos[] = $tecnico; 
+            }
+            return isset($tecnicos) ? $tecnicos : false;
         }
         
         public static function crear($tecnico) {

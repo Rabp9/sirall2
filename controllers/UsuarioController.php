@@ -47,8 +47,8 @@
         
         public static function DetalleAction() {
             if(isset($_GET['idUsuario'])) {
-                $usuario = UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']);
-                $dependencia = DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia());
+                $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
+                $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
                 $red = RedDAO::getBy("idRed", $dependencia->getIdRed());
                 require_once '/views/Mantenimiento/Usuario/Detalle.php';
             }
@@ -56,8 +56,8 @@
         
         public static function EditarAction() {
             if(isset($_GET['idUsuario'])) {
-                $usuario = UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']);
-                $redes = RedDAO::getAll();      
+                $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
+                $redes = current(RedDAO::getAll());
                 $dependencias = DependenciaDAO::getAll();   
                 require_once '/views/Mantenimiento/Usuario/Editar.php';
             }
@@ -84,9 +84,9 @@
         
         public static function EliminarAction() {
             if(isset($_GET['idUsuario'])) {
-                $usuario = UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']);
-                $dependencia = DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia());
-                $red = RedDAO::getBy("idRed", $dependencia->getIdRed());
+                $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
+                $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
+                $red = current(RedDAO::getBy("idRed", $dependencia->getIdRed()));
                 require_once '/views/Mantenimiento/Usuario/Eliminar.php';
             }
         }

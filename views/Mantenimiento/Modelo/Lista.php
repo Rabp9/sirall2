@@ -1,3 +1,5 @@
+<!-- File: /views/Mantenimiento/Modelo/Lista.php -->
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -49,22 +51,22 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($modelos)) {
-                                while ($modelo = $modelos->fetch()) {
+                            if(is_array($vwModelos)) {
+                                foreach ($vwModelos as $vwModelo) {
                         ?>
                         <tr>
-                            <td><?php echo $modelo['idModelo']; ?></td>
-                            <td><?php echo $modelo['Tipo de Equipo']; ?></td>
-                            <td><?php echo $modelo['Marca']; ?></td>
-                            <td><?php echo $modelo['descripcion']; ?></td>
-                            <td><?php echo $modelo['indicacion']; ?></td>
-                            <td><?php echo $modelo['Nro Equipos']; ?></td>
+                            <td><?php echo $vwModelo->getIdModelo(); ?></td>
+                            <td><?php echo $vwModelo->getTipoEquipo(); ?></td>
+                            <td><?php echo $vwModelo->getMarca(); ?></td>
+                            <td><?php echo $vwModelo->getDescripcion(); ?></td>
+                            <td><?php echo $vwModelo->getIndicacion(); ?></td>
+                            <td><?php echo $vwModelo->getNroEquipos(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Modelo&action=Detalle&idModelo=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Modelo&action=Editar&idModelo=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=Modelo&action=Eliminar&idModelo=<?php echo $modelo['idModelo']; ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Modelo&action=Detalle&idModelo=<?php echo $vwModelo->getIdModelo(); ?>">Detalle</a></li>
+                                    <li><a href="?controller=Modelo&action=Editar&idModelo=<?php echo $vwModelo->getIdModelo(); ?>">Editar</a></li>
+                                    <li><a href="?controller=Modelo&action=Eliminar&idModelo=<?php echo $vwModelo->getIdModelo(); ?>">Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>
