@@ -1,10 +1,13 @@
+<!-- File: /controllers/NuevoLoteController.php -->
+
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/TipoEquipoDAO.php';
     require_once '/DAO/MarcaDAO.php';
     require_once '/DAO/ModeloDAO.php';
     require_once '/DAO/EquipoDAO.php';
     
-    class NuevoLoteController {
+    class NuevoLoteController implements AppController {
         
         public static function NuevoLoteAction() {
             $tipoEquipos = TipoEquipoDAO::getAll();
@@ -30,11 +33,11 @@
                         if(EquipoDAO::crear($equipo))   $n_equipos++;
                     }
                 }
-                
+                $mensaje = "Registro enviado correctamente";
                 // Información de Confirmación
-                $modelo = ModeloDAO::getModeloByIdModelo($_POST['idModelo']);
-                $marca = MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca());
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
+                $modelo = current(ModeloDAO::getBy("idModelo", $_POST['idModelo']));
+                $marca = current(MarcaDAO::getBy("idMarca", $modelo->getIdMarca()));
+                $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
                 $indicacion = $_POST['indicacion'];
             }
             require_once '/views/Nuevo Lote/Confirmacion.php';

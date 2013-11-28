@@ -1,24 +1,32 @@
-<!-- File: /models/Opcion.php -->
+<!-- File: /models/SubOpcion.php -->
 
 <?php
     require_once '/models/AppModel.php';
     /*
-     * Clase Opción de Tipo de Equipo
+     * Clase Subopción de Opción de Tipo de Equipo
      */
-    class Opcion implements AppModel {
+    class SubOpcion implements AppModel {
        
+        private $idSubOpcion;
         private $idOpcion;
-        private $idTipoEquipo;
         private $descripcion;
         
-        public function  __construct($idOpcion = 0, $idTipoEquipo = "", $descripcion = "") {
+        public function  __construct($idSubOpcion = 0, $idOpcion = 0, $descripcion = "") {
+            $this->idSubOpcion = $idSubOpcion;
             $this->idOpcion = $idOpcion;
-            $this->idTipoEquipo = $idTipoEquipo;
             $this->descripcion = $descripcion;
         }
             
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
    
+        public function setIdSubOpcion($idSubOpcion) {
+            $this->idSubOpcion = $idSubOpcion;
+        }
+               
+        public function getIdSubOpcion() {
+            return $this->idSubOpcion;
+        }
+               
         public function setIdOpcion($idOpcion) {
             $this->idOpcion = $idOpcion;
         }
@@ -26,15 +34,7 @@
         public function getIdOpcion() {
             return $this->idOpcion;
         }
-        
-        public function setIdTipoEquipo($idTipoEquipo) {
-            $this->idTipoEquipo = $idTipoEquipo;
-        }
-               
-        public function getIdTipoEquipo() {
-            return $this->idTipoEquipo;
-        }
-        
+
         public function setDescripcion($descripcion) {
             $this->descripcion = $descripcion;
         }

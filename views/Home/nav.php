@@ -15,7 +15,7 @@
     </li>
     <li><a href="?controller=NuevoLote"><span class="ui-icon ui-icon-plus"></span>Nuevo Lote</a></li>
     <li><a href="?controller=AsignarJefeDependencia"><span class="ui-icon ui-icon-transferthick-e-w"></span>Asignar Jefe de Dependencia</a></li>
-    <li><a href="?controller=RegistrarUsuario"><span class="ui-icon ui-icon-person"></span>Registrar Usuario</a></li>
+    <li><a href="?controller=RegistrarUsuarioSistema"><span class="ui-icon ui-icon-person"></span>Registrar Usuario Sistema</a></li>
     <li>
         <a href="?controller=Repuesto"><span class="ui-icon ui-icon-wrench"></span>Repuesto</a>
         <ul>

@@ -15,6 +15,26 @@
                 $('#btnAsignarJefeDependencia').button().focus().click(function() {
                     window.location = "?controller=AsignarJefeDependencia";
                 });
+                $( "#mensaje" ).dialog({
+                    closeOnEscape: true,
+                    show: 'fade',
+                    hide: 'fade',
+                    open: function(event, ui){
+                        setTimeout("$('#mensaje').dialog('close')",3000);
+                    },
+                    position: { 
+                        at: "right top", 
+                        of: window
+                    },
+                    buttons: [
+                        {
+                            text: "OK",
+                            click: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    ]
+                });
             });
         </script>
 
@@ -37,6 +57,9 @@
                         <h4>Confirmación de asignación de Jefe de Dependencia</h4>
                     </hgroup>
                 </header>
+                <?php if(isset($mensaje)) { ?>
+                <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
+                <?php } ?>
                 <fieldset>
                     <legend>Información de Dependencia</legend>
                     <table>
@@ -55,7 +78,7 @@
                         <tr>
                             <td><strong>Dependencia Superior:</strong></td>
                             <td>
-                                <?php if($superDependencia->getDescripcion() != NULL) { ?>
+                                <?php if($superDependencia != NULL) { ?>
                                 <div class="bubbleInfo">
                                     <span class="trigger"><?php echo $superDependencia->getDescripcion(); ?></span>
                                     <table class="popup">

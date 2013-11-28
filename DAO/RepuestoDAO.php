@@ -1,10 +1,13 @@
+<!-- File: /DAO/RepuestoDAO.php -->
+
 <?php
+    require_once '/DAO/AppDAO.php';
     require_once '/models/Repuesto.php';
     require_once '/models/IngresoRepuesto.php';
     require_once '/models/SalidaRepuesto.php';
     require_once '/Libs/BaseDatos.php';
     
-    class RepuestoDAO {
+    class RepuestoDAO implements appDAO {
 
         public static function getAllRepuesto() {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Repuesto WHERE estado = 1");

@@ -12,18 +12,13 @@
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript" src="resources/js/template.lista.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.styleTable.js"></script>
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#chbDependencia').button();
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
-                $('#chbDependencia').change(function(){
-                    if($(this).is(':checked'))
-                        $('#cbo').css('display', 'table-cell');
-                    else
-                        $('#cbo').css('display', 'none');
-                });
+
                 // INICIO Tipo de Equipo
                 var tipoEquipoTags = new Array();
                 <?php
@@ -98,18 +93,6 @@
                 });
                 $('#btnIdTipoEquipo').click(function() {
                     $('#divTipoEquipo').dialog('open');
-                });
-                $('.btnSeleccionarTipoEquipo').button({
-                    icons: {
-                        primary: "ui-icon-check"
-                    },
-                    text: false
-                }).click(function() {
-                    var idTipoEquipo = $(this).parents('tr').find('td').eq(0).text();
-                    setValue($('#txtIdTipoEquipo'), idTipoEquipo);
-                    comprobarTipoEquipo();
-                    cboModelo();
-                    $('#divTipoEquipo').dialog('close');
                 });
                 // FIN Tipo de Equipo
                 //
@@ -188,50 +171,17 @@
                 $('#btnIdMarca').click(function() {
                     $('#divMarca').dialog('open');
                 });
-                $('.btnSeleccionarMarca').button({
-                    icons: {
-                        primary: "ui-icon-check"
-                    },
-                    text: false
-                }).click(function() {
-                    var idMarca = $(this).parents('tr').find('td').eq(0).text();
-                    setValue($('#txtIdMarca'), idMarca);
-                    comprobarMarca();
-                    cboModelo();
-                    $('#divMarca').dialog('close');
-                });
                 // FIN Marca
                 //
                 // 
                 // INICIO Estilizar Tabla
-                (function ($) {
-                $.fn.styleTable = function (options) {
-                    var defaults = {
-                        css: 'ui-styled-table'
-                    };
-                    options = $.extend(defaults, options);
-
-                    return this.each(function () {
-                        $this = $(this);
-                        $this.addClass(options.css);
-
-                        $this.on('mouseover mouseout', 'tbody tr', function (event) {
-                            $(this).children().toggleClass("ui-state-hover",
-                                                           event.type == 'mouseover');
-                        });
-
-                        $this.find("th").addClass("ui-widget-header");
-                        $this.find("td").addClass("ui-widget-content");
-                        $this.find("tr:last-child").addClass("last-child");
-                    });
-                };
-                })(jQuery);
                 $('#tblLote').styleTable(event);
                 // FIN Estilizar Tabla
-                // 
-                // 
+                //
+                //
                 // INICIO Modelo
                 var cboModelo = function() {
+                    alert("dasdas");
                     $.ajax({
                         url: 'Index.php',
                         type: 'GET',
@@ -270,6 +220,26 @@
                 });
                 // FIN Validar Form
             });
+           
+            var cboModelo = function() {
+                $.ajax({
+                    url: 'Index.php',
+                    type: 'GET',
+                    data: {
+                        controller: 'Modelo',
+                        action: 'modeloAJAX',
+                        idMarca: $('#txtIdMarca').val(),
+                        idTipoEquipo: $('#txtIdTipoEquipo').val()
+                    },
+                    success: function(data) {
+                        $('#cboModelo').html("<option disabled selected value=''>Selecciona un Modelo</option>");
+                        $(data).find('Modelo').each(function() {
+                            var option = new Option($(this).find('descripcion').text(), $(this).find('idModelo').text());
+                            $('#cboModelo').append(option);
+                        });
+                    }
+                })
+            }; 
             
             // INICIO presionar tecla
             function teclaPress(e) {
@@ -277,9 +247,10 @@
                 var row_index = $this.parent().parent().index();
                 var rows_count = $('#tblLote tbody tr').length;
                 if(row_index === (rows_count - 1) && $this.val() !== '')
-                    $('#tblLote tbody').append("<tr><td><input type='text' value='' onkeyup='teclaPress(event);' name='codigoPatrimonial[]'></td><td><input type='text' value='' name='serie[]'></td></tr>");
+                    $('#tblLote tbody').append("<tr><td><input type='text' value='' onkeyup='teclaPress(event);' name='codigoPatrimonial[]' maxlength='8' placeholder='Código Patrimonial' pattern='^00[0-9]{6}'></td><td><input type='text' value='' name='serie[]' placeholder='Serie'></td></tr>");
                 if(row_index === (rows_count - 2) && $this.val() === '')
                     $('#tblLote tbody tr:eq(' + (row_index - 1) + ')').remove();
+                $('#tblLote').styleTable(event);
             };
             // FIN presionar tecla
         </script>
@@ -369,8 +340,8 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input type="text" value="" onkeyup="teclaPress(event);" name="codigoPatrimonial[]"></td>
-                                            <td><input type="text" value="" name="serie[]"></td>
+                                            <td><input type="text" value="" onkeyup="teclaPress(event);" name="codigoPatrimonial[]" maxlength="8" placeholder="Código Patrimonial" pattern="^00[0-9]{6}"></td>
+                                            <td><input type="text" value="" name="serie[]" placeholder="Serie"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -399,14 +370,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    if(isset($vw_tipoEquipos)) {
-                                        while ($vw_tipoEquipo = $vw_tipoEquipos->fetch()) {
+                                    if(is_array($vwTipoEquipos)) {
+                                        foreach ($vwTipoEquipos as $vwTipoEquipo) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $vw_tipoEquipo['idTipoEquipo']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['descripcion']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['Nro Modelos']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['Nro Equipos']; ?></td>
+                                    <td><?php echo $vwTipoEquipo->getIdTipoEquipo(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getDescripcion(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getNroModelos(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getNroEquipos(); ?></td>
                                     <td><button class="btnSeleccionarTipoEquipo"></button></td>
                                 </tr>
                                 <?php
@@ -444,6 +415,7 @@
                                 }
                             ?>
                             $('#divTipoEquipo').dialog('close');
+                            cboModelo();
                         });
                     </script>
                     <!-- Dialog Modal para Marca -->
@@ -460,14 +432,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    if(isset($vw_marcas)) {
-                                        while ($vw_marca = $vw_marcas->fetch()) {
+                                    if(is_array($vwMarcas)) {
+                                        foreach ($vwMarcas as $vwMarca) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $vw_marca['idMarca']; ?></td>
-                                    <td><?php echo $vw_marca['descripcion']; ?></td>
-                                    <td><?php echo $vw_marca['Nro Modelos']; ?></td>
-                                    <td><?php echo $vw_marca['Nro Equipos']; ?></td>
+                                    <td><?php echo $vwMarca->getIdMarca(); ?></td>
+                                    <td><?php echo $vwMarca->getDescripcion(); ?></td>
+                                    <td><?php echo $vwMarca->getNroModelos(); ?></td>
+                                    <td><?php echo $vwMarca->getNroEquipos(); ?></td>
                                     <td><button class="btnSeleccionarMarca"></button></td>
                                 </tr>
                                 <?php
@@ -505,6 +477,7 @@
                                 }
                             ?>
                             $('#divMarca').dialog('close');
+                            cboModelo();
                         });
                     </script>
                 </form>

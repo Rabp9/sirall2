@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
+      
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/jquery.treeview.css"/>
@@ -12,29 +12,31 @@
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.lista.js"></script>
         <script type="text/javascript" src="resources/js/template.dependenciaSelect.js"></script>
         <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.styleTable.js"></script>
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
-        <script type="text/javascript" src="resources/js/template.lista.js"></script>
+        <script type="text/javascript" src="resources/js/template.dato.js"></script>
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtCodigoPatrimonial'));
                 isRequired($('#txtSerie'));
-                setValue($('#txtCodigoPatrimonial'), '<?php echo $equipo->getCodigoPatrimonial(); ?>');
-                setValue($('#txtSerie'), '<?php echo $equipo->getSerie(); ?>');
-                setValue($('#txtIndicacion'), '<?php echo $equipo->getIndicacion(); ?>');                
-                setValue($('#txtIdTipoEquipo'), '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>');
-                setValue($('#txtTipoEquipo'), '<?php echo $tipoEquipo->getDescripcion(); ?>');
-                setValue($('#txtIdMarca'), '<?php echo $marca->getIdMarca(); ?>');
-                setValue($('#txtMarca'), '<?php echo $marca->getDescripcion(); ?>');
-                isReadOnly($('#txtCodigoPatrimonial'));
-                isReadOnly($('#txtSerie'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtIdTipoEquipo').focus();
                 $('#asistente').tabs();
+                $('#tblDetalle').dato();
                 
+                setValue($('#txtCodigoPatrimonial'), '<?php echo $equipo->getCodigoPatrimonial(); ?>');
+                setValue($('#txtSerie'), '<?php echo $equipo->getSerie(); ?>');
+                setValue($('#txtIndicacion'), '<?php echo $equipo->getIndicacion(); ?>');     
+                setValue($('#txtIdTipoEquipo'), '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>');
+                setValue($('#txtTipoEquipo'), '<?php echo $tipoEquipo->getDescripcion(); ?>');
+                setValue($('#txtIdMarca'), '<?php echo $marca->getIdMarca(); ?>');           
+                setValue($('#txtMarca'), '<?php echo $marca->getDescripcion(); ?>');
+                mostrarOpcionesTipoEquipo("<?php echo $tipoEquipo->getIdTipoEquipo(); ?>")
                 // INICIO TABS
                 $('div#asistente div:not(:first)').append("<button class='prev' type='button'>Anterior</button>");
                 $('.prev').click(function() {
@@ -51,6 +53,7 @@
                 $('button.prev').button();
                 // FIN TABS
                 // 
+                // 
                 // INICIO Tipo de Equipo
                 var tipoEquipoTags = new Array();
                 <?php
@@ -61,7 +64,8 @@
                 <?php
                         }
                     }
-                ?>             
+                ?>
+                        
                 $("#txtIdTipoEquipo").autocomplete({
                     source: 
                         function(request, response) {
@@ -70,15 +74,16 @@
                             response(results.slice(0, 10));
                         }
                 });
-                $("#txtIdTipoEquipo").autocomplete({ autoFocus: true });      
+                $("#txtIdTipoEquipo").autocomplete({ autoFocus: true });
                 $('#btnIdTipoEquipo').button({
                     icons: {
                         primary: "ui-icon-search"
                     },
                     text: false
-                });            
+                });
                 $('#btnIdTipoEquipo').css('height', parseInt($("#txtIdTipoEquipo").css('height')) + 8);
                 $("#txtIdTipoEquipo").css('width', parseInt($("#txtIdTipoEquipo").css('width')) - 48);
+                
                 var comprobarTipoEquipo = function() {
                     var idTipoEquipo = $('#txtIdTipoEquipo').val();
                     var r = false;
@@ -88,6 +93,7 @@
                     ?>
                                 if(idTipoEquipo === '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>') {
                                     $('#txtTipoEquipo').val('<?php echo $tipoEquipo->getDescripcion(); ?>');
+                                    mostrarOpcionesTipoEquipo(idTipoEquipo);
                                     r = true;
                                 }
                     <?php
@@ -97,7 +103,8 @@
                     <?php
                         }
                     ?>
-                };              
+                }; 
+                
                 $('#txtIdTipoEquipo').keyup(comprobarTipoEquipo);
                 $('#txtIdTipoEquipo').on( "autocompleteclose", comprobarTipoEquipo);
                 
@@ -124,6 +131,7 @@
                     $('#divTipoEquipo').dialog('open');
                 });
                 // FIN Tipo de Equipo
+                //
                 //
                 // INICIO Marca
                 var marcaTags = new Array();
@@ -154,7 +162,6 @@
                 });
                 $('#btnIdMarca').css('height', parseInt($("#txtIdMarca").css('height')) + 8);
                 $('#txtIdMarca').css('width', parseInt($("#txtIdMarca").css('width')) - 48);
-               
                 var comprobarMarca = function() {
                     var idMarca = $('#txtIdMarca').val();
                     var r = false;
@@ -173,10 +180,11 @@
                     <?php
                         }
                     ?>
-                };
+                }; 
+                
                 $('#txtIdMarca').keyup(comprobarMarca);
                 $('#txtIdMarca').on( "autocompleteclose", comprobarMarca); 
-             
+                
                 $( '#divMarca' ).dialog({
                     autoOpen: false,
                     modal: true,
@@ -203,7 +211,7 @@
                 //
                 //
                 // INICIO Validar Form
-                $('#frmEditarEquipo').submit(function() {
+                $('#frmCrearEquipo').submit(function() {
                     if($('#txtTipoEquipo').val() === '') {
                         alert('Ingrese un tipo de equipo');
                         $('#txtIdTipoEquipo').focus();
@@ -215,6 +223,7 @@
                         return false;
                     }   
                 });
+                
                 $('form').submit(function() {
                     if(!$('#txtDependenciaSeleccionada').text().length) {
                         alert('Debes elegir una dependencia');
@@ -222,8 +231,8 @@
                     }
                 });
                 // FIN Validar Form
-                // 
-                // 
+                //
+                //
                 // INICIO Modelo
                 var cboModelo = function() {
                     $.ajax({
@@ -250,8 +259,37 @@
                 $('#txtIdTipoEquipo').on( "autocompleteclose", cboModelo);
                 $('#txtIdMarca').on( "autocompleteclose", cboModelo);
                 // FIN cboModelo     
-                // 
-                // 
+                //
+                //
+                // INICIO Seleccionar Dependencia
+                $('#btnSeleccionar').click(function() {
+                    var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
+                    if($($dependenciaSeleccionada).length) {
+                        $.ajax({
+                            url: 'Index.php',
+                            type: 'GET',
+                            data: {
+                                controller: 'Usuario',
+                                action: 'usuarioAJAX',
+                                idDependencia: $('#hdnDependencia').val()
+                            },
+                            success: function(data) {
+                                $('#cboUsuario').html("<option disabled selected value=''>Selecciona un Usuario</option>");
+                                $(data).find('Usuario').each(function() {
+                                    var option = new Option($(this).find('apellidoPaterno').text() + ' ' + $(this).find('apellidoMaterno').text() + ', ' + $(this).find('nombres').text(), $(this).find('idUsuario').text());
+                                    $('#cboUsuario').append(option);
+                                });
+                            }
+                        })
+                    }
+                });
+                // FIN Seleccionar Dependencia
+                //
+                //
+                // INICIO Estilizar Tabla
+                $('#tblDetalle').styleTable(event);
+                // FIN Estilizar Tabla
+                
                 // INICIO Editar Seleccionar Dependencia
                 var idDependencia = '<?php echo $usuario->getIdDependencia(); ?>';
                 $("#ulDependencia li button").not($("button[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().find('button:eq(0)').addClass('selected');
@@ -260,8 +298,7 @@
                 $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");   
                 $('#hdnDependencia').val('<?php echo $usuario->getIdDependencia(); ?>');
                 // FIN Editar Seleccionar Dependencia
-                // 
-                // 
+                 
                 // INICIO Seleccionar Dependencia
                 var btnSeleccionar = function() {
                     var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
@@ -289,59 +326,112 @@
                 btnSeleccionar();
                 $('#btnSeleccionar').click(btnSeleccionar);
                 // FIN Seleccionar Dependencia
-                // 
-                // 
-                // INICIO Estilizar Tabla
-                (function ($) {
-                $.fn.styleTable = function (options) {
-                    var defaults = {
-                        css: 'ui-styled-table'
-                    };
-                    options = $.extend(defaults, options);
-
-                    return this.each(function () {
-                        $this = $(this);
-                        $this.addClass(options.css);
-
-                        $this.on('mouseover mouseout', 'tbody tr', function (event) {
-                            $(this).children().toggleClass("ui-state-hover",
-                                                           event.type == 'mouseover');
-                        });
-
-                        $this.find("th").addClass("ui-widget-header");
-                        $this.find("td").addClass("ui-widget-content");
-                        $this.find("tr:last-child").addClass("last-child");
-                    });
-                };
-                })(jQuery);
-                $('#tblDetalle').styleTable(event);
-                // FIN Estilizar Tabla
-                //
-                // 
-                // INICIO mostrar datos
+          
                 <?php 
                     if(is_array($datos))
                         foreach($datos as $dato) { 
                 ?>
-                var clave = '<?php echo $dato->getClave(); ?>';
-                var valor = '<?php echo $dato->getValor(); ?>';
-                $('#tblDetalle tbody').append("<tr><td><input type='text' value='" + clave + "' onkeyup='teclaPress(event);' name='clave[]'></td><td><input type='text' value='" + valor + "' name='valor[]'></td></tr>");
+                var $trDato = $("#tblDetalle tbody td.clave input[value=<?php echo $dato->getClave(); ?>]").parent().parent();
+                $trDato.find("td.valor input, td.valor select").val("<?php echo $dato->getValor(); ?>");
                 <?php   }   ?>
-                $('#tblDetalle tbody').append("<tr><td><input type='text' value='' onkeyup='teclaPress(event);' name='clave[]'></td><td><input type='text' value='' name='valor[]'></td></tr>");
-                // FIN Mostrar Datos
             });
+          
+            var cboModelo = function() {
+                $.ajax({
+                    url: 'Index.php',
+                    type: 'GET',
+                    data: {
+                        controller: 'Modelo',
+                        action: 'modeloAJAX',
+                        idMarca: $('#txtIdMarca').val(),
+                        idTipoEquipo: $('#txtIdTipoEquipo').val()
+                    },
+                    success: function(data) {
+                        $('#cboModelo').html("<option disabled selected value=''>Selecciona un Modelo</option>");
+                        $(data).find('Modelo').each(function() {
+                            var option = new Option($(this).find('descripcion').text(), $(this).find('idModelo').text());
+                            $('#cboModelo').append(option);
+                        });
+                    }
+                })
+    
+            }; 
             
-            // INICIO presionar tecla
-            function teclaPress(e) {
-                var $this = $(e.target);
-                var row_index = $this.parent().parent().index();
-                var rows_count = $('#tblDetalle tbody tr').length;
-                if(row_index === (rows_count - 1) && $this.val() !== '')
-                    $('#tblDetalle tbody').append("<tr><td><input type='text' value='' onkeyup='teclaPress(event);' name='clave[]'></td><td><input type='text' value='' name='valor[]'></td></tr>");
-                if(row_index === (rows_count - 2) && $this.val() === '')
-                    $('#tblDetalle tbody tr:eq(' + (row_index - 1) + ')').remove();
-            };
-            // FIN presionar tecla
+            function mostrarOpcionesTipoEquipo(idTipoEquipo) {
+                $("#tblDetalle tbody").html("");
+                var opciones = getOpciones(idTipoEquipo);
+                opciones.forEach(function(opcion) {
+                    // mostrar opcion
+                    $("#tblDetalle tbody").append("<tr><td class='clave'><input type='hidden' name='clave[]' value='" + opcion.idOpcion + "' />" + opcion.descripcion + "</td><td class='valor'></td></tr>");
+                    var $trOpcion = $("#tblDetalle tbody tr:last");
+                    var subOpciones = getSubOpciones(opcion.idOpcion);
+                    if(subOpciones.length !== 0) {   
+                        var select = $.parseHTML("<select name='valor[]'><option disabled selected value=''>Selecciona un Modelo</option></select>");
+                        subOpciones.forEach(function(subOpcion) {
+                            var opt = new Option(subOpcion.descripcion, subOpcion.idSubOpcion);
+                            $(select).append(opt);
+                        });
+                        $trOpcion.find("td.valor").append($(select));
+                    }
+                    else {      
+                        var txtSubOpcion = $.parseHTML("<input type='text' name='valor[]' />");
+                        $trOpcion.find("td.valor").append($(txtSubOpcion));
+                    }
+                });
+                $('#tblDetalle').styleTable(event);
+            }
+            
+            function getOpciones(idTipoEquipo) {
+                var opciones = [];
+                var xmlResponse = $.ajax({
+                    url: "Index.php",
+                    type: "GET",            
+                    global: false,
+                    async: false,
+                    data: {
+                        controller: "TipoEquipo",
+                        action: "getOpciones",
+                        idTipoEquipo: idTipoEquipo
+                    },
+                    success: function( xmlResponse ) {
+                        return xmlResponse;
+                    }
+                }).responseText;
+                $(xmlResponse).find("Opcion").each(function() {
+                    var opcion = {
+                        idOpcion: $(this).find('idOpcion').text() ,
+                        descripcion: $(this).find('descripcion').text() 
+                    };
+                    opciones.push(opcion);
+                });
+                return opciones;
+            }
+            
+            function getSubOpciones(idOpcion) {
+                var subOpciones = [];
+                var xmlResponse = $.ajax({
+                    url: "Index.php",
+                    type: "GET",            
+                    global: false,
+                    async: false,
+                    data: {
+                        controller: "TipoEquipo",
+                        action: "getSubOpciones",
+                        idOpcion: idOpcion
+                    },
+                    success: function( xmlResponse ) {
+                        return xmlResponse;
+                    }
+                }).responseText;
+                $(xmlResponse).find("SubOpcion").each(function() {
+                    var subOpcion = {
+                        idSubOpcion: $(this).find('idSubOpcion').text() ,
+                        descripcion: $(this).find('descripcion').text() 
+                    };
+                    subOpciones.push(subOpcion);
+                });
+                return subOpciones;
+            }
         </script>
         
         <title>SIRALL2 - Editar Equipo</title>
@@ -365,7 +455,7 @@
                 </header>
                 <form id="frmEditarEquipo" method="POST" action="?controller=Equipo&action=EditarPOST">
                     <fieldset>
-                        <legend>Crear Equipo</legend>
+                        <legend>Editar Equipo</legend>
                         <div id="asistente">
                             <ul>
                                 <li><a href="#general">Información General</a></li>
@@ -414,6 +504,7 @@
                                                 <select id="cboModelo" name="idModelo">
                                                     <option disabled selected value="">Selecciona un Modelo</option>
                                                 </select>
+                                                <a href="?controller=Modelo&action=Crear">Crear nuevo Modelo</a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -440,7 +531,7 @@
                                 <table>
                                     <tr>
                                         <td><label for="txtCodigoPatrimonial">Código Patrimonial</label></td>
-                                        <td><input id="txtCodigoPatrimonial" type="text" name="codigoPatrimonial" placeholder="Escribe el código Patrimonial"></td>
+                                        <td><input id="txtCodigoPatrimonial" type="text" name="codigoPatrimonial" maxlength="8" placeholder="Escribe el código Patrimonial" pattern="^00[0-9]{6}"></td>
                                     </tr>
                                 <tr>
                                     <td><label for="txtSerie">Serie</label></td>
@@ -452,12 +543,12 @@
                                 </tr>
                             </table>
                             </div>
-                            <div id="detalle" class="tblIngresoAutomatico">
+                            <div id="detalle">
                                 <table id="tblDetalle">
                                     <thead>
                                         <tr>
-                                            <th>Clave</th>
-                                            <th>Valor</th>
+                                            <th>Componente SW / HW</th>
+                                            <th>Detalle</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -547,14 +638,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    if(isset($vw_tipoEquipos)) {
-                                        while ($vw_tipoEquipo = $vw_tipoEquipos->fetch()) {
+                                    if(is_array($vwTipoEquipos)) {
+                                        foreach ($vwTipoEquipos as $vwTipoEquipo) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $vw_tipoEquipo['idTipoEquipo']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['descripcion']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['Nro Modelos']; ?></td>
-                                    <td><?php echo $vw_tipoEquipo['Nro Equipos']; ?></td>
+                                    <td><?php echo $vwTipoEquipo->getIdTipoEquipo(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getDescripcion(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getNroModelos(); ?></td>
+                                    <td><?php echo $vwTipoEquipo->getNroEquipos(); ?></td>
                                     <td><button class="btnSeleccionarTipoEquipo"></button></td>
                                 </tr>
                                 <?php
@@ -582,6 +673,7 @@
                             ?>
                                         if(idTipoEquipo === '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>') {
                                             $('#txtTipoEquipo').val('<?php echo $tipoEquipo->getDescripcion(); ?>');
+                                            mostrarOpcionesTipoEquipo(idTipoEquipo)
                                             r = true;
                                         }
                             <?php
@@ -592,6 +684,7 @@
                                 }
                             ?>
                             $('#divTipoEquipo').dialog('close');
+                            cboModelo();
                         });
                     </script>
                     <!-- Dialog Modal para Marca -->
@@ -608,14 +701,14 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    if(isset($vw_marcas)) {
-                                        while ($vw_marca = $vw_marcas->fetch()) {
+                                    if(is_array($vwMarcas)) {
+                                        foreach ($vwMarcas as $vwMarca) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $vw_marca['idMarca']; ?></td>
-                                    <td><?php echo $vw_marca['descripcion']; ?></td>
-                                    <td><?php echo $vw_marca['Nro Modelos']; ?></td>
-                                    <td><?php echo $vw_marca['Nro Equipos']; ?></td>
+                                    <td><?php echo $vwMarca->getIdMarca(); ?></td>
+                                    <td><?php echo $vwMarca->getDescripcion(); ?></td>
+                                    <td><?php echo $vwMarca->getNroModelos(); ?></td>
+                                    <td><?php echo $vwMarca->getNroEquipos(); ?></td>
                                     <td><button class="btnSeleccionarMarca"></button></td>
                                 </tr>
                                 <?php
@@ -653,6 +746,7 @@
                                 }
                             ?>
                             $('#divMarca').dialog('close');
+                            cboModelo();
                         });
                     </script>
                 </form>

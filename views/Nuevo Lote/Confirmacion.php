@@ -14,6 +14,26 @@
             $(document).ready(function() {
                 $('#btnNuevoLote').button().focus().click(function() {
                     window.location = "?controller=NuevoLote";
+                });  
+                $( "#mensaje" ).dialog({
+                    closeOnEscape: true,
+                    show: 'fade',
+                    hide: 'fade',
+                    open: function(event, ui){
+                        setTimeout("$('#mensaje').dialog('close')",3000);
+                    },
+                    position: { 
+                        at: "right top", 
+                        of: window
+                    },
+                    buttons: [
+                        {
+                            text: "OK",
+                            click: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    ]
                 });
             });
         </script>
@@ -36,7 +56,10 @@
                         <h2>Confirmación - Nuevo Lote</h2>
                         <h4>Confirmación de registro de un nuevo Lote de equipos</h4>
                     </hgroup>
-                </header>
+                </header> 
+                <?php if(isset($mensaje)) { ?>
+                <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
+                <?php } ?>
                 <fieldset>
                     <legend>Detalles</legend>
                     <table>

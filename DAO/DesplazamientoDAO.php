@@ -1,10 +1,11 @@
-<!-- File: /DAO/DesplazamientoDAO.php -->
-
+<!-- File: /DAO/DatoDAO.php -->
+    
 <?php
+    require_once '/DAO/AppDAO.php';
     require_once '/models/Desplazamiento.php';
     require_once '/Libs/BaseDatos.php';
     
-    class DesplazamientoDAO {
+    class DesplazamientoDAO implements appDAO {
         public static function realizarDesplazamiento(Desplazamiento $desplazamiento) {
             $result = BaseDatos::getDbh()->prepare("INSERT INTO Desplazamiento(codigoPatrimonial, serie, idOrigen, idDestino, fecha, observacion) values(:codigoPatrimonial, :serie, :idOrigen, :idDestino, :fecha, :observacion)");
             $result->bindParam(':codigoPatrimonial', $desplazamiento->getIdCodigoPatrimonial());
