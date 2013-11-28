@@ -1,4 +1,4 @@
-<!-- File: /controllers/TipoEquipoController.php -->
+<!-- File: /controllers/EquipoController.php -->
 
 <?php
     require_once '/controllers/AppController.php';
@@ -77,16 +77,16 @@
         
         public static function EditarAction() {
             if(isset($_GET['codigoPatrimonial'])) {
-                $equipo = current(EquipoDAO::getByCodigoPatrimonial($_GET['codigoPatrimonial']));
-                $modelo = current(ModeloDAO::getByIdModelo($equipo->getIdModelo()));
-                $marca = current(MarcaDAO::getByIdMarca($modelo->getIdMarca()));
-                $tipoEquipo = current(TipoEquipoDAO::getByIdTipoEquipo($modelo->getIdTipoEquipo()));
-                $usuario = current(UsuarioDAO::getByIdUsuario($equipo->getIdUsuario()));
+                $equipo = current(EquipoDAO::getBy("codigoPatrimonial", $_GET['codigoPatrimonial']));
+                $modelo = current(ModeloDAO::getBy("idModelo", $equipo->getIdModelo()));
+                $marca = current(MarcaDAO::getBy("idMarca", $modelo->getIdMarca()));
+                $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
+                $usuario = current(UsuarioDAO::getBy("idUsuario", $equipo->getIdUsuario()));
                 $tipoEquipos = TipoEquipoDAO::getAll();
                 $marcas = MarcaDAO::getAll();
                 $redes = RedDAO::getAll();      
                 $dependencias = DependenciaDAO::getAll();
-                $datos = DatoDAO::getDatobyCodigoPatrimonial($equipo->getCodigoPatrimonial());
+                $datos = DatoDAO::getBy("codigoPatrimonial", $equipo->getCodigoPatrimonial());
                 $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
                 $vwMarcas = MarcaDAO::getVwMarca();
                 require_once '/views/Mantenimiento/Equipo/Editar.php';
@@ -101,7 +101,6 @@
                 $equipo->setIdModelo($_POST['idModelo']);
                 $equipo->setIdUsuario($_POST['idUsuario']);
                 $equipo->setIndicacion($_POST['indicacion']);
-                $equipo->setEstado(1);
                 EquipoDAO::editar($equipo) ?
                     $mensaje = "Equipo modificado correctamente" :
                     $mensaje = "El Equipo no fue modificado correctamente";
@@ -124,13 +123,13 @@
         
         public static function EliminarAction() {
             if(isset($_GET['codigoPatrimonial'])) {
-                $equipo = current(EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']));
-                $modelo = current(ModeloDAO::getModeloByIdModelo($equipo->getIdModelo()));
-                $marca = current(MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca()));
-                $tipoEquipo = current(TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo()));
-                $usuario = current(UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario()));
-                $dependencia = current(DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia()));
-                $red = current(RedDAO::getRedByIdRed($dependencia->getIdRed()));
+                $equipo = current(EquipoDAO::getBy("codigoPatrimonial", $_GET['codigoPatrimonial']));
+                $modelo = current(ModeloDAO::getBy("idModelo", $equipo->getIdModelo()));
+                $marca = current(MarcaDAO::getBy("idMarca", $modelo->getIdMarca()));
+                $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
+                $usuario = current(UsuarioDAO::getBy("idUsuario", $equipo->getIdUsuario()));
+                $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
+                $red = current(RedDAO::getBy("idRed", $dependencia->getIdRed()));
                 require_once '/views/Mantenimiento/Equipo/Eliminar.php';
             }
         }

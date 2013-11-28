@@ -36,5 +36,16 @@
 
         public static function eliminar($opcion) {
         }
+        
+        public static function toXML($opciones) {
+            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+            $xml .= "\n<Opciones>\n";
+            if(is_array($opciones))
+                foreach($opciones as $opcion)
+                    $xml .= $opcion->toXML() . "\n";
+            $xml .= "</Opciones>\n";
+            return $xml;
+        }
+        
     }
 ?>

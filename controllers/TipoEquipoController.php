@@ -4,6 +4,7 @@
     require_once '/controllers/AppController.php';
     require_once '/DAO/TipoEquipoDAO.php';
     require_once '/DAO/OpcionDAO.php';
+    require_once '/DAO/SubOpcionDAO.php';
     
     class TipoEquipoController implements AppController {
         
@@ -85,18 +86,16 @@
         public static function getOpcionesAction() {
             if(isset($_GET['idTipoEquipo'])) {
                 $opciones = OpcionDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']);
-                echo self::opcionesToXML($opciones);
+                echo OpcionDAO::toXML($opciones);
             }   
         }
         
-        private static function opcionesToXML($opciones) {
-            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
-            $xml .= "\n<Opciones>\n";
-            if(is_array($opciones))
-                foreach($opciones as $opcion)
-                    $xml .= $opcion->toXML() . "\n";
-            $xml .= "</Opciones>\n";
-            return $xml;
+        public static function getSubOpcionesAction() {
+            if(isset($_GET['idOpcion'])) {
+                $subOpciones = SubOpcionDAO::getBy("idOpcion", $_GET['idOpcion']);
+                echo SubOpcionDAO::toXML($subOpciones);
+            }
         }
+        
     }
 ?>

@@ -42,6 +42,27 @@
                     }
                 });
                 // FIN Seleccionar Dependencia
+                
+                $( "#mensaje" ).dialog({
+                    closeOnEscape: true,
+                    show: 'fade',
+                    hide: 'fade',
+                    open: function(event, ui){
+                        setTimeout("$('#mensaje').dialog('close')",3000);
+                    },
+                    position: { 
+                        at: "right top", 
+                        of: window
+                    },
+                    buttons: [
+                        {
+                            text: "OK",
+                            click: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    ]
+                });
             });
         </script>
         
@@ -64,6 +85,9 @@
                         <h4>Asigna el jefe o responsable de una Dependencia</h4>
                     </hgroup>
                 </header>
+                <?php if(isset($mensaje)) { ?>
+                <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
+                <?php } ?>
                 <form id="frmAsignaJefeDependencia" method="POST" action="?controller=AsignarJefeDependencia&action=AsignarJefeDependenciaPOST">
                     <fieldset>
                         <legend>Asignación de Jefe</legend>

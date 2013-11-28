@@ -1,10 +1,18 @@
+<!-- File: /controllers/RolController.php -->
+
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/RolDAO.php';
     require_once '/DAO/PermisoDAO.php';
     
-    class RolController {
+    class RolController implements AppController {
+        
         public static function RolAction() {
-            $roles = RolDAO::getAllRol();
+            RolController::ListaAction();
+        }
+        
+        public static function ListaAction() {
+            $roles = RolDAO::getAll();
             require_once '/views/Mantenimiento/Rol/Lista.php';
         }
         
@@ -30,21 +38,21 @@
                     }
                 }
             }
-            $roles = RolDAO::getAllRol();
+            $roles = RolDAO::getAll();
             require_once '/views/Mantenimiento/Rol/Lista.php';
         }
         
         public static function DetalleAction() {
             if(isset($_GET['idRol'])) {
-                $rol = RolDAO::getRolByIdRol($_GET['idRol']);
+                $rol = current(RolDAO::getBy("idRol", $_GET['idRol']));
                 $permisos = PermisoDAO::getUspPermisos($_GET['idRol']);
                 require_once '/views/Mantenimiento/Rol/Detalle.php';
             }
         }
         
         public static function EditarAction() {
-            $rol = RolDAO::getRolByIdRol($_GET['idRol']);
-            $permisos = PermisoDAO::getPermisobyIdRol($_GET['idRol']);
+            $rol = current(RolDAO::getBy("idRol", $_GET['idRol']));
+            $permisos = PermisoDAO::getBy("idRol", $_GET['idRol']);
             $permisos = self::permisosToXML($permisos);
             $permisos = json_encode($permisos);
             $permisos = substr($permisos, 1, strlen($permisos) - 2);
@@ -69,13 +77,13 @@
                     }
                 }
             }
-            $roles = RolDAO::getAllRol();
+            $roles = RolDAO::getAll();
             require_once '/views/Mantenimiento/Rol/Lista.php';
         }
         
         public static function EliminarAction() {
             if(isset($_GET['idRol'])) {
-                $rol = RolDAO::getRolByIdRol($_GET['idRol']);
+                $rol = current(RolDAO::getBy("idRol", $_GET['idRol']));
                 $permisos = PermisoDAO::getUspPermisos($_GET['idRol']);
                 require_once '/views/Mantenimiento/Rol/Eliminar.php';
             }
@@ -89,7 +97,7 @@
                     $mensaje = "Rol eliminado correctamente" :
                     $mensaje = "El Rol no fue eliminado correctamente";
             }
-            $roles = RolDAO::getAllRol();
+            $roles = RolDAO::getAll();
             require_once '/views/Mantenimiento/Rol/Lista.php';
         }
         

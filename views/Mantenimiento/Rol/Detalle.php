@@ -54,8 +54,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <a href="?controller=Rol&action=Editar&idRol=<?php echo $rol->getIdRol(); ?>">Editar</a> |
-                                <a href="?controller=Rol&action=Eliminar&idRol=<?php echo $rol->getIdRol(); ?>">Eliminar</a>
+                                <a class="aEditar" href="?controller=Rol&action=Editar&idRol=<?php echo $rol->getIdRol(); ?>">Editar</a> |
+                                <a class="aEliminar" href="?controller=Rol&action=Eliminar&idRol=<?php echo $rol->getIdRol(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>

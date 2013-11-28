@@ -1,6 +1,7 @@
 <!-- File: /DAO/DependenciaDAO.php -->
     
 <?php
+    require_once '/DAO/AppDAO.php';
     require_once '/models/Dependencia.php';
     require_once '/models/VwDependencia.php';
     require_once '/Libs/BaseDatos.php';
@@ -129,6 +130,16 @@
             $result->bindParam(':estado', $dependencia->getEstado());
             $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
             return $result->execute();
+        }
+        
+        public static function toXML($dependencias) {
+            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+            $xml .= "\n<Dependencias>\n";
+            if(is_array($dependencias))
+                foreach($dependencias as $dependencia)
+                    $xml .= $dependencia->toXML() . "\n";
+            $xml .= "</Dependencias>\n";
+            return $xml;
         }
     }
 ?>

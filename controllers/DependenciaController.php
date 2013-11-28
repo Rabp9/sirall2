@@ -92,23 +92,13 @@
             require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
         
-        private static function dependenciasToXML($dependencias) {
-            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
-            $xml .= "\n<Dependencias>\n";
-            if(is_array($dependencias))
-                foreach($dependencias as $dependencia)
-                    $xml .= $dependencia->toXML() . "\n";
-            $xml .= "</Dependencias>\n";
-            return $xml;
-        }    
-        
         public static function SubDependenciasAction() {
             if(isset($_GET['superIdDependencia'])) {
                 if($_GET['superIdDependencia'] != 0)
                     $dependencias = DependenciaDAO::getDependenciaBySuperIdDependencia($_GET['superIdDependencia']);
                 else
-                    $dependencias = DependenciaDAO::getDependenciaByIdRed($_GET['idRed']);
-                echo self::dependenciasToXML($dependencias);
+                    $dependencias = DependenciaDAO::getBy("idRed", $_GET['idRed']);
+                echo DependenciaDAO::toXml($dependencias);
             }
         }
     }

@@ -114,5 +114,15 @@
             $result->execute();
             return $result;
         }
+        
+        public static function toXML($modelos) {
+            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+            $xml .= "\n<Modelos>\n";
+            if(is_array($modelos))
+                foreach($modelos as $modelo)
+                    $xml .= $modelo->toXML() . "\n";
+            $xml .= "</Modelos>\n";
+            return $xml;
+        }
     }
 ?>

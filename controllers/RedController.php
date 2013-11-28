@@ -79,15 +79,5 @@
             $redes = RedDAO::getAll();
             require_once '/views/Mantenimiento/Red/Lista.php';
         }
-        
-        private static function redesToXML($redes) {
-            $xml = '<?xml version="1.0" encoding="UTF-8"?>';
-            $xml .= "\n<Redes>\n";
-            if(is_array($redes))
-                foreach($redes as $red)
-                    $xml .= $red->toXML() . "\n";
-            $xml .= "</Redes>\n";
-            return $xml;
-        }
     }
 ?>

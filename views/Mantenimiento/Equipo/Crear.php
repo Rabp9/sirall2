@@ -12,10 +12,11 @@
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
+        <script type="text/javascript" src="resources/js/template.lista.js"></script>
         <script type="text/javascript" src="resources/js/template.dependenciaSelect.js"></script>
         <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.styleTable.js"></script>
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
-        <script type="text/javascript" src="resources/js/template.lista.js"></script>
         <script type="text/javascript" src="resources/js/template.dato.js"></script>
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
@@ -275,28 +276,6 @@
                 //
                 //
                 // INICIO Estilizar Tabla
-                (function ($) {
-                $.fn.styleTable = function (options) {
-                    var defaults = {
-                        css: 'ui-styled-table'
-                    };
-                    options = $.extend(defaults, options);
-
-                    return this.each(function () {
-                        $this = $(this);
-                        $this.addClass(options.css);
-
-                        $this.on('mouseover mouseout', 'tbody tr', function (event) {
-                            $(this).children().toggleClass("ui-state-hover",
-                                                           event.type == 'mouseover');
-                        });
-
-                        $this.find("th").addClass("ui-widget-header");
-                        $this.find("td").addClass("ui-widget-content");
-                        $this.find("tr:last-child").addClass("last-child");
-                    });
-                };
-                })(jQuery);
                 $('#tblDetalle').styleTable(event);
                 // FIN Estilizar Tabla
             });
@@ -322,35 +301,79 @@
             }; 
             
             function mostrarOpcionesTipoEquipo(idTipoEquipo) {
-                // Vaciar opciones
+                $("#tblDetalle tbody").html("");
                 var opciones = getOpciones(idTipoEquipo);
+                opciones.forEach(function(opcion) {
+                    // mostrar opcion
+                    $("#tblDetalle tbody").append("<tr><td class='clave'><input type='hidden' name='clave[]' value='" + opcion.idOpcion + "' />" + opcion.descripcion + "</td><td class='valor'></td></tr>");
+                    var $trOpcion = $("#tblDetalle tbody tr:last");
+                    var subOpciones = getSubOpciones(opcion.idOpcion);
+                    if(subOpciones.length !== 0) {   
+                        var select = $.parseHTML("<select name='valor[]'><option disabled selected value=''>Selecciona un Modelo</option></select>");
+                        subOpciones.forEach(function(subOpcion) {
+                            var opt = new Option(subOpcion.descripcion, subOpcion.idSubOpcion);
+                            $(select).append(opt);
+                        });
+                        $trOpcion.find("td.valor").append($(select));
+                    }
+                    else {      
+                        var txtSubOpcion = $.parseHTML("<input type='text' name='valor[]' />");
+                        $trOpcion.find("td.valor").append($(txtSubOpcion));
+                    }
+                });
+                $('#tblDetalle').styleTable(event);
             }
             
             function getOpciones(idTipoEquipo) {
-                $.ajax({
+                var opciones = [];
+                var xmlResponse = $.ajax({
                     url: "Index.php",
                     type: "GET",            
+                    global: false,
+                    async: false,
                     data: {
                         controller: "TipoEquipo",
                         action: "getOpciones",
                         idTipoEquipo: idTipoEquipo
                     },
                     success: function( xmlResponse ) {
-                        var opcion = {
-                            idOpcion: "asddas",
-                            descripcion: "sadas"
-                        };
-                        var opciones = {};
-                        opciones.push(opcion);
-                 /*       $(xmlResponse).find("Opcion").each(function() {
-                            opciones.push({
-                                idOpcion: $(this).find('idOpcion').text() ,
-                                descripcion: $(this).find('descripcion').text() 
-                            });
-                        });*/
-                        alert(opciones[0].descripcion);
+                        return xmlResponse;
                     }
+                }).responseText;
+                $(xmlResponse).find("Opcion").each(function() {
+                    var opcion = {
+                        idOpcion: $(this).find('idOpcion').text() ,
+                        descripcion: $(this).find('descripcion').text() 
+                    };
+                    opciones.push(opcion);
                 });
+                return opciones;
+            }
+            
+            function getSubOpciones(idOpcion) {
+                var subOpciones = [];
+                var xmlResponse = $.ajax({
+                    url: "Index.php",
+                    type: "GET",            
+                    global: false,
+                    async: false,
+                    data: {
+                        controller: "TipoEquipo",
+                        action: "getSubOpciones",
+                        idOpcion: idOpcion
+                    },
+                    success: function( xmlResponse ) {
+                        return xmlResponse;
+                    }
+                }).responseText;
+                $(xmlResponse).find("SubOpcion").each(function() {
+                    var subOpcion = {
+                        idSubOpcion: $(this).find('idSubOpcion').text() ,
+                        descripcion: $(this).find('descripcion').text() 
+                    };
+                    subOpciones.push(subOpcion);
+                });
+                return subOpciones;
             }
         </script>
         
@@ -472,12 +495,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="clave">
-                                            </td>
-                                            <td class="valor">
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
