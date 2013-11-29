@@ -12,9 +12,6 @@
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
-        <script type="text/javascript">
-  
-        </script>
         
         <title>SIRALL2 - Registrar Usuario Sistema</title>
     </head>
