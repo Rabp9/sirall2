@@ -52,6 +52,20 @@
         public static function eliminar($usuarioSistema) {
 
         }
-
+        
+        public static function loguear(UsuarioSistema $usuarioSistema) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM UsuarioSistema WHERE username = :username AND password = :password AND estado = 1");
+            $result->bindParam(':username', $usuarioSistema->getUsername());
+            $result->bindParam(':password', $usuarioSistema->getPassword());
+            $result->execute();
+            if(!$rs = $result->fetch())
+                return false;
+            $usuarioSistema = new UsuarioSistema();
+            $usuarioSistema->setUsername($rs['username']);
+            $usuarioSistema->setIdRol($rs['idRol']);
+            $usuarioSistema->setPassword($rs['password']);
+            $usuarioSistema->setEstado($rs['estado']);
+            return $usuarioSistema;
+        }
     }
 ?>

@@ -1,0 +1,15 @@
+#tblOpciones tbody tr {
+    cursor: pointer;
+}
+
+#tblOpciones tbody tr.clicked {
+    background-color: #ffff33;
+}
+
+#tblSubOpciones tbody tr {
+    cursor: pointer;
+}
+
+#tblSubOpciones tbody tr.clicked {
+    background-color: #ffff33;
+}

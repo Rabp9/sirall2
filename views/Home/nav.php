@@ -17,10 +17,11 @@
     <li><a href="?controller=AsignarJefeDependencia"><span class="ui-icon ui-icon-transferthick-e-w"></span>Asignar Jefe de Dependencia</a></li>
     <li><a href="?controller=RegistrarUsuarioSistema"><span class="ui-icon ui-icon-person"></span>Registrar Usuario Sistema</a></li>
     <li>
-        <a href="?controller=Repuesto"><span class="ui-icon ui-icon-wrench"></span>Repuesto</a>
+        <a href="#"><span class="ui-icon ui-icon-wrench"></span>Repuesto</a>
         <ul>
             <li><a href="?controller=MovimientoRepuesto&action=Ingreso"><span class="ui-icon ui-icon-plus"></span>Ingreso de Repuestos</a></li>
             <li><a href="?controller=MovimientoRepuesto&action=Salida"><span class="ui-icon ui-icon-minus"></span>Salida de Repuestos</a></li>
+            <li><a href="?controller=MovimientoRepuesto&action=Consulta"><span class="ui-icon ui-icon-minus"></span>Consultas</a></li>
         </ul>
     </li>
     <li><a href="?controller=Desplazamiento"><span class="ui-icon ui-icon-arrowreturnthick-1-e"></span>Desplazamiento</a></li>
@@ -38,5 +39,5 @@
             <li><a href="?controller=Usuario"><span class="ui-icon ui-icon-circle-plus"></span>Mantenimiento</a></li>
         </ul>
     </li>
-    <li><a href="#"><span class="ui-icon ui-icon-circle-close"></span>Cerrar Sesión</a></li>
+    <li><a href="?controller=Home&action=CerrarSesion"><span class="ui-icon ui-icon-circle-close"></span>Cerrar Sesión</a></li>
 </ul>

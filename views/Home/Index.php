@@ -18,6 +18,27 @@
                     event: "mouseover"
                 });
                 $(".sortable a").button().removeClass('ui-state-default').addClass('ui-widget-content');
+                
+                $( "#mensaje" ).dialog({
+                    closeOnEscape: true,
+                    show: 'fade',
+                    hide: 'fade',
+                    open: function(event, ui){
+                        setTimeout("$('#mensaje').dialog('close')",3000);
+                    },
+                    position: { 
+                        at: "right top", 
+                        of: window
+                    },
+                    buttons: [
+                        {
+                            text: "OK",
+                            click: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    ]
+                });
             });
         </script>
         
@@ -40,6 +61,9 @@
                         <h4>Bienvenidos al sistema de Administración de SIRALL</h4>
                     </hgroup>
                 </header>
+                <?php if(isset($mensaje)) { ?>
+                <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
+                <?php } ?>
                 <div class="ui-widget-content ui-corner-all">
                     <div id="tabsOpciones">
                         <ul>

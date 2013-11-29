@@ -9,9 +9,10 @@
         private $username;
         private $idRol;
         private $password;
+        private $idDependencia;
         private $estado;
 
-        public function __construct($username = "", $idRol = 0, $password = "", $estado = 1) {
+        public function __construct($username = "", $idRol = 0, $password = "", $idDependencia = 1, $estado = 1) {
             $this->username = $username;
             $this->idRol = $idRol;
             $this->password = $password;

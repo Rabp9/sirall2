@@ -1,5 +1,6 @@
 <?php
-
+    echo "dasdsa";
+    session_start();
     include '../Librerias/fpdf17/fpdf.php';
     //Primero algunas variables de configuracion
     //require './Libs/conexion.php';
