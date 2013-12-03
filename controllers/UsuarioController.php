@@ -14,11 +14,19 @@
         }
         
         public static function ListaAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $vwUsuarios = UsuarioDAO::getVwUsuario();
             require_once '/views/Mantenimiento/Usuario/Lista.php';
         }
         
         public static function CrearAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $nextID = UsuarioDAO::getNextID();
             $redes = RedDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
@@ -46,6 +54,10 @@
         }
         
         public static function DetalleAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idUsuario'])) {
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
@@ -55,6 +67,10 @@
         }
         
         public static function EditarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idUsuario'])) {
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
                 $redes = current(RedDAO::getAll());
@@ -83,6 +99,10 @@
         }
         
         public static function EliminarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "elm6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idUsuario'])) {
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));

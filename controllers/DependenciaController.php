@@ -12,11 +12,19 @@
         }
         
         public static function ListaAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $vwDependencias = DependenciaDAO::getVwDependencia();
             require_once '/views/Mantenimiento/Dependencia/Lista.php';
         }
         
-        public static function CrearAction() {
+        public static function CrearAction() {     
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $nextID = DependenciaDAO::getNextID();
             $redes = RedDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
@@ -39,15 +47,28 @@
         }
         
         public static function DetalleAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idDependencia'])) {
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']));
                 $red = current(RedDAO::getBy("idRed", $dependencia->getIdRed()));
-                $superDependencia = DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia());
+                if(DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia())) {
+                    $superDependencia = current(DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia()));
+                }
+                else {
+                    $superDependencia = new Dependencia();
+                }
                 require_once '/views/Mantenimiento/Dependencia/Detalle.php';
             }
         }
         
         public static function EditarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idDependencia'])) {
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']));
                 $redes = RedDAO::getAll();
@@ -72,6 +93,10 @@
         }
         
         public static function EliminarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "elm7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idDependencia'])) {
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']));
                 $red = RedDAO::getBy("idRed", $dependencia->getIdRed());

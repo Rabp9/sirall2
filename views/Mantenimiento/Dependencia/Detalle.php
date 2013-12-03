@@ -50,7 +50,7 @@
                         <tr>
                             <td><strong>Dependencia Superior:</strong></td>
                             <td>
-                                <?php if($superDependencia->getDescripcion() != NULL) { ?>
+                                <?php if(!$superDependencia) { ?>
                                 <div class="bubbleInfo">
                                     <span class="trigger"><?php echo $superDependencia->getDescripcion(); ?></span>
                                     <table class="popup">

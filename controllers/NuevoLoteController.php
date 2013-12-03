@@ -10,6 +10,10 @@
     class NuevoLoteController implements AppController {
         
         public static function NuevoLoteAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf4")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $tipoEquipos = TipoEquipoDAO::getAll();
             $marcas = MarcaDAO::getAll();
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();

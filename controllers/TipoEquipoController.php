@@ -13,11 +13,19 @@
         }
         
         public static function ListaAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst1")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
 
         public static function CrearAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf1")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $nextID = TipoEquipoDAO::getNextID();
             require_once '/views/Mantenimiento/Tipo de Equipo/Crear.php';
         }
@@ -37,6 +45,10 @@
         }
         
         public static function DetalleAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst1")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idTipoEquipo'])) {
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']));
                 require_once '/views/Mantenimiento/Tipo de Equipo/Detalle.php';
@@ -44,6 +56,10 @@
         }
         
         public static function EditarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf1")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idTipoEquipo'])) {
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']));
                 require_once '/views/Mantenimiento/Tipo de Equipo/Editar.php';
@@ -65,6 +81,10 @@
         }
         
         public static function EliminarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "elm1")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idTipoEquipo'])) {
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']));
                 require_once '/views/Mantenimiento/Tipo de Equipo/Eliminar.php';

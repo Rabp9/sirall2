@@ -9,7 +9,11 @@
     require_once '/DAO/EquipoDAO.php';
   
     class DesplazamientoController {
-        public static function DesplazamientoAction() {
+        public static function DesplazamientoAction() {        
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf4")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $redes = RedDAO::getAllRed();
             $dependencias = DependenciaDAO::getAllDependencia();
             $equipos = EquipoDAO::getVwEquipo();

@@ -45,6 +45,14 @@
             return $this->password;
         }
         
+        public function setIdDependencia($idDependencia) {
+            $this->idDependencia = $idDependencia;
+        }
+        
+        public function getIdDependencia() {
+            return $this->idDependencia;
+        }
+
         public function setEstado($estado) {
             $this->estado = $estado;
         }

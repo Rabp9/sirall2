@@ -58,7 +58,17 @@
         public static function eliminarbyIdRol($idRol) {
             $result = BaseDatos::getDbh()->prepare("DELETE FROM Permiso WHERE idRol = :idRol");
             $result->bindParam(':idRol', $idRol);
-            return$result->execute();
+            return $result->execute();
         }
+        
+        public static function hasPermiso(UsuarioSistema $usuarioSistema, $permiso) {
+            $result = BaseDatos::getDbh()->prepare("call usp_hasPermisos(:username, :permiso)");
+            $result->bindParam(':username', $usuarioSistema->getUsername());
+            $result->bindParam(':permiso', $permiso);
+            $result->execute();
+            $rs = $result->fetch();
+            return $rs["permiso"];
+        }
+        
     }
 ?>

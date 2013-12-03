@@ -10,12 +10,20 @@
             TecnicoController::ListaAction();
         }
         
-        public static function ListaAction() {
+        public static function ListaAction() {        
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $tecnicos = TecnicoDAO::getAll();
             require_once '/views/Mantenimiento/Tecnico/Lista.php';
         }
 
-        public static function CrearAction() {
+        public static function CrearAction() {           
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $nextID = TecnicoDAO::getNextID();
             require_once '/views/Mantenimiento/Tecnico/Crear.php';
         }
@@ -33,13 +41,21 @@
         }
         
         public static function DetalleAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idTecnico'])) {
                 $tecnico = current(TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']));
                 require_once '/views/Mantenimiento/Tecnico/Detalle.php';
             }
         }
                 
-        public static function EditarAction() {
+        public static function EditarAction() { 
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idTecnico'])) {
                 $tecnico = current(TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']));
                 require_once '/views/Mantenimiento/Tecnico/Editar.php';
@@ -58,6 +74,10 @@
         }
         
         public static function EliminarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "elm6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idTecnico'])) {
                 $tecnico = current(TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']));
                 require_once '/views/Mantenimiento/Tecnico/Eliminar.php';

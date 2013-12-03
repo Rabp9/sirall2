@@ -12,11 +12,19 @@
         }
         
         public static function ListaAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $roles = RolDAO::getAll();
             require_once '/views/Mantenimiento/Rol/Lista.php';
         }
         
         public static function CrearAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $nextID = RolDAO::getNextID();
             require_once '/views/Mantenimiento/Rol/Crear.php';
         }
@@ -43,6 +51,10 @@
         }
         
         public static function DetalleAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idRol'])) {
                 $rol = current(RolDAO::getBy("idRol", $_GET['idRol']));
                 $permisos = PermisoDAO::getUspPermisos($_GET['idRol']);
@@ -51,6 +63,10 @@
         }
         
         public static function EditarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $rol = current(RolDAO::getBy("idRol", $_GET['idRol']));
             $permisos = PermisoDAO::getBy("idRol", $_GET['idRol']);
             $permisos = self::permisosToXML($permisos);
@@ -82,6 +98,10 @@
         }
         
         public static function EliminarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "elm6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idRol'])) {
                 $rol = current(RolDAO::getBy("idRol", $_GET['idRol']));
                 $permisos = PermisoDAO::getUspPermisos($_GET['idRol']);

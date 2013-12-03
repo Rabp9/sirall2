@@ -7,7 +7,12 @@
     require_once '/DAO/UsuarioDAO.php';
     
     class AsignarJefeDependenciaController {
+        
         public static function AsignarJefeDependenciaAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $redes = RedDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
             require_once '/views/Asignar Jefe Dependencia/Index.php';
@@ -31,7 +36,8 @@
                 }
                 else
                     $mensaje = "No se pudo asignar el jefe";
-            }   
+            }
         }
+        
     }
 ?>

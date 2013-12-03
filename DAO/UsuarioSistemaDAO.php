@@ -3,6 +3,7 @@
 <?php
     require_once '/DAO/AppDAO.php';
     require_once '/models/UsuarioSistema.php';
+    require_once '/models/VwUsuarioSistema.php';
     require_once '/Libs/BaseDatos.php';
     
     class UsuarioSistemaDAO implements appDAO {
@@ -67,5 +68,18 @@
             $usuarioSistema->setEstado($rs['estado']);
             return $usuarioSistema;
         }
+        
+        public static function getVwUsuarioSistema() {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_UsuarioSistema");
+            $result->execute();
+            while ($rs = $result->fetch()) {
+                $vwUsuarioSistema = new VwUsuarioSistema();
+                $vwUsuarioSistema->setUsername($rs['username']);
+                $vwUsuarioSistema->setRol($rs['rol']);
+                $vwUsuarioSistemas[] = $vwUsuarioSistema; 
+            }
+            return isset($vwUsuarioSistemas) ? $vwUsuarioSistemas : false;
+        }
+        
     }
 ?>
