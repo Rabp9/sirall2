@@ -18,11 +18,19 @@
         }
         
         public static function ListaAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst4")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $vwEquipos = EquipoDAO::getVwEquipo();
             require_once '/views/Mantenimiento/Equipo/Lista.php';
         }
         
         public static function CrearAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf4")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $nextID = EquipoDAO::getNextID();
             $tipoEquipos = TipoEquipoDAO::getAll();
             $marcas = MarcaDAO::getAll();
@@ -63,6 +71,10 @@
         }
         
         public static function DetalleAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst4")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['codigoPatrimonial'])) {
                 $equipo = current(EquipoDAO::getBy("codigoPatrimonial", $_GET['codigoPatrimonial']));
                 $modelo = current(ModeloDAO::getBy("idModelo", $equipo->getIdModelo()));
@@ -76,6 +88,10 @@
         }
         
         public static function EditarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf4")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['codigoPatrimonial'])) {
                 $equipo = current(EquipoDAO::getBy("codigoPatrimonial", $_GET['codigoPatrimonial']));
                 $modelo = current(ModeloDAO::getBy("idModelo", $equipo->getIdModelo()));
@@ -122,6 +138,10 @@
         }
         
         public static function EliminarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "elm4")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['codigoPatrimonial'])) {
                 $equipo = current(EquipoDAO::getBy("codigoPatrimonial", $_GET['codigoPatrimonial']));
                 $modelo = current(ModeloDAO::getBy("idModelo", $equipo->getIdModelo()));

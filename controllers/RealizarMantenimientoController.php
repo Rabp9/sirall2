@@ -4,7 +4,11 @@
     require_once '/DAO/EquipoDAO.php';
 
     class RealizarMantenimientoController {
-        public static function RealizarMantenimientoAction() {
+        public static function RealizarMantenimientoAction() {    
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf4")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $equipos = EquipoDAO::getVwEquipoMantenimiento();
             require_once '/views/Realizar Mantenimiento/Index.php';
         }        

@@ -13,11 +13,19 @@
         }
         
         public static function ListaAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst2")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $vwModelos = ModeloDAO::getVwModelo();
             require_once '/views/Mantenimiento/Modelo/Lista.php';
         }
 
         public static function CrearAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf2")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $nextID = ModeloDAO::getNextID();
             $tipoEquipos = TipoEquipoDAO::getAll();
             $marcas = MarcaDAO::getAll();
@@ -43,6 +51,10 @@
         }
         
         public static function DetalleAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst2")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idModelo'])) {
                 $modelo = current(ModeloDAO::getBy("idModelo", $_GET['idModelo']));
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
@@ -52,6 +64,10 @@
         }
         
         public static function EditarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf2")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idModelo'])) {
                 $modelo = current(ModeloDAO::getBy("idModelo", $_GET['idModelo']));
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
@@ -83,6 +99,10 @@
         }
         
         public static function EliminarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "elm2")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idModelo'])) {
                 $modelo = current(ModeloDAO::getBy("idModelo", $_GET['idModelo']));
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));

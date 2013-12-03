@@ -100,13 +100,13 @@
                                 var subOpcion = $(this).find("td.tdSubOpcion").text();
                                 $("#tblOpciones tbody tr.clicked td.tdSubOpciones").append("<input type='hidden' value='" + subOpcion + "' name='subOpcion[" + nOpcion + "][]' />");
                             });
-                            $("#tblSubOpciones tbody tr").remove();
                             $(this).dialog( "close" );
                         }
                     }
                 });
                 
                 $("#tblOpciones").on("click", "button.btnSubOpcion", function() {
+                    $("#tblSubOpciones tbody tr").remove();
                     $("#tblOpciones tbody tr.clicked td.tdSubOpciones input").each(function() {
                         var subOpcion = $(this).val();
                         var trSubOpcion = "<tr><td class='tdSubOpcion'>" + subOpcion + "</td></tr>";

@@ -8,11 +8,15 @@
     class RegistrarUsuarioSistemaController implements AppController {
         
         public static function RegistrarUsuarioSistemaAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf6")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $roles = RolDAO::getAll();
             require_once '/views/Registrar Usuario Sistema/Index.php';
         }
             
-        public static function RegistrarUsuarioSistemaPOSTAction() {  
+        public static function RegistrarUsuarioSistemaPOSTAction() {
             if(isset($_POST)) {
                 $usuarioSistema = new UsuarioSistema();
                 $usuarioSistema->setUsername($_POST["username"]);
@@ -23,7 +27,9 @@
                     $mensaje = "El Usuario del Sistema no fue registrado correctamente";
             }
             $rol = current(RolDAO::getBy("idRol", $usuarioSistema->getIdRol()));
+            $vwUsuarioSistemas = UsuarioSistemaDAO::getVwUsuarioSistema();
             require_once '/views/Registrar Usuario Sistema/Respuesta.php';
         }
+        
     }
 ?>

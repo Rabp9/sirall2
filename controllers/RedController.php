@@ -10,12 +10,20 @@
             RedController::ListaAction();
         }
         
-        public static function ListaAction() {
+        public static function ListaAction() {       
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $redes = RedDAO::getAll();
             require_once '/views/Mantenimiento/Red/Lista.php';
         }
         
         public static function CrearAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             $nextID = RedDAO::getNextID();
             require_once '/views/Mantenimiento/Red/Crear.php';
         }
@@ -33,6 +41,10 @@
         }
         
         public static function DetalleAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idRed'])) {
                 $red = current(RedDAO::getBy("idRed", $_GET['idRed']));
                 require_once '/views/Mantenimiento/Red/Detalle.php';
@@ -40,6 +52,10 @@
         }
         
         public static function EditarAction() {
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idRed'])) {
                 $red = current(RedDAO::getBy("idRed", $_GET['idRed']));
                 require_once '/views/Mantenimiento/Red/Editar.php';
@@ -61,7 +77,11 @@
             require_once '/views/Mantenimiento/Red/Lista.php';
         }
         
-        public static function EliminarAction() {
+        public static function EliminarAction() {        
+            if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "elm7")) {
+                require_once "views/Home/Error_Permisos.php";
+                return;
+            }
             if(isset($_GET['idRed'])) {
                 $red = current(RedDAO::getBy("idRed", $_GET['idRed']));
                 require_once '/views/Mantenimiento/Red/Eliminar.php';

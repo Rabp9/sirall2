@@ -82,11 +82,23 @@
                             <tr>
                                 <th>Nombre de Usuario</th>
                                 <th>Rol</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                            ?>
+                        <?php
+                            if(is_array($vwUsuarioSistemas)) {
+                                foreach ($vwUsuarioSistemas as $vwUsuarioSistema) {
+                        ?>
+                        <tr>
+                            <td><?php echo $vwUsuarioSistema->getUsername(); ?></td>
+                            <td><?php echo $vwUsuarioSistema->getRol(); ?></td>
+                            <td><a class="aEliminar" href="#">Eliminar</a></td>
+                        </tr>
+                        <?php
+                                }
+                            }
+                        ?>
                         </tbody>
                     </table>
                 </fieldset>

@@ -7,12 +7,15 @@
     class HomeController implements AppController {
         
         public static function HomeAction() {
-            if(!isset($_SESSION["usuarioActual"]))
-                require_once '/views/Home/Login.php';           
+            if(!isset($_SESSION["usuarioActual"])) {
+                HomeController::LoginAction();
+                return;
+            }
             require_once '/views/Home/Index.php';
         }
         
         public static function LoginAction() {
+            require_once '/views/Home/Login.php';
         }
         
         public static function LoginPOSTAction() {
@@ -21,7 +24,7 @@
                 $usuarioSistema->setUsername($_POST["username"]);
                 $usuarioSistema->setPassword($_POST["password"]);
                 if($usuarioSistema = UsuarioSistemaDAO::loguear($usuarioSistema)) {
-                    $_SESSION["usuarioActual"] = serialize($usuarioSistema);
+                    $_SESSION["usuarioActual"] = $usuarioSistema;
                     $mensaje = "Usuario: " . $_SESSION["usuarioActual"]->getUsername() . " logueado correctamente";
                     require_once '/views/Home/Index.php';
                 }
@@ -34,10 +37,12 @@
         
         public static function CerrarSesionAction() {
             if(isset($_SESSION["usuarioActual"])) {
+                session_unset();
                 session_destroy ();
                 $mensaje = "Se cerró correctamente la sesión";
                 require_once '/views/Home/Login.php';
             }
         }
+        
     }
 ?>
