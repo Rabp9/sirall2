@@ -38,6 +38,7 @@
                 $dependencia->setIdRed($_POST['idRed']);
                 $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
+            echo var_dump($dependencia);
                 DependenciaDAO::crear($dependencia) ?
                     $mensaje = "Dependencia guardada correctamente" :
                     $mensaje = "La Dependencia no fue guardada correctamente";

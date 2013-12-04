@@ -30,6 +30,20 @@
             $vwUsuarioSistemas = UsuarioSistemaDAO::getVwUsuarioSistema();
             require_once '/views/Registrar Usuario Sistema/Respuesta.php';
         }
-        
+               
+        public static function RegistrarUsuarioSistemaPOSTAction() {
+            if(isset($_POST)) {
+                $usuarioSistema = new UsuarioSistema();
+                $usuarioSistema->setUsername($_POST["username"]);
+                $usuarioSistema->setIdRol($_POST["idRol"]);
+                $usuarioSistema->setPassword($_POST["password"]);
+                UsuarioSistemaDAO::crear($usuarioSistema) ?
+                    $mensaje = "Usuario del Sistema registrado correctamente" :
+                    $mensaje = "El Usuario del Sistema no fue registrado correctamente";
+            }
+            $rol = current(RolDAO::getBy("idRol", $usuarioSistema->getIdRol()));
+            $vwUsuarioSistemas = UsuarioSistemaDAO::getVwUsuarioSistema();
+            require_once '/views/Registrar Usuario Sistema/Respuesta.php';
+        }
     }
 ?>

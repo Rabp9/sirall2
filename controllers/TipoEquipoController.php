@@ -35,10 +35,24 @@
                 $tipoEquipo = new TipoEquipo();
                 $tipoEquipo->setIdTipoEquipo($_POST['idTipoEquipo']);
                 $tipoEquipo->setDescripcion($_POST['descripcion']);
-                $tipoEquipo->setEstado(1);
                 TipoEquipoDAO::crear($tipoEquipo) ?
                     $mensaje = "Tipo de Equipo guardado Correctamente" :
                     $mensaje = "El Tipo de Equipo no fue guardado Correctamente";
+                foreach($_POST["opcion"] as $oValor) {
+                    $opcion = new Opcion();
+                    $opcion->setIdTipoEquipo($tipoEquipo->getIdTipoEquipo());
+                    $opcion->setDescripcion($oValor);
+                    OpcionDAO::crear($opcion);
+                    $lastId = OpcionDAO::ultimoLastId();
+                    if(isset($_POST["subOpcion"][$oValor])) {
+                        foreach ($_POST["subOpcion"][$oValor] as $sValor) {
+                            $subOpcion = new SubOpcion();
+                            $subOpcion->setIdOpcion($lastId);
+                            $subOpcion->setDescripcion($sValor);
+                            SubOpcionDAO::crear($subOpcion);
+                        }
+                    }
+                }
             }
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
@@ -75,6 +89,23 @@
                 TipoEquipoDAO::editar($tipoEquipo) ?
                     $mensaje = "Tipo de Equipo modificado Correctamente" :
                     $mensaje = "El Tipo de Equipo no fue modificado Correctamente";
+                TipoEquipoDAO::eliminarOpciones($tipoEquipo);
+                foreach($_POST["opcion"] as $oValor) {
+                    $opcion = new Opcion();
+                    $opcion->setIdTipoEquipo($tipoEquipo->getIdTipoEquipo());
+                    $opcion->setDescripcion($oValor);
+                    OpcionDAO::crear($opcion);
+                    $lastId = OpcionDAO::ultimoLastId();
+                    
+                    if(isset($_POST["subOpcion"][$oValor])) {
+                        foreach ($_POST["subOpcion"][$oValor] as $sValor) {
+                            $subOpcion = new SubOpcion();
+                            $subOpcion->setIdOpcion($lastId);
+                            $subOpcion->setDescripcion($sValor);
+                            SubOpcionDAO::crear($subOpcion);
+                        }
+                    }
+                }
             }
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';

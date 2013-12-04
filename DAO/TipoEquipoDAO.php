@@ -2,6 +2,7 @@
 
 <?php
     require_once '/DAO/AppDAO.php';
+    require_once '/DAO/OpcionDAO.php';
     require_once '/models/VwTipoEquipo.php';
     require_once '/models/TipoEquipo.php';
     require_once '/Libs/BaseDatos.php';
@@ -82,5 +83,14 @@
             $result->execute();
             return $result;
         }
+        
+        public static function eliminarOpciones(TipoEquipo $tipoEquipo) {
+            $opciones = OpcionDAO::getBy("idTipoEquipo", $tipoEquipo->getIdTipoEquipo());
+            foreach ($opciones as $opcion) {
+                SubOpcionDAO::eliminarByOpcion($opcion);
+                OpcionDAO::eliminarByTipoEquipo($tipoEquipo);
+            }
+        }
+        
     }
 ?>

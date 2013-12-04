@@ -89,7 +89,7 @@ $(document).ready(function() {
         },
         buttons: {
             Aceptar: function() {
-                var nOpcion = $("#tblOpciones tbody tr").index($("#tblOpciones tbody tr.clicked"));
+                var nOpcion = $("#tblOpciones tbody tr.clicked td.tdOpcion").text();
                 $("#tblOpciones tbody tr.clicked td.tdSubOpciones").html("<button type='button' class='btnSubOpcion'>SubOpciones</button>");
                 $("#tblSubOpciones tbody tr").each(function() {
                     var subOpcion = $(this).find("td.tdSubOpcion").text();
@@ -126,6 +126,7 @@ $(document).ready(function() {
         $("#tblSubOpciones tbody").append(trSubOpcion);
         $("#dvSubOpcion-dlg #txtSubOpcion").val("");
         $("#tblSubOpciones tbody tr").removeClass("clicked");
+        $("#dvSubOpcion-dlg #txtSubOpcion").focus();
     });          
 
     $('#tblSubOpciones .btnEditar').click(function() {
