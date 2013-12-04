@@ -3,7 +3,8 @@
 }
 
 #tblOpciones tbody tr.clicked {
-    background-color: #ffff33;
+    background-color: #AAD6EA;
+    color: #1B86B7;
 }
 
 #tblSubOpciones tbody tr {
@@ -11,5 +12,6 @@
 }
 
 #tblSubOpciones tbody tr.clicked {
-    background-color: #ffff33;
+    background-color: #AAD6EA;
+    color: #1B86B7;
 }

@@ -11,7 +11,6 @@
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/jquery.styleTable.js"></script>
-        <script type="text/javascript" src="resources/js/jquery.list2cols.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript" src="resources/js/template.crearDatos.js"></script>
@@ -23,6 +22,10 @@
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtDescripcion').focus();
+                
+                $("#btnBorrar").click(function() {
+                    $("#tblOpciones tbody tr").remove();
+                });
             });
         </script>
         
@@ -63,17 +66,44 @@
                         </fieldset>
                         <fieldset>
                             <legend>Detalle de Tipo de Equipo</legend>
-                                <table id="tblOpciones">
+                            <table id="tblOpciones">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Opción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button class="btnAgregar" type="button">Agregar</button>
+                                            <button class="btnEditar" type="button">Editar</button>
+                                            <button class="btnEliminar" type="button">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+            
+                            <div id="dvOpcion-dlg" title="Opción...">
+                                <p>Descripción</p>
+                                <p><input type="text" id="txtOpcion" placeholder="Descripción" /></p>
+                            </div>
+
+                            <div id="dvSubOpcion-dlg" title="Sub-Opción..."> 
+                                <p>Descripción</p>
+                                <p><input type="text" id="txtSubOpcion" placeholder="Descripción" /></p>
+                                <table id="tblSubOpciones">
                                     <thead>
                                         <tr>
-                                            <th colspan="2">Opción</th>
+                                            <th>Sub-Opción</th>
                                         </tr>
-                                    </thead>
+                                    </thead> 
                                     <tbody>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="2">
+                                            <td>
                                                 <button class="btnAgregar" type="button">Agregar</button>
                                                 <button class="btnEditar" type="button">Editar</button>
                                                 <button class="btnEliminar" type="button">Eliminar</button>
@@ -81,34 +111,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-            
-                                <div id="dvOpcion-dlg" title="Opción...">
-                                    <p>Descripción</p>
-                                    <p><input type="text" id="txtOpcion" placeholder="Descripción" /></p>
-                                </div>
-            
-                                <div id="dvSubOpcion-dlg" title="Sub-Opción..."> 
-                                    <p>Descripción</p>
-                                    <p><input type="text" id="txtSubOpcion" placeholder="Descripción" /></p>
-                                    <table id="tblSubOpciones">
-                                        <thead>
-                                            <tr>
-                                                <th>Sub-Opción</th>
-                                            </tr>
-                                        </thead> 
-                                        <tbody>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td>
-                                                    <button class="btnAgregar" type="button">Agregar</button>
-                                                    <button class="btnEditar" type="button">Editar</button>
-                                                    <button class="btnEliminar" type="button">Eliminar</button>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
+                            </div>
                         </fieldset>
                         <table>
                             <tr>

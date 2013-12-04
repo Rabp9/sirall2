@@ -29,6 +29,11 @@
         }
         
         public static function crear($opcion) {
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Opcion(idOpcion, idTipoEquipo, descripcion) values(:idOpcion, :idTipoEquipo, :descripcion)");
+            $result->bindParam(':idOpcion', $opcion->getIdOpcion());
+            $result->bindParam(':idTipoEquipo', $opcion->getIdTipoEquipo());
+            $result->bindParam(':descripcion', $opcion->getDescripcion());
+            return $result->execute();
         }
 
         public static function editar($opcion) {
@@ -45,6 +50,19 @@
                     $xml .= $opcion->toXML() . "\n";
             $xml .= "</Opciones>\n";
             return $xml;
+        }
+        
+        public static function ultimoLastId() { 
+            $result = BaseDatos::getDbh()->prepare("SELECT idOpcion as lastId FROM Opcion ORDER BY idOpcion DESC LIMIT 1");
+            $result->execute();
+            $rs = $result->fetch();
+            return $rs["lastId"];
+        }
+        
+        public static function eliminarByTipoEquipo(TipoEquipo $tipoEquipo) { 
+            $result = BaseDatos::getDbh()->prepare("DELETE FROM Opcion WHERE idTipoEquipo = :idTipoEquipo");
+            $result->bindParam(':idTipoEquipo', $tipoEquipo->getIdTipoEquipo());
+            return $result->execute();
         }
         
     }

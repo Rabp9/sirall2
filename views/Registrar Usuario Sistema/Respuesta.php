@@ -91,9 +91,9 @@
                                 foreach ($vwUsuarioSistemas as $vwUsuarioSistema) {
                         ?>
                         <tr>
-                            <td><?php echo $vwUsuarioSistema->getUsername(); ?></td>
+                            <td><a href="#"><?php echo $vwUsuarioSistema->getUsername(); ?></a></td>
                             <td><?php echo $vwUsuarioSistema->getRol(); ?></td>
-                            <td><a class="aEliminar" href="#">Eliminar</a></td>
+                            <td><a class="aEliminar aeliminarUsuarioSistema" href="#">Eliminar</a></td>
                         </tr>
                         <?php
                                 }

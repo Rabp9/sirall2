@@ -3,6 +3,7 @@
 <?php
     require_once '/DAO/AppDAO.php';
     require_once '/models/SubOpcion.php';
+    require_once '/models/Opcion.php';
     require_once '/Libs/BaseDatos.php';
     
     class SubOpcionDAO implements appDAO {
@@ -16,7 +17,7 @@
             }
             return isset($subOpciones) ? $subOpciones : false;
         }
-                
+        
         public static function getBy($campo, $valor) {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM SubOpcion where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
@@ -28,12 +29,17 @@
             return isset($subOpciones) ? $subOpciones : false;
         }
         
-        public static function crear($opcion) {
+        public static function crear($subOpcion) {
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO SubOpcion(idSubOpcion, idOpcion, descripcion) values(:idSubOpcion, :idOpcion, :descripcion)");
+            $result->bindParam(':idSubOpcion', $subOpcion->getIdSubOpcion());
+            $result->bindParam(':idOpcion', $subOpcion->getIdOpcion());
+            $result->bindParam(':descripcion', $subOpcion->getDescripcion());
+            return $result->execute();
         }
-
+        
         public static function editar($opcion) {
         }
-
+        
         public static function eliminar($opcion) {
         }
         
@@ -45,6 +51,12 @@
                     $xml .= $subOpcion->toXML() . "\n";
             $xml .= "</SubOpciones>\n";
             return $xml;
+        }
+        
+        public static function eliminarByOpcion(Opcion $opcion) {
+            $result = BaseDatos::getDbh()->prepare("DELETE FROM SubOpcion WHERE idOpcion = :idOpcion");
+            $result->bindParam(':idOpcion', $opcion->getIdOpcion());
+            return $result->execute();
         }
         
     }

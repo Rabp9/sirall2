@@ -94,7 +94,7 @@
                     },
                     buttons: {
                         Aceptar: function() {
-                            var nOpcion = $("#tblOpciones tbody tr").index($("#tblOpciones tbody tr.clicked"));
+                            var nOpcion = $("#tblOpciones tbody tr.clicked td.tdOpcion").text();
                             $("#tblOpciones tbody tr.clicked td.tdSubOpciones").html("<button type='button' class='btnSubOpcion'>SubOpciones</button>");
                             $("#tblSubOpciones tbody tr").each(function() {
                                 var subOpcion = $(this).find("td.tdSubOpcion").text();
