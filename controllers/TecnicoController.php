@@ -32,8 +32,8 @@
             if(isset($_POST)) {
                 $tecnico = new Tecnico($_POST['idTecnico'], $_POST['nombres'], $_POST['apellidoPaterno'], $_POST['apellidoMaterno'], $_POST['rpm']);
                 TecnicoDAO::crear($tecnico) ?
-                    $mensaje = "Red guardada correctamente" :
-                    $mensaje = "La Red no fue guardada correctamente";
+                    $mensaje = "Establecimiento guardada correctamente" :
+                    $mensaje = "El Establecimiento no fue guardada correctamente";
             }
             $tecnicos = TecnicoDAO::getAll();
             $mensaje = "Técnico guardado correctamente";

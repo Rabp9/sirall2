@@ -54,7 +54,7 @@
 			}
 		},
 		prepareBranches: function(settings) {
-			if (!settings.prerendered) {
+			if (!settings.prerendeestablecimiento) {
 				// mark last tree items
 				this.filter(":last-child:not(ul)").addClass(CLASSES.last);
 				// collapse whole tree, or only those marked as closed, anyway except those marked as open
@@ -71,7 +71,7 @@
 					toggler.apply($(this).next());
 			}).add( $("a", this) ).hoverClass();
 			
-			if (!settings.prerendered) {
+			if (!settings.prerendeestablecimiento) {
 				// handle closed ones first
 				this.filter(":has(>ul:hidden)")
 						.addClass(CLASSES.expandable)
@@ -177,9 +177,9 @@
 			}
 			
 			function deserialize() {
-				var stored = $.cookie(settings.cookieId);
-				if ( stored ) {
-					var data = stored.split("");
+				var stoestablecimiento = $.cookie(settings.cookieId);
+				if ( stoestablecimiento ) {
+					var data = stoestablecimiento.split("");
 					branches.each(function(i, e) {
 						$(e).find(">ul")[ parseInt(data[i]) ? "show" : "hide" ]();
 					});
@@ -210,8 +210,8 @@
 				if ( current.length ) {
 					// TODO update the open/closed classes
 					var items = current.addClass("selected").parents("ul, li").add( current.next() ).show();
-					if (settings.prerendered) {
-						// if prerendered is on, replicate the basic class swapping
+					if (settings.prerendeestablecimiento) {
+						// if prerendeestablecimiento is on, replicate the basic class swapping
 						items.filter("li")
 							.swapClass( CLASSES.collapsable, CLASSES.expandable )
 							.swapClass( CLASSES.lastCollapsable, CLASSES.lastExpandable )

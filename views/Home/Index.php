@@ -73,7 +73,7 @@
                         </ul>
                         <div id="mantenimiento">
                             <ul class="sortable">
-                                <li><a href="?controller=Red"><img src="resources/images/red - grande.png"/><br/>Red</a></li>
+                                <li><a href="?controller=Establecimiento"><img src="resources/images/red - grande.png"/><br/>Establecimiento</a></li>
                                 <li><a href="?controller=Dependencia"><img src="resources/images/dependencia - grande.png"/><br/>Dependencia</a></li>
                                 <li><a href="?controller=Equipo"><img src="resources/images/equipo - grande.png"/><br/>Equipo</a></li>
                                 <li><a href="?controller=Repuesto"><img src="resources/images/repuesto - grande.png"/><br/>Repuesto</a></li>

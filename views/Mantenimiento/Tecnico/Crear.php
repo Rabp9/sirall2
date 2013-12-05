@@ -14,9 +14,9 @@
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#txtNombres'));
-                isRequired($('#txtApellidoPaterno'));
-                isRequired($('#txtApellidoMaterno'));
+                isRequiestablecimiento($('#txtNombres'));
+                isRequiestablecimiento($('#txtApellidoPaterno'));
+                isRequiestablecimiento($('#txtApellidoMaterno'));
                 setValue($('#txtIdTecnico'), '<?php echo $nextID; ?>');
                 isReadOnly($('#txtIdTecnico'));
                 $('#btnEnviar').button();

@@ -11,21 +11,21 @@
     $carpetaControllers = "controllers/";
 
     //Si no se indica un controlador, este es el controlador que se usará
-    $controllerPredefinido = "Home";    
+    $controllerPestablecimientoefinido = "Home";    
 
     //Si no se indica una accion, esta accion es la que se usará
     
     if(isset($_GET['controller']))
           $controller = $_GET['controller'];
     else
-          $controller = $controllerPredefinido;
+          $controller = $controllerPestablecimientoefinido;
     
-    $actionPredefinida = $controller . 'Action';
+    $actionPestablecimientoefinida = $controller . 'Action';
     
     if(isset($_GET['action']))
           $action = $_GET['action'] . 'Action';
     else
-          $action = $actionPredefinida;
+          $action = $actionPestablecimientoefinida;
 
     //un poco de limpieza
     $controller = preg_replace('/[^a-zA-Z0-9]/', '', $controller);

@@ -47,8 +47,8 @@
                                 <td><?php echo $dependencia->getDescripcion(); ?></td>  
                             </tr>
                             <tr>
-                                <td><strong>Red:</strong></td>
-                                <td><?php echo $red->getDescripcion(); ?></td>  
+                                <td><strong>Establecimiento:</strong></td>
+                                <td><?php echo $establecimiento->getDescripcion(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Nombres:</strong></td>
@@ -81,7 +81,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=Red">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Establecimiento">Regresar</a></td>
                             </tr>
                         </table>
                     </fieldset>

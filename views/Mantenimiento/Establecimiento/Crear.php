@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Red/Crear.php -->
+<!-- File: /views/Mantenimiento/Establecimiento/Crear.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -14,17 +14,17 @@
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#txtDescripcion'));
-                isRequired($('#txtDireccion'));
-                setValue($('#txtIdRed'), '<?php echo $nextID; ?>');
-                isReadOnly($('#txtIdRed'));
+                isRequiestablecimiento($('#txtDescripcion'));
+                isRequiestablecimiento($('#txtDireccion'));
+                setValue($('#txtIdEstablecimiento'), '<?php echo $nextID; ?>');
+                isReadOnly($('#txtIdEstablecimiento'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtDescripcion').focus();
             });
         </script>
         
-        <title>SIRALL2 - Crear Red</title>
+        <title>SIRALL2 - Crear Establecimiento</title>
     </head>
     <body>
         <aside>
@@ -39,17 +39,17 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Crear Red</h2>
-                        <h4>Crea una Red</h4>
+                        <h2>Crear Establecimiento</h2>
+                        <h4>Crea un Establecimiento</h4>
                     </hgroup>
                 </header>
-                <form id="frmCrearRed" method="POST" action="?controller=Red&action=CrearPOST">
+                <form id="frmCrearEstablecimiento" method="POST" action="?controller=Establecimiento&action=CrearPOST">
                     <fieldset>
-                        <legend>Crear Red</legend>
+                        <legend>Crear Establecimiento</legend>
                         <table>
                             <tr>
-                                <td><label for="txtIdRed"><abbr title="Código identificador">ID.</abbr> Red</label></td>
-                                <td><input id="txtIdRed" type="text" name="idRed"></td>
+                                <td><label for="txtIdEstablecimiento"><abbr title="Código identificador">ID.</abbr> Establecimiento</label></td>
+                                <td><input id="txtIdEstablecimiento" type="text" name="idEstablecimiento"></td>
                             </tr>
                             <tr>
                                 <td><label for="txtDescripcion">Descripcion</label></td>
@@ -71,7 +71,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=Red">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Establecimiento">Regresar</a></td>
                             </tr>
                         </table>
                     </fieldset>               

@@ -15,6 +15,9 @@
         }
         
         public static function LoginAction() {
+            if(isset($_GET["mensaje"])) {
+                $mensaje = $_GET["mensaje"];
+            }
             require_once '/views/Home/Login.php';
         }
         
@@ -40,7 +43,7 @@
                 session_unset();
                 session_destroy ();
                 $mensaje = "Se cerró correctamente la sesión";
-                require_once '/views/Home/Login.php';
+                header("Location: index.php?mensaje=$mensaje");
             }
         }
         

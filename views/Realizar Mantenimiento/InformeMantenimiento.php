@@ -78,8 +78,8 @@
                             <td><?php echo $equipo['Dependencia']; ?></td>  
                         </tr>
                         <tr>
-                            <td><strong>Red:</strong></td>
-                            <td><?php echo $equipo['Red']; ?></td>  
+                            <td><strong>Establecimiento:</strong></td>
+                            <td><?php echo $equipo['Establecimiento']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Indicacion:</strong></td>

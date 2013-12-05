@@ -18,6 +18,8 @@
                 $equipo->setIdTipoEquipo($rs['idTipoEquipo']);
                 $equipo->setDescripcion($rs['descripcion']);
                 $equipo->setIndicacion($rs['indicacion']);
+                $equipo->setUsuario($rs["usuario"]);
+                $equipo->setEstado($rs["estado"]);
                 $equipos[] = $equipo; 
             }
             return isset($equipos) ? $equipos : false;
@@ -34,6 +36,7 @@
                 $equipo->setIdModelo($rs['idModelo']);
                 $equipo->setIdUsuario($rs['idUsuario']);
                 $equipo->setIndicacion($rs['indicacion']);
+                $equipo->setUsuario($rs["usuario"]);
                 $equipo->setEstado($rs['estado']);
                 $equipos[] = $equipo; 
             }
@@ -41,21 +44,23 @@
         }
         
         public static function crear($equipo) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, idUsuario, indicacion, estado) values(:codigoPatrimonial, :serie, :idModelo, :idUsuario, :indicacion, :estado)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, idUsuario, indicacion, usuario, estado) values(:codigoPatrimonial, :serie, :idModelo, :idUsuario, :indicacion, :usuario, :estado)");
             $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             $result->bindParam(':serie', $equipo->getSerie());
             $result->bindParam(':idModelo', $equipo->getIdModelo());
             $result->bindParam(':idUsuario', $equipo->getIdUsuario());
             $result->bindParam(':indicacion', $equipo->getIndicacion());
+            $result->bindParam(':usuario', $equipo->getUsuario());
             $result->bindParam(':estado', $equipo->getEstado());
             return $result->execute();
         }
         
         public static function editar($equipo) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Equipo SET idModelo = :idModelo, idUsuario = :idUsuario, indicacion = :indicacion, estado = :estado WHERE codigoPatrimonial = :codigoPatrimonial");
+            $result = BaseDatos::getDbh()->prepare("UPDATE Equipo SET idModelo = :idModelo, idUsuario = :idUsuario, indicacion = :indicacion, usuario = :usuario, estado = :estado WHERE codigoPatrimonial = :codigoPatrimonial");
             $result->bindParam(':idModelo', $equipo->getIdModelo());
             $result->bindParam(':idUsuario', $equipo->getIdUsuario());
             $result->bindParam(':indicacion', $equipo->getIndicacion());
+            $result->bindParam(':usuario', $equipo->getUsuario());
             $result->bindParam(':estado', $equipo->getEstado());
             $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             return $result->execute();
@@ -86,7 +91,7 @@
                 $vwEquipo->setModelo($rs['modelo']);
                 $vwEquipo->setUsuario($rs['usuario']);
                 $vwEquipo->setDependencia($rs['dependencia']);
-                $vwEquipo->setRed($rs['red']);
+                $vwEquipo->setEstablecimiento($rs['establecimiento']);
                 $vwEquipo->setIndicacion($rs['indicacion']);
                 $vwEquipos[] = $vwEquipo;
             }

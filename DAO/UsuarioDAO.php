@@ -95,7 +95,7 @@
                 $vwUsuario = new VwUsuario();
                 $vwUsuario->setIdUsuario($rs['idUsuario']);
                 $vwUsuario->setDependencia($rs['dependencia']);
-                $vwUsuario->setRed($rs['red']);
+                $vwUsuario->setEstablecimiento($rs['establecimiento']);
                 $vwUsuario->setNombreCompleto($rs['nombreCompleto']);
                 $vwUsuario->setCorreo($rs['correo']);
                 $vwUsuarios[] = $vwUsuario; 

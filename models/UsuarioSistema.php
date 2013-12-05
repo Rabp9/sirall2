@@ -9,13 +9,14 @@
         private $username;
         private $idRol;
         private $password;
-        private $idDependencia;
+        private $idEstablecimiento;
         private $estado;
 
-        public function __construct($username = "", $idRol = 0, $password = "", $idDependencia = 1, $estado = 1) {
+        public function __construct($username = "", $idRol = 0, $password = "", $idEstablecimiento = "", $estado = 1) {
             $this->username = $username;
             $this->idRol = $idRol;
             $this->password = $password;
+            $this->idEstablecimiento = $idEstablecimiento;
             $this->estado = $estado;
         }
         
@@ -45,12 +46,12 @@
             return $this->password;
         }
         
-        public function setIdDependencia($idDependencia) {
-            $this->idDependencia = $idDependencia;
+        public function setIdEstablecimiento($idEstablecimiento) {
+            $this->idEstablecimiento = $idEstablecimiento;
         }
         
-        public function getIdDependencia() {
-            return $this->idDependencia;
+        public function getIdEstablecimiento() {
+            return $this->idEstablecimiento;
         }
 
         public function setEstado($estado) {

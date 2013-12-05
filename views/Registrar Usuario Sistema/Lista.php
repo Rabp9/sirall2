@@ -36,6 +36,7 @@
                 }); 
             });
         </script>  
+        
         <title>SIRALL2 - Registrar Usuario Sistema</title>
     </head>
     <body>
@@ -51,30 +52,13 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Registrar Usuario Sistema</h2>
-                        <h4>Usuario del Sistema registrado</h4>
+                        <h2>Lista de Usuarios del Sistema</h2>
+                        <h4>Usuarios del Sistema</h4>
                     </hgroup>
-                </header>
+                </header>    
                 <?php if(isset($mensaje)) { ?>
                 <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
                 <?php } ?>
-                <fieldset>
-                    <legend>Confirmación Usuario Sistema</legend>
-                    <table>
-                        <tr>
-                            <td><strong>Nombre de Usuario</strong></td>
-                            <td><?php echo $usuarioSistema->getUsername(); ?></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Rol:</strong></td>
-                            <td><?php echo $rol->getDescripcion(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Password:</strong></td>
-                            <td><?php echo preg_replace("/[A-Za-z0-9]/", "*", $usuarioSistema->getPassword()); ?></td>  
-                        </tr>
-                    </table>
-                </fieldset>
                 <fieldset>
                     <legend>Lista de Usuarios del Sistema</legend>
                     <table>
@@ -93,7 +77,7 @@
                         ?>
                         <tr>
                             <td><a href="?controller=RegistrarUsuarioSistema&action=Editar&username=<?php echo $vwUsuarioSistema->getUsername(); ?>"><?php echo $vwUsuarioSistema->getUsername(); ?></a></td>
-                            <td><?php echo $vwUsuarioSistema->getRol(); ?></td>
+                            <td><?php echo $vwUsuarioSistema->getRol(); ?></td>  
                             <td><?php echo $vwUsuarioSistema->getEstablecimiento(); ?></td>
                             <td><a class="aEliminar aeliminarUsuarioSistema" href="?controller=RegistrarUsuarioSistema&action=Eliminar&username=<?php echo $vwUsuarioSistema->getUsername(); ?>">Eliminar</a></td>
                         </tr>

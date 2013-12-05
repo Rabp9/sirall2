@@ -1,5 +1,5 @@
 <?php
-    require_once '/DAO/RedDAO.php';
+    require_once '/DAO/EstablecimientoDAO.php';
     require_once '/DAO/MarcaDAO.php';
     require_once '/DAO/TipoEquipoDAO.php';
     require_once '/DAO/ModeloDAO.php';
@@ -14,7 +14,7 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            $redes = RedDAO::getAllRed();
+            $establecimientos = EstablecimientoDAO::getAllEstablecimiento();
             $dependencias = DependenciaDAO::getAllDependencia();
             $equipos = EquipoDAO::getVwEquipo();
             require_once '/views/Desplazamiento/Index.php';
@@ -28,11 +28,11 @@
                 $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
                 $usuario = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
                 $dependencia = DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia());
-                $red = RedDAO::getRedByIdRed($dependencia->getIdRed());
-                $redes = RedDAO::getAllRed();
+                $establecimiento = EstablecimientoDAO::getEstablecimientoByIdEstablecimiento($dependencia->getIdEstablecimiento());
+                $establecimientos = EstablecimientoDAO::getAllEstablecimiento();
                 $dependencias = DependenciaDAO::getAllDependencia();
                 $usuarios = UsuarioDAO::getAllUsuario();
-                $redes2 = RedDAO::getAllRed();
+                $establecimientos2 = EstablecimientoDAO::getAllEstablecimiento();
                 $dependencias2 = DependenciaDAO::getAllDependencia();
                 $usuarios2 = UsuarioDAO::getAllUsuario();
                 require_once '/views/Desplazamiento/Desplazamiento.php';
@@ -57,10 +57,10 @@
                     $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
                     $usuarioOrigen = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
                     $dependenciaOrigen = DependenciaDAO::getDependenciaByIdDependencia($usuarioOrigen->getIdDependencia());
-                    $redOrigen = RedDAO::getRedByIdRed($dependenciaOrigen->getIdRed());
+                    $establecimientoOrigen = EstablecimientoDAO::getEstablecimientoByIdEstablecimiento($dependenciaOrigen->getIdEstablecimiento());
                     $usuarioDestino = UsuarioDAO::getUsuarioByIdUsuario($_POST['idUsuario2']);
                     $dependenciaDestino = DependenciaDAO::getDependenciaByIdDependencia($usuarioDestino->getIdDependencia());
-                    $redDestino = RedDAO::getRedByIdRed($dependenciaDestino->getIdRed());
+                    $establecimientoDestino = EstablecimientoDAO::getEstablecimientoByIdEstablecimiento($dependenciaDestino->getIdEstablecimiento());
                     require_once '/views/Desplazamiento/Confirmacion.php';
                 }
             }

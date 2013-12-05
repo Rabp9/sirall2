@@ -13,12 +13,12 @@
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#txtDescripcion'));
+                isRequiestablecimiento($('#txtDescripcion'));
                 setValue($('#txtIdRol'), <?php echo $nextID; ?>);
                 isReadOnly($('#txtIdRol'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
-                $('#chbRestRed').button();
+                $('#chbRestEstablecimiento').button();
                 $('#chbRestDependencia').button();
                 $("#chbRestDependencia" ).button({ disabled: true });
                 $('#txtDescripcion').focus();
@@ -57,7 +57,7 @@
                         });
                     });
                 });
-                $('#chbRestRed').change(function() {
+                $('#chbRestEstablecimiento').change(function() {
                     if($(this).prop('checked'))
                         $('#chbRestDependencia').button({ disabled: false });
                     else
@@ -110,7 +110,7 @@
                                     <th>Equipo</th>
                                     <th>Repuesto</th>
                                     <th>Usuario</th>
-                                    <th>Redes y Dependencias</th>
+                                    <th>Establecimientoes y Dependencias</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -158,7 +158,7 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="8">
-                                        <input id="chbRestRed" type="checkbox" name="restRed"/> <label for="chbRestRed"> Restringir Usuario a objetos de su Red</label>
+                                        <input id="chbRestEstablecimiento" type="checkbox" name="restEstablecimiento"/> <label for="chbRestEstablecimiento"> Restringir Usuario a objetos de su Establecimiento</label>
                                     </td>  
                                 </tr>
                                 <tr>

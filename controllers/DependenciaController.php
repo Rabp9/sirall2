@@ -2,7 +2,7 @@
 
 <?php
     require_once '/controllers/AppController.php';
-    require_once '/DAO/RedDAO.php';
+    require_once '/DAO/EstablecimientoDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     
     class DependenciaController implements AppController {
@@ -26,7 +26,7 @@
                 return;
             }
             $nextID = DependenciaDAO::getNextID();
-            $redes = RedDAO::getAll();
+            $establecimientos = EstablecimientoDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
             require_once '/views/Mantenimiento/Dependencia/Crear.php';
         }
@@ -35,10 +35,9 @@
             if(isset($_POST)) {
                 $dependencia = new Dependencia();
                 $dependencia->setIdDependencia($_POST['idDependencia']);
-                $dependencia->setIdRed($_POST['idRed']);
+                $dependencia->setIdEstablecimiento($_POST['idEstablecimiento']);
                 $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
-            echo var_dump($dependencia);
                 DependenciaDAO::crear($dependencia) ?
                     $mensaje = "Dependencia guardada correctamente" :
                     $mensaje = "La Dependencia no fue guardada correctamente";
@@ -54,7 +53,7 @@
             }
             if(isset($_GET['idDependencia'])) {
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']));
-                $red = current(RedDAO::getBy("idRed", $dependencia->getIdRed()));
+                $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
                 if(DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia())) {
                     $superDependencia = current(DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia()));
                 }
@@ -72,7 +71,7 @@
             }
             if(isset($_GET['idDependencia'])) {
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']));
-                $redes = RedDAO::getAll();
+                $establecimientos = EstablecimientoDAO::getAll();
                 $dependencias = DependenciaDAO::getAll();
                 require_once '/views/Mantenimiento/Dependencia/Editar.php';
             }
@@ -82,7 +81,7 @@
             if(isset($_POST)) {
                 $dependencia = new Dependencia();
                 $dependencia->setIdDependencia($_POST['idDependencia']);
-                $dependencia->setIdRed($_POST['idRed']);
+                $dependencia->setIdEstablecimiento($_POST['idEstablecimiento']);
                 $dependencia->setDescripcion($_POST['descripcion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
                 DependenciaDAO::editar($dependencia) ?
@@ -100,7 +99,7 @@
             }
             if(isset($_GET['idDependencia'])) {
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']));
-                $red = RedDAO::getBy("idRed", $dependencia->getIdRed());
+                $establecimiento = EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento());
                 $superDependencia = DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia());
                 require_once '/views/Mantenimiento/Dependencia/Eliminar.php';
             }
@@ -123,7 +122,7 @@
                 if($_GET['superIdDependencia'] != 0)
                     $dependencias = DependenciaDAO::getDependenciaBySuperIdDependencia($_GET['superIdDependencia']);
                 else
-                    $dependencias = DependenciaDAO::getBy("idRed", $_GET['idRed']);
+                    $dependencias = DependenciaDAO::getBy("idEstablecimiento", $_GET['idEstablecimiento']);
                 echo DependenciaDAO::toXml($dependencias);
             }
         }

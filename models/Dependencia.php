@@ -7,15 +7,15 @@
      */
     class Dependencia implements AppModel {
         private $idDependencia;
-        private $idRed;
+        private $idEstablecimiento;
         private $descripcion;
         private $superIdDependencia;
         private $idUsuarioJefe;
         private $estado;
         
-        public function __construct($idDependencia = "", $idRed = "", $descripcion = "", $superIdDependencia = "", $idUsuarioJefe = "", $estado = 1) {
+        public function __construct($idDependencia = "", $idEstablecimiento = "", $descripcion = "", $superIdDependencia = "", $idUsuarioJefe = "", $estado = 1) {
             $this->idDependencia = $idDependencia;
-            $this->idRed = $idRed;
+            $this->idEstablecimiento = $idEstablecimiento;
             $this->descripcion = $descripcion;
             $this->idUsuarioJefe = $idUsuarioJefe;
             $this->estado = $estado;
@@ -31,12 +31,12 @@
             return $this->idDependencia;
         }
         
-        public function setIdRed($idRed) {
-            $this->idRed = $idRed;
+        public function setIdEstablecimiento($idEstablecimiento) {
+            $this->idEstablecimiento = $idEstablecimiento;
         }
             
-        public function getIdRed() {
-            return $this->idRed;
+        public function getIdEstablecimiento() {
+            return $this->idEstablecimiento;
         }
         
         public function setDescripcion($descripcion) {

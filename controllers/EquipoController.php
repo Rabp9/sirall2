@@ -6,7 +6,7 @@
     require_once '/DAO/MarcaDAO.php';
     require_once '/DAO/TipoEquipoDAO.php';
     require_once '/DAO/ModeloDAO.php';
-    require_once '/DAO/RedDAO.php';
+    require_once '/DAO/EstablecimientoDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     require_once '/DAO/UsuarioDAO.php';
     require_once '/DAO/DatoDAO.php';
@@ -34,7 +34,7 @@
             $nextID = EquipoDAO::getNextID();
             $tipoEquipos = TipoEquipoDAO::getAll();
             $marcas = MarcaDAO::getAll();
-            $redes = RedDAO::getAll();
+            $establecimientos = EstablecimientoDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
             $usuarios = UsuarioDAO::getAll();
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
@@ -82,7 +82,7 @@
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $equipo->getIdUsuario()));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
-                $red = current(RedDAO::getBy("idRed", $dependencia->getIdRed()));
+                $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
                 require_once '/views/Mantenimiento/Equipo/Detalle.php';
             }
         }
@@ -100,7 +100,7 @@
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $equipo->getIdUsuario()));
                 $tipoEquipos = TipoEquipoDAO::getAll();
                 $marcas = MarcaDAO::getAll();
-                $redes = RedDAO::getAll();      
+                $establecimientos = EstablecimientoDAO::getAll();      
                 $dependencias = DependenciaDAO::getAll();
                 $datos = DatoDAO::getBy("codigoPatrimonial", $equipo->getCodigoPatrimonial());
                 $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
@@ -149,7 +149,7 @@
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $equipo->getIdUsuario()));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
-                $red = current(RedDAO::getBy("idRed", $dependencia->getIdRed()));
+                $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
                 require_once '/views/Mantenimiento/Equipo/Eliminar.php';
             }
         }

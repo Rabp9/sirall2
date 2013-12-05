@@ -42,7 +42,7 @@
                         <tr>
                             <th><abbr title="Código identificador">ID.</abbr> Usuario</th>
                             <th>Dependencia</th>
-                            <th>Red</th>
+                            <th>Establecimiento</th>
                             <th>Nombre Completo</th>
                             <th></th>
                         </tr>
@@ -55,7 +55,7 @@
                         <tr>
                             <td><?php echo $vwUsuario->getIdUsuario(); ?></td>
                             <td><?php echo $vwUsuario->getDependencia(); ?></td>
-                            <td><?php echo $vwUsuario->getRed(); ?></td>
+                            <td><?php echo $vwUsuario->getEstablecimiento(); ?></td>
                             <td><?php echo $vwUsuario->getNombreCompleto(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>

@@ -17,7 +17,7 @@
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#txtFecha'));
+                isRequiestablecimiento($('#txtFecha'));
                 setValue($('#txtFecha'), '<?php echo date('d/m/Y'); ?>');
                 $('#buttonFlecha').button();
                 $("#txtFecha").datepicker(
@@ -30,10 +30,10 @@
                 
                 // INICIO Editar Seleccionar Dependencia
                 var idDependencia = '<?php echo $usuario->getIdDependencia(); ?>';
-                $("#ulDependencia li button").not($("button[title='Red']")).find("input[value='" + idDependencia + "']").parent().parent().find('button:eq(0)').addClass('selected');
+                $("#ulDependencia li button").not($("button[title='Establecimiento']")).find("input[value='" + idDependencia + "']").parent().parent().find('button:eq(0)').addClass('selected');
                 var $dependenciaSeleccionada = $("#ulDependencia li button.selected"); 
-                var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Red']"));
-                $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");   
+                var $establecimientoSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Establecimiento']"));
+                $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $establecimientoSeleccionada.text() + ")");   
                 $('#hdnDependencia').val('<?php echo $usuario->getIdDependencia(); ?>');
                 // FIN Editar Seleccionar Dependencia
                 // 
@@ -110,10 +110,10 @@
                 $('#btnSeleccionar2').click(function() {
                     var $dependenciaSeleccionada = $("#ulDependencia2 li button.selected");
                     if($($dependenciaSeleccionada).length) {
-                        var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Red']"));
-                        $('#txtDependenciaSeleccionada2').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
+                        var $establecimientoSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Establecimiento']"));
+                        $('#txtDependenciaSeleccionada2').html($dependenciaSeleccionada.text() + " (" + $establecimientoSeleccionada.text() + ")");
                         var tipo = $dependenciaSeleccionada.attr('title');
-                        $('#hdnRed2').attr('value', $redSeleccionada.find('input').val());
+                        $('#hdnEstablecimiento2').attr('value', $establecimientoSeleccionada.find('input').val());
                         if(tipo === 'Dependencia')
                             $('#hdnDependencia2').attr('value', $dependenciaSeleccionada.find('input').val());
                         else
@@ -221,8 +221,8 @@
                                     <td><?php echo $dependencia->getDescripcion(); ?></td>  
                                 </tr>
                                 <tr>
-                                    <td><strong>Red:</strong></td>
-                                    <td><?php echo $red->getDescripcion(); ?></td>  
+                                    <td><strong>Establecimiento:</strong></td>
+                                    <td><?php echo $establecimiento->getDescripcion(); ?></td>  
                                 </tr>
                                 <tr>
                                     <td><strong>Indicacion:</strong></td>
@@ -241,7 +241,7 @@
                                                 <td>
                                                     <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
                                                     <span id="txtDependenciaSeleccionada"></span>
-                                                    <input id="hdnRed" type="hidden" name="idRed" value=""/>
+                                                    <input id="hdnEstablecimiento" type="hidden" name="idEstablecimiento" value=""/>
                                                     <input id="hdnDependencia" type="hidden" name="idDependencia" value=""/>
                                                 </td>
                                             </tr>
@@ -263,7 +263,7 @@
                                                 <td>
                                                     <button id="btnDependenciaSuperior2" type="button">Seleccionar</button>
                                                     <span id="txtDependenciaSeleccionada2"></span>
-                                                    <input id="hdnRed2" type="hidden" name="idRed2" value=""/>
+                                                    <input id="hdnEstablecimiento2" type="hidden" name="idEstablecimiento2" value=""/>
                                                     <input id="hdnDependencia2" type="hidden" name="idDependencia2" value=""/>
                                                 </td>
                                             </tr>
@@ -302,10 +302,10 @@
                                 return false;
                             }
 
-                            function mostrarHijosRed($padre, $dependencias) {
+                            function mostrarHijosEstablecimiento($padre, $dependencias) {
                                 if(is_array($dependencias)) {
                                     foreach ($dependencias as $dependencia) {
-                                        if($padre->getIdRed() == $dependencia->getIdRed() && $dependencia->getSuperIdDependencia() == null) {
+                                        if($padre->getIdEstablecimiento() == $dependencia->getIdEstablecimiento() && $dependencia->getSuperIdDependencia() == null) {
                                             echo "<li><button type='button' title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</button>";
                                             if(tieneHijos($dependencia, $dependencias)) {
                                                 echo "<ul>";
@@ -332,12 +332,12 @@
                                 }
                             }
 
-                            if(is_array($redes)) {
+                            if(is_array($establecimientos)) {
                                 echo "<ul id='ulDependencia' class='treeview-blue'>";
-                                foreach($redes as $red) {
-                                    echo "<li><button type='button' title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</button>";
+                                foreach($establecimientos as $establecimiento) {
+                                    echo "<li><button type='button' title='Establecimiento'><input type='hidden' value='" . $establecimiento->getIdEstablecimiento() ."'/>" . $establecimiento->getDescripcion() . "</button>";
                                     echo "<ul>";
-                                    mostrarHijosRed($red, $dependencias);
+                                    mostrarHijosEstablecimiento($establecimiento, $dependencias);
                                     echo "</ul>";
                                     echo "</li>";
                                 }
@@ -350,12 +350,12 @@
                     <div id="dependenciaSelect2" title="Seleccionar Dependencia">         
                         <p>Selecciona una Dependencia</p>
                         <?php
-                            if(is_array($redes2)) {
+                            if(is_array($establecimientos2)) {
                                 echo "<ul id='ulDependencia2' class='treeview-blue'>";
-                                foreach($redes2 as $red) {
-                                    echo "<li><button type='button' title='Red'><input type='hidden' value='" . $red->getIdRed() ."'/>" . $red->getDescripcion() . "</button>";
+                                foreach($establecimientos2 as $establecimiento) {
+                                    echo "<li><button type='button' title='Establecimiento'><input type='hidden' value='" . $establecimiento->getIdEstablecimiento() ."'/>" . $establecimiento->getDescripcion() . "</button>";
                                     echo "<ul>";
-                                    mostrarHijosRed($red, $dependencias2);
+                                    mostrarHijosEstablecimiento($establecimiento, $dependencias2);
                                     echo "</ul>";
                                     echo "</li>";
                                 }

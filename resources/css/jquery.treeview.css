@@ -41,7 +41,7 @@
 
 #treecontrol { margin: 1em 0; display: none; }
 
-.treeview .hover { color: red; cursor: pointer; }
+.treeview .hover { color: establecimiento; cursor: pointer; }
 
 .treeview li { background: url(../images/treeview/treeview-default-line.gif) 0 0 no-repeat; }
 .treeview li.collapsable, .treeview li.expandable { background-position: 0 -176px; }
@@ -58,8 +58,8 @@
 .treeview-blue li { background-image: url(../images/treeview/treeview-blue-line.gif); }
 .treeview-blue .hitarea, .treeview-blue li.lastCollapsable, .treeview-blue li.lastExpandable { background-image: url(../images/treeview/treeview-blue.gif); } 
 
-.treeview-red li { background-image: url(../images/treeview/treeview-red-line.gif); }
-.treeview-red .hitarea, .treeview-red li.lastCollapsable, .treeview-red li.lastExpandable { background-image: url(../images/treeview/treeview-red.gif); } 
+.treeview-establecimiento li { background-image: url(../images/treeview/treeview-establecimiento-line.gif); }
+.treeview-establecimiento .hitarea, .treeview-establecimiento li.lastCollapsable, .treeview-establecimiento li.lastExpandable { background-image: url(../images/treeview/treeview-establecimiento.gif); } 
 
 .treeview-black li { background-image: url(../images/treeview/treeview-black-line.gif); }
 .treeview-black .hitarea, .treeview-black li.lastCollapsable, .treeview-black li.lastExpandable { background-image: url(../images/treeview/treeview-black.gif); }  
