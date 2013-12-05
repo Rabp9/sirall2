@@ -43,10 +43,10 @@ $(document).ready(function() {
                 });
             }
         }).mouseout(function () {
-            // reset the timer if we get fired again - avoids double animations
+            // reset the timer if we get fiestablecimiento again - avoids double animations
             if (hideDelayTimer) clearTimeout(hideDelayTimer);
       
-            // store the timer so that it can be cleared in the mouseover if required
+            // store the timer so that it can be cleaestablecimiento in the mouseover if requiestablecimiento
             hideDelayTimer = setTimeout(function () {
                 hideDelayTimer = null;
                 popup.animate({

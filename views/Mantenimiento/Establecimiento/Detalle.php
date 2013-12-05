@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Red/Detalle.php -->
+<!-- File: /views/Mantenimiento/Establecimiento/Detalle.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -13,7 +13,7 @@
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/jquery.codaPopupBubbles.js"></script>
 
-        <title>SIRALL2 - Detalle Red</title>
+        <title>SIRALL2 - Detalle Establecimiento</title>
     </head>
     <body>
         <aside>
@@ -28,33 +28,33 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Detalle Red</h2>
-                        <h4>Detalla la información de la Red</h4>
+                        <h2>Detalle Establecimiento</h2>
+                        <h4>Detalla la información de la Establecimiento</h4>
                     </hgroup>
                 </header>
                 <fieldset>
-                    <legend>Detalle Red</legend>
+                    <legend>Detalle Establecimiento</legend>
                     <table>
                         <tr>
-                            <td><strong><abbr title="Código identificador">ID.</abbr> Red:</strong></td>
-                            <td><?php echo $red->getIdRed(); ?></td>
+                            <td><strong><abbr title="Código identificador">ID.</abbr> Establecimiento:</strong></td>
+                            <td><?php echo $establecimiento->getIdEstablecimiento(); ?></td>
                         </tr>
                         <tr>
                             <td><strong>Descripción:</strong></td>
-                            <td><?php echo $red->getDescripcion(); ?></td>  
+                            <td><?php echo $establecimiento->getDescripcion(); ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Dirección:</strong></td>
-                            <td><?php echo $red->getDireccion(); ?></td>  
+                            <td><?php echo $establecimiento->getDireccion(); ?></td>  
                         </tr>
                         <tr>
                             <td>
-                                <a class="aEditar" href="?controller=Red&action=Editar&idRed=<?php echo $red->getIdRed(); ?>">Editar</a> |
-                                <a class="aEliminar" href="?controller=Red&action=Eliminar&idRed=<?php echo $red->getIdRed(); ?>">Eliminar</a>
+                                <a class="aEditar" href="?controller=Establecimiento&action=Editar&idEstablecimiento=<?php echo $establecimiento->getIdEstablecimiento(); ?>">Editar</a> |
+                                <a class="aEliminar" href="?controller=Establecimiento&action=Eliminar&idEstablecimiento=<?php echo $establecimiento->getIdEstablecimiento(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2"><a href="?controller=Red">Regresar</a></td>
+                            <td colspan="2"><a href="?controller=Establecimiento">Regresar</a></td>
                         </tr>
                     </table>
                 </fieldset>

@@ -67,7 +67,7 @@
                             <td>
                                 <?php echo $usuarioOrigen->getApellidoPaterno() . ' ' . $usuarioOrigen->getApellidoMaterno() . ', ' . $usuarioOrigen->getNombres(); ?><br/>
                                 <?php echo $dependenciaOrigen->getDescripcion(); ?><br/>
-                                <?php echo $redOrigen->getDescripcion(); ?>
+                                <?php echo $establecimientoOrigen->getDescripcion(); ?>
                              </td>  
                         </tr>
                         <tr>
@@ -75,7 +75,7 @@
                             <td>
                                 <?php echo $usuarioDestino->getApellidoPaterno() . ' ' . $usuarioDestino->getApellidoMaterno() . ', ' . $usuarioDestino->getNombres(); ?><br/>
                                 <?php echo $dependenciaDestino->getDescripcion(); ?><br/>
-                                <?php echo $redDestino->getDescripcion(); ?>
+                                <?php echo $establecimientoDestino->getDescripcion(); ?>
                              </td>  
                         </tr>
                         <tr>

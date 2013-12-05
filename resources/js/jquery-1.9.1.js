@@ -19,7 +19,7 @@
 // Support: Firefox 18+
 //"use strict";
 var
-	// The deferred used on DOM ready
+	// The deferestablecimiento used on DOM ready
 	readyList,
 
 	// A central reference to the root jQuery(document)
@@ -424,7 +424,7 @@ jQuery.extend({
 		// Remember that the DOM is ready
 		jQuery.isReady = true;
 
-		// If a normal DOM Ready event fired, decrement, and wait if need be
+		// If a normal DOM Ready event fiestablecimiento, decrement, and wait if need be
 		if ( wait !== true && --jQuery.readyWait > 0 ) {
 			return;
 		}
@@ -885,11 +885,11 @@ jQuery.extend({
 jQuery.ready.promise = function( obj ) {
 	if ( !readyList ) {
 
-		readyList = jQuery.Deferred();
+		readyList = jQuery.Deferestablecimiento();
 
-		// Catch cases where $(document).ready() is called after the browser event has already occurred.
+		// Catch cases where $(document).ready() is called after the browser event has already occurestablecimiento.
 		// we once tried to use readyState "interactive" here, but it caused issues like the one
-		// discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
+		// discoveestablecimiento by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
 		if ( document.readyState === "complete" ) {
 			// Handle it asynchronously to allow scripts the opportunity to delay ready
 			setTimeout( jQuery.ready );
@@ -986,15 +986,15 @@ function createOptions( options ) {
  *			the callback list behaves or a more traditional option object
  *
  * By default a callback list will act like an event callback list and can be
- * "fired" multiple times.
+ * "fiestablecimiento" multiple times.
  *
  * Possible options:
  *
- *	once:			will ensure the callback list can only be fired once (like a Deferred)
+ *	once:			will ensure the callback list can only be fiestablecimiento once (like a Deferestablecimiento)
  *
  *	memory:			will keep track of previous values and will call any callback added
- *					after the list has been fired right away with the latest "memorized"
- *					values (like a Deferred)
+ *					after the list has been fiestablecimiento right away with the latest "memorized"
+ *					values (like a Deferestablecimiento)
  *
  *	unique:			will ensure a callback can only be added once (no duplicate in the list)
  *
@@ -1013,8 +1013,8 @@ jQuery.Callbacks = function( options ) {
 		firing,
 		// Last fire value (for non-forgettable lists)
 		memory,
-		// Flag to know if list was already fired
-		fired,
+		// Flag to know if list was already fiestablecimiento
+		fiestablecimiento,
 		// End of the loop when firing
 		firingLength,
 		// Index of currently firing callback (modified by remove if needed)
@@ -1028,7 +1028,7 @@ jQuery.Callbacks = function( options ) {
 		// Fire callbacks
 		fire = function( data ) {
 			memory = options.memory && data;
-			fired = true;
+			fiestablecimiento = true;
 			firingIndex = firingStart || 0;
 			firingStart = 0;
 			firingLength = list.length;
@@ -1141,7 +1141,7 @@ jQuery.Callbacks = function( options ) {
 			fireWith: function( context, args ) {
 				args = args || [];
 				args = [ context, args.slice ? args.slice() : args ];
-				if ( list && ( !fired || stack ) ) {
+				if ( list && ( !fiestablecimiento || stack ) ) {
 					if ( firing ) {
 						stack.push( args );
 					} else {
@@ -1156,8 +1156,8 @@ jQuery.Callbacks = function( options ) {
 				return this;
 			},
 			// To know if the callbacks have already been called at least once
-			fired: function() {
-				return !!fired;
+			fiestablecimiento: function() {
+				return !!fiestablecimiento;
 			}
 		};
 
@@ -1165,7 +1165,7 @@ jQuery.Callbacks = function( options ) {
 };
 jQuery.extend({
 
-	Deferred: function( func ) {
+	Deferestablecimiento: function( func ) {
 		var tuples = [
 				// action, add listener, listener list, final state
 				[ "resolve", "done", jQuery.Callbacks("once memory"), "resolved" ],
@@ -1178,17 +1178,17 @@ jQuery.extend({
 					return state;
 				},
 				always: function() {
-					deferred.done( arguments ).fail( arguments );
+					deferestablecimiento.done( arguments ).fail( arguments );
 					return this;
 				},
 				then: function( /* fnDone, fnFail, fnProgress */ ) {
 					var fns = arguments;
-					return jQuery.Deferred(function( newDefer ) {
+					return jQuery.Deferestablecimiento(function( newDefer ) {
 						jQuery.each( tuples, function( i, tuple ) {
 							var action = tuple[ 0 ],
 								fn = jQuery.isFunction( fns[ i ] ) && fns[ i ];
-							// deferred[ done | fail | progress ] for forwarding actions to newDefer
-							deferred[ tuple[1] ](function() {
+							// deferestablecimiento[ done | fail | progress ] for forwarding actions to newDefer
+							deferestablecimiento[ tuple[1] ](function() {
 								var returned = fn && fn.apply( this, arguments );
 								if ( returned && jQuery.isFunction( returned.promise ) ) {
 									returned.promise()
@@ -1203,13 +1203,13 @@ jQuery.extend({
 						fns = null;
 					}).promise();
 				},
-				// Get a promise for this deferred
+				// Get a promise for this deferestablecimiento
 				// If obj is provided, the promise aspect is added to the object
 				promise: function( obj ) {
 					return obj != null ? jQuery.extend( obj, promise ) : promise;
 				}
 			},
-			deferred = {};
+			deferestablecimiento = {};
 
 		// Keep pipe for back-compat
 		promise.pipe = promise.then;
@@ -1232,27 +1232,27 @@ jQuery.extend({
 				}, tuples[ i ^ 1 ][ 2 ].disable, tuples[ 2 ][ 2 ].lock );
 			}
 
-			// deferred[ resolve | reject | notify ]
-			deferred[ tuple[0] ] = function() {
-				deferred[ tuple[0] + "With" ]( this === deferred ? promise : this, arguments );
+			// deferestablecimiento[ resolve | reject | notify ]
+			deferestablecimiento[ tuple[0] ] = function() {
+				deferestablecimiento[ tuple[0] + "With" ]( this === deferestablecimiento ? promise : this, arguments );
 				return this;
 			};
-			deferred[ tuple[0] + "With" ] = list.fireWith;
+			deferestablecimiento[ tuple[0] + "With" ] = list.fireWith;
 		});
 
-		// Make the deferred a promise
-		promise.promise( deferred );
+		// Make the deferestablecimiento a promise
+		promise.promise( deferestablecimiento );
 
 		// Call given func if any
 		if ( func ) {
-			func.call( deferred, deferred );
+			func.call( deferestablecimiento, deferestablecimiento );
 		}
 
 		// All done!
-		return deferred;
+		return deferestablecimiento;
 	},
 
-	// Deferred helper
+	// Deferestablecimiento helper
 	when: function( subordinate /* , ..., subordinateN */ ) {
 		var i = 0,
 			resolveValues = core_slice.call( arguments ),
@@ -1261,8 +1261,8 @@ jQuery.extend({
 			// the count of uncompleted subordinates
 			remaining = length !== 1 || ( subordinate && jQuery.isFunction( subordinate.promise ) ) ? length : 0,
 
-			// the master Deferred. If resolveValues consist of only a single Deferred, just use that.
-			deferred = remaining === 1 ? subordinate : jQuery.Deferred(),
+			// the master Deferestablecimiento. If resolveValues consist of only a single Deferestablecimiento, just use that.
+			deferestablecimiento = remaining === 1 ? subordinate : jQuery.Deferestablecimiento(),
 
 			// Update function for both resolve and progress values
 			updateFunc = function( i, contexts, values ) {
@@ -1270,16 +1270,16 @@ jQuery.extend({
 					contexts[ i ] = this;
 					values[ i ] = arguments.length > 1 ? core_slice.call( arguments ) : value;
 					if( values === progressValues ) {
-						deferred.notifyWith( contexts, values );
+						deferestablecimiento.notifyWith( contexts, values );
 					} else if ( !( --remaining ) ) {
-						deferred.resolveWith( contexts, values );
+						deferestablecimiento.resolveWith( contexts, values );
 					}
 				};
 			},
 
 			progressValues, progressContexts, resolveContexts;
 
-		// add listeners to Deferred subordinates; treat others as resolved
+		// add listeners to Deferestablecimiento subordinates; treat others as resolved
 		if ( length > 1 ) {
 			progressValues = new Array( length );
 			progressContexts = new Array( length );
@@ -1288,7 +1288,7 @@ jQuery.extend({
 				if ( resolveValues[ i ] && jQuery.isFunction( resolveValues[ i ].promise ) ) {
 					resolveValues[ i ].promise()
 						.done( updateFunc( i, resolveContexts, resolveValues ) )
-						.fail( deferred.reject )
+						.fail( deferestablecimiento.reject )
 						.progress( updateFunc( i, progressContexts, progressValues ) );
 				} else {
 					--remaining;
@@ -1298,10 +1298,10 @@ jQuery.extend({
 
 		// if we're not waiting on anything, resolve the master
 		if ( !remaining ) {
-			deferred.resolveWith( resolveContexts, resolveValues );
+			deferestablecimiento.resolveWith( resolveContexts, resolveValues );
 		}
 
-		return deferred.promise();
+		return deferestablecimiento.promise();
 	}
 });
 jQuery.support = (function() {
@@ -1607,7 +1607,7 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ){
 
 	thisCache = cache[ id ];
 
-	// jQuery data() is stored in a separate object inside the object's internal data
+	// jQuery data() is stoestablecimiento in a separate object inside the object's internal data
 	// cache in order to avoid key collisions between internal data and user-defined
 	// data.
 	if ( !pvt ) {
@@ -1769,7 +1769,7 @@ jQuery.extend({
 
 	// A method for determining if a DOM node can handle the data expando
 	acceptData: function( elem ) {
-		// Do not set data on non-element because it will not be cleared (#8335).
+		// Do not set data on non-element because it will not be cleaestablecimiento (#8335).
 		if ( elem.nodeType && elem.nodeType !== 1 && elem.nodeType !== 9 ) {
 			return false;
 		}
@@ -1821,7 +1821,7 @@ jQuery.fn.extend({
 		return jQuery.access( this, function( value ) {
 
 			if ( value === undefined ) {
-				// Try to fetch any internally stored data first
+				// Try to fetch any internally stoestablecimiento data first
 				return elem ? dataAttr( elem, key, jQuery.data( elem, key ) ) : null;
 			}
 
@@ -2006,7 +2006,7 @@ jQuery.fn.extend({
 	promise: function( type, obj ) {
 		var tmp,
 			count = 1,
-			defer = jQuery.Deferred(),
+			defer = jQuery.Deferestablecimiento(),
 			elements = this,
 			i = this.length,
 			resolve = function() {
@@ -2037,7 +2037,7 @@ var nodeHook, boolHook,
 	rreturn = /\r/g,
 	rfocusable = /^(?:input|select|textarea|button|object)$/i,
 	rclickable = /^(?:a|area)$/i,
-	rboolean = /^(?:checked|selected|autofocus|autoplay|async|controls|defer|disabled|hidden|loop|multiple|open|readonly|required|scoped)$/i,
+	rboolean = /^(?:checked|selected|autofocus|autoplay|async|controls|defer|disabled|hidden|loop|multiple|open|readonly|requiestablecimiento|scoped)$/i,
 	ruseDefault = /^(?:checked|selected)$/i,
 	getSetAttribute = jQuery.support.getSetAttribute,
 	getSetInput = jQuery.support.input;
@@ -2180,7 +2180,7 @@ jQuery.fn.extend({
 				// If the element has a class name or if we're passed "false",
 				// then remove the whole classname (if there was one, the above saved it).
 				// Otherwise bring back whatever was previously saved (if anything),
-				// falling back to the empty string if nothing was stored.
+				// falling back to the empty string if nothing was stoestablecimiento.
 				this.className = this.className || value === false ? "" : jQuery._data( this, "__className__" ) || "";
 			}
 		});
@@ -2746,7 +2746,7 @@ jQuery.event = {
 			eventHandle = elemData.handle = function( e ) {
 				// Discard the second event of a jQuery.event.trigger() and
 				// when an event is called after a page has unloaded
-				return typeof jQuery !== core_strundefined && (!e || jQuery.event.triggered !== e.type) ?
+				return typeof jQuery !== core_strundefined && (!e || jQuery.event.triggeestablecimiento !== e.type) ?
 					jQuery.event.dispatch.apply( eventHandle.elem, arguments ) :
 					undefined;
 			};
@@ -2913,7 +2913,7 @@ jQuery.event = {
 		}
 
 		// focus/blur morphs to focusin/out; ensure we're not firing them right now
-		if ( rfocusMorph.test( type + jQuery.event.triggered ) ) {
+		if ( rfocusMorph.test( type + jQuery.event.triggeestablecimiento ) ) {
 			return;
 		}
 
@@ -3013,14 +3013,14 @@ jQuery.event = {
 					}
 
 					// Prevent re-triggering of the same event, since we already bubbled it above
-					jQuery.event.triggered = type;
+					jQuery.event.triggeestablecimiento = type;
 					try {
 						elem[ type ]();
 					} catch ( e ) {
 						// IE<9 dies on focus/blur to hidden element (#1486,#12518)
 						// only reproducible on winXP IE8 native, not IE9 in IE8 mode
 					}
-					jQuery.event.triggered = undefined;
+					jQuery.event.triggeestablecimiento = undefined;
 
 					if ( tmp ) {
 						elem[ ontype ] = tmp;
@@ -3047,7 +3047,7 @@ jQuery.event = {
 		args[0] = event;
 		event.delegateTarget = this;
 
-		// Call the preDispatch hook for the mapped type, and let it bail if desired
+		// Call the preDispatch hook for the mapped type, and let it bail if desiestablecimiento
 		if ( special.preDispatch && special.preDispatch.call( this, event ) === false ) {
 			return;
 		}
@@ -3063,7 +3063,7 @@ jQuery.event = {
 			j = 0;
 			while ( (handleObj = matched.handlers[ j++ ]) && !event.isImmediatePropagationStopped() ) {
 
-				// Triggered event must either 1) have no namespace, or
+				// Triggeestablecimiento event must either 1) have no namespace, or
 				// 2) have namespace(s) a subset or equal to those in the bound event (both can have no namespace).
 				if ( !event.namespace_re || event.namespace_re.test( handleObj.namespace ) ) {
 
@@ -3184,7 +3184,7 @@ jQuery.event = {
 		return fixHook.filter ? fixHook.filter( event, originalEvent ) : event;
 	},
 
-	// Includes some event props shared by KeyEvent and MouseEvent
+	// Includes some event props shaestablecimiento by KeyEvent and MouseEvent
 	props: "altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),
 
 	fixHooks: {},
@@ -3236,7 +3236,7 @@ jQuery.event = {
 
 	special: {
 		load: {
-			// Prevent triggered image.load events from bubbling to window.load
+			// Prevent triggeestablecimiento image.load events from bubbling to window.load
 			noBubble: true
 		},
 		click: {
@@ -3425,7 +3425,7 @@ jQuery.each({
 				handleObj = event.handleObj;
 
 			// For mousenter/leave call the handler if related is outside the target.
-			// NB: No relatedTarget if the mouse left/entered the browser window
+			// NB: No relatedTarget if the mouse left/enteestablecimiento the browser window
 			if ( !related || (related !== target && !jQuery.contains( target, related )) ) {
 				event.type = handleObj.origType;
 				ret = handleObj.handler.apply( this, arguments );
@@ -3504,7 +3504,7 @@ if ( !jQuery.support.changeBubbles ) {
 						if ( this._just_changed && !event.isTrigger ) {
 							this._just_changed = false;
 						}
-						// Allow triggered, simulated change events (#11500)
+						// Allow triggeestablecimiento, simulated change events (#11500)
 						jQuery.event.simulate( "change", this, event, true );
 					});
 				}
@@ -3528,7 +3528,7 @@ if ( !jQuery.support.changeBubbles ) {
 		handle: function( event ) {
 			var elem = event.target;
 
-			// Swallow native change events from checkbox/radio, we already triggered them above
+			// Swallow native change events from checkbox/radio, we already triggeestablecimiento them above
 			if ( this !== elem || event.isSimulated || event.isTrigger || (elem.type !== "radio" && elem.type !== "checkbox") ) {
 				return event.handleObj.handler.apply( this, arguments );
 			}
@@ -3714,7 +3714,7 @@ var i,
 
 	// Instance-specific data
 	expando = "sizzle" + -(new Date()),
-	preferredDoc = window.document,
+	preferestablecimientoDoc = window.document,
 	support = {},
 	dirruns = 0,
 	done = 0,
@@ -3765,7 +3765,7 @@ var i,
 	//   then not containing pseudos/brackets,
 	//   then attribute selectors/non-parenthetical expressions,
 	//   then anything else
-	// These preferences are here to reduce the number of selectors
+	// These preferences are here to establecimientouce the number of selectors
 	//   needing tokenize in the PSEUDO preFilter
 	pseudos = ":(" + characterEncoding + ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + attributes.replace( 3, 8 ) + ")*)|.*)\\)|)",
 
@@ -3822,7 +3822,7 @@ var i,
 
 // Use a stripped-down slice if we can't use a native one
 try {
-	slice.call( preferredDoc.documentElement.childNodes, 0 )[0].nodeType;
+	slice.call( preferestablecimientoDoc.documentElement.childNodes, 0 )[0].nodeType;
 } catch ( e ) {
 	slice = function( i ) {
 		var elem,
@@ -3893,7 +3893,7 @@ function Sizzle( selector, context, results, seed ) {
 		// QSA vars
 		i, groups, old, nid, newContext, newSelector;
 
-	if ( ( context ? context.ownerDocument || context : preferredDoc ) !== document ) {
+	if ( ( context ? context.ownerDocument || context : preferestablecimientoDoc ) !== document ) {
 		setDocument( context );
 	}
 
@@ -4015,7 +4015,7 @@ isXML = Sizzle.isXML = function( elem ) {
  * @returns {Object} Returns the current document
  */
 setDocument = Sizzle.setDocument = function( node ) {
-	var doc = node ? node.ownerDocument || node : preferredDoc;
+	var doc = node ? node.ownerDocument || node : preferestablecimientoDoc;
 
 	// If no document and documentElement is available, return
 	if ( doc === document || doc.nodeType !== 9 || !doc.documentElement ) {
@@ -4283,10 +4283,10 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 		if ( (compare = b.compareDocumentPosition && a.compareDocumentPosition && a.compareDocumentPosition( b )) ) {
 			if ( compare & 1 || a.parentNode && a.parentNode.nodeType === 11 ) {
-				if ( a === doc || contains( preferredDoc, a ) ) {
+				if ( a === doc || contains( preferestablecimientoDoc, a ) ) {
 					return -1;
 				}
-				if ( b === doc || contains( preferredDoc, b ) ) {
+				if ( b === doc || contains( preferestablecimientoDoc, b ) ) {
 					return 1;
 				}
 				return 0;
@@ -4342,8 +4342,8 @@ setDocument = Sizzle.setDocument = function( node ) {
 			siblingCheck( ap[i], bp[i] ) :
 
 			// Otherwise nodes in our document sort first
-			ap[i] === preferredDoc ? -1 :
-			bp[i] === preferredDoc ? 1 :
+			ap[i] === preferestablecimientoDoc ? -1 :
+			bp[i] === preferestablecimientoDoc ? 1 :
 			0;
 	};
 
@@ -4747,7 +4747,7 @@ Expr = Sizzle.selectors = {
 								(diff = nodeIndex = 0) || start.pop()) ) {
 
 								if ( ( ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1 ) && ++diff ) {
-									// Cache the index of each encountered element
+									// Cache the index of each encounteestablecimiento element
 									if ( useCache ) {
 										(node[ expando ] || (node[ expando ] = {}))[ type ] = [ dirruns, diff ];
 									}
@@ -5195,7 +5195,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 				elems,
 
 			matcherOut = matcher ?
-				// If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
+				// If we have a postFinder, or filteestablecimiento seed, or non-seed postFilter or preexisting results,
 				postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
 
 					// ...intermediate processing is necessary
@@ -5653,7 +5653,7 @@ jQuery.fn.extend({
 			return jQuery.inArray( this[0], jQuery( elem ) );
 		}
 
-		// Locate the position of the desired element
+		// Locate the position of the desiestablecimiento element
 		return jQuery.inArray(
 			// If it receives a jQuery object, the first element is used
 			elem.jquery ? elem[0] : elem, this );
@@ -5803,14 +5803,14 @@ function winnow( elements, qualifier, keep ) {
 		});
 
 	} else if ( typeof qualifier === "string" ) {
-		var filtered = jQuery.grep(elements, function( elem ) {
+		var filteestablecimiento = jQuery.grep(elements, function( elem ) {
 			return elem.nodeType === 1;
 		});
 
 		if ( isSimple.test( qualifier ) ) {
-			return jQuery.filter(qualifier, filtered, !keep);
+			return jQuery.filter(qualifier, filteestablecimiento, !keep);
 		} else {
-			qualifier = jQuery.filter( qualifier, filtered );
+			qualifier = jQuery.filter( qualifier, filteestablecimiento );
 		}
 	}
 
@@ -7749,9 +7749,9 @@ jQuery.extend({
 			globalEventContext = s.context && ( callbackContext.nodeType || callbackContext.jquery ) ?
 				jQuery( callbackContext ) :
 				jQuery.event,
-			// Deferreds
-			deferred = jQuery.Deferred(),
-			completeDeferred = jQuery.Callbacks("once memory"),
+			// Deferestablecimientos
+			deferestablecimiento = jQuery.Deferestablecimiento(),
+			completeDeferestablecimiento = jQuery.Callbacks("once memory"),
 			// Status-dependent callbacks
 			statusCode = s.statusCode || {},
 			// Headers (they are sent all at once)
@@ -7831,8 +7831,8 @@ jQuery.extend({
 				}
 			};
 
-		// Attach deferreds
-		deferred.promise( jqXHR ).complete = completeDeferred.add;
+		// Attach deferestablecimientos
+		deferestablecimiento.promise( jqXHR ).complete = completeDeferestablecimiento.add;
 		jqXHR.success = jqXHR.done;
 		jqXHR.error = jqXHR.fail;
 
@@ -7948,7 +7948,7 @@ jQuery.extend({
 		// aborting is no longer a cancellation
 		strAbort = "abort";
 
-		// Install callbacks on deferreds
+		// Install callbacks on deferestablecimientos
 		for ( i in { success: 1, error: 1, complete: 1 } ) {
 			jqXHR[ i ]( s[ i ] );
 		}
@@ -8071,9 +8071,9 @@ jQuery.extend({
 
 			// Success/Error
 			if ( isSuccess ) {
-				deferred.resolveWith( callbackContext, [ success, statusText, jqXHR ] );
+				deferestablecimiento.resolveWith( callbackContext, [ success, statusText, jqXHR ] );
 			} else {
-				deferred.rejectWith( callbackContext, [ jqXHR, statusText, error ] );
+				deferestablecimiento.rejectWith( callbackContext, [ jqXHR, statusText, error ] );
 			}
 
 			// Status-dependent callbacks
@@ -8086,7 +8086,7 @@ jQuery.extend({
 			}
 
 			// Complete
-			completeDeferred.fireWith( callbackContext, [ jqXHR, statusText ] );
+			completeDeferestablecimiento.fireWith( callbackContext, [ jqXHR, statusText ] );
 
 			if ( fireGlobals ) {
 				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
@@ -8465,7 +8465,7 @@ jQuery.ajaxSettings.xhr = window.ActiveXObject ?
 
 // Determine support properties
 xhrSupported = jQuery.ajaxSettings.xhr();
-jQuery.support.cors = !!xhrSupported && ( "withCredentials" in xhrSupported );
+jQuery.support.cors = !!xhrSupported && ( "withCestablecimientoentials" in xhrSupported );
 xhrSupported = jQuery.support.ajax = !!xhrSupported;
 
 // Create transport if the browser can provide an xhr
@@ -8530,7 +8530,7 @@ if ( xhrSupported ) {
 						var status, responseHeaders, statusText, responses;
 
 						// Firefox throws exceptions when accessing properties
-						// of an xhr when a network error occurred
+						// of an xhr when a network error occurestablecimiento
 						// http://helpful.knobs-dials.com/index.php/Component_returned_failure_code:_0x80040111_(NS_ERROR_NOT_AVAILABLE)
 						try {
 
@@ -8708,7 +8708,7 @@ function Animation( elem, properties, options ) {
 		stopped,
 		index = 0,
 		length = animationPrefilters.length,
-		deferred = jQuery.Deferred().always( function() {
+		deferestablecimiento = jQuery.Deferestablecimiento().always( function() {
 			// don't match elem in the :animated selector
 			delete tick.elem;
 		}),
@@ -8728,16 +8728,16 @@ function Animation( elem, properties, options ) {
 				animation.tweens[ index ].run( percent );
 			}
 
-			deferred.notifyWith( elem, [ animation, percent, remaining ]);
+			deferestablecimiento.notifyWith( elem, [ animation, percent, remaining ]);
 
 			if ( percent < 1 && length ) {
 				return remaining;
 			} else {
-				deferred.resolveWith( elem, [ animation ] );
+				deferestablecimiento.resolveWith( elem, [ animation ] );
 				return false;
 			}
 		},
-		animation = deferred.promise({
+		animation = deferestablecimiento.promise({
 			elem: elem,
 			props: jQuery.extend( {}, properties ),
 			opts: jQuery.extend( true, { specialEasing: {} }, options ),
@@ -8768,9 +8768,9 @@ function Animation( elem, properties, options ) {
 				// resolve when we played the last frame
 				// otherwise, reject
 				if ( gotoEnd ) {
-					deferred.resolveWith( elem, [ animation, gotoEnd ] );
+					deferestablecimiento.resolveWith( elem, [ animation, gotoEnd ] );
 				} else {
-					deferred.rejectWith( elem, [ animation, gotoEnd ] );
+					deferestablecimiento.rejectWith( elem, [ animation, gotoEnd ] );
 				}
 				return this;
 			}
@@ -9587,7 +9587,7 @@ window.jQuery = window.$ = jQuery;
 // but not use a proper concatenation script that understands anonymous
 // AMD modules. A named AMD is safest and most robust way to register.
 // Lowercase jquery is used because AMD module names are derived from
-// file names, and jQuery is normally delivered in a lowercase file name.
+// file names, and jQuery is normally deliveestablecimiento in a lowercase file name.
 // Do this after creating the global so that if an AMD module wants to call
 // noConflict to hide this version of jQuery, it will work.
 if ( typeof define === "function" && define.amd && define.amd.jQuery ) {

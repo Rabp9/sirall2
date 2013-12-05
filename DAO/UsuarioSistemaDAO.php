@@ -15,6 +15,7 @@
                 $usuarioSistema = new UsuarioSistema();
                 $usuarioSistema->setUsername($rs['username']);
                 $usuarioSistema->setIdRol($rs['idRol']);
+                $usuarioSistema->setIdEstablecimiento($rs['idEstablecimiento']);
                 $usuarioSistema->setPassword($rs['password']);
                 $usuarioSistema->setEstado($rs['estado']);
                 $usuarioSistemas[] = $usuarioSistema; 
@@ -30,6 +31,7 @@
                 $usuarioSistema = new UsuarioSistema();
                 $usuarioSistema->setUsername($rs['username']);
                 $usuarioSistema->setIdRol($rs['idRol']);
+                $usuarioSistema->setIdEstablecimiento($rs['idEstablecimiento']);
                 $usuarioSistema->setPassword($rs['password']);
                 $usuarioSistema->setEstado($rs['estado']);
                 $usuarioSistemas[] = $usuarioSistema; 
@@ -38,20 +40,26 @@
         }
         
         public static function crear($usuarioSistema) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO UsuarioSistema(username, idRol, password, estado) values(:username, :idRol, :password, :estado)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO UsuarioSistema(username, idRol, idEstablecimiento, password, estado) values(:username, :idRol, :idEstablecimiento, :password, :estado)");
             $result->bindParam(':username', $usuarioSistema->getUsername());
             $result->bindParam(':idRol', $usuarioSistema->getIdRol());
+            $result->bindParam(':idEstablecimiento', $usuarioSistema->getIdEstablecimiento());
             $result->bindParam(':password', $usuarioSistema->getPassword());
             $result->bindParam(':estado', $usuarioSistema->getEstado());
             return $result->execute();
         }
            
-        public static function editar($usuarioSistema) {
-
+        public static function editar(UsuarioSistema $usuarioSistema) {
+            $result = BaseDatos::getDbh()->prepare("UPDATE UsuarioSistema SET idRol = :idRol, idEstablecimiento = :idEstablecimiento, password = :password, estado = :estado WHERE username = :username");
+            $result->bindParam(':password', $usuarioSistema->getPassword());
+            $result->bindParam(':idEstablecimiento', $usuarioSistema->getIdEstablecimiento());
+            $result->bindParam(':idRol', $usuarioSistema->getIdRol());
+            $result->bindParam(':estado', $usuarioSistema->getEstado());
+            $result->bindParam(':username', $usuarioSistema->getUsername());
+            return $result->execute();
         }
         
         public static function eliminar($usuarioSistema) {
-
         }
         
         public static function loguear(UsuarioSistema $usuarioSistema) {
@@ -64,6 +72,7 @@
             $usuarioSistema = new UsuarioSistema();
             $usuarioSistema->setUsername($rs['username']);
             $usuarioSistema->setIdRol($rs['idRol']);
+            $usuarioSistema->setIdEstablecimiento($rs['idEstablecimiento']);
             $usuarioSistema->setPassword($rs['password']);
             $usuarioSistema->setEstado($rs['estado']);
             return $usuarioSistema;
@@ -76,6 +85,7 @@
                 $vwUsuarioSistema = new VwUsuarioSistema();
                 $vwUsuarioSistema->setUsername($rs['username']);
                 $vwUsuarioSistema->setRol($rs['rol']);
+                $vwUsuarioSistema->setEstablecimiento($rs['establecimiento']);
                 $vwUsuarioSistemas[] = $vwUsuarioSistema; 
             }
             return isset($vwUsuarioSistemas) ? $vwUsuarioSistemas : false;

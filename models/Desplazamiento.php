@@ -13,8 +13,9 @@
         private $idDestino;
         private $fecha;
         private $observacion;
+        private $usuario;
         
-        public function __construct($idDesplazamiento = "", $codigoPatrimonial = "", $serie = "", $idOrigen = "", $idDestino = "", $fecha = "", $observacion = "") {
+        public function __construct($idDesplazamiento = "", $codigoPatrimonial = "", $serie = "", $idOrigen = "", $idDestino = "", $fecha = "", $observacion = "", $usuario = "") {
             $this->idDesplazamiento = $idDesplazamiento;
             $this->codigoPatrimonial = $codigoPatrimonial;
             $this->serie = $serie;
@@ -22,6 +23,7 @@
             $this->idDestino = $idDestino;
             $this->fecha = $fecha;
             $this->observacion = $observacion;
+            $this->usuario = $usuario;
         }
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
@@ -80,6 +82,14 @@
  
         public function getObservacion() {
             return $this->observacion;
+        }
+        
+        public function setUsuario($usuario) {
+            $this->usuario = $usuario;
+        }
+ 
+        public function getUsuario() {
+            return $this->usuario;
         }
         
         // </editor-fold>

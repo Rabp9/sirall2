@@ -3,7 +3,7 @@
 <?php
     require_once '/controllers/AppController.php';
     require_once '/DAO/UsuarioDAO.php';
-    require_once '/DAO/RedDAO.php';
+    require_once '/DAO/EstablecimientoDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     require_once '/DAO/RolDAO.php';
     
@@ -28,7 +28,7 @@
                 return;
             }
             $nextID = UsuarioDAO::getNextID();
-            $redes = RedDAO::getAll();
+            $establecimientos = EstablecimientoDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
             require_once '/views/Mantenimiento/Usuario/Crear.php';
         }
@@ -61,7 +61,7 @@
             if(isset($_GET['idUsuario'])) {
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
-                $red = RedDAO::getBy("idRed", $dependencia->getIdRed());
+                $establecimiento = EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento());
                 require_once '/views/Mantenimiento/Usuario/Detalle.php';
             }
         }
@@ -73,7 +73,7 @@
             }
             if(isset($_GET['idUsuario'])) {
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
-                $redes = current(RedDAO::getAll());
+                $establecimientos = current(EstablecimientoDAO::getAll());
                 $dependencias = DependenciaDAO::getAll();   
                 require_once '/views/Mantenimiento/Usuario/Editar.php';
             }
@@ -106,7 +106,7 @@
             if(isset($_GET['idUsuario'])) {
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
-                $red = current(RedDAO::getBy("idRed", $dependencia->getIdRed()));
+                $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
                 require_once '/views/Mantenimiento/Usuario/Eliminar.php';
             }
         }

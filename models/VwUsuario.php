@@ -8,14 +8,14 @@
     class VwUsuario implements AppModel {
         private $idUsuario;
         private $dependencia;
-        private $red;
+        private $establecimiento;
         private $nombreCompleto;
         private $correo;
         
-        public function __construct($idUsuario = "", $dependencia = "", $red = "", $nombreCompleto = "", $correo = "") {
+        public function __construct($idUsuario = "", $dependencia = "", $establecimiento = "", $nombreCompleto = "", $correo = "") {
             $this->idUsuario = $idUsuario;
             $this->dependencia = $dependencia;
-            $this->red = $red;
+            $this->establecimiento = $establecimiento;
             $this->nombreCompleto = $nombreCompleto;
             $this->correo = $correo;
         }
@@ -38,12 +38,12 @@
             return $this->dependencia;
         }
              
-        public function setRed($red) {
-            $this->red = $red;
+        public function setEstablecimiento($establecimiento) {
+            $this->establecimiento = $establecimiento;
         }
         
-        public function getRed() {
-            return $this->red;
+        public function getEstablecimiento() {
+            return $this->establecimiento;
         }
         
         public function setNombreCompleto($nombreCompleto) {

@@ -44,8 +44,8 @@
                             <td><?php echo $dependencia->getDescripcion(); ?></td>  
                         </tr>
                         <tr>
-                            <td><strong>Red:</strong></td>
-                            <td><?php echo $red->getDescripcion(); ?></td>  
+                            <td><strong>Establecimiento:</strong></td>
+                            <td><?php echo $establecimiento->getDescripcion(); ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Dependencia Superior:</strong></td>

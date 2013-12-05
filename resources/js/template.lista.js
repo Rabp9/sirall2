@@ -42,7 +42,7 @@ $(document).ready(function() {
             "sZeroRecords": "No se ecnontró ningún registro",
             "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ ",
             "sInfoEmpty": "No se muestra ningún registro",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoFilteestablecimiento": "(filtrado de un total de _MAX_ registros)",
             "oPaginate": {
                 "sFirst": "|<",
                 "sLast": ">|",

@@ -19,7 +19,7 @@
     </head>
     <body>
         <aside>
-            <header class="ui-state-hover">
+            <header>
                 <?php include_once 'views/Home/header.php';?>
             </header>
             <nav>
@@ -42,7 +42,7 @@
                         <tr>
                             <th><abbr title="Código identificador">ID.</abbr> Dependencia</th>
                             <th>Descripción</th>
-                            <th>Red</th>
+                            <th>Establecimiento</th>
                             <th>Dependencia Superior</th>
                             <th></th>
                         </tr>
@@ -55,7 +55,7 @@
                         <tr>
                             <td><?php echo $vwDependencia->getIdDependencia(); ?></td>
                             <td><?php echo $vwDependencia->getDescripcion(); ?></td>
-                            <td><?php echo $vwDependencia->getRed(); ?></td>
+                            <td><?php echo $vwDependencia->getEstablecimiento(); ?></td>
                             <td><?php echo $vwDependencia->getSuperDependencia(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>

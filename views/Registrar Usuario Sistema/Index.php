@@ -39,7 +39,7 @@
                             <tr>
                                 <td><label for="sltIdRol">Rol</label></td>
                                 <td>
-                                    <select id="sltIdRol" name="idRol">
+                                    <select id="sltIdRol" name="idRol" required="true">
                                         <option disabled selected value="">Selecciona un Rol</option>
                                         <?php
                                             if(is_array($roles)) {
@@ -52,12 +52,27 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td><label for="sltIdEstablecimiento">Establecimiento</label></td>
+                                <td>
+                                    <select id="sltIdEstablecimiento" name="idEstablecimiento" required="true">
+                                        <option disabled selected value="">Selecciona un Establecimiento</option>
+                                        <?php
+                                            if(is_array($establecimientos)) {
+                                                foreach ($establecimientos as $establecimiento) {
+                                                    echo "<option value='" . $establecimiento->getIdEstablecimiento() . "'>" . $establecimiento->getDescripcion() . "</option>";
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><label for="txtUsername">Nombre de Usuario</label></td>
-                                <td><input id="txtUsername" type="text" name="username" placeholder="Escribe un nombre de Usuario"></td>  
+                                <td><input id="txtUsername" type="text" name="username" placeholder="Escribe un nombre de Usuario" required="true"></td>  
                             </tr>
                             <tr>
                                 <td><label for="pswdPassword">Password</label></td>
-                                <td><input id="pswdPassword" type="password" name="password" placeholder="Escribe un password" /></td>  
+                                <td><input id="pswdPassword" type="password" name="password" placeholder="Escribe un password" required="true"/></td>  
                             </tr>
                             <tr>
                                 <td></td>
@@ -67,7 +82,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=RegistrarUsuarioSistema">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=RegistrarUsuarioSistema&action=Listar">Listar Usuarios</a></td>
                             </tr>
                         </table>
                     </fieldset>               

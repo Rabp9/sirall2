@@ -8,13 +8,13 @@
     class VwDependencia implements AppModel {
         private $idDependencia;
         private $descripcion;
-        private $red;
+        private $establecimiento;
         private $superDependencia;
                 
-        public function __construct($idDependencia = "", $descripcion = "", $red = "", $superDependencia = "") {
+        public function __construct($idDependencia = "", $descripcion = "", $establecimiento = "", $superDependencia = "") {
             $this->idDependencia = $idDependencia;
             $this->descripcion = $descripcion;
-            $this->red = $red;
+            $this->establecimiento = $establecimiento;
             $this->superDependencia = $superDependencia;
         }
                 
@@ -36,12 +36,12 @@
             return $this->descripcion;
         }
         
-        public function setRed($red) {
-            $this->red = $red;
+        public function setEstablecimiento($establecimiento) {
+            $this->establecimiento = $establecimiento;
         }
         
-        public function getRed() {
-            return $this->red;
+        public function getEstablecimiento() {
+            return $this->establecimiento;
         }
          
         public function setSuperDependencia($superDependencia) {

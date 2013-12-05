@@ -103,7 +103,7 @@
 					}
 				}
  		}).bind('keyup', function(e){
-				// save value to original input if all octets have been entered
+				// save value to original input if all octets have been enteestablecimiento
 				if ($('input.ip_octet', $(this).parent()).filter(function(){ return this.value.length; }).length == 4) {
 					var ip_value = [];
 					$('input.ip_octet', $(this).parent()).each(function(){

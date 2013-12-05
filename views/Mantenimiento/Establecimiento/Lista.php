@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Red/Lista.php -->
+<!-- File: /views/Mantenimiento/Establecimiento/Lista.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -15,7 +15,7 @@
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.lista.js"></script>
         
-        <title>SIRALL2 - Lista Red</title>
+        <title>SIRALL2 - Lista Establecimiento</title>
     </head>
     <body>
         <aside>
@@ -30,8 +30,8 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Lista Red</h2>
-                        <h4>Lista de Redes registradas</h4>
+                        <h2>Lista Establecimiento</h2>
+                        <h4>Lista de Establecimientoes registradas</h4>
                     </hgroup>
                 </header>       
                 <?php if(isset($mensaje)) { ?>
@@ -40,7 +40,7 @@
                 <table class="tblLista">
                     <thead>
                         <tr>
-                            <th><abbr title="Código identificador">ID.</abbr> Red</th>
+                            <th><abbr title="Código identificador">ID.</abbr> Establecimiento</th>
                             <th>Descripción</th>
                             <th>Dirección</th>
                             <th></th>
@@ -48,19 +48,19 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(is_array($redes)) {
-                                foreach ($redes as $red) {
+                            if(is_array($establecimientos)) {
+                                foreach ($establecimientos as $establecimiento) {
                         ?>
                         <tr>
-                            <td><?php echo $red->getIdRed(); ?></td>
-                            <td><?php echo $red->getDescripcion(); ?></td>
-                            <td><?php echo $red->getDireccion(); ?></td>
+                            <td><?php echo $establecimiento->getIdEstablecimiento(); ?></td>
+                            <td><?php echo $establecimiento->getDescripcion(); ?></td>
+                            <td><?php echo $establecimiento->getDireccion(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Red&action=Detalle&idRed=<?php echo $red->getIdRed(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Red&action=Editar&idRed=<?php echo $red->getIdRed(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=Red&action=Eliminar&idRed=<?php echo $red->getIdRed(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Establecimiento&action=Detalle&idEstablecimiento=<?php echo $establecimiento->getIdEstablecimiento(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
+                                    <li><a href="?controller=Establecimiento&action=Editar&idEstablecimiento=<?php echo $establecimiento->getIdEstablecimiento(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
+                                    <li><a href="?controller=Establecimiento&action=Eliminar&idEstablecimiento=<?php echo $establecimiento->getIdEstablecimiento(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -71,7 +71,7 @@
                     </tbody>
                     <tfoot>          
                         <tr>
-                            <td colspan="2"><a class="crearLink" href="?controller=Red&action=Crear">Crear Red</a></td>
+                            <td colspan="2"><a class="crearLink" href="?controller=Establecimiento&action=Crear">Crear Establecimiento</a></td>
                         </tr>
                     </tfoot>
                 </table>

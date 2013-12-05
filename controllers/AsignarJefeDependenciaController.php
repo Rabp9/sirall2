@@ -2,7 +2,7 @@
 
 <?php
     require_once '/controllers/AppController.php';
-    require_once '/DAO/RedDAO.php';
+    require_once '/DAO/EstablecimientoDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     require_once '/DAO/UsuarioDAO.php';
     
@@ -13,7 +13,7 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            $redes = RedDAO::getAll();
+            $establecimientos = EstablecimientoDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
             require_once '/views/Asignar Jefe Dependencia/Index.php';
         }
@@ -21,7 +21,7 @@
         public static function AsignarJefeDependenciaPOSTAction() {
             if($_POST) {
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $_POST['idDependencia']));
-                $red = current(RedDAO::getBy("idRed", $dependencia->getIdRed()));
+                $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
                 try {
                    @$superDependencia = current(DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia()));
                 } 

@@ -11,14 +11,16 @@
         private $idModelo;
         private $idUsuario;
         private $indicacion;
+        private $usuario;
         private $estado;
         
-        public function __construct($codigoPatrimonial = "", $serie = "", $idModelo = "", $idUsuario = "", $indicacion = "", $estado = 1) {
+        public function __construct($codigoPatrimonial = "", $serie = "", $idModelo = "", $idUsuario = "", $indicacion = "", $usuario = "", $estado = 1) {
             $this->codigoPatrimonial = $codigoPatrimonial;
             $this->serie = $serie;
             $this->idModelo = $idModelo;
             $this->idUsuario = $idUsuario;
             $this->indicacion = $indicacion;
+            $this->usuario = $usuario;
             $this->estado = $estado;
         }
         
@@ -63,6 +65,14 @@
         public function getIndicacion() {
             return $this->indicacion;
         }   
+        
+        public function setUsuario($usuario) {
+            $this->usuario = $usuario;
+        }
+        
+        public function getUsuario() {
+            return $this->usuario;
+        }
         
         public function setEstado($estado) {
             $this->estado = $estado;

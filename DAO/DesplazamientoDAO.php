@@ -14,6 +14,7 @@
             $result->bindParam(':idDestino', $desplazamiento->getIdDestino());
             $result->bindParam(':fecha', $desplazamiento->getFecha());
             $result->bindParam(':observacion', $desplazamiento->getObservacion());
+            $result->bindParam(':usuario', $desplazamiento->getUsuario());
             return $result->execute();
         }
     }

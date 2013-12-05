@@ -1,19 +1,19 @@
-<!-- File: /models/Red.php -->
+<!-- File: /models/Establecimiento.php -->
 
 <?php
     require_once '/models/AppModel.php';
     /*
-     * Clase Red
+     * Clase Establecimiento
      */
-    class Red implements AppModel {
-        private $idRed;
+    class Establecimiento implements AppModel {
+        private $idEstablecimiento;
         private $descripcion;
         private $direccion;
         private $telefono;
         private $estado;
         
-        public function __construct($idRed = "", $descripcion = "", $direccion = "", $telefono = "", $estado = 1) {
-            $this->idRed = $idRed;
+        public function __construct($idEstablecimiento = "", $descripcion = "", $direccion = "", $telefono = "", $estado = 1) {
+            $this->idEstablecimiento = $idEstablecimiento;
             $this->descripcion = $descripcion;
             $this->direccion = $direccion;
             $this->telefono = $telefono;
@@ -22,12 +22,12 @@
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
    
-        public function setIdRed($idRed) {
-            $this->idRed = $idRed;
+        public function setIdEstablecimiento($idEstablecimiento) {
+            $this->idEstablecimiento = $idEstablecimiento;
         }
                 
-        public function getIdRed() {
-            return $this->idRed;
+        public function getIdEstablecimiento() {
+            return $this->idEstablecimiento;
         }
         
         public function setDescripcion($descripcion) {
@@ -95,7 +95,7 @@
         }
         
         /*
-         * Activa a una Red
+         * Activa a un Establecimiento
          */
         public function activar() {
             if($this->getEstado() == 1)
@@ -107,7 +107,7 @@
         }
         
         /*
-         * Desactiva a una Red
+         * Desactiva a un Establecimiento
          */
         public function desactivar() {
             if($this->getEstado() == 2)

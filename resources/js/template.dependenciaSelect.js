@@ -38,10 +38,10 @@ $(document).ready(function() {
     $('#btnSeleccionar').click(function() {
         var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
         if($($dependenciaSeleccionada).length) {
-            var $redSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Red']"));
-            $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $redSeleccionada.text() + ")");
+            var $establecimientoSeleccionada = $dependenciaSeleccionada.parents().filter($('li')).find($("button[title='Establecimiento']"));
+            $('#txtDependenciaSeleccionada').html($dependenciaSeleccionada.text() + " (" + $establecimientoSeleccionada.text() + ")");
             var tipo = $dependenciaSeleccionada.attr('title');
-            $('#hdnRed').attr('value', $redSeleccionada.find('input').val());
+            $('#hdnEstablecimiento').attr('value', $establecimientoSeleccionada.find('input').val());
             if(tipo === 'Dependencia')
                 $('#hdnDependencia').attr('value', $dependenciaSeleccionada.find('input').val());
             else

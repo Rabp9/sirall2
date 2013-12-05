@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Red/Eliminar.php -->
+<!-- File: /views/Mantenimiento/Establecimiento/Eliminar.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +14,7 @@
         <script type="text/javascript" src="resources/js/jquery.codaPopupBubbles.js"></script>
         <script type="text/javascript" src="resources/js/template.eliminar.js"></script>
         
-        <title>SIRALL2 - Eliminar Red</title>
+        <title>SIRALL2 - Eliminar Establecimiento</title>
     </head>
     <body>
         <aside>
@@ -29,26 +29,26 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Eliminar Red</h2>
-                        <h4>¿Está seguro de eliminar la Red?</h4>
+                        <h2>Eliminar Establecimiento</h2>
+                        <h4>¿Está seguro de eliminar la Establecimiento?</h4>
                     </hgroup>
                 </header>
-                <form id="frmEliminarRed" method="POST" action="?controller=Red&action=EliminarPOST">
+                <form id="frmEliminarEstablecimiento" method="POST" action="?controller=Establecimiento&action=EliminarPOST">
                      <fieldset>
-                        <legend>Eliminar Red</legend>
-                        <input id="idRed" type="hidden" value="<?php echo $red->getIdRed(); ?>" name="idRed"/>
+                        <legend>Eliminar Establecimiento</legend>
+                        <input id="idEstablecimiento" type="hidden" value="<?php echo $establecimiento->getIdEstablecimiento(); ?>" name="idEstablecimiento"/>
                         <table>
                             <tr>
-                                <td><strong><abbr title="Código identificador">ID.</abbr> Red:</strong></td>
-                                <td><?php echo $red->getIdRed(); ?></td>
+                                <td><strong><abbr title="Código identificador">ID.</abbr> Establecimiento:</strong></td>
+                                <td><?php echo $establecimiento->getIdEstablecimiento(); ?></td>
                             </tr>
                             <tr>
                                 <td><strong>Descripción:</strong></td>
-                                <td><?php echo $red->getDescripcion(); ?></td>  
+                                <td><?php echo $establecimiento->getDescripcion(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Dirección:</strong></td>
-                                <td><?php echo $red->getDireccion(); ?></td>  
+                                <td><?php echo $establecimiento->getDireccion(); ?></td>  
                             </tr>
                             <tr>
                                 <td></td>
@@ -57,14 +57,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=Red">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Establecimiento">Regresar</a></td>
                             </tr>
                         </table>
                     </fieldset>
                 </form>
                 <!-- Ventana de diálogo confirmar -->
                 <div id="confirmar" title="Advertencia">
-                    <p>¿Está seguro de eliminar la Red?</p>
+                    <p>¿Está seguro de eliminar la Establecimiento?</p>
                 </div>
             </article>
         </section>

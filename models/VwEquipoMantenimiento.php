@@ -13,20 +13,20 @@
         private $modelo;
         private $usuario;
         private $dependencia;
-        private $red;
+        private $establecimiento;
         private $indicacion;
         private $fechaUltimo;
         private $numeroMan;
                 
-        public function __construct($codigoPatrimonial = "", $serie = "", $marca = "", $tipoEquipo = "", $modelo = "", $usuario = "", $dependencia = "", $red = "", $indicacion = "", $fechaUltimo = "", $numeroMan = 0) {
+        public function __construct($codigoPatrimonial = "", $serie = "", $marca = "", $tipoEquipo = "", $modelo = "", $usuario = "", $dependencia = "", $establecimiento = "", $indicacion = "", $fechaUltimo = "", $numeroMan = 0) {
             $this->codigoPatrimonial = $codigoPatrimonial;
             $this->serie = $serie;
-            $this->marca = $red;
+            $this->marca = $establecimiento;
             $this->tipoEquipo = $tipoEquipo;
             $this->modelo = $modelo;
             $this->usuario = $usuario;
             $this->dependencia = $dependencia;
-            $this->red = $red;
+            $this->establecimiento = $establecimiento;
             $this->indicacion = $indicacion;
             $this->fechaUltimo = $fechaUltimo;
             $this->numeroMan = $numeroMan;
@@ -90,12 +90,12 @@
             return $this->dependencia;
         }        
         
-        public function setRed($red) {
-            $this->red = $red;
+        public function setEstablecimiento($establecimiento) {
+            $this->establecimiento = $establecimiento;
         }
         
-        public function getRed() {
-            return $this->red;
+        public function getEstablecimiento() {
+            return $this->establecimiento;
         }          
         
         public function setIndicacion($indicacion) {

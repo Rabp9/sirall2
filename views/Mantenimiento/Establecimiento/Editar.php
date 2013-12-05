@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Red/Editar.php -->
+<!-- File: /views/Mantenimiento/Establecimiento/Editar.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -14,19 +14,19 @@
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#txtDescripcion'));
-                isRequired($('#txtDireccion'));
-                setValue($('#txtIdRed'), '<?php echo $red->getIdRed(); ?>');
-                setValue($('#txtDescripcion'), '<?php echo $red->getDescripcion(); ?>');
-                setValue($('#txtTelefono'), '<?php echo $red->getTelefono(); ?>');
-                isReadOnly($('#txtIdRed'));
+                isRequiestablecimiento($('#txtDescripcion'));
+                isRequiestablecimiento($('#txtDireccion'));
+                setValue($('#txtIdEstablecimiento'), '<?php echo $establecimiento->getIdEstablecimiento(); ?>');
+                setValue($('#txtDescripcion'), '<?php echo $establecimiento->getDescripcion(); ?>');
+                setValue($('#txtTelefono'), '<?php echo $establecimiento->getTelefono(); ?>');
+                isReadOnly($('#txtIdEstablecimiento'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtDescripcion').select();
             });
         </script>
         
-        <title>SIRALL2 - Editar Red</title>
+        <title>SIRALL2 - Editar Establecimiento</title>
     </head>
     <body>
         <aside>
@@ -41,17 +41,17 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Editar Red</h2>
-                        <h4>Edita la Red</h4>
+                        <h2>Editar Establecimiento</h2>
+                        <h4>Edita la Establecimiento</h4>
                     </hgroup>
                 </header>
-                <form id="frmCrearRed" method="POST" action="?controller=Red&action=EditarPOST">
+                <form id="frmCrearEstablecimiento" method="POST" action="?controller=Establecimiento&action=EditarPOST">
                     <fieldset>
-                        <legend>Editar Red</legend>
+                        <legend>Editar Establecimiento</legend>
                         <table>
                             <tr>
-                                <td><label for="txtIdRed"><abbr title="Código identificador">ID.</abbr> Red</label></td>
-                                <td><input id="txtIdRed" type="text" name="idRed"></td>
+                                <td><label for="txtIdEstablecimiento"><abbr title="Código identificador">ID.</abbr> Establecimiento</label></td>
+                                <td><input id="txtIdEstablecimiento" type="text" name="idEstablecimiento"></td>
                             </tr>
                             <tr>
                                 <td><label for="txtDescripcion">Descripción</label></td>
@@ -59,7 +59,7 @@
                             </tr>
                             <tr>
                                 <td><label for="txtDireccion">Dirección</label></td>
-                                <td><textarea id="txtDireccion" name="direccion" placeholder="Escribe una dirección" ><?php echo $red->getDireccion(); ?></textarea></td>  
+                                <td><textarea id="txtDireccion" name="direccion" placeholder="Escribe una dirección" ><?php echo $establecimiento->getDireccion(); ?></textarea></td>  
                             </tr>
                             <tr>
                                 <td><label for="txtTelefono">Teléfono</label></td>
@@ -73,7 +73,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=Red">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Establecimiento">Regresar</a></td>
                             </tr>
                         </table>
                     </fieldset>               

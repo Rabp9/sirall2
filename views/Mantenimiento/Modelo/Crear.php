@@ -17,9 +17,9 @@
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#txtDescripcion'));
-                isRequired($('#cboTipoEquipo'));
-                isRequired($('#cboMarca'));
+                isRequiestablecimiento($('#txtDescripcion'));
+                isRequiestablecimiento($('#cboTipoEquipo'));
+                isRequiestablecimiento($('#cboMarca'));
                 setValue($('#txtIdModelo'), '<?php echo $nextID; ?>');
                 isReadOnly($('#txtIdModelo'));
                 $('#btnEnviar').button();

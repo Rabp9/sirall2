@@ -16,8 +16,8 @@
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequired($('#nmbCantidad'));
-                isRequired($('#txtFecha'));
+                isRequiestablecimiento($('#nmbCantidad'));
+                isRequiestablecimiento($('#txtFecha'));
                 setValue($('#txtFecha'), '<?php echo date('d/m/Y'); ?>');
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();

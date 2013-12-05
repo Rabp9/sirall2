@@ -10,7 +10,7 @@
         private $descripcion;
         
         public function __construct($idRol = 0, $descripcion = "") {
-            $this->idRed = $idRol;
+            $this->idEstablecimiento = $idRol;
             $this->descripcion = $descripcion;
         }
      

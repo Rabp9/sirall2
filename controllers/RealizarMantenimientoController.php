@@ -1,5 +1,5 @@
 <?php
-    require_once '/DAO/RedDAO.php';
+    require_once '/DAO/EstablecimientoDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     require_once '/DAO/EquipoDAO.php';
 
