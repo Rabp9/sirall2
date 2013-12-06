@@ -47,7 +47,8 @@
             $this->SetFont('helvetica','',10);
             // Datos
             $fill = false;
-            while ($row = $data->fetch()) {
+            foreach ($data as $oRow) {
+                $row = $oRow->toArray();
                 for($i = 0; $i < count($cols); $i++) {
                     $this->Cell($w[$i], 6, $row[$cols[$i]],1);
                 }

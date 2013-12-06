@@ -3,13 +3,12 @@
     require_once '/DAO/TipoEquipoDAO.php';
     require_once '/DAO/ModeloDAO.php';
     require_once '/DAO/EquipoDAO.php';
-    require_once '/DAO/RepuestoDAO.php';
     require_once '/DAO/UsuarioDAO.php';
     
     class ReporteController {
         public static function ReporteMarcasAction() {
             $marcas = MarcaDAO::getVwMarca();
-            $max = count($marcas->fetchAll());
+            $max = count($marcas);
             require_once '/views/Reportes/Marcas.php';
         }               
         

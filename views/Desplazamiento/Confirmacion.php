@@ -14,6 +14,26 @@
                 $('#btnRealizarDesplazamiento').button().focus().click(function() {
                     window.location = "?controller=Desplazamiento";
                 });
+                $( "#mensaje" ).dialog({
+                    closeOnEscape: true,
+                    show: 'fade',
+                    hide: 'fade',
+                    open: function(event, ui){
+                        setTimeout("$('#mensaje').dialog('close')",3000);
+                    },
+                    position: { 
+                        at: "right top", 
+                        of: window
+                    },
+                    buttons: [
+                        {
+                            text: "OK",
+                            click: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    ]
+                });
             });
         </script>
         <title>SIRALL2 - Desplazamiento de Equipo</title>
@@ -35,6 +55,9 @@
                         <h4>Confirmación de Desplazamiento de Equipo</h4>
                     </hgroup>
                 </header>
+                <?php if(isset($mensaje)) { ?>
+                <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
+                <?php } ?>
                 <fieldset>
                     <legend>Información de Desplazamiento</legend>
                     <table>

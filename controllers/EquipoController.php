@@ -69,7 +69,9 @@
                     }
                 }
             }
-            $vwEquipos = EquipoDAO::getVwEquipo();
+            $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
+                EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
+                EquipoDAO::getVwEquipo();
             require_once '/views/Mantenimiento/Equipo/Lista.php';
         }
         
@@ -137,7 +139,9 @@
                     }
                 }
             }
-            $vwEquipos = EquipoDAO::getVwEquipo();
+            $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
+                EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
+                EquipoDAO::getVwEquipo();
             require_once '/views/Mantenimiento/Equipo/Lista.php';
         }
         
@@ -166,7 +170,9 @@
                     $mensaje = "Equipo eliminado correctamente" :
                     $mensaje = "El Equipo no fue eliminado correctamente";
             }
-            $vwEquipos = EquipoDAO::getVwEquipo();
+            $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
+                EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
+                EquipoDAO::getVwEquipo();
             require_once '/views/Mantenimiento/Equipo/Lista.php';
         }
     }

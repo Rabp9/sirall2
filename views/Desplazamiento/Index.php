@@ -46,6 +46,7 @@
                         <h4>Registra el desplazamiento de un Equipo</h4>
                     </hgroup>
                 </header>
+           <!--
                 <fieldset>
                     <legend>Opciones de Filtrado</legend>
                     <table>
@@ -60,6 +61,7 @@
                         </tr>
                     </table>
                 </fieldset>
+            -->
                 <table class="tblLista">
                     <thead>
                         <tr>

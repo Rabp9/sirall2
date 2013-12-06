@@ -18,8 +18,10 @@
                 return;
             }
             $establecimientos = EstablecimientoDAO::getAll();
-            $dependencias = DependenciaDAO::getAll();
-            $vwEquipos = EquipoDAO::getVwEquipo();
+            $dependencias = DependenciaDAO::getAll();       
+            $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
+                EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
+                EquipoDAO::getVwEquipo();
             require_once '/views/Desplazamiento/Index.php';
         }        
         
@@ -38,13 +40,13 @@
                 $establecimientos2 = EstablecimientoDAO::getAll();
                 $dependencias2 = DependenciaDAO::getAll();
                 $usuarios2 = UsuarioDAO::getAll();
-                require_once '/views/Desplazami ento/Desplazamiento.php';
+                require_once '/views/Desplazamiento/Desplazamiento.php';
             }
         }
         
         public static function DesplazamientoPOSTAction() {   
             if(isset($_POST['codigoPatrimonial'])) {
-                $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_POST['codigoPatrimonial']);
+                $equipo = current(EquipoDAO::getBy("codigoPatrimonial", $_POST['codigoPatrimonial']));
                 $desplazamiento = new Desplazamiento();
                 $desplazamiento->setCodigoPatrimonial($equipo->getCodigoPatrimonial());
                 $desplazamiento->setSerie($equipo->getSerie());
@@ -54,16 +56,18 @@
                 $fecha->createFromFormat('d-m-Y', $_POST['fecha']);
                 $desplazamiento->setFecha($fecha->format('Y-m-d'));
                 $desplazamiento->setObservacion($_POST['observacion']);
+                $desplazamiento->setUsuario($_SESSION["usuarioActual"]->getUsername());
                 if(DesplazamientoDAO::realizarDesplazamiento($desplazamiento)) {
-                    $modelo = ModeloDAO::getModeloByIdModelo($equipo->getIdModelo());
-                    $marca = MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca());
-                    $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
-                    $usuarioOrigen = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
-                    $dependenciaOrigen = DependenciaDAO::getDependenciaByIdDependencia($usuarioOrigen->getIdDependencia());
-                    $establecimientoOrigen = EstablecimientoDAO::getEstablecimientoByIdEstablecimiento($dependenciaOrigen->getIdEstablecimiento());
-                    $usuarioDestino = UsuarioDAO::getUsuarioByIdUsuario($_POST['idUsuario2']);
-                    $dependenciaDestino = DependenciaDAO::getDependenciaByIdDependencia($usuarioDestino->getIdDependencia());
-                    $establecimientoDestino = EstablecimientoDAO::getEstablecimientoByIdEstablecimiento($dependenciaDestino->getIdEstablecimiento());
+                    $modelo = current(ModeloDAO::getBy("idModelo", $equipo->getIdModelo()));
+                    $marca = current(MarcaDAO::getBy("idMarca", $modelo->getIdMarca()));
+                    $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
+                    $usuarioOrigen = current(UsuarioDAO::getBy("idUsuario", $equipo->getIdUsuario()));
+                    $dependenciaOrigen = current(DependenciaDAO::getBy("idDependencia", $usuarioOrigen->getIdDependencia()));
+                    $establecimientoOrigen = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependenciaOrigen->getIdEstablecimiento()));
+                    $usuarioDestino = current(UsuarioDAO::getBy("idUsuario", $_POST['idUsuario2']));
+                    $dependenciaDestino = current(DependenciaDAO::getBy("idDependencia", $usuarioDestino->getIdDependencia()));
+                    $establecimientoDestino = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependenciaDestino->getIdEstablecimiento()));
+                    $mensaje = "Desplazamiento realizado correctamente";
                     require_once '/views/Desplazamiento/Confirmacion.php';
                 }
             }
