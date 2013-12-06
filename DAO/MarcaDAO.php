@@ -85,7 +85,16 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Marca LIMIT 0, :limite");
             $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
             $result->execute();
-            return $result;
+            while ($rs = $result->fetch()) {
+                $vwMarca = new VwMarca();
+                $vwMarca->setIdMarca($rs['idMarca']);
+                $vwMarca->setDescripcion($rs['descripcion']);
+                $vwMarca->setIndicacion($rs['indicacion']);
+                $vwMarca->setNroModelos($rs['nroModelos']);
+                $vwMarca->setNroEquipos($rs['nroEquipos']);
+                $vwMarcas[] = $vwMarca;
+            }
+            return isset($vwMarcas) ? $vwMarcas : false;
         }
     }
 ?>

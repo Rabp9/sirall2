@@ -7,7 +7,7 @@
     
     class DesplazamientoDAO implements appDAO {
         public static function realizarDesplazamiento(Desplazamiento $desplazamiento) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Desplazamiento(codigoPatrimonial, serie, idOrigen, idDestino, fecha, observacion) values(:codigoPatrimonial, :serie, :idOrigen, :idDestino, :fecha, :observacion)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Desplazamiento(codigoPatrimonial, serie, idOrigen, idDestino, fecha, observacion, usuario) values(:codigoPatrimonial, :serie, :idOrigen, :idDestino, :fecha, :observacion, :usuario)");
             $result->bindParam(':codigoPatrimonial', $desplazamiento->getIdCodigoPatrimonial());
             $result->bindParam(':serie', $desplazamiento->getSerie());
             $result->bindParam(':idOrigen', $desplazamiento->getIdOrigen());
