@@ -4,6 +4,7 @@
     require_once '/DAO/ModeloDAO.php';
     require_once '/DAO/EquipoDAO.php';
     require_once '/DAO/UsuarioDAO.php';
+    require_once '/DAO/PermisoDAO.php';
     
     class ReporteController {
         public static function ReporteMarcasAction() {
@@ -19,7 +20,7 @@
         
         public static function ReporteTipoEquiposAction() {
             $tipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
-            $max = count($tipoEquipos->fetchAll());
+            $max = count($tipoEquipos);
             require_once '/views/Reportes/TipoEquipos.php';
         }               
         
@@ -30,7 +31,7 @@
         
         public static function ReporteModelosAction() {
             $modelos = ModeloDAO::getVwModelo();
-            $max = count($modelos->fetchAll());
+            $max = count($modelos);
             require_once '/views/Reportes/Modelos.php';
         }
         
@@ -40,13 +41,19 @@
         }     
         
         public static function ReporteEquiposAction() {
-            $equipos = EquipoDAO::getVwEquipo();
-            $max = count($equipos->fetchAll());
+            $equipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
+                EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
+                EquipoDAO::getVwEquipo();
+            $max = count($equipos);
+            $tipoEquipos = TipoEquipoDAO::getAll();
+            $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             require_once '/views/Reportes/Equipos.php';
         }
         
         public static function ReporteEquiposPOSTAction() {
-            $equipos = EquipoDAO::getVwEquipoLimit($_POST['numRegistros']);
+            $equipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
+                EquipoDAO::getVwEquipolIMIT($_POST['numRegistros'], $_SESSION["usuarioActual"]->getIdEstablecimiento()):
+                EquipoDAO::getVwEquipolIMIT($_POST['numRegistros']);
             require_once '/views/Reportes/EquiposReporte.php';
         }     
                 
@@ -63,7 +70,7 @@
                
         public static function ReporteUsuariosAction() {
             $usuarios = UsuarioDAO::getVwUsuario();
-            $max = count($usuarios->fetchAll());
+            $max = count($usuarios);
             require_once '/views/Reportes/Usuarios.php';
         }
         

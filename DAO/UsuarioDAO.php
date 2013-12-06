@@ -107,7 +107,16 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Usuario LIMIT 0, :limite");
             $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
             $result->execute();
-            return $result;
+            while ($rs = $result->fetch()) {
+                $vwUsuario = new VwUsuario();
+                $vwUsuario->setIdUsuario($rs['idUsuario']);
+                $vwUsuario->setDependencia($rs['dependencia']);
+                $vwUsuario->setEstablecimiento($rs['establecimiento']);
+                $vwUsuario->setNombreCompleto($rs['nombreCompleto']);
+                $vwUsuario->setCorreo($rs['correo']);
+                $vwUsuarios[] = $vwUsuario; 
+            }
+            return isset($vwUsuarios) ? $vwUsuarios : false;
         }
     }
 ?>

@@ -616,7 +616,7 @@
                             ?>
                                         if(idTipoEquipo === '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>') {
                                             $('#txtTipoEquipo').val('<?php echo $tipoEquipo->getDescripcion(); ?>');
-                                            mostrarOpcionesTipoEquipo(idTipoEquipo)
+                                            mostrarOpcionesTipoEquipo(idTipoEquipo);
                                             r = true;
                                         }
                             <?php

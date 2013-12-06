@@ -35,7 +35,9 @@
             <li><a href="?controller=Reporte&action=ReporteTipoEquipos"><span class="ui-icon ui-icon-newwin"></span>Tipo de Equipo</a></li>
             <li><a href="?controller=Reporte&action=ReporteModelos"><span class="ui-icon ui-icon-gear"></span>Modelo</a></li>
             <li><a href="?controller=Reporte&action=ReporteEquipos"><span class="ui-icon ui-icon-image"></span>Equipo</a></li>
+            <!--
             <li><a href="?controller=Reporte&action=ReporteRepuestos"><span class="ui-icon ui-icon-wrench"></span>Repuesto</a></li>
+            -->
             <li><a href="?controller=Reporte&action=ReporteUsuarios"><span class="ui-icon ui-icon-person"></span>Usuario</a></li>
             <li><a href="?controller=Usuario"><span class="ui-icon ui-icon-arrowreturnthick-1-e"></span>Desplazamiento</a></li>
             <li><a href="?controller=Usuario"><span class="ui-icon ui-icon-circle-plus"></span>Mantenimiento</a></li>

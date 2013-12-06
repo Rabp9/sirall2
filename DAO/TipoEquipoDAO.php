@@ -81,7 +81,15 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_TipoEquipo LIMIT 0, :limite");
             $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
             $result->execute();
-            return $result;
+            while ($rs = $result->fetch()) {
+                $vwTipoEquipo = new VwTipoEquipo();
+                $vwTipoEquipo->setIdTipEquipo($rs['idTipoEquipo']);
+                $vwTipoEquipo->setDescripcion($rs['descripcion']);
+                $vwTipoEquipo->setNroModelos($rs['nroModelos']);
+                $vwTipoEquipo->setNroEquipos($rs['nroEquipos']);
+                $vwTipoEquipos[] = $vwTipoEquipo; 
+            }
+            return isset($vwTipoEquipos) ? $vwTipoEquipos : false;
         }
         
         public static function eliminarOpciones(TipoEquipo $tipoEquipo) {
