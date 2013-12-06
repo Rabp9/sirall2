@@ -12,7 +12,7 @@
             // 2. left
             // 3. Top
             // 4. Size
-            $this->Image('resources/images/Logo.png', 10, 10, 50);
+            $this->Image('resources/images/essalud_logo.jpg', 10, 10, 50);
             // Arial bold 15
             $this->SetFont('helvetica','B',15);
             // Movernos a la derecha
@@ -44,13 +44,13 @@
             // Restauración de colores y fuentes
             $this->SetFillColor(124, 169, 206);
             $this->SetTextColor(0);
-            $this->SetFont('helvetica','',10);
+            $this->SetFont('helvetica', '', 8);
             // Datos
             $fill = false;
             foreach ($data as $oRow) {
                 $row = $oRow->toArray();
                 for($i = 0; $i < count($cols); $i++) {
-                    $this->Cell($w[$i], 6, $row[$cols[$i]],1);
+                    $this->Cell($w[$i], 6, $row[$cols[$i]], 1);
                 }
                 $this->Ln();
                 $fill = !$fill;

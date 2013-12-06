@@ -112,7 +112,17 @@
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Modelo LIMIT 0, :limite");
             $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
             $result->execute();
-            return $result;
+            while ($rs = $result->fetch()) {
+                $vwModelo = new VwModelo();
+                $vwModelo->setIdModelo($rs['idModelo']);
+                $vwModelo->setMarca($rs['marca']);
+                $vwModelo->setTipoEquipo($rs['tipoEquipo']);
+                $vwModelo->setDescripcion($rs['descripcion']);
+                $vwModelo->setIndicacion($rs['indicacion']);
+                $vwModelo->setNroEquipos($rs['nroEquipos']);
+                $vwModelos[] = $vwModelo;
+            }
+            return isset($vwModelos) ? $vwModelos : false;
         }
         
         public static function toXML($modelos) {

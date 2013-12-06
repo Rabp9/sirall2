@@ -120,11 +120,26 @@
             return $equipo;
         }
                
-        public static function getVwEquipolIMIT($limite) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Equipo LIMIT 0, :limite");
+        public static function getVwEquipolIMIT($limite, $idEstablecimiento = "") {
+            $result = $idEstablecimiento != "" ?
+                BaseDatos::getDbh()->prepare("SELECT * FROM vw_Equipo WHERE idEstablecimiento = '$idEstablecimiento' LIMIT 0, :limite"):
+                BaseDatos::getDbh()->prepare("SELECT * FROM vw_Equipo LIMIT 0, :limite");
             $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
             $result->execute();
-            return $result;
+            while ($rs = $result->fetch()) {
+                $vwEquipo = new VwEquipo();
+                $vwEquipo->setCodigoPatrimonial($rs['codigoPatrimonial']);
+                $vwEquipo->setSerie($rs['serie']);
+                $vwEquipo->setMarca($rs['marca']);
+                $vwEquipo->setTipoEquipo($rs['tipoEquipo']);
+                $vwEquipo->setModelo($rs['modelo']);
+                $vwEquipo->setUsuario($rs['usuario']);
+                $vwEquipo->setDependencia($rs['dependencia']);
+                $vwEquipo->setEstablecimiento($rs['establecimiento']);
+                $vwEquipo->setIndicacion($rs['indicacion']);
+                $vwEquipos[] = $vwEquipo;
+            }
+            return isset($vwEquipos) ? $vwEquipos : false;
         }
     }
 ?>
