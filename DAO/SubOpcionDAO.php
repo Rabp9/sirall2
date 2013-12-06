@@ -1,4 +1,4 @@
-<!-- File: /DAO/OpcionDAO.php -->
+<!-- File: /DAO/SubOpcionDAO.php -->
 
 <?php
     require_once '/DAO/AppDAO.php';

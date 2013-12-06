@@ -1,9 +1,12 @@
+<!-- File: /controllers/RealizarMantenimientoController.php -->
+
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/EstablecimientoDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     require_once '/DAO/EquipoDAO.php';
 
-    class RealizarMantenimientoController {
+    class RealizarMantenimientoController implements AppController {
         public static function RealizarMantenimientoAction() {    
             if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf4")) {
                 require_once "views/Home/Error_Permisos.php";

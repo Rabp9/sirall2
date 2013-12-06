@@ -18,7 +18,12 @@
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('.aRegistrarDesplazamiento').button();
+                $('.aRegistrarDesplazamiento').button({
+                    icons: {
+                        primary: "ui-icon ui-icon-arrowreturnthick-1-e"
+                    },
+                    text: false
+                });
             });
         </script>
         
@@ -69,17 +74,17 @@
                     </thead>
                     <tbody>
                         <?php
-                            if(isset($equipos)) {
-                                while ($equipo = $equipos->fetch()) {
+                            if(is_array($vwEquipos)) {
+                                foreach ($vwEquipos as $vwEquipo) {
                         ?>
                         <tr>
-                            <td><?php echo $equipo['codigoPatrimonial']; ?></td>
-                            <td><?php echo $equipo['serie']; ?></td>
-                            <td><?php echo $equipo['TipoEquipo']; ?></td>
-                            <td><?php echo $equipo['Marca']; ?></td>
-                            <td><?php echo $equipo['Modelo']; ?></td>
-                            <td><?php echo $equipo['Dependencia']; ?></td>
-                            <td><a class="aRegistrarDesplazamiento" href="?controller=Desplazamiento&action=DesplazamientoByEquipo&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>">Registrar Desplazamiento</a></td>
+                            <td><?php echo $vwEquipo->getCodigoPatrimonial(); ?></td>
+                            <td><?php echo $vwEquipo->getSerie(); ?></td>
+                            <td><?php echo $vwEquipo->getTipoEquipo(); ?></td>
+                            <td><?php echo $vwEquipo->getMarca(); ?></td>
+                            <td><?php echo $vwEquipo->getModelo(); ?></td>
+                            <td><?php echo $vwEquipo->getDependencia(); ?></td>
+                            <td><a class="aRegistrarDesplazamiento" href="?controller=Desplazamiento&action=DesplazamientoByEquipo&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Registrar Desplazamiento</a></td>
                         </tr>
                         <?php
                                 }

@@ -49,7 +49,7 @@
             return $result->execute();
         }
            
-        public static function editar(UsuarioSistema $usuarioSistema) {
+        public static function editar($usuarioSistema) {
             $result = BaseDatos::getDbh()->prepare("UPDATE UsuarioSistema SET idRol = :idRol, idEstablecimiento = :idEstablecimiento, password = :password, estado = :estado WHERE username = :username");
             $result->bindParam(':password', $usuarioSistema->getPassword());
             $result->bindParam(':idEstablecimiento', $usuarioSistema->getIdEstablecimiento());

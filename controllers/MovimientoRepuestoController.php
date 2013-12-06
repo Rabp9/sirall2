@@ -1,7 +1,10 @@
+<!-- File: /controllers/MovimientoRepuestoController.php -->
+
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/RepuestoDAO.php';
     
-    class MovimientoRepuestoController {
+    class MovimientoRepuestoController implements AppController {
         public static function IngresoAction() {
             $repuestos = RepuestoDAO::getAllRepuesto();
             $vw_repuestos = RepuestoDAO::getVwRepuesto();

@@ -1,4 +1,7 @@
+<!-- File: /controllers/DesplazamientoController.php -->
+
 <?php
+    require_once '/controllers/AppController.php';
     require_once '/DAO/EstablecimientoDAO.php';
     require_once '/DAO/MarcaDAO.php';
     require_once '/DAO/TipoEquipoDAO.php';
@@ -8,34 +11,34 @@
     require_once '/DAO/DesplazamientoDAO.php';
     require_once '/DAO/EquipoDAO.php';
   
-    class DesplazamientoController {
+    class DesplazamientoController implements AppController {
         public static function DesplazamientoAction() {        
             if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf4")) {
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            $establecimientos = EstablecimientoDAO::getAllEstablecimiento();
-            $dependencias = DependenciaDAO::getAllDependencia();
-            $equipos = EquipoDAO::getVwEquipo();
+            $establecimientos = EstablecimientoDAO::getAll();
+            $dependencias = DependenciaDAO::getAll();
+            $vwEquipos = EquipoDAO::getVwEquipo();
             require_once '/views/Desplazamiento/Index.php';
         }        
         
         public static function DesplazamientoByEquipoAction() {      
             if(isset($_GET['codigoPatrimonial'])) {
-                $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($_GET['codigoPatrimonial']);
-                $modelo = ModeloDAO::getModeloByIdModelo($equipo->getIdModelo());
-                $marca = MarcaDAO::getMarcaByIdMarca($modelo->getIdMarca());
-                $tipoEquipo = TipoEquipoDAO::getTipoEquipoByIdTipoEquipo($modelo->getIdTipoEquipo());
-                $usuario = UsuarioDAO::getUsuarioByIdUsuario($equipo->getIdUsuario());
-                $dependencia = DependenciaDAO::getDependenciaByIdDependencia($usuario->getIdDependencia());
-                $establecimiento = EstablecimientoDAO::getEstablecimientoByIdEstablecimiento($dependencia->getIdEstablecimiento());
-                $establecimientos = EstablecimientoDAO::getAllEstablecimiento();
-                $dependencias = DependenciaDAO::getAllDependencia();
-                $usuarios = UsuarioDAO::getAllUsuario();
-                $establecimientos2 = EstablecimientoDAO::getAllEstablecimiento();
-                $dependencias2 = DependenciaDAO::getAllDependencia();
-                $usuarios2 = UsuarioDAO::getAllUsuario();
-                require_once '/views/Desplazamiento/Desplazamiento.php';
+                $equipo = current(EquipoDAO::getBy("codigoPatrimonial", $_GET['codigoPatrimonial']));
+                $modelo = current(ModeloDAO::getBy("idModelo", $equipo->getIdModelo()));
+                $marca = current(MarcaDAO::getBy("idMarca", $modelo->getIdMarca()));
+                $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
+                $usuario = current(UsuarioDAO::getBy("idUsuario", $equipo->getIdUsuario()));
+                $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
+                $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
+                $establecimientos = EstablecimientoDAO::getAll();
+                $dependencias = DependenciaDAO::getAll();
+                $usuarios = UsuarioDAO::getAll();
+                $establecimientos2 = EstablecimientoDAO::getAll();
+                $dependencias2 = DependenciaDAO::getAll();
+                $usuarios2 = UsuarioDAO::getAll();
+                require_once '/views/Desplazami ento/Desplazamiento.php';
             }
         }
         

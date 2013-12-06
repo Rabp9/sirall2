@@ -1,4 +1,4 @@
-<!-- File: /DAO/DatoDAO.php -->
+<!-- File: /DAO/DesplazamientoDAO.php -->
     
 <?php
     require_once '/DAO/AppDAO.php';
@@ -17,5 +17,25 @@
             $result->bindParam(':usuario', $desplazamiento->getUsuario());
             return $result->execute();
         }
+
+    public static function crear($object) {
+        
+    }
+
+    public static function editar($object) {
+        
+    }
+
+    public static function eliminar($object) {
+        
+    }
+
+    public static function getAll() {
+        
+    }
+
+    public static function getBy($campo, $valor) {
+        
+    }
     }
 ?>
