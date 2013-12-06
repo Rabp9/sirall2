@@ -6,7 +6,7 @@
     require_once '/DAO/DependenciaDAO.php';
     require_once '/DAO/UsuarioDAO.php';
     
-    class AsignarJefeDependenciaController {
+    class AsignarJefeDependenciaController implements AppController {
         
         public static function AsignarJefeDependenciaAction() {
             if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf7")) {

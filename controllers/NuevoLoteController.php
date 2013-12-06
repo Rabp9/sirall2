@@ -32,6 +32,7 @@
                         $equipo->setSerie($_POST['serie'][$i]);
                         $equipo->setIdModelo($_POST['idModelo']);
                         $equipo->setIdUsuario('U9999'); // Sin Usuario
+                        $equipo->setUsuario($_SESSION["usuarioActual"]->getUsername());
                         $equipo->setIndicacion($_POST['indicacion']);
                         $equipo->setEstado(1);
                         if(EquipoDAO::crear($equipo))   $n_equipos++;

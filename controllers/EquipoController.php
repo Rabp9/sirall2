@@ -22,7 +22,9 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            $vwEquipos = EquipoDAO::getVwEquipo();
+            $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
+                EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
+                EquipoDAO::getVwEquipo();
             require_once '/views/Mantenimiento/Equipo/Lista.php';
         }
         
@@ -50,6 +52,7 @@
                 $equipo->setIdModelo($_POST['idModelo']);
                 $equipo->setIdUsuario($_POST['idUsuario']);
                 $equipo->setIndicacion($_POST['indicacion']);
+                $equipo->setUsuario($_SESSION["usuarioActual"]->getUsername());
                 $equipo->setEstado(1);
                 EquipoDAO::crear($equipo) ?
                     $mensaje = "Equipo guardado correctamente" :
@@ -116,6 +119,7 @@
                 $equipo->setSerie($_POST['serie']);
                 $equipo->setIdModelo($_POST['idModelo']);
                 $equipo->setIdUsuario($_POST['idUsuario']);
+                $equipo->setUsuario($_SESSION["usuarioActual"]->getUsername());
                 $equipo->setIndicacion($_POST['indicacion']);
                 EquipoDAO::editar($equipo) ?
                     $mensaje = "Equipo modificado correctamente" :

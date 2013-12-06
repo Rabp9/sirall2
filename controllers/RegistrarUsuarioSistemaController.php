@@ -66,13 +66,11 @@
         
         public static function EliminarAction() {
             if(isset($_GET["username"])) {
-                $usuarioSistema = new UsuarioSistema();
-                $usuarioSistema->setUsername($_GET["username"]);
+                $usuarioSistema = current(UsuarioSistemaDAO::getBy("username", $_GET["username"]));
                 $usuarioSistema->desactivar();
-                var_dump($usuarioSistema);
                 UsuarioSistemaDAO::editar($usuarioSistema) ?
-                    $mensaje = "Usuario del Sistema modificado correctamente" :
-                    $mensaje = "El Usuario del Sistema no fue modificado correctamente";
+                    $mensaje = "Usuario del Sistema eliminado correctamente" :
+                    $mensaje = "El Usuario del Sistema no fue eliminado correctamente";
             }
             $vwUsuarioSistemas = UsuarioSistemaDAO::getVwUsuarioSistema();
             require_once '/views/Registrar Usuario Sistema/Lista.php';

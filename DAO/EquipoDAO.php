@@ -79,8 +79,10 @@
             return $rs['nextID'];
         }
         
-        public static function getVwEquipo() {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Equipo");
+        public static function getVwEquipo($idEstablecimiento = "") {
+            $result = $idEstablecimiento != "" ?
+                BaseDatos::getDbh()->prepare("SELECT * FROM vw_Equipo WHERE idEstablecimiento = '$idEstablecimiento'"):
+                BaseDatos::getDbh()->prepare("SELECT * FROM vw_Equipo");
             $result->execute();
             while ($rs = $result->fetch()) {
                 $vwEquipo = new VwEquipo();
