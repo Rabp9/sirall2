@@ -104,8 +104,19 @@
                                 <td><input id="txtIdMantenimiento" type="text" name="idMantenimiento"></td>
                             </tr>
                             <tr>
-                                <td><label for="txtTecnico">Técnico</label></td>
-                                <td><input id="txtTecnico" type="text" name="tecnico" placeholder="Nombre del técnico"></td>  
+                                <td><label for="sltIdTecnico">Rol</label></td>
+                                <td>
+                                    <select id="sltIdTecnico" name="idTecnico" required="true">
+                                        <option disabled selected value="">Selecciona un Técnico</option>
+                                        <?php
+                                            if(is_array($tecnicos)) {
+                                                foreach ($tecnicos as $tecnico) {
+                                                    echo "<option value='" . $tecnico->getIdTecnico() . "'>" . $tecnico->getNombreCompleto() . "</option>";
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </td>     
                             </tr>
                             <tr>
                                 <td><label for="textareaDiagnostico">Diagnóstico</label></td>

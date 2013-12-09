@@ -83,10 +83,10 @@
                         <tr>
                             <td><?php echo $equipo['codigoPatrimonial']; ?></td>
                             <td><?php echo $equipo['serie']; ?></td>
-                            <td><?php echo $equipo['TipoEquipo']; ?></td>
-                            <td><?php echo $equipo['Marca']; ?></td>
-                            <td><?php echo $equipo['Modelo']; ?></td>
-                            <td><?php echo $equipo['Dependencia']; ?></td>
+                            <td><?php echo $equipo['tipoEquipo']; ?></td>
+                            <td><?php echo $equipo['marca']; ?></td>
+                            <td><?php echo $equipo['modelo']; ?></td>
+                            <td><?php echo $equipo['dependencia']; ?></td>
                             <td><?php echo $equipo['fechaUltimo']; ?></td>
                             <td><?php echo $equipo['numeroMan']; ?></td>
                             <td><a class="aRealizarMantenimiento" href="?controller=RealizarMantenimiento&action=InformeMantenimiento&codigoPatrimonial=<?php echo $equipo['codigoPatrimonial']; ?>"></a></td>

@@ -43,6 +43,7 @@
             if(isset($_GET['codigoPatrimonial'])) {
                 $codigoPatrimonial = $_GET['codigoPatrimonial'];
                 $equipo = EquipoDAO::getVwEquipoMantenimientoByCodigoPatrimonial($codigoPatrimonial);
+                $tecnicos = TecnicoDAO::getAll();
                 require_once './views/Realizar Mantenimiento/InformeMantenimiento.php';
             }
         }
