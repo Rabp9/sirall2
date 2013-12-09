@@ -5,6 +5,7 @@
     require_once '/DAO/EstablecimientoDAO.php';
     require_once '/DAO/DependenciaDAO.php';
     require_once '/DAO/EquipoDAO.php';
+    require_once '/DAO/MantenimientoDAO.php';
 
     class RealizarMantenimientoController implements AppController {
         public static function RealizarMantenimientoAction() {    
@@ -19,10 +20,21 @@
         public static function RealizarMantenimientoByEquipoAction() {
             if(isset($_GET['codigoPatrimonial'])) {
                 $codigoPatrimonial = $_GET['codigoPatrimonial'];
-                $equipo = EquipoDAO::getEquipoByCodigoPatrimonial($codigoPatrimonial);
-                $equipo->setEstado(3); // En mantenimiento
-                EquipoDAO::editar($equipo);
+                $equipoM = current(EquipoDAO::getBy("codigoPatrimonial", $codigoPatrimonial));
+                $equipoM->setEstado(3); // En mantenimiento
+                EquipoDAO::editar($equipoM);
                 $equipo = EquipoDAO::getVwEquipoMantenimientoByCodigoPatrimonial($codigoPatrimonial);
+                $mantenimiento = new Mantenimiento();
+                $mantenimiento->setCodigoPatrimonial($equipoM->getCodigoPatrimonial());
+                $mantenimiento->setSerie($equipoM->getSerie());
+                $mantenimiento->setMotivo($_GET['motivo']);
+                $fecha = new DateTime();
+                $fecha->createFromFormat('d-m-Y', date('d/m/Y'));
+                $mantenimiento->setFechaInicio($fecha->format("Y-m-d"));
+                $mantenimiento->setUsuario($_SESSION["usuarioActual"]->getUsername());
+                MantenimientoDAO::crear($mantenimiento) ?
+                    $mensaje = "Mantenimiento registrado correctamente" :
+                    $mensaje = "El Mantenimiento no fue registrado correctamente";
                 require_once '/views/Realizar Mantenimiento/RealizarMantenimiento.php';
             }
         }

@@ -17,6 +17,26 @@
                 $('#btnListamatenimiento').button().focus().click(function() {
                     window.location = "?controller=RealizarMantenimiento";
                 });
+                $( "#mensaje" ).dialog({
+                    closeOnEscape: true,
+                    show: 'fade',
+                    hide: 'fade',
+                    open: function(event, ui){
+                        setTimeout("$('#mensaje').dialog('close')",3000);
+                    },
+                    position: { 
+                        at: "right top", 
+                        of: window
+                    },
+                    buttons: [
+                        {
+                            text: "OK",
+                            click: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    ]
+                });
             });
         </script>
         <title>SIRALL2 - Realizar Mantenimiento de Equipo</title>
@@ -37,7 +57,10 @@
                         <h2>Realizar Mantenimiento de Equipo</h2>
                         <h4>Registra el mantenimiento de un Equipo</h4>
                     </hgroup>
-                </header>
+                </header>        
+                <?php if(isset($mensaje)) { ?>
+                <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
+                <?php } ?>
                 <fieldset>
                     <legend>Información de Mantenimiento</legend>
                     <table>
@@ -51,31 +74,35 @@
                         </tr>
                         <tr>
                             <td><strong>Modelo:</strong></td>
-                            <td><?php echo $equipo['Modelo']; ?></td>  
+                            <td><?php echo $equipo['modelo']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Marca:</strong></td>
-                            <td><?php echo $equipo['Marca']; ?></td>  
+                            <td><?php echo $equipo['marca']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Tipo de Equipo:</strong></td>
-                            <td><?php echo $equipo['TipoEquipo']; ?></td>  
+                            <td><?php echo $equipo['tipoEquipo']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Usuario:</strong></td>
-                            <td><?php echo $equipo['Usuario']; ?></td>  
+                            <td><?php echo $equipo['usuario']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Dependencia:</strong></td>
-                            <td><?php echo $equipo['Dependencia']; ?></td>  
+                            <td><?php echo $equipo['dependencia']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Establecimiento:</strong></td>
-                            <td><?php echo $equipo['Establecimiento']; ?></td>  
+                            <td><?php echo $equipo['establecimiento']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Indicacion:</strong></td>
                             <td><?php echo $equipo['indicacion']; ?></td>  
+                        </tr>
+                        <tr>
+                            <td><strong>Motivo:</strong></td>
+                            <td><?php echo $mantenimiento->getMotivo(); ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Fecha de último Mantenimiento:</strong></td>

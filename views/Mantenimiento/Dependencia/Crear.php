@@ -19,7 +19,7 @@
             
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtDescripcion'));
+                isRequired($('#txtDescripcion'));
                 setValue($('#txtIdDependencia'), '<?php echo $nextID; ?>');
                 isReadOnly($('#txtIdDependencia'));
                 $('#txtDescripcion').focus();

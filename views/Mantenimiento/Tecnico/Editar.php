@@ -14,9 +14,9 @@
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtNombres'));
-                isRequiestablecimiento($('#txtApellidoPaterno'));
-                isRequiestablecimiento($('#txtApellidoMaterno'));
+                isRequired($('#txtNombres'));
+                isRequired($('#txtApellidoPaterno'));
+                isRequired($('#txtApellidoMaterno'));
                 setValue($('#txtIdTecnico'), '<?php echo $tecnico->getIdTecnico(); ?>');
                 setValue($('#txtNombres'), '<?php echo $tecnico->getNombres(); ?>');
                 setValue($('#txtApellidoPaterno'), '<?php echo $tecnico->getApellidoPaterno(); ?>');

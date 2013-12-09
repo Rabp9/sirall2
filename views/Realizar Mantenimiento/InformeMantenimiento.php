@@ -109,11 +109,11 @@
                             </tr>
                             <tr>
                                 <td><label for="textareaDiagnostico">Diagnóstico</label></td>
-                                <td><textarea id="textareaDiagnostico" name="diagnostico" placeholder="Escriba un diagnóstico" class="textareaLargo"></textarea></td>  
+                                <td><textarea id="textareaDiagnostico" name="diagnostico" placeholder="Escriba un diagnóstico" class="textareaLargo" maxlength="500"></textarea></td>  
                             </tr>
                             <tr>
                                 <td><label for="textareaInforme">Informe</label></td>
-                                <td><textarea id="textareaInforme" name="informe" placeholder="Escriba un informe" class="textareaLargo"></textarea></td>
+                                <td><textarea id="textareaInforme" name="informe" placeholder="Escriba un informe" class="textareaLargo" maxlength="500"></textarea></td>
                             </tr>
                             <tr>
                                 <td><label for="txtFechaInicio">Fecha Inicio</label></td>

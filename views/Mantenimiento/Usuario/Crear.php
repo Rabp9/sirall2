@@ -18,10 +18,10 @@
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtNombres'));
-                isRequiestablecimiento($('#txtApellidoPaterno'));
-                isRequiestablecimiento($('#txtApellidoMaterno'));
-                isRequiestablecimiento($('#cboRol'));
+                isRequired($('#txtNombres'));
+                isRequired($('#txtApellidoPaterno'));
+                isRequired($('#txtApellidoMaterno'));
+                isRequired($('#cboRol'));
                 setValue($('#txtIdUsuario'), '<?php echo $nextID; ?>');
                 isReadOnly($('#txtIdUsuario'));
                 $('#btnEnviar').button();
