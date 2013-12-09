@@ -18,9 +18,9 @@
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtNombres'));
-                isRequiestablecimiento($('#txtDescripcion'));
-                isRequiestablecimiento($('#txtApellidoMaterno'));
+                isRequired($('#txtNombres'));
+                isRequired($('#txtDescripcion'));
+                isRequired($('#txtApellidoMaterno'));
                 setValue($('#txtIdDependencia'), '<?php echo $dependencia->getIdDependencia(); ?>');
                 isReadOnly($('#txtIdDependencia'));
                 $('#txtDescripcion').focus();

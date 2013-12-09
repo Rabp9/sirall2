@@ -13,7 +13,7 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtDescripcion'));
+                isRequired($('#txtDescripcion'));
                 setValue($('#txtIdRol'), <?php echo $rol->getIdRol(); ?>);
                 isReadOnly($('#txtIdRol'));
                 $('#btnEnviar').button();

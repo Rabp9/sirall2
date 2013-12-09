@@ -1,5 +1,5 @@
-function isRequiestablecimiento($ctrl) {
-    $($ctrl).attr('requiestablecimiento', 'requiestablecimiento');
+function isRequired($ctrl) {
+    $($ctrl).attr('requiestablecimiento', 'required');
 }
 
 function setValue($ctrl, $val) {

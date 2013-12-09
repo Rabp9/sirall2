@@ -16,7 +16,7 @@
         <script type="text/javascript" src="resources/js/template.crearDatos.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtDescripcion'));
+                isRequired($('#txtDescripcion'));
                 setValue($('#txtIdTipoEquipo'), '<?php echo $nextID; ?>');
                 isReadOnly($('#txtIdTipoEquipo'));
                 $('#btnEnviar').button();

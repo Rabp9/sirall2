@@ -17,7 +17,7 @@
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtDescripcion'));  
+                isRequired($('#txtDescripcion'));  
                 setValue($('#txtIdTipoEquipo'), '<?php echo $tipoEquipo->getIdTipoEquipo(); ?>');
                 setValue($('#txtTipoEquipo'), '<?php echo $tipoEquipo->getDescripcion(); ?>');
                 setValue($('#txtIdMarca'), '<?php echo $marca->getIdMarca(); ?>');

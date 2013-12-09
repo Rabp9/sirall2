@@ -21,8 +21,8 @@
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtCodigoPatrimonial'));
-                isRequiestablecimiento($('#txtSerie'));
+                isRequired($('#txtCodigoPatrimonial'));
+                isRequired($('#txtSerie'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtIdTipoEquipo').focus();
@@ -412,7 +412,7 @@
                                          <tr>
                                             <td><label for="txtIdTipoEquipo">Código identificador</label></td>
                                             <td>
-                                                <input id="txtIdTipoEquipo" type="text" name="idTipoEquipo">
+                                                <input id="txtIdTipoEquipo" type="text" name="idTipoEquipo" maxlength="4">
                                                 <button type="button" id="btnIdTipoEquipo"></button>
                                             </td>
                                         </tr>
@@ -428,7 +428,7 @@
                                          <tr>
                                             <td><label for="txtIdMarca">Código identificador</label></td>
                                             <td>
-                                                <input id="txtIdMarca" type="text" name="idMarca">
+                                                <input id="txtIdMarca" type="text" name="idMarca" maxlength="5">
                                                 <button type="button" id="btnIdMarca"></button>
                                             </td>
                                         </tr>
@@ -478,11 +478,11 @@
                                     </tr>
                                 <tr>
                                     <td><label for="txtSerie">Serie</label></td>
-                                    <td><input id="txtSerie" type="text" name="serie" placeholder="Escribe la serie"></td>  
+                                    <td><input id="txtSerie" type="text" name="serie" placeholder="Escribe la serie" maxlength="20"></td>  
                                 </tr>
                                 <tr>
                                     <td><label for="txtIndicacion">Indicación</label></td>
-                                    <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" ></textarea></td>  
+                                    <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" maxlength="250"></textarea></td>  
                                 </tr>
                             </table>
                             </div>

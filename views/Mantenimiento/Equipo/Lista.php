@@ -14,7 +14,37 @@
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.lista.js"></script>
-        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var aClicked;
+                $("#dvMantenimiento").dialog({
+                    autoOpen: false,
+                    modal: true,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
+                    },
+                    buttons: {   
+                        "Aceptar": function() {
+                            var codigoPatrimonial = aClicked.parents("tr").find("td:eq(0)").text();
+                            var motivo = $("#txtaMotivo").val();
+                            window.location = "?controller=RealizarMantenimiento&action=RealizarMantenimientoByEquipo&codigoPatrimonial=" + codigoPatrimonial + "&motivo=" + motivo;
+                        },
+                        "Borrar": function() {
+                            $("#txtaMotivo").val("").focus();
+                        }
+                    }
+                });
+                $("a:contains('Mantenimiento')").click(function() {
+                    $("#dvMantenimiento").dialog("open");
+                    aClicked = $(this);
+                });
+            });
+        </script>
         <title>SIRALL2 - Lista Equipo</title>
     </head>
     <body>
@@ -68,7 +98,7 @@
                                     <li><a href="?controller=Equipo&action=Editar&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Editar</a></li>
                                     <li><a href="?controller=Equipo&action=Eliminar&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Eliminar</a></li>
                                     <li><a href="?controller=Desplazamiento&action=DesplazamientoByEquipo&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Desplazar</a></li>
-                                    <li><a href="?controller=RealizarMantenimiento&action=RealizarMantenimientoByEquipo&codigoPatrimonial=<?php echo $vwEquipo->getCodigoPatrimonial(); ?>">Mantenimiento</a></li>
+                                    <li><a href="#">Mantenimiento</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -83,6 +113,10 @@
                         </tr>
                     </tfoot>
                 </table>
+                <div id="dvMantenimiento" title="Realizar Mantenimiento">
+                    <p>Motivo:</p>
+                    <p><textarea id="txtaMotivo" name="motivo" cols="35"></textarea></p>
+                </div>
             </article>
         </section>
     </body>

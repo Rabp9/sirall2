@@ -14,8 +14,8 @@
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtDescripcion'));
-                isRequiestablecimiento($('#txtDireccion'));
+                isRequired($('#txtDescripcion'));
+                isRequired($('#txtDireccion'));
                 setValue($('#txtIdEstablecimiento'), '<?php echo $establecimiento->getIdEstablecimiento(); ?>');
                 setValue($('#txtDescripcion'), '<?php echo $establecimiento->getDescripcion(); ?>');
                 setValue($('#txtTelefono'), '<?php echo $establecimiento->getTelefono(); ?>');

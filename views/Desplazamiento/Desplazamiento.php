@@ -17,7 +17,7 @@
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                isRequiestablecimiento($('#txtFecha'));
+                isRequired($('#txtFecha'));
                 setValue($('#txtFecha'), '<?php echo date('d/m/Y'); ?>');
                 $('#buttonFlecha').button();
                 $("#txtFecha").datepicker(
@@ -282,11 +282,11 @@
                             <table>
                                 <tr>
                                     <td><label for="txtFecha">Fecha</label></td>
-                                    <td><input id="txtFecha" type="text" name="fecha"></td>
+                                    <td><input id="txtFecha" type="text" name="fecha" required="true"></td>
                                 </tr>
                                 <tr>
                                     <td><label for="textareaObservacion">Observación</label></td>
-                                    <td><textarea id="textareaObservacion" name="observacion" placeholder="Ingrese una observación" class="textareaObservacion1"></textarea></td>
+                                    <td><textarea id="textareaObservacion" name="observacion" placeholder="Ingrese una observación" class="textareaObservacion1" maxlength="300"></textarea></td>
                                 </tr>
                             </table>
                         </fieldset>
