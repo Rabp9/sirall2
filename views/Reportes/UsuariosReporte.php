@@ -1,5 +1,5 @@
 <?php
-    require_once '/models/Reporte.php';
+    require_once './models/Reporte.php';
     
     ob_start();
     $reporte = new Reporte();

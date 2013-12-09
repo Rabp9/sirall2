@@ -183,7 +183,7 @@
                 var cboModelo = function() {
                     alert("dasdas");
                     $.ajax({
-                        url: 'Index.php',
+                        url: 'index.php',
                         type: 'GET',
                         data: {
                             controller: 'Modelo',
@@ -223,7 +223,7 @@
            
             var cboModelo = function() {
                 $.ajax({
-                    url: 'Index.php',
+                    url: 'index.php',
                     type: 'GET',
                     data: {
                         controller: 'Modelo',

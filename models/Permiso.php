@@ -1,7 +1,7 @@
 <!-- File: /models/Permiso.php -->
 
 <?php
-    require_once '/models/AppModel.php';
+    require_once './models/AppModel.php';
     /*
      * Clase Permiso de roles
      */

@@ -1,14 +1,14 @@
 <!-- File: /controllers/MovimientoRepuestoController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/RepuestoDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/RepuestoDAO.php';
     
     class MovimientoRepuestoController implements AppController {
         public static function IngresoAction() {
             $repuestos = RepuestoDAO::getAllRepuesto();
             $vw_repuestos = RepuestoDAO::getVwRepuesto();
-            require_once '/views/Movimiento Repuesto/Ingreso.php';
+            require_once './views/Movimiento Repuesto/Ingreso.php';
         }        
         
         public static function IngresoPOSTAction() {
@@ -22,14 +22,14 @@
                 $ingresoRepuesto->setFecha($fecha->format('Y-m-d'));
                 $ingresoRepuesto->setObservacion($_POST['observacion']);
                 if(RepuestoDAO::ingreso($ingresoRepuesto))
-                    require_once '/views/Movimiento Repuesto/ConfirmacionIngreso.php';
+                    require_once './views/Movimiento Repuesto/ConfirmacionIngreso.php';
             }
         }
         
         public static function SalidaAction() {
             $repuestos = RepuestoDAO::getAllRepuesto();
             $vw_repuestos = RepuestoDAO::getVwRepuesto();
-            require_once '/views/Movimiento Repuesto/Salida.php';
+            require_once './views/Movimiento Repuesto/Salida.php';
         }
         
         public static function SalidaPOSTAction() {
@@ -43,7 +43,7 @@
                 $salidaRepuesto->setFecha($fecha->format('Y-m-d'));
                 $salidaRepuesto->setObservacion($_POST['observacion']);
                 if(RepuestoDAO::salida($salidaRepuesto))
-                    require_once '/views/Movimiento Repuesto/ConfirmacionSalida.php';
+                    require_once './views/Movimiento Repuesto/ConfirmacionSalida.php';
             }
         }
     }

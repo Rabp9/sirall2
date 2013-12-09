@@ -1,9 +1,9 @@
 <!-- File: /controllers/DependenciaController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/EstablecimientoDAO.php';
-    require_once '/DAO/DependenciaDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/EstablecimientoDAO.php';
+    require_once './DAO/DependenciaDAO.php';
     
     class DependenciaController implements AppController {
         
@@ -17,7 +17,7 @@
                 return;
             }
             $vwDependencias = DependenciaDAO::getVwDependencia();
-            require_once '/views/Mantenimiento/Dependencia/Lista.php';
+            require_once './views/Mantenimiento/Dependencia/Lista.php';
         }
         
         public static function CrearAction() {     
@@ -28,7 +28,7 @@
             $nextID = DependenciaDAO::getNextID();
             $establecimientos = EstablecimientoDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
-            require_once '/views/Mantenimiento/Dependencia/Crear.php';
+            require_once './views/Mantenimiento/Dependencia/Crear.php';
         }
         
         public static function CrearPOSTAction() {
@@ -43,7 +43,7 @@
                     $mensaje = "La Dependencia no fue guardada correctamente";
             }
             $vwDependencias = DependenciaDAO::getVwDependencia();
-            require_once '/views/Mantenimiento/Dependencia/Lista.php';
+            require_once './views/Mantenimiento/Dependencia/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -60,7 +60,7 @@
                 else {
                     $superDependencia = new Dependencia();
                 }
-                require_once '/views/Mantenimiento/Dependencia/Detalle.php';
+                require_once './views/Mantenimiento/Dependencia/Detalle.php';
             }
         }
         
@@ -73,7 +73,7 @@
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']));
                 $establecimientos = EstablecimientoDAO::getAll();
                 $dependencias = DependenciaDAO::getAll();
-                require_once '/views/Mantenimiento/Dependencia/Editar.php';
+                require_once './views/Mantenimiento/Dependencia/Editar.php';
             }
         }
         
@@ -89,7 +89,7 @@
                     $mensaje = "La Dependencia no fue modificada correctamente";
             }
             $vwDependencias = DependenciaDAO::getVwDependencia();
-            require_once '/views/Mantenimiento/Dependencia/Lista.php';
+            require_once './views/Mantenimiento/Dependencia/Lista.php';
         }
         
         public static function EliminarAction() {
@@ -101,7 +101,7 @@
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $_GET['idDependencia']));
                 $establecimiento = EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento());
                 $superDependencia = DependenciaDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia());
-                require_once '/views/Mantenimiento/Dependencia/Eliminar.php';
+                require_once './views/Mantenimiento/Dependencia/Eliminar.php';
             }
         }
         
@@ -114,7 +114,7 @@
                     $mensaje = "La Dependencia no fue eliminada correctamente" ;
             }
             $vwDependencias = DependenciaDAO::getVwDependencia();
-            require_once '/views/Mantenimiento/Dependencia/Lista.php';
+            require_once './views/Mantenimiento/Dependencia/Lista.php';
         }
         
         public static function SubDependenciasAction() {

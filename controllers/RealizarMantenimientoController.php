@@ -1,11 +1,11 @@
 <!-- File: /controllers/RealizarMantenimientoController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/EstablecimientoDAO.php';
-    require_once '/DAO/DependenciaDAO.php';
-    require_once '/DAO/EquipoDAO.php';
-    require_once '/DAO/MantenimientoDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/EstablecimientoDAO.php';
+    require_once './DAO/DependenciaDAO.php';
+    require_once './DAO/EquipoDAO.php';
+    require_once './DAO/MantenimientoDAO.php';
 
     class RealizarMantenimientoController implements AppController {
         public static function RealizarMantenimientoAction() {    
@@ -14,7 +14,7 @@
                 return;
             }
             $equipos = EquipoDAO::getVwEquipoMantenimiento();
-            require_once '/views/Realizar Mantenimiento/Index.php';
+            require_once './views/Realizar Mantenimiento/index.php';
         }        
         
         public static function RealizarMantenimientoByEquipoAction() {
@@ -35,7 +35,7 @@
                 MantenimientoDAO::crear($mantenimiento) ?
                     $mensaje = "Mantenimiento registrado correctamente" :
                     $mensaje = "El Mantenimiento no fue registrado correctamente";
-                require_once '/views/Realizar Mantenimiento/RealizarMantenimiento.php';
+                require_once './views/Realizar Mantenimiento/RealizarMantenimiento.php';
             }
         }
         
@@ -43,7 +43,7 @@
             if(isset($_GET['codigoPatrimonial'])) {
                 $codigoPatrimonial = $_GET['codigoPatrimonial'];
                 $equipo = EquipoDAO::getVwEquipoMantenimientoByCodigoPatrimonial($codigoPatrimonial);
-                require_once '/views/Realizar Mantenimiento/InformeMantenimiento.php';
+                require_once './views/Realizar Mantenimiento/InformeMantenimiento.php';
             }
         }
     }

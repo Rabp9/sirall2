@@ -1,9 +1,9 @@
 <!-- File: /DAO/RolDAO.php -->
 
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Rol.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Rol.php';
+    require_once './Libs/BaseDatos.php';
     
     class RolDAO implements appDAO {
 

@@ -48,6 +48,10 @@
                             <td><?php echo $establecimiento->getDireccion(); ?></td>  
                         </tr>
                         <tr>
+                            <td><strong>Teléfono:</strong></td>
+                            <td><?php echo $establecimiento->getTelefono(); ?></td>  
+                        </tr>
+                        <tr>
                             <td>
                                 <a class="aEditar" href="?controller=Establecimiento&action=Editar&idEstablecimiento=<?php echo $establecimiento->getIdEstablecimiento(); ?>">Editar</a> |
                                 <a class="aEliminar" href="?controller=Establecimiento&action=Eliminar&idEstablecimiento=<?php echo $establecimiento->getIdEstablecimiento(); ?>">Eliminar</a>

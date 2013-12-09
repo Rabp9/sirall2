@@ -1,10 +1,10 @@
 <!-- File: /DAO/SubOpcionDAO.php -->
 
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/SubOpcion.php';
-    require_once '/models/Opcion.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/SubOpcion.php';
+    require_once './models/Opcion.php';
+    require_once './Libs/BaseDatos.php';
     
     class SubOpcionDAO implements appDAO {
         

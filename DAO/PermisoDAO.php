@@ -1,9 +1,9 @@
 <!-- File: /DAO/PermisoDAO.php -->
 
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Permiso.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Permiso.php';
+    require_once './Libs/BaseDatos.php';
     
     class PermisoDAO implements appDAO {
 

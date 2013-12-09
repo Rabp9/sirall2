@@ -1,9 +1,9 @@
 <!-- File: /DAO/MantenimientoDAO.php -->
 
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Mantenimiento.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Mantenimiento.php';
+    require_once './Libs/BaseDatos.php';
     
     class MantenimientoDAO implements appDAO {
 

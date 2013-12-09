@@ -109,7 +109,7 @@
                     </tbody>
                     <tfoot>          
                         <tr>
-                            <td colspan="2"><a class="crearLink" href="?controller=Equipo&action=Crear">Crear Equipo</a></td>
+                            <td colspan="2"><a class="crearLink" href="?controller=Equipo&action=Crear">Nuevo Equipo</a></td>
                         </tr>
                     </tfoot>
                 </table>

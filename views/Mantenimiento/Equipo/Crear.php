@@ -228,7 +228,7 @@
                 // INICIO Modelo
                 var cboModelo = function() {
                     $.ajax({
-                        url: 'Index.php',
+                        url: 'index.php',
                         type: 'GET',
                         data: {
                             controller: 'Modelo',
@@ -255,7 +255,7 @@
                     var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
                     if($($dependenciaSeleccionada).length) {
                         $.ajax({
-                            url: 'Index.php',
+                            url: 'index.php',
                             type: 'GET',
                             data: {
                                 controller: 'Usuario',
@@ -276,13 +276,13 @@
                 //
                 //
                 // INICIO Estilizar Tabla
-                $('#tblDetalle').styleTable(event);
+                $('#tblDetalle').styleTable();
                 // FIN Estilizar Tabla
             });
           
             var cboModelo = function() {
                 $.ajax({
-                    url: 'Index.php',
+                    url: 'index.php',
                     type: 'GET',
                     data: {
                         controller: 'Modelo',
@@ -321,13 +321,13 @@
                         $trOpcion.find("td.valor").append($(txtSubOpcion));
                     }
                 });
-                $('#tblDetalle').styleTable(event);
+                $('#tblDetalle').styleTable();
             }
             
             function getOpciones(idTipoEquipo) {
                 var opciones = [];
                 var xmlResponse = $.ajax({
-                    url: "Index.php",
+                    url: "index.php",
                     type: "GET",            
                     global: false,
                     async: false,
@@ -353,7 +353,7 @@
             function getSubOpciones(idOpcion) {
                 var subOpciones = [];
                 var xmlResponse = $.ajax({
-                    url: "Index.php",
+                    url: "index.php",
                     type: "GET",            
                     global: false,
                     async: false,

@@ -1,7 +1,7 @@
 <!-- File: /models/UsuarioSistema.php -->
 
 <?php
-    require_once '/models/AppModel.php';
+    require_once './models/AppModel.php';
     /*
      * Clase Usuario del Sistema
      */

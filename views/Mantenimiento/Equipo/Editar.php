@@ -36,7 +36,7 @@
                 setValue($('#txtTipoEquipo'), '<?php echo $tipoEquipo->getDescripcion(); ?>');
                 setValue($('#txtIdMarca'), '<?php echo $marca->getIdMarca(); ?>');           
                 setValue($('#txtMarca'), '<?php echo $marca->getDescripcion(); ?>');
-                mostrarOpcionesTipoEquipo("<?php echo $tipoEquipo->getIdTipoEquipo(); ?>")
+                mostrarOpcionesTipoEquipo("<?php echo $tipoEquipo->getIdTipoEquipo(); ?>");
                 // INICIO TABS
                 $('div#asistente div:not(:first)').append("<button class='prev' type='button'>Anterior</button>");
                 $('.prev').click(function() {
@@ -236,7 +236,7 @@
                 // INICIO Modelo
                 var cboModelo = function() {
                     $.ajax({
-                        url: 'Index.php',
+                        url: 'index.php',
                         type: 'GET',
                         data: {
                             controller: 'Modelo',
@@ -266,7 +266,7 @@
                     var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
                     if($($dependenciaSeleccionada).length) {
                         $.ajax({
-                            url: 'Index.php',
+                            url: 'index.php',
                             type: 'GET',
                             data: {
                                 controller: 'Usuario',
@@ -304,7 +304,7 @@
                     var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
                     if($($dependenciaSeleccionada).length) {
                         $.ajax({
-                            url: 'Index.php',
+                            url: 'index.php',
                             type: 'GET',
                             data: {
                                 controller: 'Usuario',
@@ -338,7 +338,7 @@
           
             var cboModelo = function() {
                 $.ajax({
-                    url: 'Index.php',
+                    url: 'index.php',
                     type: 'GET',
                     data: {
                         controller: 'Modelo',
@@ -378,13 +378,13 @@
                         $trOpcion.find("td.valor").append($(txtSubOpcion));
                     }
                 });
-                $('#tblDetalle').styleTable(event);
+                $('#tblDetalle').styleTable();
             }
             
             function getOpciones(idTipoEquipo) {
                 var opciones = [];
                 var xmlResponse = $.ajax({
-                    url: "Index.php",
+                    url: "index.php",
                     type: "GET",            
                     global: false,
                     async: false,
@@ -410,7 +410,7 @@
             function getSubOpciones(idOpcion) {
                 var subOpciones = [];
                 var xmlResponse = $.ajax({
-                    url: "Index.php",
+                    url: "index.php",
                     type: "GET",            
                     global: false,
                     async: false,

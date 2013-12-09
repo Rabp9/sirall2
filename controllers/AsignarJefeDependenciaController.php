@@ -1,10 +1,10 @@
 <!-- File: /controllers/AsignarJefeDependenciaController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/EstablecimientoDAO.php';
-    require_once '/DAO/DependenciaDAO.php';
-    require_once '/DAO/UsuarioDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/EstablecimientoDAO.php';
+    require_once './DAO/DependenciaDAO.php';
+    require_once './DAO/UsuarioDAO.php';
     
     class AsignarJefeDependenciaController implements AppController {
         
@@ -15,7 +15,7 @@
             }
             $establecimientos = EstablecimientoDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
-            require_once '/views/Asignar Jefe Dependencia/Index.php';
+            require_once './views/Asignar Jefe Dependencia/index.php';
         }
         
         public static function AsignarJefeDependenciaPOSTAction() {
@@ -32,7 +32,7 @@
                 $dependencia->setIdUsuarioJefe($usuario->getIdUsuario());
                 if(DependenciaDAO::asignarJefe($dependencia)) {
                     $mensaje = "Jefe asignado correctamente";
-                    require_once '/views/Asignar Jefe Dependencia/Confirmacion.php';
+                    require_once './views/Asignar Jefe Dependencia/Confirmacion.php';
                 }
                 else
                     $mensaje = "No se pudo asignar el jefe";

@@ -1,7 +1,7 @@
 <!-- File: /models/Marca.php -->
 
 <?php  
-    require_once '/models/AppModel.php';
+    require_once './models/AppModel.php';
     /*
      * Clase Marca de Equipo
      */

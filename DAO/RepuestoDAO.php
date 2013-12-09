@@ -1,11 +1,11 @@
 <!-- File: /DAO/RepuestoDAO.php -->
 
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Repuesto.php';
-    require_once '/models/IngresoRepuesto.php';
-    require_once '/models/SalidaRepuesto.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Repuesto.php';
+    require_once './models/IngresoRepuesto.php';
+    require_once './models/SalidaRepuesto.php';
+    require_once './Libs/BaseDatos.php';
     
     class RepuestoDAO implements appDAO {
 

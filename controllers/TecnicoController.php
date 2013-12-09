@@ -1,8 +1,8 @@
 <!-- File: /controllers/TecnicoController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/TecnicoDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/TecnicoDAO.php';
    
     class TecnicoController implements AppController {
         
@@ -16,7 +16,7 @@
                 return;
             }
             $tecnicos = TecnicoDAO::getAll();
-            require_once '/views/Mantenimiento/Tecnico/Lista.php';
+            require_once './views/Mantenimiento/Tecnico/Lista.php';
         }
 
         public static function CrearAction() {           
@@ -25,7 +25,7 @@
                 return;
             }
             $nextID = TecnicoDAO::getNextID();
-            require_once '/views/Mantenimiento/Tecnico/Crear.php';
+            require_once './views/Mantenimiento/Tecnico/Crear.php';
         }
                 
         public static function CrearPOSTAction() {
@@ -37,7 +37,7 @@
             }
             $tecnicos = TecnicoDAO::getAll();
             $mensaje = "Técnico guardado correctamente";
-            require_once '/views/Mantenimiento/Tecnico/Lista.php';
+            require_once './views/Mantenimiento/Tecnico/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -47,7 +47,7 @@
             }
             if(isset($_GET['idTecnico'])) {
                 $tecnico = current(TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']));
-                require_once '/views/Mantenimiento/Tecnico/Detalle.php';
+                require_once './views/Mantenimiento/Tecnico/Detalle.php';
             }
         }
                 
@@ -58,7 +58,7 @@
             }
             if(isset($_GET['idTecnico'])) {
                 $tecnico = current(TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']));
-                require_once '/views/Mantenimiento/Tecnico/Editar.php';
+                require_once './views/Mantenimiento/Tecnico/Editar.php';
             }
         }
         
@@ -70,7 +70,7 @@
                     $mensaje = "El Técnico no fue modificado correctamente";
             }
             $tecnicos = TecnicoDAO::getAll();
-            require_once '/views/Mantenimiento/Tecnico/Lista.php';
+            require_once './views/Mantenimiento/Tecnico/Lista.php';
         }
         
         public static function EliminarAction() {
@@ -80,7 +80,7 @@
             }
             if(isset($_GET['idTecnico'])) {
                 $tecnico = current(TecnicoDAO::getBy('idTecnico', $_GET['idTecnico']));
-                require_once '/views/Mantenimiento/Tecnico/Eliminar.php';
+                require_once './views/Mantenimiento/Tecnico/Eliminar.php';
             }
         }
                 
@@ -92,7 +92,7 @@
                     $mensaje = "El Tecnico no fue eliminado correctamente";
             }
             $tecnicos = TecnicoDAO::getAll();
-            require_once '/views/Mantenimiento/Tecnico/Lista.php';
+            require_once './views/Mantenimiento/Tecnico/Lista.php';
         }
     }
 ?>

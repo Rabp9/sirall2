@@ -1,10 +1,10 @@
 <!-- File: /DAO/DependenciaDAO.php -->
     
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Dependencia.php';
-    require_once '/models/VwDependencia.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Dependencia.php';
+    require_once './models/VwDependencia.php';
+    require_once './Libs/BaseDatos.php';
     
     class DependenciaDAO implements appDAO {
 

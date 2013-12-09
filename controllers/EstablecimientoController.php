@@ -1,8 +1,8 @@
 <!-- File: /controllers/EstablecimientoController.php -->
     
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/EstablecimientoDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/EstablecimientoDAO.php';
     
     class EstablecimientoController implements AppController {
         
@@ -16,7 +16,7 @@
                 return;
             }
             $establecimientos = EstablecimientoDAO::getAll();
-            require_once '/views/Mantenimiento/Establecimiento/Lista.php';
+            require_once './views/Mantenimiento/Establecimiento/Lista.php';
         }
         
         public static function CrearAction() {
@@ -25,7 +25,7 @@
                 return;
             }
             $nextID = EstablecimientoDAO::getNextID();
-            require_once '/views/Mantenimiento/Establecimiento/Crear.php';
+            require_once './views/Mantenimiento/Establecimiento/Crear.php';
         }
                 
         public static function CrearPOSTAction() {
@@ -37,7 +37,7 @@
             }
             $establecimientos = EstablecimientoDAO::getAll();
             $mensaje = "Establecimiento guardada correctamente";
-            require_once '/views/Mantenimiento/Establecimiento/Lista.php';
+            require_once './views/Mantenimiento/Establecimiento/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -47,7 +47,7 @@
             }
             if(isset($_GET['idEstablecimiento'])) {
                 $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $_GET['idEstablecimiento']));
-                require_once '/views/Mantenimiento/Establecimiento/Detalle.php';
+                require_once './views/Mantenimiento/Establecimiento/Detalle.php';
             }
         }
         
@@ -58,7 +58,7 @@
             }
             if(isset($_GET['idEstablecimiento'])) {
                 $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $_GET['idEstablecimiento']));
-                require_once '/views/Mantenimiento/Establecimiento/Editar.php';
+                require_once './views/Mantenimiento/Establecimiento/Editar.php';
             }
         }
         
@@ -68,13 +68,14 @@
                 $establecimiento->setIdEstablecimiento($_POST['idEstablecimiento']);
                 $establecimiento->setDescripcion($_POST['descripcion']);
                 $establecimiento->setDireccion($_POST['direccion']);
+                $establecimiento->setTelefono($_POST['telefono']);
                 $establecimiento->setEstado(1);
                 EstablecimientoDAO::editar($establecimiento) ?
                     $mensaje = "Establecimiento modificada correctamente" :
                     $mensaje = "El Establecimiento no fue modificada correctamente";
             }
             $establecimientos = EstablecimientoDAO::getAll();
-            require_once '/views/Mantenimiento/Establecimiento/Lista.php';
+            require_once './views/Mantenimiento/Establecimiento/Lista.php';
         }
         
         public static function EliminarAction() {        
@@ -84,7 +85,7 @@
             }
             if(isset($_GET['idEstablecimiento'])) {
                 $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $_GET['idEstablecimiento']));
-                require_once '/views/Mantenimiento/Establecimiento/Eliminar.php';
+                require_once './views/Mantenimiento/Establecimiento/Eliminar.php';
             }
         }
         
@@ -97,7 +98,7 @@
                     $mensaje = "El Establecimiento no fue eliminada correctamente";
             }
             $establecimientos = EstablecimientoDAO::getAll();
-            require_once '/views/Mantenimiento/Establecimiento/Lista.php';
+            require_once './views/Mantenimiento/Establecimiento/Lista.php';
         }
     }
 ?>

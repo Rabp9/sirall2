@@ -1,10 +1,10 @@
 <!-- File: /DAO/UsuarioDAO.php -->
     
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Usuario.php';
-    require_once '/models/VwUsuario.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Usuario.php';
+    require_once './models/VwUsuario.php';
+    require_once './Libs/BaseDatos.php';
     
     class UsuarioDAO implements appDAO {
         

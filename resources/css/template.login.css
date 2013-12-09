@@ -1,18 +1,10 @@
-div#dvSectionWrapper {
-    width: 32%;
-    height: 36%;
-    position: absolute;
-    top: 32%;
-    left: 34%;
+.dvSectionWrapper {
+    padding: 5px;
     background-color: #fff;
     border-radius: 20px; 
     -webkit-box-shadow: 8px 8px 11px 4px rgba(0,0,0,0.52);
     -moz-box-shadow: 8px 8px 11px 4px rgba(0,0,0,0.52);
     box-shadow: 8px 8px 11px 4px rgba(0,0,0,0.52);
-    filter: alpha(opacity=50); /* internet explorer */
-    -khtml-opacity: 0.1;      /* khtml, version anterior de safari */
-    -moz-opacity: 0.1;       /* firefox, mozilla, netscape */
-    opacity: 0.1;           /* safari, chrome, opera */
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /*internet explorer 8 - gracias Andres */
 }
 
@@ -85,6 +77,6 @@ header img {
 }
 
 article label {
-    color: #fff;
+    color: #1B86B7;
     font-weight: bold;
 }

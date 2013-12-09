@@ -1,7 +1,7 @@
 <!-- File: /models/Mantenimiento.php -->
 
 <?php
-    require_once '/models/AppModel.php';
+    require_once './models/AppModel.php';
     /*
      * Clase Mantenimiento
      */

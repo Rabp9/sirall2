@@ -24,7 +24,7 @@
                     var $dependenciaSeleccionada = $("#ulDependencia li button.selected");
                     if($($dependenciaSeleccionada).length) {
                         $.ajax({
-                            url: 'Index.php',
+                            url: 'index.php',
                             type: 'GET',
                             data: {
                                 controller: 'Usuario',
