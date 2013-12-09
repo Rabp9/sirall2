@@ -1,8 +1,8 @@
 <!-- File: /controllers/HomeController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/UsuarioSistemaDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/UsuarioSistemaDAO.php';
     
     class HomeController implements AppController {
         
@@ -11,14 +11,14 @@
                 HomeController::LoginAction();
                 return;
             }
-            require_once '/views/Home/Index.php';
+            require_once './views/Home/index.php';
         }
         
         public static function LoginAction() {
             if(isset($_GET["mensaje"])) {
                 $mensaje = $_GET["mensaje"];
             }
-            require_once '/views/Home/Login.php';
+            require_once './views/Home/Login.php';
         }
         
         public static function LoginPOSTAction() {
@@ -29,11 +29,11 @@
                 if($usuarioSistema = UsuarioSistemaDAO::loguear($usuarioSistema)) {
                     $_SESSION["usuarioActual"] = $usuarioSistema;
                     $mensaje = "Usuario: " . $_SESSION["usuarioActual"]->getUsername() . " logueado correctamente";
-                    require_once '/views/Home/Index.php';
+                    require_once './views/Home/index.php';
                 }
                 else {
                     $mensaje = "El usuario no existe o la clave ingresada no es la correcta";
-                    require_once '/views/Home/Login.php';
+                    require_once './views/Home/Login.php';
                 }
             }
         }

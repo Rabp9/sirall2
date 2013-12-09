@@ -1,9 +1,9 @@
 <!-- File: /controllers/RolController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/RolDAO.php';
-    require_once '/DAO/PermisoDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/RolDAO.php';
+    require_once './DAO/PermisoDAO.php';
     
     class RolController implements AppController {
         
@@ -17,7 +17,7 @@
                 return;
             }
             $roles = RolDAO::getAll();
-            require_once '/views/Mantenimiento/Rol/Lista.php';
+            require_once './views/Mantenimiento/Rol/Lista.php';
         }
         
         public static function CrearAction() {
@@ -26,7 +26,7 @@
                 return;
             }
             $nextID = RolDAO::getNextID();
-            require_once '/views/Mantenimiento/Rol/Crear.php';
+            require_once './views/Mantenimiento/Rol/Crear.php';
         }
         
         public static function CrearPOSTAction() {
@@ -47,7 +47,7 @@
                 }
             }
             $roles = RolDAO::getAll();
-            require_once '/views/Mantenimiento/Rol/Lista.php';
+            require_once './views/Mantenimiento/Rol/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -58,7 +58,7 @@
             if(isset($_GET['idRol'])) {
                 $rol = current(RolDAO::getBy("idRol", $_GET['idRol']));
                 $permisos = PermisoDAO::getUspPermisos($_GET['idRol']);
-                require_once '/views/Mantenimiento/Rol/Detalle.php';
+                require_once './views/Mantenimiento/Rol/Detalle.php';
             }
         }
         
@@ -72,7 +72,7 @@
             $permisos = self::permisosToXML($permisos);
             $permisos = json_encode($permisos);
             $permisos = substr($permisos, 1, strlen($permisos) - 2);
-            require_once '/views/Mantenimiento/Rol/Editar.php';
+            require_once './views/Mantenimiento/Rol/Editar.php';
         }            
                  
         public static function EditarPOSTAction() {
@@ -94,7 +94,7 @@
                 }
             }
             $roles = RolDAO::getAll();
-            require_once '/views/Mantenimiento/Rol/Lista.php';
+            require_once './views/Mantenimiento/Rol/Lista.php';
         }
         
         public static function EliminarAction() {
@@ -105,7 +105,7 @@
             if(isset($_GET['idRol'])) {
                 $rol = current(RolDAO::getBy("idRol", $_GET['idRol']));
                 $permisos = PermisoDAO::getUspPermisos($_GET['idRol']);
-                require_once '/views/Mantenimiento/Rol/Eliminar.php';
+                require_once './views/Mantenimiento/Rol/Eliminar.php';
             }
         }
         
@@ -118,7 +118,7 @@
                     $mensaje = "El Rol no fue eliminado correctamente";
             }
             $roles = RolDAO::getAll();
-            require_once '/views/Mantenimiento/Rol/Lista.php';
+            require_once './views/Mantenimiento/Rol/Lista.php';
         }
         
         private static function permisosToXML($permisos) {

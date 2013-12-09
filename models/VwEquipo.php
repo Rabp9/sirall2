@@ -1,7 +1,7 @@
 <!-- File: /models/VwEquipo.php -->
 
 <?php
-    require_once '/models/AppModel.php';
+    require_once './models/AppModel.php';
     /*
      * Clase de Vista VwEquipo
      */

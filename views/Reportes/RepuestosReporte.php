@@ -1,5 +1,5 @@
 <?php
-    require_once '/models/Reporte.php';
+    require_once './models/Reporte.php';
     
     $reporte = new Reporte();
     $reporte->setFecha(date('d/m/Y'));

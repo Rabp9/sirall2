@@ -1,9 +1,9 @@
 <!-- File: /DAO/OpcionDAO.php -->
 
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Opcion.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Opcion.php';
+    require_once './Libs/BaseDatos.php';
     
     class OpcionDAO implements appDAO {
         

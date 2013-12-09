@@ -1,10 +1,10 @@
 <!-- File: /controllers/ModeloController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/ModeloDAO.php';
-    require_once '/DAO/TipoEquipoDAO.php';
-    require_once '/DAO/MarcaDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/ModeloDAO.php';
+    require_once './DAO/TipoEquipoDAO.php';
+    require_once './DAO/MarcaDAO.php';
     
     class ModeloController implements AppController {
         
@@ -18,7 +18,7 @@
                 return;
             }
             $vwModelos = ModeloDAO::getVwModelo();
-            require_once '/views/Mantenimiento/Modelo/Lista.php';
+            require_once './views/Mantenimiento/Modelo/Lista.php';
         }
 
         public static function CrearAction() {
@@ -31,7 +31,7 @@
             $marcas = MarcaDAO::getAll();
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             $vwMarcas = MarcaDAO::getVwMarca();
-            require_once '/views/Mantenimiento/Modelo/Crear.php';
+            require_once './views/Mantenimiento/Modelo/Crear.php';
         }
                 
         public static function CrearPOSTAction() {
@@ -47,7 +47,7 @@
                     $mensaje = "El Modelo no fue guardado correctamente";
             }
             $vwModelos = ModeloDAO::getVwModelo();
-            require_once '/views/Mantenimiento/Modelo/Lista.php';
+            require_once './views/Mantenimiento/Modelo/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -59,7 +59,7 @@
                 $modelo = current(ModeloDAO::getBy("idModelo", $_GET['idModelo']));
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
                 $marca = current(MarcaDAO::getBy("idMarca", $modelo->getIdMarca()));
-                require_once '/views/Mantenimiento/Modelo/Detalle.php';
+                require_once './views/Mantenimiento/Modelo/Detalle.php';
             }
         }
         
@@ -76,7 +76,7 @@
                 $marcas = MarcaDAO::getAll();
                 $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
                 $vwMarcas = MarcaDAO::getVwMarca();
-                require_once '/views/Mantenimiento/Modelo/Editar.php';
+                require_once './views/Mantenimiento/Modelo/Editar.php';
             }
         }
         
@@ -95,7 +95,7 @@
                         
             }
             $vwModelos = ModeloDAO::getVwModelo();
-            require_once '/views/Mantenimiento/Modelo/Lista.php';
+            require_once './views/Mantenimiento/Modelo/Lista.php';
         }
         
         public static function EliminarAction() {
@@ -107,7 +107,7 @@
                 $modelo = current(ModeloDAO::getBy("idModelo", $_GET['idModelo']));
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
                 $marca = current(MarcaDAO::getBy("idMarca", $modelo->getIdMarca()));
-                require_once '/views/Mantenimiento/Modelo/Eliminar.php';
+                require_once './views/Mantenimiento/Modelo/Eliminar.php';
             }
         }
         
@@ -120,7 +120,7 @@
                     $mensaje = "El Modelo no fue eliminado correctamente";
             }
             $vwModelos = ModeloDAO::getVwModelo();
-            require_once '/views/Mantenimiento/Modelo/Lista.php';
+            require_once './views/Mantenimiento/Modelo/Lista.php';
         }
                 
         public static function modeloAJAXAction() {

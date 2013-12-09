@@ -23,7 +23,7 @@
                 $("#chbRestDependencia" ).button({ disabled: true });
                 $('#txtDescripcion').focus();
                 
-                $('#tblPermisos').styleTable(event);
+                $('#tblPermisos').styleTable();
                 $('#tblPermisos tbody td').click(function() {
                         var $checkbox = $(this).find('input.chPermiso');
                         $checkbox.prop('checked', !$checkbox.prop('checked'));

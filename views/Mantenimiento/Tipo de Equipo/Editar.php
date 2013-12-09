@@ -57,7 +57,7 @@
             function getOpciones(idTipoEquipo) {
                 var opciones = [];
                 var xmlResponse = $.ajax({
-                    url: "Index.php",
+                    url: "index.php",
                     type: "GET",            
                     global: false,
                     async: false,
@@ -83,7 +83,7 @@
             function getSubOpciones(idOpcion) {
                 var subOpciones = [];
                 var xmlResponse = $.ajax({
-                    url: "Index.php",
+                    url: "index.php",
                     type: "GET",            
                     global: false,
                     async: false,

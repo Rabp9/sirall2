@@ -1,4 +1,4 @@
-<!-- File: /views/Registrar Usuario Sistema/Index.php -->
+<!-- File: /views/Registrar Usuario Sistema/index.php -->
 <!DOCTYPE html>
 <html lang="es">
     <head>

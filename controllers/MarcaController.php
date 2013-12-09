@@ -1,8 +1,8 @@
 <!-- File: /controllers/MarcaController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/MarcaDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/MarcaDAO.php';
     
     class MarcaController implements AppController {
         
@@ -16,7 +16,7 @@
                 return;
             }
             $vwMarcas = MarcaDAO::getVwMarca();
-            require_once '/views/Mantenimiento/Marca/Lista.php';
+            require_once './views/Mantenimiento/Marca/Lista.php';
         }
         
         public static function CrearAction() {
@@ -25,7 +25,7 @@
                 return;
             }
             $nextID = MarcaDAO::getNextID();
-            require_once '/views/Mantenimiento/Marca/Crear.php';
+            require_once './views/Mantenimiento/Marca/Crear.php';
         }
                 
         public static function CrearPOSTAction() {
@@ -40,7 +40,7 @@
                     $mensaje = "La Marca no fue guardada correctamente";
             }
             $vwMarcas = MarcaDAO::getVwMarca();
-            require_once '/views/Mantenimiento/Marca/Lista.php';
+            require_once './views/Mantenimiento/Marca/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -50,7 +50,7 @@
             }
             if(isset($_GET['idMarca'])) {
                 $marca = current(MarcaDAO::getBy("idMarca", $_GET['idMarca']));
-                require_once '/views/Mantenimiento/Marca/Detalle.php';
+                require_once './views/Mantenimiento/Marca/Detalle.php';
             }
         }
         
@@ -61,7 +61,7 @@
             }
             if(isset($_GET['idMarca'])) {
                 $marca = current(MarcaDAO::getBy("idMarca", $_GET['idMarca']));
-                require_once '/views/Mantenimiento/Marca/Editar.php';
+                require_once './views/Mantenimiento/Marca/Editar.php';
             }
         }
         
@@ -77,7 +77,7 @@
                     $mensaje = "La Marca no fue modificada correctamente";
             }
             $vwMarcas = MarcaDAO::getVwMarca();
-            require_once '/views/Mantenimiento/Marca/Lista.php';
+            require_once './views/Mantenimiento/Marca/Lista.php';
         }
         
         public static function EliminarAction() {
@@ -87,7 +87,7 @@
             }
             if(isset($_GET['idMarca'])) {
                 $marca = current(MarcaDAO::getBy("idMarca", $_GET['idMarca']));
-                require_once '/views/Mantenimiento/Marca/Eliminar.php';
+                require_once './views/Mantenimiento/Marca/Eliminar.php';
             }
         }
         
@@ -100,7 +100,7 @@
                     $mensaje = "La Marca no fue eliminada correctamente";
             }
             $vwMarcas = MarcaDAO::getVwMarca();
-            require_once '/views/Mantenimiento/Marca/Lista.php';
+            require_once './views/Mantenimiento/Marca/Lista.php';
         }
     }
 ?>

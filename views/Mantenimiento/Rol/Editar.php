@@ -8,6 +8,7 @@
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="resources/js/jquery.styleTable.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
 
@@ -22,29 +23,9 @@
                 $('#chbRestDependencia').button();
                 $( "#chbRestDependencia" ).button({ disabled: true });
                 $('#txtDescripcion').select();
-                (function ($) {
-                $.fn.styleTable = function (options) {
-                    var defaults = {
-                        css: 'ui-styled-table'
-                    };
-                    options = $.extend(defaults, options);
-
-                    return this.each(function () {
-                        $this = $(this);
-                        $this.addClass(options.css);
-
-                        $this.on('mouseover mouseout', 'tbody tr', function (event) {
-                            $(this).children().toggleClass("ui-state-hover",
-                                                           event.type == 'mouseover');
-                        });
-
-                        $this.find("th").addClass("ui-widget-header");
-                        $this.find("td").addClass("ui-widget-content");
-                        $this.find("tr:last-child").addClass("last-child");
-                    });
-                };
-                })(jQuery);
-                $('#tblPermisos').styleTable(event);
+             
+                $('#tblPermisos').styleTable();
+                
                 $('#tblPermisos tbody td').click(function() {
                         var $checkbox = $(this).find('input.chPermiso');
                         $checkbox.prop('checked', !$checkbox.prop('checked'));
@@ -78,12 +59,14 @@
                         });
                     });
                 });
+                /*
                 $('#chbRestEstablecimiento').change(function() {
                     if($(this).prop('checked'))
                         $('#chbRestDependencia').button({ disabled: false });
                     else
                         $('#chbRestDependencia').button({ disabled: true });
                 });
+                */
                 
                 var $permisos = $('<?php echo $permisos; ?>');
                 
@@ -197,11 +180,13 @@
                                         <input id="chbRestEstablecimiento" type="checkbox" name="restEstablecimiento"/> <label for="chbRestEstablecimiento"> Restringir Usuario a objetos de su Establecimiento</label>
                                     </td>  
                                 </tr>
+                          <!--
                                 <tr>
                                     <td colspan="8">
                                         <input id="chbRestDependencia" type="checkbox" name="restDependencia"/> <label for="chbRestDependencia"> Restringir Usuario a objetos de su Dependencia</label>
                                     </td>
                                 </tr>
+                          -->
                             </tfoot>
                         </table>
                         

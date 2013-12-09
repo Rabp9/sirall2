@@ -1,10 +1,10 @@
 <!-- File: /controllers/RegistrarUsuarioSistemaController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/UsuarioSistemaDAO.php';
-    require_once '/DAO/RolDAO.php';
-    require_once '/DAO/EstablecimientoDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/UsuarioSistemaDAO.php';
+    require_once './DAO/RolDAO.php';
+    require_once './DAO/EstablecimientoDAO.php';
     
     class RegistrarUsuarioSistemaController implements AppController {
         
@@ -15,7 +15,7 @@
             }
             $roles = RolDAO::getAll();
             $establecimientos = EstablecimientoDAO::getAll();
-            require_once '/views/Registrar Usuario Sistema/Index.php';
+            require_once './views/Registrar Usuario Sistema/index.php';
         }
             
         public static function RegistrarUsuarioSistemaPOSTAction() {
@@ -31,12 +31,12 @@
             }
             $rol = current(RolDAO::getBy("idRol", $usuarioSistema->getIdRol()));
             $vwUsuarioSistemas = UsuarioSistemaDAO::getVwUsuarioSistema();
-            require_once '/views/Registrar Usuario Sistema/Respuesta.php';
+            require_once './views/Registrar Usuario Sistema/Respuesta.php';
         }
                
         public static function ListarAction() {
             $vwUsuarioSistemas = UsuarioSistemaDAO::getVwUsuarioSistema();
-            require_once '/views/Registrar Usuario Sistema/Lista.php';
+            require_once './views/Registrar Usuario Sistema/Lista.php';
         }
         
         public static function EditarAction() {
@@ -44,7 +44,7 @@
                 $roles = RolDAO::getAll();
                 $establecimientos = EstablecimientoDAO::getAll();
                 $usuarioSistema = current(UsuarioSistemaDAO::getBy("username", $_GET["username"]));
-                require_once '/views/Registrar Usuario Sistema/Editar.php';
+                require_once './views/Registrar Usuario Sistema/Editar.php';
             }
         }
         
@@ -61,7 +61,7 @@
             }
             $rol = current(RolDAO::getBy("idRol", $usuarioSistema->getIdRol()));
             $vwUsuarioSistemas = UsuarioSistemaDAO::getVwUsuarioSistema();
-            require_once '/views/Registrar Usuario Sistema/Respuesta.php';
+            require_once './views/Registrar Usuario Sistema/Respuesta.php';
         }
         
         public static function EliminarAction() {
@@ -73,7 +73,7 @@
                     $mensaje = "El Usuario del Sistema no fue eliminado correctamente";
             }
             $vwUsuarioSistemas = UsuarioSistemaDAO::getVwUsuarioSistema();
-            require_once '/views/Registrar Usuario Sistema/Lista.php';
+            require_once './views/Registrar Usuario Sistema/Lista.php';
         }
         
     }

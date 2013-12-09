@@ -1,11 +1,11 @@
 <!-- File: /DAO/TipoEquipoDAO.php -->
 
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/DAO/OpcionDAO.php';
-    require_once '/models/VwTipoEquipo.php';
-    require_once '/models/TipoEquipo.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './DAO/OpcionDAO.php';
+    require_once './models/VwTipoEquipo.php';
+    require_once './models/TipoEquipo.php';
+    require_once './Libs/BaseDatos.php';
     
     class TipoEquipoDAO implements appDAO {
         

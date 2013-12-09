@@ -1,15 +1,15 @@
 <!-- File: /controllers/EquipoController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/EquipoDAO.php';
-    require_once '/DAO/MarcaDAO.php';
-    require_once '/DAO/TipoEquipoDAO.php';
-    require_once '/DAO/ModeloDAO.php';
-    require_once '/DAO/EstablecimientoDAO.php';
-    require_once '/DAO/DependenciaDAO.php';
-    require_once '/DAO/UsuarioDAO.php';
-    require_once '/DAO/DatoDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/EquipoDAO.php';
+    require_once './DAO/MarcaDAO.php';
+    require_once './DAO/TipoEquipoDAO.php';
+    require_once './DAO/ModeloDAO.php';
+    require_once './DAO/EstablecimientoDAO.php';
+    require_once './DAO/DependenciaDAO.php';
+    require_once './DAO/UsuarioDAO.php';
+    require_once './DAO/DatoDAO.php';
     
     class EquipoController implements AppController {
         
@@ -25,7 +25,7 @@
             $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
                 EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
                 EquipoDAO::getVwEquipo();
-            require_once '/views/Mantenimiento/Equipo/Lista.php';
+            require_once './views/Mantenimiento/Equipo/Lista.php';
         }
         
         public static function CrearAction() {
@@ -41,7 +41,7 @@
             $usuarios = UsuarioDAO::getAll();
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             $vwMarcas = MarcaDAO::getVwMarca();
-            require_once '/views/Mantenimiento/Equipo/Crear.php';
+            require_once './views/Mantenimiento/Equipo/Crear.php';
         }
                 
         public static function CrearPOSTAction() {
@@ -72,7 +72,7 @@
             $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
                 EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
                 EquipoDAO::getVwEquipo();
-            require_once '/views/Mantenimiento/Equipo/Lista.php';
+            require_once './views/Mantenimiento/Equipo/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -88,7 +88,7 @@
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $equipo->getIdUsuario()));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
                 $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
-                require_once '/views/Mantenimiento/Equipo/Detalle.php';
+                require_once './views/Mantenimiento/Equipo/Detalle.php';
             }
         }
         
@@ -110,7 +110,7 @@
                 $datos = DatoDAO::getBy("codigoPatrimonial", $equipo->getCodigoPatrimonial());
                 $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
                 $vwMarcas = MarcaDAO::getVwMarca();
-                require_once '/views/Mantenimiento/Equipo/Editar.php';
+                require_once './views/Mantenimiento/Equipo/Editar.php';
             }
         }
         
@@ -142,7 +142,7 @@
             $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
                 EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
                 EquipoDAO::getVwEquipo();
-            require_once '/views/Mantenimiento/Equipo/Lista.php';
+            require_once './views/Mantenimiento/Equipo/Lista.php';
         }
         
         public static function EliminarAction() {
@@ -158,7 +158,7 @@
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $equipo->getIdUsuario()));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
                 $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
-                require_once '/views/Mantenimiento/Equipo/Eliminar.php';
+                require_once './views/Mantenimiento/Equipo/Eliminar.php';
             }
         }
         
@@ -173,7 +173,7 @@
             $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
                 EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
                 EquipoDAO::getVwEquipo();
-            require_once '/views/Mantenimiento/Equipo/Lista.php';
+            require_once './views/Mantenimiento/Equipo/Lista.php';
         }
     }
 ?>

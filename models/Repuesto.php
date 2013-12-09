@@ -1,7 +1,7 @@
 <!-- File: /models/Repuesto.php -->
 
 <?php
-    require_once '/models/AppModel.php';
+    require_once './models/AppModel.php';
     /*
      * Clase Repuesto
      */

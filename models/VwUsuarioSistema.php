@@ -1,7 +1,7 @@
 <!-- File: /models/VwUsuarioSistema.php -->
 
 <?php
-    require_once '/models/AppModel.php';
+    require_once './models/AppModel.php';
     /*
      * Clase de Vista VwUsuarioSistema
      */

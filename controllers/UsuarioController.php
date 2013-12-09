@@ -1,11 +1,11 @@
 <!-- File: /controllers/UsuarioController.php -->
     
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/UsuarioDAO.php';
-    require_once '/DAO/EstablecimientoDAO.php';
-    require_once '/DAO/DependenciaDAO.php';
-    require_once '/DAO/RolDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/UsuarioDAO.php';
+    require_once './DAO/EstablecimientoDAO.php';
+    require_once './DAO/DependenciaDAO.php';
+    require_once './DAO/RolDAO.php';
     
     class UsuarioController implements AppController {
         
@@ -19,7 +19,7 @@
                 return;
             }
             $vwUsuarios = UsuarioDAO::getVwUsuario();
-            require_once '/views/Mantenimiento/Usuario/Lista.php';
+            require_once './views/Mantenimiento/Usuario/Lista.php';
         }
         
         public static function CrearAction() {
@@ -30,7 +30,7 @@
             $nextID = UsuarioDAO::getNextID();
             $establecimientos = EstablecimientoDAO::getAll();
             $dependencias = DependenciaDAO::getAll();
-            require_once '/views/Mantenimiento/Usuario/Crear.php';
+            require_once './views/Mantenimiento/Usuario/Crear.php';
         }
         
         public static function CrearPOSTAction() {
@@ -50,7 +50,7 @@
                     
             }
             $vwUsuarios = UsuarioDAO::getVwUsuario();
-            require_once '/views/Mantenimiento/Usuario/Lista.php';
+            require_once './views/Mantenimiento/Usuario/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -62,7 +62,7 @@
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
                 $establecimiento = EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento());
-                require_once '/views/Mantenimiento/Usuario/Detalle.php';
+                require_once './views/Mantenimiento/Usuario/Detalle.php';
             }
         }
         
@@ -75,7 +75,7 @@
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
                 $establecimientos = current(EstablecimientoDAO::getAll());
                 $dependencias = DependenciaDAO::getAll();   
-                require_once '/views/Mantenimiento/Usuario/Editar.php';
+                require_once './views/Mantenimiento/Usuario/Editar.php';
             }
         }
         
@@ -95,7 +95,7 @@
                     $mensaje = "El Usuario no fue modificado correctamente";
             }
             $vwUsuarios = UsuarioDAO::getVwUsuario();
-            require_once '/views/Mantenimiento/Usuario/Lista.php';
+            require_once './views/Mantenimiento/Usuario/Lista.php';
         }
         
         public static function EliminarAction() {
@@ -107,7 +107,7 @@
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
                 $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
                 $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
-                require_once '/views/Mantenimiento/Usuario/Eliminar.php';
+                require_once './views/Mantenimiento/Usuario/Eliminar.php';
             }
         }
         
@@ -120,7 +120,7 @@
                     $mensaje = "El Usuario no fue eliminado correctamente";
             }
             $vwUsuarios = UsuarioDAO::getVwUsuario();
-            require_once '/views/Mantenimiento/Usuario/Lista.php';
+            require_once './views/Mantenimiento/Usuario/Lista.php';
         }
         
         public static function usuarioAJAXAction() {

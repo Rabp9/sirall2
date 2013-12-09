@@ -1,7 +1,7 @@
 <!-- File: /models/Tecnico.php -->
 
 <?php
-    require_once '/models/AppModel.php';
+    require_once './models/AppModel.php';
     /*
      * Clase Técnico de Mantenimiento
      */

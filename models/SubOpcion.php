@@ -1,7 +1,7 @@
 <!-- File: /models/SubOpcion.php -->
 
 <?php
-    require_once '/models/AppModel.php';
+    require_once './models/AppModel.php';
     /*
      * Clase Subopción de Opción de Tipo de Equipo
      */

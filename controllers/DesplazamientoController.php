@@ -1,15 +1,15 @@
 <!-- File: /controllers/DesplazamientoController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/EstablecimientoDAO.php';
-    require_once '/DAO/MarcaDAO.php';
-    require_once '/DAO/TipoEquipoDAO.php';
-    require_once '/DAO/ModeloDAO.php';
-    require_once '/DAO/UsuarioDAO.php';
-    require_once '/DAO/DependenciaDAO.php';
-    require_once '/DAO/DesplazamientoDAO.php';
-    require_once '/DAO/EquipoDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/EstablecimientoDAO.php';
+    require_once './DAO/MarcaDAO.php';
+    require_once './DAO/TipoEquipoDAO.php';
+    require_once './DAO/ModeloDAO.php';
+    require_once './DAO/UsuarioDAO.php';
+    require_once './DAO/DependenciaDAO.php';
+    require_once './DAO/DesplazamientoDAO.php';
+    require_once './DAO/EquipoDAO.php';
   
     class DesplazamientoController implements AppController {
         public static function DesplazamientoAction() {        
@@ -22,7 +22,7 @@
             $vwEquipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
                 EquipoDAO::getVwEquipo($_SESSION["usuarioActual"]->getIdEstablecimiento()):
                 EquipoDAO::getVwEquipo();
-            require_once '/views/Desplazamiento/Index.php';
+            require_once './views/Desplazamiento/index.php';
         }        
         
         public static function DesplazamientoByEquipoAction() {      
@@ -40,7 +40,7 @@
                 $establecimientos2 = EstablecimientoDAO::getAll();
                 $dependencias2 = DependenciaDAO::getAll();
                 $usuarios2 = UsuarioDAO::getAll();
-                require_once '/views/Desplazamiento/Desplazamiento.php';
+                require_once './views/Desplazamiento/Desplazamiento.php';
             }
         }
         
@@ -68,7 +68,7 @@
                     $dependenciaDestino = current(DependenciaDAO::getBy("idDependencia", $usuarioDestino->getIdDependencia()));
                     $establecimientoDestino = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependenciaDestino->getIdEstablecimiento()));
                     $mensaje = "Desplazamiento realizado correctamente";
-                    require_once '/views/Desplazamiento/Confirmacion.php';
+                    require_once './views/Desplazamiento/Confirmacion.php';
                 }
             }
         }

@@ -1,10 +1,10 @@
 <!-- File: /DAO/MarcaDAO.php -->
 
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Marca.php';
-    require_once '/models/VwMarca.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Marca.php';
+    require_once './models/VwMarca.php';
+    require_once './Libs/BaseDatos.php';
     
     class MarcaDAO implements appDAO {
 

@@ -1,10 +1,10 @@
 <!-- File: /controllers/TipoEquipoController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/TipoEquipoDAO.php';
-    require_once '/DAO/OpcionDAO.php';
-    require_once '/DAO/SubOpcionDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/TipoEquipoDAO.php';
+    require_once './DAO/OpcionDAO.php';
+    require_once './DAO/SubOpcionDAO.php';
     
     class TipoEquipoController implements AppController {
         
@@ -18,7 +18,7 @@
                 return;
             }
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
-            require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
+            require_once './views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
 
         public static function CrearAction() {
@@ -27,7 +27,7 @@
                 return;
             }
             $nextID = TipoEquipoDAO::getNextID();
-            require_once '/views/Mantenimiento/Tipo de Equipo/Crear.php';
+            require_once './views/Mantenimiento/Tipo de Equipo/Crear.php';
         }
                 
         public static function CrearPOSTAction() {
@@ -55,7 +55,7 @@
                 }
             }
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
-            require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
+            require_once './views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -65,7 +65,7 @@
             }
             if(isset($_GET['idTipoEquipo'])) {
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']));
-                require_once '/views/Mantenimiento/Tipo de Equipo/Detalle.php';
+                require_once './views/Mantenimiento/Tipo de Equipo/Detalle.php';
             }
         }
         
@@ -76,7 +76,7 @@
             }
             if(isset($_GET['idTipoEquipo'])) {
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']));
-                require_once '/views/Mantenimiento/Tipo de Equipo/Editar.php';
+                require_once './views/Mantenimiento/Tipo de Equipo/Editar.php';
             }
         }
         
@@ -108,7 +108,7 @@
                 }
             }
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
-            require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
+            require_once './views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
         
         public static function EliminarAction() {
@@ -118,7 +118,7 @@
             }
             if(isset($_GET['idTipoEquipo'])) {
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $_GET['idTipoEquipo']));
-                require_once '/views/Mantenimiento/Tipo de Equipo/Eliminar.php';
+                require_once './views/Mantenimiento/Tipo de Equipo/Eliminar.php';
             }
         }
         
@@ -131,7 +131,7 @@
                     $mensaje = "El Tipo de Equipo no fue eliminado Correctamente";
             }
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
-            require_once '/views/Mantenimiento/Tipo de Equipo/Lista.php';
+            require_once './views/Mantenimiento/Tipo de Equipo/Lista.php';
         }
         
         public static function getOpcionesAction() {

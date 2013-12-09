@@ -1,11 +1,11 @@
 <!-- File: /controllers/NuevoLoteController.php -->
 
 <?php
-    require_once '/controllers/AppController.php';
-    require_once '/DAO/TipoEquipoDAO.php';
-    require_once '/DAO/MarcaDAO.php';
-    require_once '/DAO/ModeloDAO.php';
-    require_once '/DAO/EquipoDAO.php';
+    require_once './controllers/AppController.php';
+    require_once './DAO/TipoEquipoDAO.php';
+    require_once './DAO/MarcaDAO.php';
+    require_once './DAO/ModeloDAO.php';
+    require_once './DAO/EquipoDAO.php';
     
     class NuevoLoteController implements AppController {
         
@@ -18,7 +18,7 @@
             $marcas = MarcaDAO::getAll();
             $vwTipoEquipos = TipoEquipoDAO::getVwTipoEquipo();
             $vwMarcas = MarcaDAO::getVwMarca();
-            require_once '/views/Nuevo Lote/Index.php';
+            require_once './views/Nuevo Lote/index.php';
         }
         
         public static function NuevoLotePOSTAction() {
@@ -45,7 +45,7 @@
                 $tipoEquipo = current(TipoEquipoDAO::getBy("idTipoEquipo", $modelo->getIdTipoEquipo()));
                 $indicacion = $_POST['indicacion'];
             }
-            require_once '/views/Nuevo Lote/Confirmacion.php';
+            require_once './views/Nuevo Lote/Confirmacion.php';
         }
     }
 ?>

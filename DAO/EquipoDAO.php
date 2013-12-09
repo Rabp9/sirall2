@@ -1,10 +1,10 @@
 <!-- File: /DAO/EquipoDAO.php -->
 
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Equipo.php';
-    require_once '/models/VwEquipo.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Equipo.php';
+    require_once './models/VwEquipo.php';
+    require_once './Libs/BaseDatos.php';
     
     class EquipoDAO implements appDAO {
 

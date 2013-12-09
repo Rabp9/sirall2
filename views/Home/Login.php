@@ -42,11 +42,8 @@
         <?php if(isset($mensaje)) { ?>
         <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
         <?php } ?>
-        <div id="dvSectionWrapper">
-            
-        </div>
         <section>
-            <form action="?controller=Home&action=LoginPOST" method="POST">
+            <form class="dvSectionWrapper" action="?controller=Home&action=LoginPOST" method="POST">
                 <header>
                     <img src="resources/images/essalud_logo.png">
                 </header>

@@ -1,9 +1,9 @@
 <!-- File: /DAO/DesplazamientoDAO.php -->
     
 <?php
-    require_once '/DAO/AppDAO.php';
-    require_once '/models/Desplazamiento.php';
-    require_once '/Libs/BaseDatos.php';
+    require_once './DAO/AppDAO.php';
+    require_once './models/Desplazamiento.php';
+    require_once './Libs/BaseDatos.php';
     
     class DesplazamientoDAO implements appDAO {
         public static function realizarDesplazamiento(Desplazamiento $desplazamiento) {

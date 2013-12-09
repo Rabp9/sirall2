@@ -1,7 +1,7 @@
 (function($) {
     $.fn.dato = function() {
         $.ajax({
-            url: 'Index.php',
+            url: 'index.php',
             type: 'GET',
             data: {
                 controller: 'Modelo',
