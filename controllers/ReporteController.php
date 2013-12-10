@@ -54,6 +54,7 @@
             $equipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
                 EquipoDAO::getVwEquipolIMIT($_POST['numRegistros'], $_SESSION["usuarioActual"]->getIdEstablecimiento()):
                 EquipoDAO::getVwEquipolIMIT($_POST['numRegistros']);
+            var_dump($equipos);
             require_once './views/Reportes/EquiposReporte.php';
         }     
                 

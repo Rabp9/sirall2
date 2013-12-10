@@ -24,6 +24,12 @@
                     changeYear: true,
                     changeMonth: true
                 });
+                setValue($("#txtIdMantenimiento"), "<?php echo $mantenimiento->getIdMantenimiento(); ?>");
+                <?php 
+                    $fecha = new DateTime();
+                    $fecha->createFromFormat('Y-m-d', $mantenimiento->getFechaInicio());
+                ?>
+                setValue($("#txtFechaInicio"), "<?php echo $fecha->format("d/m/Y"); ?>");
             });
         </script> 
         
@@ -59,27 +65,27 @@
                         </tr>
                         <tr>
                             <td><strong>Modelo:</strong></td>
-                            <td><?php echo $equipo['Modelo']; ?></td>  
+                            <td><?php echo $equipo['modelo']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Marca:</strong></td>
-                            <td><?php echo $equipo['Marca']; ?></td>  
+                            <td><?php echo $equipo['marca']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Tipo de Equipo:</strong></td>
-                            <td><?php echo $equipo['TipoEquipo']; ?></td>  
+                            <td><?php echo $equipo['tipoEquipo']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Usuario:</strong></td>
-                            <td><?php echo $equipo['Usuario']; ?></td>  
+                            <td><?php echo $equipo['usuario']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Dependencia:</strong></td>
-                            <td><?php echo $equipo['Dependencia']; ?></td>  
+                            <td><?php echo $equipo['dependencia']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Establecimiento:</strong></td>
-                            <td><?php echo $equipo['Establecimiento']; ?></td>  
+                            <td><?php echo $equipo['establecimiento']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Indicacion:</strong></td>
@@ -87,7 +93,7 @@
                         </tr>
                         <tr>
                             <td><strong>Fecha de último Mantenimiento:</strong></td>
-                            <td><?php echo $equipo['fechaUltimo']; ?></td>  
+                            <td><?php if($equipo['fechaUltimo'] != "0000-00-00") echo $equipo['fechaUltimo']; ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Número de matenimientos:</strong></td>
@@ -97,14 +103,14 @@
                 </fieldset>
                 <fieldset>
                     <legend>Informe de Mantenimientoo</legend>
-                    <form id="frmInformeMantenimiento" method="POST" action="?controller=MovimientoRepuesto&action=IngresoPOST">
+                    <form id="frmInformeMantenimiento" method="POST" action="?controller=RealizarMantenimiento&action=RegistrarMantenimientoPOST">
                         <table>
                             <tr>
                                 <td><label for="txtIdMantenimiento"><abbr title="Código identificador">ID.</abbr> Mantemiento</label></td>
                                 <td><input id="txtIdMantenimiento" type="text" name="idMantenimiento"></td>
                             </tr>
                             <tr>
-                                <td><label for="sltIdTecnico">Rol</label></td>
+                                <td><label for="sltIdTecnico">Técnico</label></td>
                                 <td>
                                     <select id="sltIdTecnico" name="idTecnico" required="true">
                                         <option disabled selected value="">Selecciona un Técnico</option>
@@ -133,6 +139,13 @@
                             <tr>
                                 <td><label for="txtFechaFin">Fecha Fin</label></td>
                                 <td><input id="txtFechaFin" type="text" name="fechaFin"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button id="btnEnviar" type="submit">Enviar</button>
+                                    <button id="btnBorrar" type="reset">Borrar</button>
+                                </td>
                             </tr>
                         </table>
                     </form>
