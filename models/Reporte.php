@@ -47,13 +47,15 @@
             $this->SetFont('helvetica', '', 8);
             // Datos
             $fill = false;
-            foreach ($data as $oRow) {
-                $row = $oRow->toArray();
-                for($i = 0; $i < count($cols); $i++) {
-                    $this->Cell($w[$i], 6, $row[$cols[$i]], 1);
+            if(is_array($data)) {
+                foreach ($data as $oRow) {
+                    $row = $oRow->toArray();
+                    for($i = 0; $i < count($cols); $i++) {
+                        $this->Cell($w[$i], 6, $row[$cols[$i]], 1);
+                    }
+                    $this->Ln();
+                    $fill = !$fill;
                 }
-                $this->Ln();
-                $fill = !$fill;
             }
             // Línea de cierre
             $this->Cell(array_sum($w),0,'','T');

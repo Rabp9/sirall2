@@ -43,6 +43,9 @@
                     $("#dvMantenimiento").dialog("open");
                     aClicked = $(this);
                 });
+                
+                $("a:contains('Desplazar')").prepend("<span class='ui-icon ui-icon-arrowreturnthick-1-e'></span>");
+                $("a:contains('Mantenimiento')").prepend("<span class='ui-icon ui-icon ui-icon-circle-plus'></span>");
             });
         </script>
         <title>SIRALL2 - Lista Equipo</title>

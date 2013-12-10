@@ -121,6 +121,7 @@
         }
                
         public static function getVwEquipolIMIT($limite, $idEstablecimiento = "") {
+            echo $idEstablecimiento;
             $result = $idEstablecimiento != "" ?
                 BaseDatos::getDbh()->prepare("SELECT * FROM vw_Equipo WHERE idEstablecimiento = '$idEstablecimiento' LIMIT 0, :limite"):
                 BaseDatos::getDbh()->prepare("SELECT * FROM vw_Equipo LIMIT 0, :limite");
