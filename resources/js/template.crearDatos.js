@@ -113,6 +113,7 @@ $(document).ready(function() {
             var trSubOpcion = "<tr><td class='tdSubOpcion'>" + subOpcion + "</td></tr>";
             $("#tblSubOpciones").append(trSubOpcion);
         });
+        $("#txtSubOpcion").val("");
         $('#dvSubOpcion-dlg').dialog('open');
     });
 
@@ -178,4 +179,10 @@ $(document).ready(function() {
         text: false
     });
     
+    $("#txtOpcion").keypress(function(e) { 
+        if(e.which == 13) {
+            $("#dvOpcion-dlg").parent().find("div.ui-dialog-buttonpane button").click();
+            e.stopPropagation();
+        }
+    });
 });
