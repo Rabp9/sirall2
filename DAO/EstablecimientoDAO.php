@@ -15,7 +15,13 @@
                 $establecimiento->setIdEstablecimiento($rs['idEstablecimiento']);
                 $establecimiento->setDescripcion($rs['descripcion']);
                 $establecimiento->setDireccion($rs['direccion']);
+                $establecimiento->setNivel($rs['nivel']);
+                $establecimiento->setTipoCAS($rs['tipoCAS']);
+                $establecimiento->setSituacion($rs['situacion']);
+                $establecimiento->setProvincia($rs['provincia']);
+                $establecimiento->setDistrito($rs['distrito']);
                 $establecimiento->setTelefono($rs['telefono']);
+                $establecimiento->setRpm($rs['rpm']);
                 $establecimiento->setEstado($rs['estado']);
                 $establecimientos[] = $establecimiento; 
             }
@@ -31,7 +37,13 @@
                 $establecimiento->setIdEstablecimiento($rs['idEstablecimiento']);
                 $establecimiento->setDescripcion($rs['descripcion']);
                 $establecimiento->setDireccion($rs['direccion']);
+                $establecimiento->setNivel($rs['nivel']);
+                $establecimiento->setTipoCAS($rs['tipoCAS']);
+                $establecimiento->setSituacion($rs['situacion']);
+                $establecimiento->setProvincia($rs['provincia']);
+                $establecimiento->setDistrito($rs['distrito']);
                 $establecimiento->setTelefono($rs['telefono']);
+                $establecimiento->setRpm($rs['rpm']);
                 $establecimiento->setEstado($rs['estado']);
                 $establecimientos[] = $establecimiento; 
             }
@@ -39,20 +51,32 @@
         }
                
         public static function crear($establecimiento) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Establecimiento(idEstablecimiento, descripcion, direccion, telefono, estado) values(:idEstablecimiento, :descripcion, :direccion, :telefono, :estado)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Establecimiento(idEstablecimiento, descripcion, direccion, nivel, tipoCAS, situacion, provincia, distrito, telefono, rpm, estado) values(:idEstablecimiento, :descripcion, :direccion, :nivel, :tipoCAS, :situacion, :provincia, :distrito, :telefono, :rpm, :estado)");
             $result->bindParam(':idEstablecimiento', $establecimiento->getIdEstablecimiento());
             $result->bindParam(':descripcion', $establecimiento->getDescripcion());
             $result->bindParam(':direccion', $establecimiento->getDireccion());
+            $result->bindParam(':nivel', $establecimiento->getNivel());
+            $result->bindParam(':tipoCAS', $establecimiento->getTipoCAS());
+            $result->bindParam(':situacion', $establecimiento->getSituacion());
+            $result->bindParam(':provincia', $establecimiento->getProvincia());
+            $result->bindParam(':distrito', $establecimiento->getDistrito());
             $result->bindParam(':telefono', $establecimiento->getTelefono());
+            $result->bindParam(':rpm', $establecimiento->getRpm());
             $result->bindParam(':estado', $establecimiento->getEstado());
             return $result->execute();
         }
-               
+
         public static function editar($establecimiento) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Establecimiento SET descripcion = :descripcion, direccion = :direccion, telefono = :telefono, estado = :estado WHERE idEstablecimiento = :idEstablecimiento");
+            $result = BaseDatos::getDbh()->prepare("UPDATE Establecimiento SET descripcion = :descripcion, direccion = :direccion, nivel = :nivel, tipoCAS = :tipoCAS, situacion = :situacion, provincia = :provincia, distrito = :distrito, telefono = :telefono, rpm = :rpm, estado = :estado WHERE idEstablecimiento = :idEstablecimiento");
             $result->bindParam(':descripcion', $establecimiento->getDescripcion());
             $result->bindParam(':direccion', $establecimiento->getDireccion());
+            $result->bindParam(':nivel', $establecimiento->getNivel());
+            $result->bindParam(':tipoCAS', $establecimiento->getTipoCAS());
+            $result->bindParam(':situacion', $establecimiento->getSituacion());
+            $result->bindParam(':provincia', $establecimiento->getProvincia());
+            $result->bindParam(':distrito', $establecimiento->getDistrito());
             $result->bindParam(':telefono', $establecimiento->getTelefono());
+            $result->bindParam(':rpm', $establecimiento->getRpm());
             $result->bindParam(':estado', $establecimiento->getEstado());
             $result->bindParam(':idEstablecimiento', $establecimiento->getIdEstablecimiento());
             return $result->execute();
@@ -73,11 +97,11 @@
             
         public static function toXML($establecimientos) {
             $xml = '<?xml version="1.0" encoding="UTF-8"?>';
-            $xml .= "\n<Establecimientoes>\n";
+            $xml .= "\n<Establecimientos>\n";
             if(is_array($establecimientos))
                 foreach($establecimientos as $establecimiento)
                     $xml .= $establecimiento->toXML() . "\n";
-            $xml .= "</Establecimientoes>\n";
+            $xml .= "</Establecimientos>\n";
             return $xml;
         }
         

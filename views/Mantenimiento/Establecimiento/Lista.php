@@ -42,7 +42,9 @@
                         <tr>
                             <th><abbr title="Código identificador">ID.</abbr> Establecimiento</th>
                             <th>Descripción</th>
-                            <th>Dirección</th>
+                            <th>Nivel</th>
+                            <th>Tipo CAS</th>
+                            <th>Telefono</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -54,7 +56,9 @@
                         <tr>
                             <td><?php echo $establecimiento->getIdEstablecimiento(); ?></td>
                             <td><?php echo $establecimiento->getDescripcion(); ?></td>
-                            <td><?php echo $establecimiento->getDireccion(); ?></td>
+                            <td><?php echo $establecimiento->getNivel(); ?></td>
+                            <td><?php echo $establecimiento->getTipoCAS(); ?></td>
+                            <td><?php echo $establecimiento->getTelefono(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>

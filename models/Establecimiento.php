@@ -9,14 +9,26 @@
         private $idEstablecimiento;
         private $descripcion;
         private $direccion;
+        private $nivel;
+        private $tipoCAS;
+        private $situacion;
+        private $provincia;
+        private $distrito;
         private $telefono;
+        private $rpm;
         private $estado;
         
-        public function __construct($idEstablecimiento = "", $descripcion = "", $direccion = "", $telefono = "", $estado = 1) {
+        public function __construct($idEstablecimiento = "", $descripcion = "", $direccion = "", $nivel = "", $tipoCAS = "", $situacion = "", $provincia = "", $distrito= "", $telefono = "", $rpm = "", $estado = 1) {
             $this->idEstablecimiento = $idEstablecimiento;
             $this->descripcion = $descripcion;
             $this->direccion = $direccion;
+            $this->nivel = $nivel;
+            $this->tipoCAS = $tipoCAS;
+            $this->situacion = $situacion;
+            $this->provincia = $provincia;
+            $this->distrito = $distrito;
             $this->telefono = $telefono;
+            $this->rpm = $rpm;
             $this->estado = $estado;
         }
         
@@ -45,6 +57,46 @@
         public function getDireccion() {
             return $this->direccion;
         }
+                
+        public function setNivel($nivel) {
+            $this->nivel = $nivel;
+        }
+        
+        public function getNivel() {
+            return $this->nivel;
+        }     
+        
+        public function setTipoCAS($tipoCAS) {
+            $this->tipoCAS = $tipoCAS;
+        }
+        
+        public function getTipoCAS() {
+            return $this->tipoCAS;
+        }
+             
+        public function setSituacion($situacion) {
+            $this->situacion = $situacion;
+        }
+        
+        public function getSituacion() {
+            return $this->situacion;
+        }
+             
+        public function setProvincia($provincia) {
+            $this->provincia = $provincia;
+        }
+        
+        public function getProvincia() {
+            return $this->provincia;
+        }
+        
+        public function setDistrito($distrito) {
+            $this->distrito = $distrito;
+        }
+        
+        public function getDistrito() {
+            return $this->distrito;
+        }
         
         public function setTelefono($telefono) {
             $this->telefono = $telefono;
@@ -52,6 +104,14 @@
         
         public function getTelefono() {
             return $this->telefono;
+        }
+
+        public function setRpm($rpm) {
+            $this->rpm = $rpm;
+        }
+                       
+        public function getRpm() {
+            return $this->rpm;
         }
         
         public function setEstado($estado) {

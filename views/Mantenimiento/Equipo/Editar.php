@@ -287,7 +287,7 @@
                 //
                 //
                 // INICIO Estilizar Tabla
-                $('#tblDetalle').styleTable(event);
+                $('#tblDetalle').styleTable();
                 // FIN Estilizar Tabla
                 
                 // INICIO Editar Seleccionar Dependencia
