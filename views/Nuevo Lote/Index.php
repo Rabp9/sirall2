@@ -175,7 +175,7 @@
                 //
                 // 
                 // INICIO Estilizar Tabla
-                $('#tblLote').styleTable(event);
+                $('#tblLote').styleTable();
                 // FIN Estilizar Tabla
                 //
                 //
