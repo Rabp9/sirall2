@@ -102,6 +102,17 @@
                                     </select>
                                 </td>
                             </tr>
+                                                        <tr>
+                                <td><label for="sltSituacion">Situación</label></td>
+                                <td>
+                                    <select id="sltSituacion" name="situacion">
+                                        <option disabled selected value="">Selecciona una Situación</option>
+                                        <option value="PROPIO">PROPIO</option>
+                                        <option value="ALQUILADO">ALQUILADO</option>
+                                        <option value="CESION EN USO">CESIÓN EN USO</option>
+                                    </select>
+                                </td>
+                            </tr>
                             <tr>
                                 <td><label for="txtTelefono">Teléfono</label></td>
                                 <td><input id="txtTelefono" type="text" name="telefono" placeholder="Escribe un teléfono"/></td>  

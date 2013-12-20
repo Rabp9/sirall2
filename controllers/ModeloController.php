@@ -129,5 +129,19 @@
                 echo ModeloDAO::toXMl($modelos);
             }
         }
+        
+        public static function CrearModeloAJAXAction() {
+            if(isset($_GET)) {
+                $modelo = new Modelo();
+                $modelo->setIdModelo(ModeloDAO::getNextID());
+                $modelo->setIdTipoEquipo($_GET["idTipoEquipo"]);
+                $modelo->setIdMarca($_GET["idMarca"]);
+                $modelo->setDescripcion($_GET["descripcion"]);
+                ModeloDAO::crear($modelo) ?
+                    $mensaje = "si" :
+                    $mensaje = "nooooooooo";
+                echo "$mensaje";
+            }
+        }
     }
 ?>

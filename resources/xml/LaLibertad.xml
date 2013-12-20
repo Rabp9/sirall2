@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LaLibertad>
+    <Provincia nombre="ASCOPE" codigo="1">
+        <Distrito codigo="1">ASCOPE</Distrito>
+        <Distrito codigo="2">CHICAMA</Distrito>
+        <Distrito codigo="3">CHOCOPE</Distrito>
+        <Distrito codigo="4">MAGDALENA DE CAO</Distrito>
+        <Distrito codigo="5">PAIJAN</Distrito>
+        <Distrito codigo="6">RAZURI</Distrito>
+        <Distrito codigo="7">SANTIAGO DE CAO</Distrito>
+    </Provincia>
+    <Provincia nombre="BOLIVAR" codigo="2">
+        <Distrito codigo="8">BOLIVAR</Distrito>
+        <Distrito codigo="9">BAMBAMARCA</Distrito>
+        <Distrito codigo="10">CONDORMARCA</Distrito>
+        <Distrito codigo="11">LONGOTEA</Distrito>
+        <Distrito codigo="12">UCHUMARCA</Distrito>
+        <Distrito codigo="13">UCUNCHA</Distrito>
+    </Provincia>
+    <Provincia nombre="CHEPEN" codigo="3">
+        <Distrito codigo="14">CHEPEN</Distrito>
+        <Distrito codigo="15">PACANGA</Distrito>
+        <Distrito codigo="16">PUEBLO NUEVO</Distrito>
+    </Provincia>
+    <Provincia nombre="GRAN CHIMU" codigo="4">
+        <Distrito codigo="17">CASCAS</Distrito>
+        <Distrito codigo="18">LUCMA</Distrito>
+        <Distrito codigo="19">MARMOT</Distrito>
+        <Distrito codigo="20">SAYAPULLO</Distrito>
+    </Provincia>
+    <Provincia nombre="JULCAN" codigo="5">
+        <Distrito codigo="21">JULCAN</Distrito>
+        <Distrito codigo="22">CALAMARCA</Distrito>
+        <Distrito codigo="23">CARABAMBA</Distrito>
+        <Distrito codigo="24">HUASO</Distrito>
+    </Provincia>
+    <Provincia nombre="OTUZCO" codigo="6">
+        <Distrito codigo="25">AGALLPAMPA</Distrito>
+        <Distrito codigo="26">CHARAT</Distrito>
+        <Distrito codigo="27">HUARANCHAL</Distrito>
+        <Distrito codigo="28">LA CUESTA</Distrito>
+        <Distrito codigo="29">MACHE</Distrito>
+        <Distrito codigo="30">PARANDAY</Distrito>
+        <Distrito codigo="31">SALPO</Distrito>
+        <Distrito codigo="32">SINSICAP</Distrito>
+        <Distrito codigo="33">USQUIL</Distrito>
+    </Provincia>
+    <Provincia nombre="PACASMAYO" codigo="7">
+        <Distrito codigo="34">SAN PEDRO DE LLOC</Distrito>
+        <Distrito codigo="35">GUADALUPE</Distrito>
+        <Distrito codigo="36">JEQUETEPEQUE</Distrito>
+        <Distrito codigo="37">PACASMAYO</Distrito>
+        <Distrito codigo="38">SAN JOSE</Distrito>
+    </Provincia>
+    <Provincia nombre="PATAZ" codigo="8">
+        <Distrito codigo="39">TAYABAMBA</Distrito>
+        <Distrito codigo="4">BULDIBUYO</Distrito>
+        <Distrito codigo="41">CHILLIA</Distrito>
+        <Distrito codigo="42">HUANCASPATA</Distrito>
+        <Distrito codigo="43">HUAYLILLAS</Distrito>
+        <Distrito codigo="44">HUAYO</Distrito>
+        <Distrito codigo="45">ONGON</Distrito>
+        <Distrito codigo="46">PARCOY</Distrito>
+        <Distrito codigo="47">PATAZ</Distrito>
+        <Distrito codigo="48">PIAS</Distrito>
+        <Distrito codigo="49">SANTIAGO DE CHALLAS</Distrito>
+        <Distrito codigo="51">TAURIJA</Distrito>
+        <Distrito codigo="52">URPAY</Distrito>
+    </Provincia>
+    <Provincia nombre="SANCHEZ CARRION" codigo="9">
+        <Distrito codigo="53">HUAMACHUCO</Distrito>
+        <Distrito codigo="54">CHUGAY</Distrito>
+        <Distrito codigo="55">COCHORCO</Distrito>
+        <Distrito codigo="56">CURGOS</Distrito>
+        <Distrito codigo="57">MARCABAL</Distrito>
+        <Distrito codigo="58">SANAGORAN</Distrito>
+        <Distrito codigo="59">SARIN</Distrito>
+        <Distrito codigo="60">SARTIMBAMBA</Distrito>
+    </Provincia>
+    <Provincia nombre="SANTIAGO DE CHUCO" codigo="10">
+        <Distrito codigo="61">SANTIAGO DE CHUCO</Distrito>
+        <Distrito codigo="62">ANGASMARCA</Distrito>
+        <Distrito codigo="63">CACHICADAN</Distrito>
+        <Distrito codigo="64">MOLLEBAMBA</Distrito>
+        <Distrito codigo="65">MOLLEPATA</Distrito>
+        <Distrito codigo="66">QUIRUVILCA</Distrito>
+        <Distrito codigo="67">SANTA CRUZ DE CHUCA</Distrito>
+        <Distrito codigo="68">SITABAMBA</Distrito>
+    </Provincia>
+    <Provincia nombre="TRUJILLO" codigo="11">
+        <Distrito codigo="69">TRUJILLO</Distrito>
+        <Distrito codigo="70">EL PORVENIR</Distrito>
+        <Distrito codigo="71">FLORENCIA DE MORA</Distrito>
+        <Distrito codigo="72">HUANCHACO</Distrito>
+        <Distrito codigo="73">LA ESPERANZA</Distrito>
+        <Distrito codigo="74">LAREDO</Distrito>
+        <Distrito codigo="75">MOCHE</Distrito>
+        <Distrito codigo="76">POROTO</Distrito>
+        <Distrito codigo="77">SALAVERRY</Distrito>
+        <Distrito codigo="78">SIMBAL</Distrito>
+        <Distrito codigo="79">VICTOR LARCO HERRERA</Distrito>
+    </Provincia>
+    <Provincia nombre="VIRU" codigo="12">
+        <Distrito codigo="80">VIRU</Distrito>
+        <Distrito codigo="81">CHAO</Distrito>
+        <Distrito codigo="82">GUADALUPITO</Distrito>
+    </Provincia>
+</LaLibertad>

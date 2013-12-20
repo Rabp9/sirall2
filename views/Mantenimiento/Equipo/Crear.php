@@ -278,6 +278,35 @@
                 // INICIO Estilizar Tabla
                 $('#tblDetalle').styleTable();
                 // FIN Estilizar Tabla
+                $("#aCrearModelo").button().click(function() {
+                    if($("#txtTipoEquipo").val() === "" ) {
+                        alert("Seleccione un tipo de equipo");
+                        return;
+                    }
+                    if($("#txtMarca").val() === "" ) {
+                        alert("Seleccione una marca");
+                        return;
+                    }
+                    var modelo = prompt("Descripción del Modelo: " , "modelo");
+                    $.ajax({
+                        url: 'index.php',
+                        type: 'GET',
+                        data: {
+                            controller: 'Modelo',
+                            action: 'CrearModeloAJAX',
+                            descripcion: modelo,
+                            idTipoEquipo: $('#txtIdTipoEquipo').val(),
+                            idMarca: $('#txtIdMarca').val(),
+                        },
+                        success: function(data) {
+                            if($(data).length > 35 )
+                                alert("El Modelo NO fue registrado correctamente");
+                            else
+                                alert("Modelo registrado corretamente");
+                        }
+                    });
+                    cboModelo();
+                });
             });
           
             var cboModelo = function() {
@@ -447,7 +476,7 @@
                                                 <select id="cboModelo" name="idModelo">
                                                     <option disabled selected value="">Selecciona un Modelo</option>
                                                 </select>
-                                                <a href="?controller=Modelo&action=Crear">Crear nuevo Modelo</a>
+                                                <a id="aCrearModelo">Crear nuevo Modelo</a>
                                             </td>
                                         </tr>
                                         <tr>

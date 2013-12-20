@@ -175,5 +175,6 @@
                 EquipoDAO::getVwEquipo();
             require_once './views/Mantenimiento/Equipo/Lista.php';
         }
+        
     }
 ?>
