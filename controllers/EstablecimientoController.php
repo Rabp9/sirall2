@@ -30,7 +30,18 @@
                 
         public static function CrearPOSTAction() {
             if(isset($_POST)) {
-                $establecimiento = new Establecimiento($_POST['idEstablecimiento'], $_POST['descripcion'], $_POST['direccion'], $_POST['telefono']);
+                $establecimiento = new Establecimiento();
+                $establecimiento->setIdEstablecimiento($_POST["idEstablecimiento"]);
+                $establecimiento->setDescripcion($_POST["descripcion"]);
+                $establecimiento->setDireccion($_POST["direccion"]);
+                $establecimiento->setNivel($_POST["nivel"]);
+                $establecimiento->setTipoCAS($_POST["tipoCAS"]);
+                $establecimiento->setSituacion($_POST["situacion"]);
+                $establecimiento->setProvincia($_POST["provincia"]);
+                $establecimiento->setDistrito($_POST["distrito"]);
+                $establecimiento->setTelefono($_POST["telefono"]);
+                $establecimiento->setRpm($_POST["rpm"]);
+                $establecimiento->activar();
                 EstablecimientoDAO::crear($establecimiento) ?
                     $mensaje = "Establecimiento guardada correctamente" :
                     $mensaje = "El Establecimiento no fue guardada correctamente";
@@ -65,11 +76,17 @@
         public static function EditarPOSTAction() {
             if(isset($_POST)) {
                 $establecimiento = new Establecimiento();
-                $establecimiento->setIdEstablecimiento($_POST['idEstablecimiento']);
-                $establecimiento->setDescripcion($_POST['descripcion']);
-                $establecimiento->setDireccion($_POST['direccion']);
-                $establecimiento->setTelefono($_POST['telefono']);
-                $establecimiento->setEstado(1);
+                $establecimiento->setIdEstablecimiento($_POST["idEstablecimiento"]);
+                $establecimiento->setDescripcion($_POST["descripcion"]);
+                $establecimiento->setDireccion($_POST["direccion"]);
+                $establecimiento->setNivel($_POST["nivel"]);
+                $establecimiento->setTipoCAS($_POST["tipoCAS"]);
+                $establecimiento->setSituacion($_POST["situacion"]);
+                $establecimiento->setProvincia($_POST["provincia"]);
+                $establecimiento->setDistrito($_POST["distrito"]);
+                $establecimiento->setTelefono($_POST["telefono"]);
+                $establecimiento->setRpm($_POST["rpm"]);
+                $establecimiento->activar();
                 EstablecimientoDAO::editar($establecimiento) ?
                     $mensaje = "Establecimiento modificada correctamente" :
                     $mensaje = "El Establecimiento no fue modificada correctamente";

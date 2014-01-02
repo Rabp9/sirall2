@@ -22,7 +22,32 @@
                 isReadOnly($('#txtIdEstablecimiento'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
-                $('#txtDescripcion').select();
+                $('#txtDescripcion').select(); 
+                $.ajax({
+                    url: 'resources/xml/LaLibertad.xml',
+                    success: function(data) {
+                        $(data).find("Provincia").each(function() {
+                            var opcion = new Option($(this).attr("nombre"), $(this).attr("codigo"));
+                            $("#sltProvincia").append(opcion);
+                        });
+                        mostrar();
+                    }
+                });
+                
+                function mostrar() {
+                    var codigoProvincia = $("#sltProvincia").val();
+                    $.ajax({
+                        url: 'resources/xml/LaLibertad.xml',
+                        success: function(data) {
+                            $(data).find("Provincia[codigo=" + codigoProvincia + "]").find("Distrito").each(function() {
+                                var opcion = new Option($(this).text(), $(this).attr("codigo"));
+                                $("#sltDistrito").append(opcion);
+                            });
+                        }
+                    });
+                };
+                
+                $("#sltProvincia").change(mostrar);
             });
         </script>
         
@@ -54,16 +79,88 @@
                                 <td><input id="txtIdEstablecimiento" type="text" name="idEstablecimiento"></td>
                             </tr>
                             <tr>
-                                <td><label for="txtDescripcion">Descripción</label></td>
+                                <td><label for="txtDescripcion">Descripcion</label></td>
                                 <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>
-                                <td><label for="txtDireccion">Dirección</label></td>
-                                <td><textarea id="txtDireccion" name="direccion" placeholder="Escribe una dirección" ><?php echo $establecimiento->getDireccion(); ?></textarea></td>  
+                                <td><label for="txtDirección">Dirección</label></td>
+                                <td><textarea id="txtDireccion" name="direccion" placeholder="Escribe una dirección"></textarea></td>  
+                            </tr>
+                            <tr>
+                                <td><label for="sltNivel">Nivel</label></td>
+                                <td>
+                                    <select id="sltNivel" name="nivel">
+                                        <option disabled selected value="">Selecciona un Nivel</option>
+                                        <option value="I">I</option>
+                                        <option value="II">II</option>
+                                        <option value="III">III</option>
+                                        <option value="GER">GER</option>
+                                    </select>
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td><label for="sltTipoCAS">Tipo de CAS</label></td>
+                                <td>
+                                    <select id="sltTipoCAS" name="tipoCAS">
+                                        <option disabled selected value="">Selecciona un Tipo de CAS</option>
+                                        <option value="PM">PM</option>
+                                        <option value="CM">CM</option>
+                                        <option value="POL">POL</option>
+                                        <option value="CME">CME</option>
+                                        <option value="CAP I">CAP I</option>
+                                        <option value="CAP II">CAP II</option>
+                                        <option value="CAP III">CAP III</option>
+                                        <option value="H I">H I</option>
+                                        <option value="H II">H II</option>
+                                        <option value="H III">H III</option>
+                                        <option value="H IV">H IV</option>
+                                        <option value="GER">GER</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="sltSituacion">Situación</label></td>
+                                <td>
+                                    <select id="sltSituacion" name="situacion">
+                                        <option disabled selected value="">Selecciona una Situación</option>
+                                        <option value="PROPIO">PROPIO</option>
+                                        <option value="ALQUILADO">ALQUILADO</option>
+                                        <option value="CESION EN USO">CESIÓN EN USO</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="sltSituacion">Situación</label></td>
+                                <td>
+                                    <select id="sltSituacion" name="situacion">
+                                        <option disabled selected value="">Selecciona una Situación</option>
+                                        <option value="PROPIO">PROPIO</option>
+                                        <option value="ALQUILADO">ALQUILADO</option>
+                                        <option value="CESION EN USO">CESIÓN EN USO</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="sltProvincia">Provincia</label></td>
+                                <td>
+                                    <select id="sltProvincia" name="provincia">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="sltDistrito">Distrito</label></td>
+                                <td>
+                                    <select id="sltDistrito" name="distrito">
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td><label for="txtTelefono">Teléfono</label></td>
                                 <td><input id="txtTelefono" type="text" name="telefono" placeholder="Escribe un teléfono"/></td>  
+                            </tr>
+                            <tr>
+                                <td><label for="txtRpm">RPM</label></td>
+                                <td><input id="txtRpm" type="text" name="rpm" placeholder="Escribe un RPM"/></td>  
                             </tr>
                             <tr>
                                 <td></td>

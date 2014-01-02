@@ -21,6 +21,31 @@
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
                 $('#txtDescripcion').focus();
+                $.ajax({
+                    url: 'resources/xml/LaLibertad.xml',
+                    success: function(data) {
+                        $(data).find("Provincia").each(function() {
+                            var opcion = new Option($(this).attr("nombre"), $(this).attr("codigo"));
+                            $("#sltProvincia").append(opcion);
+                        });
+                        mostrar();
+                    }
+                });
+                
+                function mostrar() {
+                    var codigoProvincia = $("#sltProvincia").val();
+                    $.ajax({
+                        url: 'resources/xml/LaLibertad.xml',
+                        success: function(data) {
+                            $(data).find("Provincia[codigo=" + codigoProvincia + "]").find("Distrito").each(function() {
+                                var opcion = new Option($(this).text(), $(this).attr("codigo"));
+                                $("#sltDistrito").append(opcion);
+                            });
+                        }
+                    });
+                };
+                
+                $("#sltProvincia").change(mostrar);
             });
         </script>
         
@@ -102,7 +127,7 @@
                                     </select>
                                 </td>
                             </tr>
-                                                        <tr>
+                            <tr>
                                 <td><label for="sltSituacion">Situación</label></td>
                                 <td>
                                     <select id="sltSituacion" name="situacion">
@@ -114,8 +139,26 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td><label for="sltProvincia">Provincia</label></td>
+                                <td>
+                                    <select id="sltProvincia" name="provincia">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="sltDistrito">Distrito</label></td>
+                                <td>
+                                    <select id="sltDistrito" name="distrito">
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><label for="txtTelefono">Teléfono</label></td>
                                 <td><input id="txtTelefono" type="text" name="telefono" placeholder="Escribe un teléfono"/></td>  
+                            </tr>
+                            <tr>
+                                <td><label for="txtRpm">RPM</label></td>
+                                <td><input id="txtRpm" type="text" name="rpm" placeholder="Escribe un RPM"/></td>  
                             </tr>
                             <tr>
                                 <td></td>
