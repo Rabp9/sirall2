@@ -33,6 +33,8 @@
                 });
                 
                 function mostrar() {
+                    $("#sltDistrito").empty();
+                    $("#sltDistrito").append("<option disabled selected value=''>Selecciona un Distrito</option>");
                     var codigoProvincia = $("#sltProvincia").val();
                     $.ajax({
                         url: 'resources/xml/LaLibertad.xml',
@@ -128,20 +130,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label for="sltSituacion">Situación</label></td>
-                                <td>
-                                    <select id="sltSituacion" name="situacion">
-                                        <option disabled selected value="">Selecciona una Situación</option>
-                                        <option value="PROPIO">PROPIO</option>
-                                        <option value="ALQUILADO">ALQUILADO</option>
-                                        <option value="CESION EN USO">CESIÓN EN USO</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td><label for="sltProvincia">Provincia</label></td>
                                 <td>
                                     <select id="sltProvincia" name="provincia">
+                                        <option disabled selected value="">Selecciona una Provincia</option>
                                     </select>
                                 </td>
                             </tr>

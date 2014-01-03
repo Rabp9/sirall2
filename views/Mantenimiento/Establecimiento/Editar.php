@@ -16,9 +16,6 @@
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
                 isRequired($('#txtDireccion'));
-                setValue($('#txtIdEstablecimiento'), '<?php echo $establecimiento->getIdEstablecimiento(); ?>');
-                setValue($('#txtDescripcion'), '<?php echo $establecimiento->getDescripcion(); ?>');
-                setValue($('#txtTelefono'), '<?php echo $establecimiento->getTelefono(); ?>');
                 isReadOnly($('#txtIdEstablecimiento'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
@@ -30,11 +27,14 @@
                             var opcion = new Option($(this).attr("nombre"), $(this).attr("codigo"));
                             $("#sltProvincia").append(opcion);
                         });
+                        setValue($('#sltProvincia'), '<?php echo $establecimiento->getProvincia(); ?>');
                         mostrar();
                     }
                 });
                 
                 function mostrar() {
+                    $("#sltDistrito").empty();
+                    $("#sltDistrito").append("<option disabled selected value=''>Selecciona un Distrito</option>");
                     var codigoProvincia = $("#sltProvincia").val();
                     $.ajax({
                         url: 'resources/xml/LaLibertad.xml',
@@ -43,11 +43,20 @@
                                 var opcion = new Option($(this).text(), $(this).attr("codigo"));
                                 $("#sltDistrito").append(opcion);
                             });
+                            setValue($('#sltDistrito'), '<?php echo $establecimiento->getDistrito(); ?>');
                         }
                     });
                 };
                 
                 $("#sltProvincia").change(mostrar);
+                setValue($('#txtIdEstablecimiento'), '<?php echo $establecimiento->getIdEstablecimiento(); ?>');
+                setValue($('#txtDescripcion'), '<?php echo $establecimiento->getDescripcion(); ?>');
+                setValue($('#txtDireccion'), '<?php echo $establecimiento->getDireccion(); ?>');
+                setValue($('#sltNivel'), '<?php echo $establecimiento->getNivel(); ?>');
+                setValue($('#sltTipoCAS'), '<?php echo $establecimiento->getTipoCAS(); ?>');
+                setValue($('#sltSituacion'), '<?php echo $establecimiento->getSituacion(); ?>');
+                setValue($('#txtTelefono'), '<?php echo $establecimiento->getTelefono(); ?>');
+                setValue($('#txtRpm'), '<?php echo $establecimiento->getRpm(); ?>');
             });
         </script>
         
@@ -130,20 +139,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><label for="sltSituacion">Situación</label></td>
-                                <td>
-                                    <select id="sltSituacion" name="situacion">
-                                        <option disabled selected value="">Selecciona una Situación</option>
-                                        <option value="PROPIO">PROPIO</option>
-                                        <option value="ALQUILADO">ALQUILADO</option>
-                                        <option value="CESION EN USO">CESIÓN EN USO</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
                                 <td><label for="sltProvincia">Provincia</label></td>
                                 <td>
                                     <select id="sltProvincia" name="provincia">
+                                        <option disabled selected value="">Selecciona una Provincia</option>
                                     </select>
                                 </td>
                             </tr>
