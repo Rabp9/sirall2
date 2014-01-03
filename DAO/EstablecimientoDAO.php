@@ -3,6 +3,7 @@
 <?php
     require_once './DAO/AppDAO.php';
     require_once './models/Establecimiento.php';
+    require_once './models/VwEstablecimiento.php';
     require_once './Libs/BaseDatos.php';
     
     class EstablecimientoDAO implements appDAO {
@@ -104,6 +105,27 @@
             $xml .= "</Establecimientos>\n";
             return $xml;
         }
-        
+             
+        public static function getVwBy($campo, $valor) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Establecimiento where $campo = :$campo");
+            $result->bindParam(":$campo", $valor);
+            $result->execute();
+            while ($rs = $result->fetch()) {
+                $vwEstablecimiento = new VwEstablecimiento();
+                $vwEstablecimiento->setIdEstablecimiento($rs['idEstablecimiento']);
+                $vwEstablecimiento->setDescripcion($rs['descripcion']);
+                $vwEstablecimiento->setDireccion($rs['direccion']);
+                $vwEstablecimiento->setNivel($rs['nivel']);
+                $vwEstablecimiento->setTipoCAS($rs['tipoCAS']);
+                $vwEstablecimiento->setSituacion($rs['situacion']);
+                $vwEstablecimiento->setProvincia($rs['provincia']);
+                $vwEstablecimiento->setDistrito($rs['distrito']);
+                $vwEstablecimiento->setTelefono($rs['telefono']);
+                $vwEstablecimiento->setRpm($rs['rpm']);
+                $vwEstablecimiento->setNumDependencia($rs['numDependencia']);
+                $vwEstablecimientos[] = $vwEstablecimiento; 
+            }
+            return isset($vwEstablecimientos) ? $vwEstablecimientos : false;
+        }
     }
 ?>

@@ -13,6 +13,23 @@
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/jquery.codaPopupBubbles.js"></script>
         <script type="text/javascript" src="resources/js/template.eliminar.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.ajax({
+                    url: 'resources/xml/LaLibertad.xml',
+                    success: function(data) {
+                        var codigoProvincia = "<?php echo $establecimiento->getProvincia(); ?>";
+                        var codigoDistrito = "<?php echo $establecimiento->getDistrito(); ?>";
+                        
+                        var provincia = $(data).find("Provincia[codigo=" + codigoProvincia + "]").attr("nombre");
+                        var distrito = $(data).find("Distrito[codigo=" + codigoDistrito + "]").text();
+                        
+                        $("td.Provincia").text(provincia);
+                        $("td.Distrito").text(distrito);
+                    }
+                });
+            });
+        </script>
         
         <title>SIRALL2 - Eliminar Establecimiento</title>
     </head>
@@ -49,6 +66,38 @@
                             <tr>
                                 <td><strong>Dirección:</strong></td>
                                 <td><?php echo $establecimiento->getDireccion(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Nivel:</strong></td>
+                                <td><?php echo $establecimiento->getNivel(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Tipo CAS:</strong></td>
+                                <td><?php echo $establecimiento->getTipoCAS(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Situación:</strong></td>
+                                <td><?php echo $establecimiento->getSituacion(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Provincia:</strong></td>
+                                <td class="Provincia"><?php echo $establecimiento->getProvincia(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Distrito:</strong></td>
+                                <td class="Distrito"><?php echo $establecimiento->getDistrito(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Teléfono:</strong></td>
+                                <td><?php echo $establecimiento->getTelefono(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>RPM:</strong></td>
+                                <td><?php echo $establecimiento->getRpm(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Número de Dependencias:</strong></td>
+                                <td><?php echo $establecimiento->getNumDependencia(); ?></td>  
                             </tr>
                             <tr>
                                 <td></td>

@@ -30,6 +30,14 @@
                         return false;
                     }
                 });
+                $("#sltEstablecimiento").change(function() {
+                    var idEstablecimiento = $("#sltEstablecimiento").val();
+                    $.ajax({
+                    });
+                    // obtener lista de dependencias que son de establecimiento seleccionado
+                    // por cada dependencia mostrar sus subdependencias
+                    $("#ulDependencia").append("<li>aaaa</li>");
+                });
             });
         </script>
         <title>SIRALL2 - Crear Dependencia</title>
@@ -64,11 +72,25 @@
                                 <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>
+                                <td><label for="sltEstablecimiento">Establecimiento</label></td>
+                                <td>
+                                    <select id="sltEstablecimiento" name="idEstablecimiento">
+                                        <option disabled selected value="">Selecciona un Establecimiento</option>
+                                        <?php
+                                            if(is_array($establecimientos)) {
+                                                foreach ($establecimientos as $establecimiento) {
+                                                    echo "<option value='" . $establecimiento->getIdEstablecimiento() . "'>" . $establecimiento->getDescripcion() . "</option>";
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td><label for="btnDependenciaSuperior">Dependencia Superior</label></td>
                                 <td>
                                     <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
-                                    <span id="txtDependenciaSeleccionada"></span>
-                                    <input id="hdnEstablecimiento" type="hidden" name="idEstablecimiento" value=""/>
+                                    <span id="txtDependenciaSeleccionada"></span>´
                                     <input id="hdnDependencia" type="hidden" name="superIdDependencia" value=""/>
                                 </td>
                             </tr>
@@ -85,6 +107,8 @@
                         </table>
                         <div id="dependenciaSelect" title="Seleccionar Dependencia">         
                             <p>Selecciona una Dependencia</p>
+                            <ul id='ulDependencia' class='treeview-blue'>
+                            </ul>
                             <?php
                                 function tieneHijos($padre, $dependencias) {
                                     foreach ($dependencias as $dependencia) {
@@ -122,18 +146,6 @@
                                             echo "</li>";
                                         }
                                     }
-                                }
-                                
-                                if(is_array($establecimientos)) {
-                                    echo "<ul id='ulDependencia' class='treeview-blue'>";
-                                    foreach($establecimientos as $establecimiento) {
-                                        echo "<li><button type='button' title='Establecimiento'><input type='hidden' value='" . $establecimiento->getIdEstablecimiento() ."'/>" . $establecimiento->getDescripcion() . "</button>";
-                                        echo "<ul>";
-                                        mostrarHijosEstablecimiento($establecimiento, $dependencias);
-                                        echo "</ul>";
-                                        echo "</li>";
-                                    }
-                                    echo "</ul>";
                                 }
                             ?>
                             <button id="btnSeleccionar" type="button">Seleccionar</button>

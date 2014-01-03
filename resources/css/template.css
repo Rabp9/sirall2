@@ -183,3 +183,8 @@ button.btnSeleccionarRepuesto {
 .tblImpar {
     background-color: #D2E9F2;
 }
+
+#ulDependencia {
+    height: 400px;
+    overflow: scroll;
+}
