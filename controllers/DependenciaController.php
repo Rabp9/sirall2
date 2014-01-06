@@ -117,6 +117,18 @@
             require_once './views/Mantenimiento/Dependencia/Lista.php';
         }
         
+        public static function DependenciasByEstablecimientoAction() {
+            if(isset($_GET['idEstablecimiento'])) {
+                $dependencias = DependenciaDAO::getBy("idEstablecimiento", $_GET["idEstablecimiento"]);
+                foreach ($dependencias as $dependencia) {
+                    if($dependencia->getSuperIdDependencia() == null) {
+                        $filtroDependencias[] = $dependencia;
+                    }
+                }
+                echo DependenciaDAO::toXml($filtroDependencias);
+            }
+        }
+
         public static function SubDependenciasAction() {
             if(isset($_GET['superIdDependencia'])) {
                 if($_GET['superIdDependencia'] != 0)

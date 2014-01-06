@@ -33,10 +33,23 @@
                 $("#sltEstablecimiento").change(function() {
                     var idEstablecimiento = $("#sltEstablecimiento").val();
                     $.ajax({
+                        url: 'index.php',
+                        type: "GET",
+                        data: {
+                            controller: 'Dependencia',
+                            action: 'DependenciasByEstablecimiento',
+                            idEstablecimiento: idEstablecimiento
+                        },
+                        success: function(data) {
+                            $(data).find("Dependencia").each(function() {
+                                var idDependencia = $(this).find("idDependencia");
+                                var liDependencia = "<li><button type='button' title='Dependencia'><input type='hidden' value='" + idDependencia + "'/>" + idDependencia + "</button></li>";
+                                $("#ulDependencia").append("<li><button type='button' title='Dependencia'>aa</button><ul><li>dsadas</li></ul></li>");
+                            });
+                        }
                     });
                     // obtener lista de dependencias que son de establecimiento seleccionado
                     // por cada dependencia mostrar sus subdependencias
-                    $("#ulDependencia").append("<li>aaaa</li>");
                 });
             });
         </script>
