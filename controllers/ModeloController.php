@@ -137,6 +137,7 @@
                 $modelo->setIdTipoEquipo($_GET["idTipoEquipo"]);
                 $modelo->setIdMarca($_GET["idMarca"]);
                 $modelo->setDescripcion($_GET["descripcion"]);
+                $modelo->setIndicacion($_GET["indicacion"]);
                 ModeloDAO::crear($modelo) ?
                     $mensaje = "si" :
                     $mensaje = "nooooooooo";

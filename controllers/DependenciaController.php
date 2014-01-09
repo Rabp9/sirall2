@@ -37,6 +37,12 @@
                 $dependencia->setIdDependencia($_POST['idDependencia']);
                 $dependencia->setIdEstablecimiento($_POST['idEstablecimiento']);
                 $dependencia->setDescripcion($_POST['descripcion']);
+                if(!isset($_POST["direccionDiferente"])) {
+                    $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $_POST["idEstablecimiento"]));
+                    $dependencia->setDireccion($establecimiento->getDireccion());
+                }
+                else 
+                    $dependencia->setDireccion($_POST['direccion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
                 DependenciaDAO::crear($dependencia) ?
                     $mensaje = "Dependencia guardada correctamente" :
@@ -83,6 +89,7 @@
                 $dependencia->setIdDependencia($_POST['idDependencia']);
                 $dependencia->setIdEstablecimiento($_POST['idEstablecimiento']);
                 $dependencia->setDescripcion($_POST['descripcion']);
+                $dependencia->setDireccion($_POST['direccion']);
                 $dependencia->setSuperIdDependencia($_POST['superIdDependencia']);
                 DependenciaDAO::editar($dependencia) ?
                     $mensaje = "Dependencia modificada correctamente" :

@@ -44,11 +44,10 @@
         }
         
         public static function crear($equipo) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, idUsuario, indicacion, usuario, estado) values(:codigoPatrimonial, :serie, :idModelo, :idUsuario, :indicacion, :usuario, :estado)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, indicacion, usuario, estado) values(:codigoPatrimonial, :serie, :idModelo, :indicacion, :usuario, :estado)");
             $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             $result->bindParam(':serie', $equipo->getSerie());
             $result->bindParam(':idModelo', $equipo->getIdModelo());
-            $result->bindParam(':idUsuario', $equipo->getIdUsuario());
             $result->bindParam(':indicacion', $equipo->getIndicacion());
             $result->bindParam(':usuario', $equipo->getUsuario());
             $result->bindParam(':estado', $equipo->getEstado());

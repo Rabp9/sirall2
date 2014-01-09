@@ -43,27 +43,29 @@
         
         public static function crear($dependencia) {
             if($dependencia->getSuperIdDependencia() != null) {
-                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(idDependencia, idEstablecimiento, descripcion, superIdDependencia, estado) values(:idDependencia, :idEstablecimiento, :descripcion, :superIdDependencia, :estado)");
+                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(idDependencia, idEstablecimiento, descripcion, direccion, superIdDependencia, estado) values(:idDependencia, :idEstablecimiento, :descripcion, :direccion, :superIdDependencia, :estado)");
                 $result->bindParam(':superIdDependencia', $dependencia->getSuperIdDependencia());
             }
             else
-                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(idDependencia, idEstablecimiento, descripcion, estado) values(:idDependencia, :idEstablecimiento, :descripcion, :estado)");
+                $result = BaseDatos::getDbh()->prepare("INSERT INTO Dependencia(idDependencia, idEstablecimiento, descripcion, direccion, estado) values(:idDependencia, :idEstablecimiento, :descripcion, :direccion, :estado)");
             $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
             $result->bindParam(':idEstablecimiento', $dependencia->getIdEstablecimiento());
             $result->bindParam(':descripcion', $dependencia->getDescripcion());
+            $result->bindParam(':direccion', $dependencia->getDireccion());
             $result->bindParam(':estado', $dependencia->getEstado());
             return $result->execute();
         }
         
         public static function editar($dependencia) {
             if($dependencia->getSuperIdDependencia() != null) {
-                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idEstablecimiento = :idEstablecimiento, descripcion = :descripcion, superIdDependencia = :superIdDependencia, estado = :estado WHERE idDependencia = :idDependencia");
+                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idEstablecimiento = :idEstablecimiento, descripcion = :descripcion, direccion = :direccion, superIdDependencia = :superIdDependencia, estado = :estado WHERE idDependencia = :idDependencia");
                 $result->bindParam(':superIdDependencia', $dependencia->getSuperIdDependencia());
             }
             else
-                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idEstablecimiento = :idEstablecimiento, descripcion = :descripcion, superIdDependencia = null, estado = :estado  WHERE idDependencia = :idDependencia");
+                $result = BaseDatos::getDbh()->prepare("UPDATE Dependencia SET idEstablecimiento = :idEstablecimiento, descripcion = :descripcion, direccion = :direccion, superIdDependencia = null, estado = :estado WHERE idDependencia = :idDependencia");
             $result->bindParam(':idEstablecimiento', $dependencia->getIdEstablecimiento());
             $result->bindParam(':descripcion', $dependencia->getDescripcion());
+            $result->bindParam(':direccion', $dependencia->getDireccion());
             $result->bindParam(':idDependencia', $dependencia->getIdDependencia());
             $result->bindParam(':estado', $dependencia->getEstado());
             return $result->execute();
