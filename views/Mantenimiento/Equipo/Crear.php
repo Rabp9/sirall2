@@ -371,8 +371,20 @@
                     }
                     $('#divModelo').dialog('open');
                 });
+                
+                $("#txtFechaIngreso-dtp").datepicker(
+                { 
+                    changeYear: true,
+                    changeMonth: true
+                });
+                
+                $("#txtFechaGarantia-dtp").datepicker(
+                { 
+                    changeYear: true,
+                    changeMonth: true
+                });
             });
-          
+            
             var cboModelo = function() {
                 $.ajax({
                     url: 'index.php',
@@ -581,6 +593,14 @@
                                 <tr>
                                     <td><label for="txtIndicacion">Indicación</label></td>
                                     <td><textarea id="txtIndicacion" name="indicacion" placeholder="Escribe una indicación" maxlength="250"></textarea></td>  
+                                </tr>
+                                <tr>
+                                    <td><label for="txtFechaIngreso-dtp">Fecha de Ingreso</label></td>
+                                    <td><input id="txtFechaIngreso-dtp" type="text" name="fechaIngreso"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="txtFechaGarantia-dtp">Fecha de Garantía</label></td>
+                                    <td><input id="txtFechaGarantia-dtp" type="text" name="fechaGarantia"/></td>
                                 </tr>
                             </table>
                             </div>

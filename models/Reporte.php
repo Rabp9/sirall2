@@ -1,5 +1,5 @@
 <!-- File: /models/Reporte.php -->
-   
+
 <?php
     class Reporte extends FPDF {
         

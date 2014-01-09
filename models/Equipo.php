@@ -12,15 +12,21 @@
         private $idUsuario;
         private $indicacion;
         private $usuario;
+        private $fechaRegistro;
+        private $fechaIngreso;
+        private $fechaGarantia;
         private $estado;
         
-        public function __construct($codigoPatrimonial = "", $serie = "", $idModelo = "", $idUsuario = "", $indicacion = "", $usuario = "", $estado = 1) {
+        public function __construct($codigoPatrimonial = "", $serie = "", $idModelo = "", $idUsuario = "", $indicacion = "", $usuario = "", $fechaRegistro = "", $fechaIngreso = "", $fechaGarantia = "", $estado = 1) {
             $this->codigoPatrimonial = $codigoPatrimonial;
             $this->serie = $serie;
             $this->idModelo = $idModelo;
             $this->idUsuario = $idUsuario;
             $this->indicacion = $indicacion;
             $this->usuario = $usuario;
+            $this->fechaRegistro = $fechaRegistro;
+            $this->fechaIngreso = $fechaIngreso;
+            $this->fechaGarantia = $fechaGarantia;
             $this->estado = $estado;
         }
         
@@ -57,6 +63,30 @@
         public function getIdUsuario() {
             return $this->idUsuario;
         }      
+               
+        public function setFechaRegistro($fechaRegistro) {
+            $this->fechaRegistro = $fechaRegistro;
+        }
+        
+        public function getFechaRegistro() {
+            return $this->fechaRegistro;
+        }   
+            
+        public function setFechaIngreso($fechaIngreso) {
+            $this->fechaIngreso = $fechaIngreso;
+        }
+        
+        public function getFechaIngreso() {
+            return $this->fechaIngreso;
+        }
+         
+        public function setFechaGarantia($fechaGarantia) {
+            $this->fechaGarantia = $fechaGarantia;
+        }
+        
+        public function getFechaGarantia() {
+            return $this->fechaGarantia;
+        }
         
         public function setIndicacion($indicacion) {
             $this->indicacion = $indicacion;

@@ -19,6 +19,9 @@
                 $equipo->setDescripcion($rs['descripcion']);
                 $equipo->setIndicacion($rs['indicacion']);
                 $equipo->setUsuario($rs["usuario"]);
+                $equipo->setFechaRegistro($rs["fechaRegistro"]);
+                $equipo->setFechaIngreso($rs["fechaIngreso"]);
+                $equipo->setFechaGarantia($rs["fechaGarantia"]);
                 $equipo->setEstado($rs["estado"]);
                 $equipos[] = $equipo; 
             }
@@ -37,6 +40,9 @@
                 $equipo->setIdUsuario($rs['idUsuario']);
                 $equipo->setIndicacion($rs['indicacion']);
                 $equipo->setUsuario($rs["usuario"]);
+                $equipo->setFechaRegistro($rs["fechaRegistro"]);
+                $equipo->setFechaIngreso($rs["fechaIngreso"]);
+                $equipo->setFechaGarantia($rs["fechaGarantia"]);
                 $equipo->setEstado($rs['estado']);
                 $equipos[] = $equipo; 
             }
@@ -44,22 +50,27 @@
         }
         
         public static function crear($equipo) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, indicacion, usuario, estado) values(:codigoPatrimonial, :serie, :idModelo, :indicacion, :usuario, :estado)");
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Equipo(codigoPatrimonial, serie, idModelo, indicacion, usuario, fechaRegistro, fechaIngreso, fechaGarantia, estado) values(:codigoPatrimonial, :serie, :idModelo, :indicacion, :usuario, :fechaRegistro, :fechaIngreso, :fechaGarantia, :estado)");
             $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             $result->bindParam(':serie', $equipo->getSerie());
             $result->bindParam(':idModelo', $equipo->getIdModelo());
             $result->bindParam(':indicacion', $equipo->getIndicacion());
             $result->bindParam(':usuario', $equipo->getUsuario());
+            $result->bindParam(':fechaRegistro', $equipo->getFechaRegistro());
+            $result->bindParam(':fechaIngreso', $equipo->getFechaIngreso());
+            $result->bindParam(':fechaGarantia', $equipo->getFechaGarantia());
             $result->bindParam(':estado', $equipo->getEstado());
             return $result->execute();
         }
         
         public static function editar($equipo) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Equipo SET idModelo = :idModelo, idUsuario = :idUsuario, indicacion = :indicacion, usuario = :usuario, estado = :estado WHERE codigoPatrimonial = :codigoPatrimonial");
+            $result = BaseDatos::getDbh()->prepare("UPDATE Equipo SET idModelo = :idModelo, idUsuario = :idUsuario, indicacion = :indicacion, usuario = :usuario, fechaIngreso = :fechaIngreso, fechaGarantia = :fechaGarantia, estado = :estado WHERE codigoPatrimonial = :codigoPatrimonial");
             $result->bindParam(':idModelo', $equipo->getIdModelo());
             $result->bindParam(':idUsuario', $equipo->getIdUsuario());
             $result->bindParam(':indicacion', $equipo->getIndicacion());
             $result->bindParam(':usuario', $equipo->getUsuario());
+            $result->bindParam(':fechaIngreso', $equipo->getFechaIngreso());
+            $result->bindParam(':fechaGarantia', $equipo->getFechaGarantia());
             $result->bindParam(':estado', $equipo->getEstado());
             $result->bindParam(':codigoPatrimonial', $equipo->getCodigoPatrimonial());
             return $result->execute();
