@@ -54,9 +54,8 @@
             $equipos = PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "restEstablecimiento") ?
                 EquipoDAO::getVwEquipolIMIT($_POST['numRegistros'], $_SESSION["usuarioActual"]->getIdEstablecimiento()):
                 EquipoDAO::getVwEquipolIMIT($_POST['numRegistros']);
-            var_dump($equipos);
             require_once './views/Reportes/EquiposReporte.php';
-        }     
+        }
                 
         public static function ReporteRepuestosAction() {
             $repuestos = RepuestoDAO::getVwRepuesto();
@@ -68,7 +67,7 @@
             $repuestos = RepuestoDAO::getVwRepuestoLimit($_POST['numRegistros']);
             require_once './views/Reportes/RepuestosReporte.php';
         }
-               
+        
         public static function ReporteUsuariosAction() {
             $usuarios = UsuarioDAO::getVwUsuario();
             $max = count($usuarios);
