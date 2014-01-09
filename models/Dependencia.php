@@ -9,14 +9,16 @@
         private $idDependencia;
         private $idEstablecimiento;
         private $descripcion;
+        private $direccion;
         private $superIdDependencia;
         private $idUsuarioJefe;
         private $estado;
         
-        public function __construct($idDependencia = "", $idEstablecimiento = "", $descripcion = "", $superIdDependencia = "", $idUsuarioJefe = "", $estado = 1) {
+        public function __construct($idDependencia = "", $idEstablecimiento = "", $descripcion = "", $direccion = "", $superIdDependencia = "", $idUsuarioJefe = "", $estado = 1) {
             $this->idDependencia = $idDependencia;
             $this->idEstablecimiento = $idEstablecimiento;
             $this->descripcion = $descripcion;
+            $this->direccion = $direccion;
             $this->idUsuarioJefe = $idUsuarioJefe;
             $this->estado = $estado;
         }
@@ -42,9 +44,17 @@
         public function setDescripcion($descripcion) {
             $this->descripcion = $descripcion;
         }
-      
+        
         public function getDescripcion() {
             return $this->descripcion;
+        }
+        
+        public function setDireccion($direccion) {
+            $this->direccion = $direccion;
+        }
+        
+        public function getDireccion() {
+            return $this->direccion;
         }
         
         public function setSuperIdDependencia($superIdDependencia) {

@@ -30,26 +30,11 @@
                         return false;
                     }
                 });
-                $("#sltEstablecimiento").change(function() {
-                    var idEstablecimiento = $("#sltEstablecimiento").val();
-                    $.ajax({
-                        url: 'index.php',
-                        type: "GET",
-                        data: {
-                            controller: 'Dependencia',
-                            action: 'DependenciasByEstablecimiento',
-                            idEstablecimiento: idEstablecimiento
-                        },
-                        success: function(data) {
-                            $(data).find("Dependencia").each(function() {
-                                var idDependencia = $(this).find("idDependencia");
-                                var liDependencia = "<li><button type='button' title='Dependencia'><input type='hidden' value='" + idDependencia + "'/>" + idDependencia + "</button></li>";
-                                $("#ulDependencia").append("<li><button type='button' title='Dependencia'>aa</button><ul><li>dsadas</li></ul></li>");
-                            });
-                        }
-                    });
-                    // obtener lista de dependencias que son de establecimiento seleccionado
-                    // por cada dependencia mostrar sus subdependencias
+                $("#chxDireccionDiferente").button().change(function() {
+                    if($(this).prop('checked'))
+                        $("#txtaDireccion").prop('disabled', false);
+                    else
+                        $("#txtaDireccion").prop('disabled', 'disabled');
                 });
             });
         </script>
@@ -77,7 +62,7 @@
                         <legend>Crear Dependencia</legend>
                         <table>
                             <tr>
-                                <td><label for="txtIdDependencia"><abbr title="Código identificador">ID.</abbr> Dependencia</label></td>
+                                <td><label for="txtIdDependencia"><abbr title="CÃ³digo identificador">ID.</abbr> Dependencia</label></td>
                                 <td><input id="txtIdDependencia" type="text" name="idDependencia"></td>
                             </tr>
                             <tr>
@@ -85,25 +70,18 @@
                                 <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>
-                                <td><label for="sltEstablecimiento">Establecimiento</label></td>
-                                <td>
-                                    <select id="sltEstablecimiento" name="idEstablecimiento">
-                                        <option disabled selected value="">Selecciona un Establecimiento</option>
-                                        <?php
-                                            if(is_array($establecimientos)) {
-                                                foreach ($establecimientos as $establecimiento) {
-                                                    echo "<option value='" . $establecimiento->getIdEstablecimiento() . "'>" . $establecimiento->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                </td>
+                                <td colspan="2"><label for="chxDireccionDiferente">Especificar una Dirección diferente a la dirección del Establecimiento</label><input id="chxDireccionDiferente" type="checkbox" name="direccionDiferente"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="txtaDireccion">Dirección</label></td>
+                                <td><textarea id="txtaDireccion" name="direccion" placeholder="Escribe una dirección" disabled></textarea></td>  
                             </tr>
                             <tr>
                                 <td><label for="btnDependenciaSuperior">Dependencia Superior</label></td>
                                 <td>
                                     <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
-                                    <span id="txtDependenciaSeleccionada"></span>´
+                                    <span id="txtDependenciaSeleccionada"></span>
+                                    <input id="hdnEstablecimiento" type="hidden" name="idEstablecimiento" value=""/>
                                     <input id="hdnDependencia" type="hidden" name="superIdDependencia" value=""/>
                                 </td>
                             </tr>
@@ -120,8 +98,6 @@
                         </table>
                         <div id="dependenciaSelect" title="Seleccionar Dependencia">         
                             <p>Selecciona una Dependencia</p>
-                            <ul id='ulDependencia' class='treeview-blue'>
-                            </ul>
                             <?php
                                 function tieneHijos($padre, $dependencias) {
                                     foreach ($dependencias as $dependencia) {
@@ -159,6 +135,18 @@
                                             echo "</li>";
                                         }
                                     }
+                                }
+                                
+                                if(is_array($establecimientos)) {
+                                    echo "<ul id='ulDependencia' class='treeview-blue'>";
+                                    foreach($establecimientos as $establecimiento) {
+                                        echo "<li><button type='button' title='Establecimiento'><input type='hidden' value='" . $establecimiento->getIdEstablecimiento() ."'/>" . $establecimiento->getDescripcion() . "</button>";
+                                        echo "<ul>";
+                                        mostrarHijosEstablecimiento($establecimiento, $dependencias);
+                                        echo "</ul>";
+                                        echo "</li>";
+                                    }
+                                    echo "</ul>";
                                 }
                             ?>
                             <button id="btnSeleccionar" type="button">Seleccionar</button>

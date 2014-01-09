@@ -3,6 +3,7 @@
 <?php
     require_once './controllers/AppController.php';
     require_once './DAO/EquipoDAO.php';
+    require_once './DAO/UsuarioEquipoDetalleDAO.php';
     require_once './DAO/MarcaDAO.php';
     require_once './DAO/TipoEquipoDAO.php';
     require_once './DAO/ModeloDAO.php';
@@ -50,13 +51,27 @@
                 $equipo->setCodigoPatrimonial($_POST['codigoPatrimonial']);
                 $equipo->setSerie($_POST['serie']);
                 $equipo->setIdModelo($_POST['idModelo']);
-                $equipo->setIdUsuario($_POST['idUsuario']);
                 $equipo->setIndicacion($_POST['indicacion']);
                 $equipo->setUsuario($_SESSION["usuarioActual"]->getUsername());
-                $equipo->setEstado(1);
-                EquipoDAO::crear($equipo) ?
-                    $mensaje = "Equipo guardado correctamente" :
+                $equipo->activar();
+                if(EquipoDAO::crear($equipo)) {
+                    $mensaje = "Equipo guardado correctamente"; 
+                    $usuarioEquipoDetalle = new UsuarioEquipoDetalle();
+                    $usuarioEquipoDetalle->setCodigoPatrimonial($equipo->getCodigoPatrimonial());
+                    $usuarioEquipoDetalle->setSerie($equipo->getSerie());
+                    $usuarioEquipoDetalle->setIdDependencia($_POST["idDependencia"]);
+                    $fecha = new DateTime();
+                    $usuarioEquipoDetalle->setFechaInicio($fecha->format('Y-m-d'));
+                    $usuarioEquipoDetalle->activar();
+                    if(isset($_POST['designarUsuario']))
+                       $usuarioEquipoDetalle->setIdUsuario($_POST["idUsuario"]);
+                    else
+                       $usuarioEquipoDetalle->setIdUsuario("U9999");
+                   UsuarioEquipoDetalleDAO::crear($usuarioEquipoDetalle);
+                }
+                else {
                     $mensaje = "El Equipo no fue guardado correctamente";
+                }
                 $n_dato = sizeof($_POST['clave']);
                 for($i = 0; $i < $n_dato; $i++ ) {
                     if($_POST['clave'][$i] != "") {

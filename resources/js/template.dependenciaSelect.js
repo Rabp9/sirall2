@@ -20,7 +20,7 @@ $(document).ready(function() {
 
     $("#ulDependencia").treeview({
         animated: "fast",
-        collapsed: false,
+        collapsed: true,
         unique: false,
         persist: "cookie"
     });

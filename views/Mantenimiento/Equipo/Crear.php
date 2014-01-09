@@ -278,6 +278,7 @@
                 // INICIO Estilizar Tabla
                 $('#tblDetalle').styleTable();
                 // FIN Estilizar Tabla
+                /*
                 $("#aCrearModelo").button().click(function() {
                     if($("#txtTipoEquipo").val() === "" ) {
                         alert("Seleccione un tipo de equipo");
@@ -306,6 +307,69 @@
                         }
                     });
                     cboModelo();
+                });
+                */
+                $("#chxUsuario").button().change(function() {
+                    if($(this).prop('checked'))
+                        $("#cboUsuario").prop('disabled', false);
+                    else
+                        $("#cboUsuario").prop('disabled', 'disabled');
+                });
+                
+                $( '#divModelo' ).dialog({
+                    autoOpen: false,
+                    modal: true,
+                    height: 180,
+                    width: 300,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
+                    },
+                    buttons: {
+                        "Aceptar": function() {
+                            $.ajax({
+                                url: 'index.php',
+                                type: 'GET',
+                                data: {
+                                    controller: 'Modelo',
+                                    action: 'CrearModeloAJAX',
+                                    descripcion: $("#txtDescripcionModelo").val(),
+                                    indicacion: $("#txtIndicacionModelo").val(),
+                                    idTipoEquipo: $('#txtIdTipoEquipo').val(),
+                                    idMarca: $('#txtIdMarca').val(),
+                                },
+                                success: function(data) {
+                                    if($(data).length > 35 )
+                                        alert("El Modelo NO fue registrado correctamente");
+                                    else
+                                        alert("Modelo registrado corretamente");
+                                }
+                            });
+                            $("#txtDescripcionModelo").val(""),
+                            $("#txtIndicacionModelo").val(""),
+                            cboModelo();
+                            $(this).dialog("close");
+                        },
+                        "Cancelar": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                
+                $("#aCrearModelo").button().click(function() {
+                    if($("#txtTipoEquipo").val() === "" ) {
+                        alert("Seleccione un tipo de equipo");
+                        return;
+                    }
+                    if($("#txtMarca").val() === "" ) {
+                        alert("Seleccione una marca");
+                        return;
+                    }
+                    $('#divModelo').dialog('open');
                 });
             });
           
@@ -486,6 +550,11 @@
                                                 <span id="txtDependenciaSeleccionada"></span>
                                                 <input id="hdnEstablecimiento" type="hidden" name="idEstablecimiento" value=""/>
                                                 <input id="hdnDependencia" type="hidden" name="idDependencia" value=""/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input id="chxUsuario" type="checkbox" name="designarUsuario" checked /><label for="chxUsuario">Designar Usuario</label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -689,6 +758,19 @@
                                 ?>
                             </tbody>
                         </table>
+                    </div>
+                    <!-- Dialog Modal para Modelo -->
+                    <div id="divModelo" title="Registrar Modelo">
+                        <table>
+                               <tr>
+                               <td><label for="txtDescripcionModelo">Descripción</label></td>
+                               <td><input id="txtDescripcionModelo" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
+                           </tr>
+                           <tr>
+                               <td><label for="txtIndicacionModelo">Indicación</label></td>
+                               <td><textarea id="txtIndicacionModelo" name="indicacion" placeholder="Escribe una indicación" ></textarea></td>  
+                           </tr>
+                       </table>
                     </div>
                     <script type="text/javascript">
                         $('.btnSeleccionarMarca').button({
