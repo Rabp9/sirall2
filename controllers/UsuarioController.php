@@ -126,7 +126,10 @@
         public static function usuarioAJAXAction() {
             if(isset($_GET['idDependencia'])) {
                 $usuarios = UsuarioDAO::getBy("idDependencia", $_GET['idDependencia']);
+                $dependencia = current(DependenciaDAO::getBy("idDependencia", $_GET["idDependencia"]));
+                $usuariosDependenciaSuperior = UsuarioDAO::getBy("idDependencia", $dependencia->getSuperIdDependencia());
                 echo self::usuariosToXML($usuarios);
+                echo self::usuariosToXML($usuariosDependenciaSuperior);
             }   
         }
         

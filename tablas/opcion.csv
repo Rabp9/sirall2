@@ -1,0 +1,3 @@
+idOpcion,idTipoEquipo,descripcion,multiple,unico
+1,T002,IP,0,1
+2,T002,"SISTEMA OPERATIVO",0,0

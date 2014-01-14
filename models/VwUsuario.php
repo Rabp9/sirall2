@@ -6,38 +6,34 @@
      * Clase de Vista VwUsuario
      */
     class VwUsuario implements AppModel {
-        private $idUsuario;
-        private $dependencia;
+        private $username;
+        private $rol;
         private $establecimiento;
-        private $nombreCompleto;
-        private $correo;
         
-        public function __construct($idUsuario = "", $dependencia = "", $establecimiento = "", $nombreCompleto = "", $correo = "") {
-            $this->idUsuario = $idUsuario;
-            $this->dependencia = $dependencia;
+        public function __construct($username = "", $rol = "", $establecimiento = "") {
+            $this->username = $username;
+            $this->rol = $rol;
             $this->establecimiento = $establecimiento;
-            $this->nombreCompleto = $nombreCompleto;
-            $this->correo = $correo;
         }
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
     
-        public function setIdUsuario($idUsuario) {
-            $this->idUsuario = $idUsuario;
+        public function setUsername($username) {
+            $this->username = $username;
         }
          
-        public function getIdUsuario() {
-            return $this->idUsuario;
+        public function getUsername() {
+            return $this->username;
         }
         
-        public function setDependencia($dependencia) {
-            $this->dependencia = $dependencia;
+        public function setRol($rol) {
+            $this->rol = $rol;
         }
         
-        public function getDependencia() {
-            return $this->dependencia;
+        public function getRol() {
+            return $this->rol;
         }
-             
+        
         public function setEstablecimiento($establecimiento) {
             $this->establecimiento = $establecimiento;
         }
@@ -46,22 +42,6 @@
             return $this->establecimiento;
         }
         
-        public function setNombreCompleto($nombreCompleto) {
-            $this->nombreCompleto = $nombreCompleto;
-        }
-        
-        public function getNombreCompleto() {
-            return $this->nombreCompleto;
-        }
-        
-        public function setCorreo($correo) {
-            $this->correo = $correo;
-        }
-        
-        public function getCorreo() {
-            return $this->correo;
-        }
-     
         // </editor-fold>
         
         public function toArray() {

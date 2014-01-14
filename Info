@@ -1,22 +1,15 @@
-Archivos listos:
+vista de areas:
+- codigo de area
+- descripcion
+- Establecimiento
+- Area general
+- jefatura inmediata
 
-Mantenimiento/Marca/
-    Marca/Crear.php
-    Marca/Detalle.php
-    Marca/Editar.php
-    Marca/Eliminar.php
-    Marca/Lista.php
-Mantenimiento/Rol/
-    Rol/Crear.php
-    Rol/Detalle.php
-    Rol/Editar.php
-    Rol/Eliminar.php
-    Rol/Lista.php
-Mantenimiento/Establecimiento/
-    Establecimiento/Crear.php
-    Establecimiento/Detalle.php
-    Establecimiento/Editar.php
-    Establecimiento/Eliminar.php
-    Establecimiento/Lista.php
-
-19 de Setiembre terminar Mantenimiento de Equipos y de repuestos, nuevo Lote
+vista de personal:
+- codigo de personal
+- area
+- jefatura inmediata
+- jefatura general
+- establecimiento
+- nombreCompleto
+- correo

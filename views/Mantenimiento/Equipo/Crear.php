@@ -19,6 +19,7 @@
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript" src="resources/js/template.dato.js"></script>
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="resources/js/template.datepicker-es.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtCodigoPatrimonial'));

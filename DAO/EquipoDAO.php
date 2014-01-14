@@ -105,6 +105,9 @@
                 $vwEquipo->setDependencia($rs['dependencia']);
                 $vwEquipo->setEstablecimiento($rs['establecimiento']);
                 $vwEquipo->setIndicacion($rs['indicacion']);
+                $vwEquipo->setFechaRegistro($rs['fechaRegistro']);
+                $vwEquipo->setFechaIngreso($rs['fechaIngreso']);
+                $vwEquipo->setFechaGarantia($rs['fechaGarantia']);
                 $vwEquipos[] = $vwEquipo;
             }
             return isset($vwEquipos) ? $vwEquipos : false;
@@ -148,6 +151,9 @@
                 $vwEquipo->setDependencia($rs['dependencia']);
                 $vwEquipo->setEstablecimiento($rs['establecimiento']);
                 $vwEquipo->setIndicacion($rs['indicacion']);
+                $vwEquipo->setFechaRegistro($rs['fechaRegistro']);
+                $vwEquipo->setFechaIngreso($rs['fechaIngreso']);
+                $vwEquipo->setFechaGarantia($rs['fechaGarantia']);
                 $vwEquipos[] = $vwEquipo;
             }
             return isset($vwEquipos) ? $vwEquipos : false;
