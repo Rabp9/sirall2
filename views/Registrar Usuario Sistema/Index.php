@@ -12,7 +12,12 @@
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
-        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#sltIdEstablecimiento").selectable();
+            });
+        </script>
+            
         <title>SIRALL2 - Registrar Usuario Sistema</title>
     </head>
     <body>
@@ -54,16 +59,11 @@
                             <tr>
                                 <td><label for="sltIdEstablecimiento">Establecimiento</label></td>
                                 <td>
-                                    <select id="sltIdEstablecimiento" name="idEstablecimiento" required="true">
-                                        <option disabled selected value="">Selecciona un Establecimiento</option>
-                                        <?php
-                                            if(is_array($establecimientos)) {
-                                                foreach ($establecimientos as $establecimiento) {
-                                                    echo "<option value='" . $establecimiento->getIdEstablecimiento() . "'>" . $establecimiento->getDescripcion() . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
+                                    <ol id="sltIdEstablecimiento">
+                                        <li>aa</li>
+                                        <li>aaa</li>
+                                        <li>aaa</li>
+                                    </ol>
                                 </td>
                             </tr>
                             <tr>

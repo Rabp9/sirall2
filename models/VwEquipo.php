@@ -15,8 +15,11 @@
         private $dependencia;
         private $establecimiento;
         private $indicacion;
+        private $fechaRegistro;
+        private $fechaIngreso;
+        private $fechaGarantia;
                 
-        public function __construct($codigoPatrimonial = "", $serie = "", $marca = "", $tipoEquipo = "", $modelo = "", $usuario = "", $dependencia = "", $establecimiento = "", $indicacion = "") {
+        public function __construct($codigoPatrimonial = "", $serie = "", $marca = "", $tipoEquipo = "", $modelo = "", $usuario = "", $dependencia = "", $establecimiento = "", $indicacion = "", $fechaRegistro = "", $fechaIngreso = "", $fechaGarantia = "") {
             $this->codigoPatrimonial = $codigoPatrimonial;
             $this->serie = $serie;
             $this->marca = $establecimiento;
@@ -26,6 +29,9 @@
             $this->dependencia = $dependencia;
             $this->establecimiento = $establecimiento;
             $this->indicacion = $indicacion;
+            $this->fechaRegistro = $fechaRegistro;
+            $this->fechaIngreso = $fechaIngreso;
+            $this->fechaGarantia = $fechaGarantia;
         }
                 
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
@@ -101,7 +107,30 @@
         public function getIndicacion() {
             return $this->indicacion;
         }     
+             
+        public function setFechaRegistro($fechaRegistro) {
+            $this->fechaRegistro = $fechaRegistro;
+        }
         
+        public function getFechaRegistro() {
+            return $this->fechaRegistro;
+        }           
+        
+        public function setFechaIngreso($fechaIngreso) {
+            $this->fechaIngreso = $fechaIngreso;
+        }
+        
+        public function getFechaIngreso() {
+            return $this->fechaIngreso;
+        }    
+        
+        public function setFechaGarantia($fechaGarantia) {
+            $this->fechaGarantia = $fechaGarantia;
+        }
+        
+        public function getFechaGarantia() {
+            return $this->fechaGarantia;
+        }
         // </editor-fold>
               
         public function toArray() {

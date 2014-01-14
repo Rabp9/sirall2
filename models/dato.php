@@ -9,13 +9,15 @@
         private $idDato;
         private $codigoPatrimonial;
         private $serie;
+        private $idOpcion;
         private $clave;
         private $valor;
         
-        public function __construct($idDato = 0, $codigoPatrimonial = "", $serie = "", $clave = "", $valor = "") {
+        public function __construct($idDato = 0, $codigoPatrimonial = "", $serie = "", $idOpcion = "", $clave = "", $valor = "") {
             $this->idDato = $idDato;
             $this->codigoPatrimonial = $codigoPatrimonial;
             $this->serie = $serie;
+            $this->idOpcion = $idOpcion;
             $this->clave = $clave;
             $this->valor = $valor;
         }

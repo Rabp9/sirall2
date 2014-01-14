@@ -30,12 +30,23 @@
                         return false;
                     }
                 });
-                $("#chxDireccionDiferente").button().change(function() {
+                $("#sltEstablecimiento").change(function() {
+                    <?php
+                        foreach ($establecimientos as $establecimiento) {
+                    ?>
+                                alert("asddas")
+                    <?php
+                        }
+                    ?>
+                });
+                /* 
+                 * $("#chxDireccionDiferente").button().change(function() {
                     if($(this).prop('checked'))
                         $("#txtaDireccion").prop('disabled', false);
                     else
                         $("#txtaDireccion").prop('disabled', 'disabled');
                 });
+                */
             });
         </script>
         <title>SIRALL2 - Crear Dependencia</title>
@@ -70,7 +81,17 @@
                                 <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
                             <tr>
-                                <td colspan="2"><label for="chxDireccionDiferente">Especificar una Dirección diferente a la dirección del Establecimiento</label><input id="chxDireccionDiferente" type="checkbox" name="direccionDiferente"/></td>
+                                <td><label for="sltEstablecimiento">Establecimiento</label></td>
+                                <td>
+                                    <select id="sltEstablecimiento" name="idEstablecimiento" required>
+                                        <option disabled selected value="">Selecciona un Establecimiento</option>
+                                        <?php
+                                            foreach ($establecimientos as $establecimiento) {
+                                                echo "<option value='" . $establecimiento->getIdEstablecimiento() . "'>" . $establecimiento->getDescripcion() . "</option>";                                   
+                                            }
+                                        ?>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td><label for="txtaDireccion">Dirección</label></td>

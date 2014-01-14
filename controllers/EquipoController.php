@@ -53,6 +53,18 @@
                 $equipo->setIdModelo($_POST['idModelo']);
                 $equipo->setIndicacion($_POST['indicacion']);
                 $equipo->setUsuario($_SESSION["usuarioActual"]->getUsername());
+                $fecha = new DateTime();
+                $equipo->setFechaRegistro($fecha->format('Y-m-d'));
+                $fecha = DateTime::createFromFormat('d/m/Y', $_POST["fechaIngreso"]);
+                if($_POST["fechaIngreso"] == "")
+                    $equipo->setFechaIngreso(null);
+                else
+                    $equipo->setFechaIngreso($fecha->format('Y-m-d'));
+                $fecha = DateTime::createFromFormat('d/m/Y', $_POST["fechaGarantia"]);
+                if($_POST["fechaGarantia"] == "")
+                    $equipo->setFechaGarantia(null);
+                else
+                    $equipo->setFechaGarantia($fecha->format('Y-m-d'));
                 $equipo->activar();
                 if(EquipoDAO::crear($equipo)) {
                     $mensaje = "Equipo guardado correctamente"; 

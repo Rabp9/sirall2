@@ -59,7 +59,7 @@
                                 // Sólo para editar
                                 setValue($("#cboUsuario"), '<?php echo $equipo->getIdUsuario(); ?>');
                             }
-                        })
+                        });
                     }
                 };
                 btnSeleccionar();

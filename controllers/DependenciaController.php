@@ -20,7 +20,7 @@
             require_once './views/Mantenimiento/Dependencia/Lista.php';
         }
         
-        public static function CrearAction() {     
+        public static function CrearAction() {
             if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mdf7")) {
                 require_once "views/Home/Error_Permisos.php";
                 return;

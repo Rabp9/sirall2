@@ -1,122 +1,95 @@
-<!-- File: /DAO/UsuarioDAO.php -->
+<!-- File: /DAO/UsuarioSistemaDAO.php -->
     
 <?php
     require_once './DAO/AppDAO.php';
-    require_once './models/Usuario.php';
-    require_once './models/VwUsuario.php';
+    require_once './models/UsuarioSistema.php';
+    require_once './models/VwUsuarioSistema.php';
     require_once './Libs/BaseDatos.php';
     
-    class UsuarioDAO implements appDAO {
+    class UsuarioSistemaDAO implements appDAO {
         
         public static function getAll() {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Usuario WHERE estado = 1");
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM UsuarioSistema WHERE estado = 1");
             $result->execute();
             while ($rs = $result->fetch()) {
-                $usuario = new Usuario();
-                $usuario->setIdUsuario($rs['idUsuario']);
-                $usuario->setIdDependencia($rs['idDependencia']);
-                $usuario->setNombres($rs['nombres']);
-                $usuario->setApellidoPaterno($rs['apellidoPaterno']);
-                $usuario->setApellidoMaterno($rs['apellidoMaterno']);
-                $usuario->setCorreo($rs['correo']);
-                $usuario->setRpm($rs['rpm']);
-                $usuario->setAnexo($rs['anexo']);
-                $usuario->setEstado($rs['estado']);
-                $usuarios[] = $usuario; 
+                $usuarioSistema = new UsuarioSistema();
+                $usuarioSistema->setUsername($rs['username']);
+                $usuarioSistema->setIdRol($rs['idRol']);
+                $usuarioSistema->setIdEstablecimiento($rs['idEstablecimiento']);
+                $usuarioSistema->setPassword($rs['password']);
+                $usuarioSistema->setEstado($rs['estado']);
+                $usuarioSistemas[] = $usuarioSistema; 
             }
-            return isset($usuarios) ? $usuarios : false;
+            return isset($usuarioSistemas) ? $usuarioSistemas : false;
         }
                
         public static function getBy($campo, $valor) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Usuario where $campo = :$campo");
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM UsuarioSistema where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
             $result->execute();
             while ($rs = $result->fetch()) {
-                $usuario = new Usuario();
-                $usuario->setIdUsuario($rs['idUsuario']);
-                $usuario->setIdDependencia($rs['idDependencia']);
-                $usuario->setNombres($rs['nombres']);
-                $usuario->setApellidoPaterno($rs['apellidoPaterno']);
-                $usuario->setApellidoMaterno($rs['apellidoMaterno']);
-                $usuario->setCorreo($rs['correo']);
-                $usuario->setRpm($rs['rpm']);
-                $usuario->setAnexo($rs['anexo']);
-                $usuario->setEstado($rs['estado']);
-                $usuarios[] = $usuario; 
+                $usuarioSistema = new UsuarioSistema();
+                $usuarioSistema->setUsername($rs['username']);
+                $usuarioSistema->setIdRol($rs['idRol']);
+                $usuarioSistema->setIdEstablecimiento($rs['idEstablecimiento']);
+                $usuarioSistema->setPassword($rs['password']);
+                $usuarioSistema->setEstado($rs['estado']);
+                $usuarioSistemas[] = $usuarioSistema; 
             }
-            return isset($usuarios) ? $usuarios : false;
+            return isset($usuarioSistemas) ? $usuarioSistemas : false;
         }
         
-        public static function crear($usuario) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO Usuario(idUsuario, idDependencia, nombres, apellidoPaterno, apellidoMaterno, correo, rpm, anexo, estado) values(:idUsuario, :idDependencia, :nombres, :apellidoPaterno, :apellidoMaterno, :correo, :rpm, :anexo, :estado)");
-            $result->bindParam(':idUsuario', $usuario->getIdUsuario());
-            $result->bindParam(':idDependencia', $usuario->getIdDependencia());
-            $result->bindParam(':nombres', $usuario->getNombres());
-            $result->bindParam(':apellidoPaterno', $usuario->getApellidoPaterno());
-            $result->bindParam(':apellidoMaterno', $usuario->getApellidoMaterno());
-            $result->bindParam(':correo', $usuario->getCorreo());
-            $result->bindParam(':rpm', $usuario->getRpm());
-            $result->bindParam(':anexo', $usuario->getAnexo());
-            $result->bindParam(':estado', $usuario->getEstado());
+        public static function crear($usuarioSistema) {
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO UsuarioSistema(username, idRol, idEstablecimiento, password, estado) values(:username, :idRol, :idEstablecimiento, :password, :estado)");
+            $result->bindParam(':username', $usuarioSistema->getUsername());
+            $result->bindParam(':idRol', $usuarioSistema->getIdRol());
+            $result->bindParam(':idEstablecimiento', $usuarioSistema->getIdEstablecimiento());
+            $result->bindParam(':password', $usuarioSistema->getPassword());
+            $result->bindParam(':estado', $usuarioSistema->getEstado());
             return $result->execute();
         }
            
-        public static function editar($usuario) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Usuario SET idDependencia = :idDependencia, nombres = :nombres, apellidoPaterno = :apellidoPaterno, apellidoMaterno = :apellidoMaterno, correo = :correo, rpm = :rpm, anexo = :anexo, estado = :estado WHERE idUsuario = :idUsuario");
-            $result->bindParam(':idDependencia', $usuario->getIdDependencia());
-            $result->bindParam(':nombres', $usuario->getNombres());
-            $result->bindParam(':apellidoPaterno', $usuario->getApellidoPaterno());
-            $result->bindParam(':apellidoMaterno', $usuario->getApellidoMaterno());
-            $result->bindParam(':correo', $usuario->getCorreo());
-            $result->bindParam(':rpm', $usuario->getRpm());
-            $result->bindParam(':anexo', $usuario->getAnexo());
-            $result->bindParam(':estado', $usuario->getEstado());
-            $result->bindParam(':idUsuario', $usuario->getIdUsuario());
+        public static function editar($usuarioSistema) {
+            $result = BaseDatos::getDbh()->prepare("UPDATE UsuarioSistema SET idRol = :idRol, idEstablecimiento = :idEstablecimiento, password = :password, estado = :estado WHERE username = :username");
+            $result->bindParam(':password', $usuarioSistema->getPassword());
+            $result->bindParam(':idEstablecimiento', $usuarioSistema->getIdEstablecimiento());
+            $result->bindParam(':idRol', $usuarioSistema->getIdRol());
+            $result->bindParam(':estado', $usuarioSistema->getEstado());
+            $result->bindParam(':username', $usuarioSistema->getUsername());
             return $result->execute();
         }
         
-        public static function eliminar($usuario) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Usuario SET estado = 2 WHERE idUsuario = :idUsuario");
-            $result->bindParam(':idUsuario', $usuario->getIdUsuario());
-            return $result->execute();
+        public static function eliminar($usuarioSistema) {
         }
         
-        public static function getNextID() {
-            $result = BaseDatos::getDbh()->prepare("call usp_GetNextIdUsuario");
+        public static function loguear(UsuarioSistema $usuarioSistema) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM UsuarioSistema WHERE username = :username AND password = :password AND estado = 1");
+            $result->bindParam(':username', $usuarioSistema->getUsername());
+            $result->bindParam(':password', $usuarioSistema->getPassword());
             $result->execute();
-            $rs = $result->fetch();
-            return $rs['nextID'];
+            if(!$rs = $result->fetch())
+                return false;
+            $usuarioSistema = new UsuarioSistema();
+            $usuarioSistema->setUsername($rs['username']);
+            $usuarioSistema->setIdRol($rs['idRol']);
+            $usuarioSistema->setIdEstablecimiento($rs['idEstablecimiento']);
+            $usuarioSistema->setPassword($rs['password']);
+            $usuarioSistema->setEstado($rs['estado']);
+            return $usuarioSistema;
         }
         
-        public static function getVwUsuario() {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Usuario");
-            $result->execute();
-            while ($rs = $result->fetch()) {
-                $vwUsuario = new VwUsuario();
-                $vwUsuario->setIdUsuario($rs['idUsuario']);
-                $vwUsuario->setDependencia($rs['dependencia']);
-                $vwUsuario->setEstablecimiento($rs['establecimiento']);
-                $vwUsuario->setNombreCompleto($rs['nombreCompleto']);
-                $vwUsuario->setCorreo($rs['correo']);
-                $vwUsuarios[] = $vwUsuario; 
-            }
-            return isset($vwUsuarios) ? $vwUsuarios : false;
-        }
-        
-        public static function getVwUsuarioLimit($limite) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Usuario LIMIT 0, :limite");
-            $result->bindValue(':limite', (int) trim($limite), PDO::PARAM_INT);
+        public static function getVwUsuarioSistema() {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_UsuarioSistema");
             $result->execute();
             while ($rs = $result->fetch()) {
-                $vwUsuario = new VwUsuario();
-                $vwUsuario->setIdUsuario($rs['idUsuario']);
-                $vwUsuario->setDependencia($rs['dependencia']);
-                $vwUsuario->setEstablecimiento($rs['establecimiento']);
-                $vwUsuario->setNombreCompleto($rs['nombreCompleto']);
-                $vwUsuario->setCorreo($rs['correo']);
-                $vwUsuarios[] = $vwUsuario; 
+                $vwUsuarioSistema = new VwUsuarioSistema();
+                $vwUsuarioSistema->setUsername($rs['username']);
+                $vwUsuarioSistema->setRol($rs['rol']);
+                $vwUsuarioSistema->setEstablecimiento($rs['establecimiento']);
+                $vwUsuarioSistemas[] = $vwUsuarioSistema; 
             }
-            return isset($vwUsuarios) ? $vwUsuarios : false;
+            return isset($vwUsuarioSistemas) ? $vwUsuarioSistemas : false;
         }
+        
     }
 ?>
