@@ -1,22 +1,20 @@
-<!-- File: /models/UsuarioSistema.php -->
+<!-- File: /models/Usuario.php -->
 
 <?php
     require_once './models/AppModel.php';
     /*
-     * Clase Usuario del Sistema
+     * Clase Usuario
      */
-    class UsuarioSistema implements AppModel {
+    class Usuario implements AppModel {
         private $username;
         private $idRol;
         private $password;
-        private $idEstablecimiento;
         private $estado;
 
-        public function __construct($username = "", $idRol = 0, $password = "", $idEstablecimiento = "", $estado = 1) {
+        public function __construct($username = "", $idRol = 0, $password = "", $estado = 1) {
             $this->username = $username;
             $this->idRol = $idRol;
             $this->password = $password;
-            $this->idEstablecimiento = $idEstablecimiento;
             $this->estado = $estado;
         }
         
@@ -46,14 +44,6 @@
             return $this->password;
         }
         
-        public function setIdEstablecimiento($idEstablecimiento) {
-            $this->idEstablecimiento = $idEstablecimiento;
-        }
-        
-        public function getIdEstablecimiento() {
-            return $this->idEstablecimiento;
-        }
-
         public function setEstado($estado) {
             $this->estado = $estado;
         }

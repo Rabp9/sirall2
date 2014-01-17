@@ -122,7 +122,7 @@
                 $vwEstablecimiento->setDistrito($rs['distrito']);
                 $vwEstablecimiento->setTelefono($rs['telefono']);
                 $vwEstablecimiento->setRpm($rs['rpm']);
-                $vwEstablecimiento->setNumDependencia($rs['numDependencia']);
+                $vwEstablecimiento->setNumArea($rs['numArea']);
                 $vwEstablecimientos[] = $vwEstablecimiento; 
             }
             return isset($vwEstablecimientos) ? $vwEstablecimientos : false;
