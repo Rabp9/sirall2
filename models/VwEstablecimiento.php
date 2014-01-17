@@ -16,9 +16,9 @@
         private $distrito;
         private $telefono;
         private $rpm;
-        private $numDependencia;
+        private $numArea;
                 
-        public function __construct($idEstablecimiento = "", $descripcion = "", $direccion = "", $nivel = "", $tipoCAS = "", $situacion = "", $provincia = "", $distrito= "", $telefono = "", $rpm = "", $numDependencia = 0) {
+        public function __construct($idEstablecimiento = "", $descripcion = "", $direccion = "", $nivel = "", $tipoCAS = "", $situacion = "", $provincia = "", $distrito= "", $telefono = "", $rpm = "", $numArea = 0) {
             $this->idEstablecimiento = $idEstablecimiento;
             $this->descripcion = $descripcion;
             $this->direccion = $direccion;
@@ -29,7 +29,7 @@
             $this->distrito = $distrito;
             $this->telefono = $telefono;
             $this->rpm = $rpm;
-            $this->numDependencia = $numDependencia;
+            $this->numArea = $numArea;
         }
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
@@ -122,12 +122,12 @@
             return $this->estado;
         }
           
-        public function setNumDependencia($numDependencia) {
-            $this->numDependencia = $numDependencia;
+        public function setNumArea($numArea) {
+            $this->numArea = $numArea;
         }
                        
-        public function getNumDependencia() {
-            return $this->numDependencia;
+        public function getNumArea() {
+            return $this->numArea;
         }
         // </editor-fold>
        
