@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Usuario/lista.php -->
+<!-- File: /views/Mantenimiento/Personal/lista.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -15,7 +15,7 @@
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.lista.js"></script>
         
-        <title>SIRALL2 - Lista Usuario</title>
+        <title>SIRALL2 - Lista Personal</title>
     </head>
     <body>
         <aside>
@@ -30,8 +30,8 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Lista Usuario</h2>
-                        <h4>Lista de Usuarios registrados</h4>
+                        <h2>Lista Personal</h2>
+                        <h4>Lista de Personals registrados</h4>
                     </hgroup>
                 </header>       
                 <?php if(isset($mensaje)) { ?>
@@ -40,29 +40,33 @@
                 <table class="tblLista">
                     <thead>
                         <tr>
-                            <th><abbr title="Código identificador">ID.</abbr> Usuario</th>
-                            <th>Dependencia</th>
-                            <th>Establecimiento</th>
+                            <th><abbr title="Código identificador">ID.</abbr> Personal</th>
+                            <th>Área</th>
+                            <th>Área General</th>
+                            <th>Establecimeinto</th>
                             <th>Nombre Completo</th>
+                            <th>Correo</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            if(is_array($vwUsuarios)) {
-                                foreach ($vwUsuarios as $vwUsuario) {
+                            if(is_array($vwPersonales)) {
+                                foreach ($vwPersonales as $vwPersonal) {
                         ?>
                         <tr>
-                            <td><?php echo $vwUsuario->getIdUsuario(); ?></td>
-                            <td><?php echo $vwUsuario->getDependencia(); ?></td>
-                            <td><?php echo $vwUsuario->getEstablecimiento(); ?></td>
-                            <td><?php echo $vwUsuario->getNombreCompleto(); ?></td>
+                            <td><?php echo $vwPersonal->getIdPersonal(); ?></td>
+                            <td><?php echo $vwPersonal->getArea(); ?></td>
+                            <td><?php echo $vwPersonal->getAreaGeneral(); ?></td>
+                            <td><?php echo $vwPersonal->getEstablecimiento(); ?></td>
+                            <td><?php echo $vwPersonal->getNombreCompleto(); ?></td>
+                            <td><?php echo $vwPersonal->getCorreo(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Usuario&action=Detalle&idUsuario=<?php echo $vwUsuario->getIdUsuario(); ?>">Detalle</a></li>
-                                    <li><a href="?controller=Usuario&action=Editar&idUsuario=<?php echo $vwUsuario->getIdUsuario(); ?>">Editar</a></li>
-                                    <li><a href="?controller=Usuario&action=Eliminar&idUsuario=<?php echo $vwUsuario->getIdUsuario(); ?>">Eliminar</a></li>
+                                    <li><a href="?controller=Personal&action=Detalle&idPersonal=<?php echo $vwPersonal->getIdPersonal(); ?>">Detalle</a></li>
+                                    <li><a href="?controller=Personal&action=Editar&idPersonal=<?php echo $vwPersonal->getIdPersonal(); ?>">Editar</a></li>
+                                    <li><a href="?controller=Personal&action=Eliminar&idPersonal=<?php echo $vwPersonal->getIdPersonal(); ?>">Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -73,7 +77,7 @@
                     </tbody>
                     <tfoot>          
                         <tr>
-                            <td colspan="2"><a class="crearLink" href="?controller=Usuario&action=Crear">Crear Usuario</a></td>
+                            <td colspan="2"><a class="crearLink" href="?controller=Personal&action=Crear">Crear Personal</a></td>
                         </tr>
                     </tfoot>
                 </table>

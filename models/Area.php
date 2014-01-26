@@ -11,14 +11,16 @@
         private $descripcion;
         private $direccion;
         private $superIdArea;
+        private $orden;
         private $estado;
         
-        public function __construct($idArea = "", $idEstablecimiento = "", $descripcion = "", $direccion = "", $superIdArea = "", $estado = 1) {
+        public function __construct($idArea = "", $idEstablecimiento = "", $descripcion = "", $direccion = "", $superIdArea = "", $orden = 0, $estado = 1) {
             $this->idArea = $idArea;
             $this->idEstablecimiento = $idEstablecimiento;
             $this->descripcion = $descripcion;
             $this->direccion = $direccion;
             $this->superIdArea = $superIdArea;
+            $this->orden = $orden;
             $this->estado = $estado;
         }
         
@@ -62,6 +64,14 @@
         
         public function getSuperIdArea() {
             return $this->superIdArea;
+        }
+             
+        public function setOrden($orden) {
+            $this->orden = $orden;
+        }
+        
+        public function getOrden() {
+            return $this->orden;
         }
         
         public function setEstado($estado) {

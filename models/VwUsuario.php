@@ -8,12 +8,12 @@
     class VwUsuario implements AppModel {
         private $username;
         private $rol;
-        private $establecimiento;
+        private $establecimientos;
         
-        public function __construct($username = "", $rol = "", $establecimiento = "") {
+        public function __construct($username = "", $rol = "", $establecimientos = 0) {
             $this->username = $username;
             $this->rol = $rol;
-            $this->establecimiento = $establecimiento;
+            $this->establecimientos = $establecimientos;
         }
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
@@ -34,12 +34,12 @@
             return $this->rol;
         }
         
-        public function setEstablecimiento($establecimiento) {
-            $this->establecimiento = $establecimiento;
+        public function setEstablecimientos($establecimientos) {
+            $this->establecimientos = $establecimientos;
         }
         
-        public function getEstablecimiento() {
-            return $this->establecimiento;
+        public function getEstablecimientos() {
+            return $this->establecimientos;
         }
         
         // </editor-fold>

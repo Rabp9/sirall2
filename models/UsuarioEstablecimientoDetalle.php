@@ -5,7 +5,7 @@
     /*
      * Clase UsuarioEstablecimientoDetalle
      */
-    class UsuarioEstablecimiento implements AppModel {
+    class UsuarioEstablecimientoDetalle implements AppModel {
         private $idUsuarioEstablecimientoDetalle;
         private $idEstablecimiento;
         private $username;

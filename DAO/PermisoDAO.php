@@ -61,9 +61,9 @@
             return $result->execute();
         }
         
-        public static function hasPermiso(UsuarioSistema $usuarioSistema, $permiso) {
+        public static function hasPermiso(Usuario $usuario, $permiso) {
             $result = BaseDatos::getDbh()->prepare("call usp_hasPermisos(:username, :permiso)");
-            $result->bindParam(':username', $usuarioSistema->getUsername());
+            $result->bindParam(':username', $usuario->getUsername());
             $result->bindParam(':permiso', $permiso);
             $result->execute();
             $rs = $result->fetch();

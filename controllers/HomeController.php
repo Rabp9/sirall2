@@ -2,7 +2,7 @@
 
 <?php
     require_once './controllers/AppController.php';
-    require_once './DAO/UsuarioSistemaDAO.php';
+    require_once './DAO/UsuarioDAO.php';
     
     class HomeController implements AppController {
         
@@ -23,11 +23,11 @@
         
         public static function LoginPOSTAction() {
             if(isset($_POST)) {
-                $usuarioSistema = new UsuarioSistema();
-                $usuarioSistema->setUsername($_POST["username"]);
-                $usuarioSistema->setPassword($_POST["password"]);
-                if($usuarioSistema = UsuarioSistemaDAO::loguear($usuarioSistema)) {
-                    $_SESSION["usuarioActual"] = $usuarioSistema;
+                $usuario = new Usuario();
+                $usuario->setUsername($_POST["username"]);
+                $usuario->setPassword($_POST["password"]);
+                if($usuario = UsuarioDAO::loguear($usuario)) {
+                    $_SESSION["usuarioActual"] = $usuario;
                     $mensaje = "Usuario: " . $_SESSION["usuarioActual"]->getUsername() . " logueado correctamente";
                     require_once './views/Home/index.php';
                 }

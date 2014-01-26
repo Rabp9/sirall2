@@ -7,7 +7,6 @@
      */
     class Personal implements AppModel {
         private $idPersonal;
-        private $idDependencia;
         private $nombres;
         private $apellidoPaterno;
         private $apellidoMaterno;
@@ -16,9 +15,8 @@
         private $anexo;
         private $estado;
 
-        public function __construct($idPersonal = "", $idDependencia = "", $nombres = "", $apellidoPaterno = "", $apellidoMaterno = "", $correo = "", $rpm = "", $anexo = "", $estado = 1) {
+        public function __construct($idPersonal = "", $idArea = "", $nombres = "", $apellidoPaterno = "", $apellidoMaterno = "", $correo = "", $rpm = "", $anexo = "", $estado = 1) {
             $this->idPersonal = $idPersonal;
-            $this->idDependencia = $idDependencia;
             $this->nombres = $nombres;
             $this->apellidoPaterno = $apellidoPaterno;
             $this->apellidoMaterno = $apellidoMaterno;
@@ -36,14 +34,6 @@
          
         public function getIdPersonal() {
             return $this->idPersonal;
-        }
-        
-        public function setIdDependencia($idDependencia) {
-            $this->idDependencia = $idDependencia;
-        }
-        
-        public function getIdDependencia() {
-            return $this->idDependencia;
         }
         
         public function setNombres($nombres) {
@@ -89,7 +79,7 @@
         public function setAnexo($anexo) {
             $this->anexo = $anexo;
         }
-                
+        
         public function getAnexo() {
             return $this->anexo;
         }
@@ -101,7 +91,7 @@
         public function getEstado() {
             return $this->estado;
         }
-    
+        
         // </editor-fold>
         
         public function toArray() {
@@ -157,7 +147,7 @@
                 return true;
             }
         }
-               
+        
         /*
          * Devulve el nombre completo del usuario
          */

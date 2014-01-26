@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Dependencia/Crear.php -->
+<!-- File: /views/Mantenimiento/Area/Crear.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -13,20 +13,20 @@
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
-        <script type="text/javascript" src="resources/js/template.dependenciaSelect.js"></script>
+        <script type="text/javascript" src="resources/js/template.AreaSelect.js"></script>
         <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
         <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
             
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
-                setValue($('#txtIdDependencia'), '<?php echo $nextID; ?>');
-                isReadOnly($('#txtIdDependencia'));
+                setValue($('#txtIdArea'), 'A????');
+                isReadOnly($('#txtIdArea'));
                 $('#txtDescripcion').focus();
                 $('#btnBorrar').button();
                 $('form').submit(function() {
-                    if(!$('#txtDependenciaSeleccionada').text().length) {
-                        alert('Debes elegir una dependencia');
+                    if(!$('#txtAreaSeleccionada').text().length) {
+                        alert('Debes elegir un Área');
                         return false;
                     }
                 });
@@ -39,17 +39,15 @@
                         }
                     ?>
                 });
-                /* 
-                 * $("#chxDireccionDiferente").button().change(function() {
+                $("#chxDireccionDiferente").button().change(function() {
                     if($(this).prop('checked'))
                         $("#txtaDireccion").prop('disabled', false);
                     else
                         $("#txtaDireccion").prop('disabled', 'disabled');
                 });
-                */
             });
         </script>
-        <title>SIRALL2 - Crear Dependencia</title>
+        <title>SIRALL2 - Crear Área</title>
     </head>
     <body>
         <aside>
@@ -64,33 +62,40 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Crear Dependencia</h2>
-                        <h4>Crea una Dependencia</h4>
+                        <h2>Crear Área</h2>
+                        <h4>Crea una Área</h4>
                     </hgroup>
                 </header>
-                <form id="frmCrearDependencia" method="POST" action="?controller=Dependencia&action=CrearPOST">
+                <form id="frmCrearArea" method="POST" action="?controller=Area&action=CrearPOST">
                     <fieldset>
-                        <legend>Crear Dependencia</legend>
+                        <legend>Crear Área</legend>
                         <table>
                             <tr>
-                                <td><label for="txtIdDependencia"><abbr title="CÃ³digo identificador">ID.</abbr> Dependencia</label></td>
-                                <td><input id="txtIdDependencia" type="text" name="idDependencia"></td>
+                                <td><label for="txtIdArea"><abbr title="Código identificador">ID.</abbr> Área</label></td>
+                                <td><input id="txtIdArea" type="text" name="idArea"></td>
                             </tr>
                             <tr>
                                 <td><label for="txtDescripcion">Descripcion</label></td>
                                 <td><input id="txtDescripcion" type="text" name="descripcion" placeholder="Escribe una descripción"></td>  
                             </tr>
+                            <!--
                             <tr>
                                 <td><label for="sltEstablecimiento">Establecimiento</label></td>
                                 <td>
                                     <select id="sltEstablecimiento" name="idEstablecimiento" required>
                                         <option disabled selected value="">Selecciona un Establecimiento</option>
                                         <?php
-                                            foreach ($establecimientos as $establecimiento) {
+                                           /* foreach ($establecimientos as $establecimiento) {
                                                 echo "<option value='" . $establecimiento->getIdEstablecimiento() . "'>" . $establecimiento->getDescripcion() . "</option>";                                   
-                                            }
+                                            }*/
                                         ?>
                                     </select>
+                                </td>
+                            </tr>
+                            -->
+                            <tr>
+                                <td colspan="2">
+                                    <label for="chxDireccionDiferente" title="Especificar una Dirección diferente a la dirección del Establecimiento">Especificar una Dirección</label><input id="chxDireccionDiferente" type="checkbox" name="direccionDiferente"/>
                                 </td>
                             </tr>
                             <tr>
@@ -98,12 +103,12 @@
                                 <td><textarea id="txtaDireccion" name="direccion" placeholder="Escribe una dirección" disabled></textarea></td>  
                             </tr>
                             <tr>
-                                <td><label for="btnDependenciaSuperior">Dependencia Superior</label></td>
+                                <td><label for="btnAreaSuperior">Area Superior</label></td>
                                 <td>
-                                    <button id="btnDependenciaSuperior" type="button">Seleccionar</button>
-                                    <span id="txtDependenciaSeleccionada"></span>
+                                    <button id="btnAreaSuperior" type="button">Seleccionar</button>
+                                    <span id="txtAreaSeleccionada"></span>
                                     <input id="hdnEstablecimiento" type="hidden" name="idEstablecimiento" value=""/>
-                                    <input id="hdnDependencia" type="hidden" name="superIdDependencia" value=""/>
+                                    <input id="hdnArea" type="hidden" name="superIdArea" value=""/>
                                 </td>
                             </tr>
                             <tr>
@@ -114,28 +119,28 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=Dependencia">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Area">Regresar</a></td>
                             </tr>
                         </table>
-                        <div id="dependenciaSelect" title="Seleccionar Dependencia">         
-                            <p>Selecciona una Dependencia</p>
+                        <div id="areaSelect" title="Seleccionar Área">         
+                            <p>Selecciona un Área</p>
                             <?php
-                                function tieneHijos($padre, $dependencias) {
-                                    foreach ($dependencias as $dependencia) {
-                                        if($padre->getIdDependencia() == $dependencia->getSuperIdDependencia()) 
+                                function tieneHijos($padre, $areas) {
+                                    foreach ($areas as $area) {
+                                        if($padre->getIdArea() == $area->getSuperIdArea()) 
                                             return true;
                                     }
                                     return false;
                                 }
                                 
-                                function mostrarHijosEstablecimiento($padre, $dependencias) {
-                                    if(is_array($dependencias)) {
-                                        foreach ($dependencias as $dependencia) {
-                                            if($padre->getIdEstablecimiento() == $dependencia->getIdEstablecimiento() && $dependencia->getSuperIdDependencia() == null) {
-                                                echo "<li><button type='button' title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</button>";
-                                                if(tieneHijos($dependencia, $dependencias)) {
+                                function mostrarHijosEstablecimiento($padre, $areas) {
+                                    if(is_array($areas)) {
+                                        foreach ($areas as $area) {
+                                            if($padre->getIdEstablecimiento() == $area->getIdEstablecimiento() && $area->getSuperIdArea() == "") {
+                                                echo "<li><button type='button' title='Area'><input type='hidden' value='" . $area->getIdArea() ."'/>" . $area->getDescripcion() . "</button>";
+                                                if(tieneHijos($area, $areas)) {
                                                     echo "<ul>";
-                                                    mostrarHijos($dependencia, $dependencias);
+                                                    mostrarHijos($area, $areas);
                                                     echo "</ul>";
                                                 }
                                                 echo "</li>";
@@ -144,13 +149,13 @@
                                     }
                                 }
                                 
-                                function mostrarHijos($padre, $dependencias) {
-                                    foreach ($dependencias as $dependencia) {
-                                        if($padre->getIdDependencia() == $dependencia->getSuperIdDependencia()) {
-                                            echo "<li><button type='button' title='Dependencia'><input type='hidden' value='" . $dependencia->getIdDependencia() ."'/>" . $dependencia->getDescripcion() . "</button>";
-                                            if(tieneHijos($dependencia, $dependencias)) {
+                                function mostrarHijos($padre, $areas) {
+                                    foreach ($areas as $area) {
+                                        if($padre->getIdArea() == $area->getSuperIdArea()) {
+                                            echo "<li><button type='button' title='Area'><input type='hidden' value='" . $area->getIdArea() ."'/>" . $area->getDescripcion() . "</button>";
+                                            if(tieneHijos($area, $areas)) {
                                                 echo "<ul>";
-                                                mostrarHijos($dependencia, $dependencias);
+                                                mostrarHijos($area, $areas);
                                                 echo "</ul>";
                                             }
                                             echo "</li>";
@@ -159,11 +164,11 @@
                                 }
                                 
                                 if(is_array($establecimientos)) {
-                                    echo "<ul id='ulDependencia' class='treeview-blue'>";
+                                    echo "<ul id='ulArea' class='treeview-blue'>";
                                     foreach($establecimientos as $establecimiento) {
                                         echo "<li><button type='button' title='Establecimiento'><input type='hidden' value='" . $establecimiento->getIdEstablecimiento() ."'/>" . $establecimiento->getDescripcion() . "</button>";
                                         echo "<ul>";
-                                        mostrarHijosEstablecimiento($establecimiento, $dependencias);
+                                        mostrarHijosEstablecimiento($establecimiento, $areas);
                                         echo "</ul>";
                                         echo "</li>";
                                     }

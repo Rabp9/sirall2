@@ -1,49 +1,59 @@
-<!-- File: /models/VwUsuario.php -->
+<!-- File: /models/VwPersonal.php -->
 
 <?php
     require_once './models/AppModel.php';
     /*
-     * Clase de Vista VwUsuario
+     * Clase de Vista VwPersonal
      */
-    class VwUsuario implements AppModel {
-        private $idUsuario;
-        private $dependencia;
-        private $establecimiento;
+    class VwPersonal implements AppModel {
+        private $idPersonal;
+        private $area;
+        private $areaGeneral;
+        private $establecimeinto;
         private $nombreCompleto;
         private $correo;
         
-        public function __construct($idUsuario = "", $dependencia = "", $establecimiento = "", $nombreCompleto = "", $correo = "") {
-            $this->idUsuario = $idUsuario;
-            $this->dependencia = $dependencia;
-            $this->establecimiento = $establecimiento;
+        public function __construct($idPersonal = "", $area = "", $areaGeneral = "", $establecimiento = "", $nombreCompleto= "", $correo = "") {
+            $this->idPersonal = $idPersonal;
+            $this->area = $area;
+            $this->areaGeneral = $areaGeneral;
+            $this->establecimeinto = $establecimiento;
             $this->nombreCompleto = $nombreCompleto;
             $this->correo = $correo;
         }
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
     
-        public function setIdUsuario($idUsuario) {
-            $this->idUsuario = $idUsuario;
+        public function setIdPersonal($idPersonal) {
+            $this->idPersonal = $idPersonal;
         }
          
-        public function getIdUsuario() {
-            return $this->idUsuario;
+        public function getIdPersonal() {
+            return $this->idPersonal;
         }
         
-        public function setDependencia($dependencia) {
-            $this->dependencia = $dependencia;
+        public function setArea($area) {
+            $this->area = $area;
         }
         
-        public function getDependencia() {
-            return $this->dependencia;
+        public function getArea() {
+            return $this->area;
         }
              
+        public function setAreaGeneral($areaGeneral) {
+            $this->areaGeneral = $areaGeneral;
+        }
+        
+        public function getAreaGeneral() {
+            return $this->areaGeneral;
+        }
+        
         public function setEstablecimiento($establecimiento) {
-            $this->establecimiento = $establecimiento;
+            $this->establecimeinto = $establecimiento;
         }
         
         public function getEstablecimiento() {
-            return $this->establecimiento;
+            return $this->establecimeinto;
         }
         
         public function setNombreCompleto($nombreCompleto) {

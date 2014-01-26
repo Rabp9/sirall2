@@ -1,94 +1,89 @@
-<!-- File: /DAO/UsuarioSistemaDAO.php -->
+<!-- File: /DAO/UsuarioDAO.php -->
     
 <?php
     require_once './DAO/AppDAO.php';
-    require_once './models/UsuarioSistema.php';
-    require_once './models/VwUsuarioSistema.php';
+    require_once './models/Usuario.php';
+    require_once './models/VwUsuario.php';
     require_once './Libs/BaseDatos.php';
     
-    class UsuarioSistemaDAO implements appDAO {
+    class UsuarioDAO implements appDAO {
         
         public static function getAll() {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM UsuarioSistema WHERE estado = 1");
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Usuario WHERE estado = 1");
             $result->execute();
             while ($rs = $result->fetch()) {
-                $usuarioSistema = new UsuarioSistema();
-                $usuarioSistema->setUsername($rs['username']);
-                $usuarioSistema->setIdRol($rs['idRol']);
-                $usuarioSistema->setIdEstablecimiento($rs['idEstablecimiento']);
-                $usuarioSistema->setPassword($rs['password']);
-                $usuarioSistema->setEstado($rs['estado']);
-                $usuarioSistemas[] = $usuarioSistema; 
+                $usuario = new Usuario();
+                $usuario->setUsername($rs['username']);
+                $usuario->setIdRol($rs['idRol']);
+                $usuario->setPassword($rs['password']);
+                $usuario->setEstado($rs['estado']);
+                $usuarios[] = $usuario; 
             }
-            return isset($usuarioSistemas) ? $usuarioSistemas : false;
+            return isset($usuarios) ? $usuarios : false;
         }
                
         public static function getBy($campo, $valor) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM UsuarioSistema where $campo = :$campo");
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Usuario where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
             $result->execute();
             while ($rs = $result->fetch()) {
-                $usuarioSistema = new UsuarioSistema();
-                $usuarioSistema->setUsername($rs['username']);
-                $usuarioSistema->setIdRol($rs['idRol']);
-                $usuarioSistema->setIdEstablecimiento($rs['idEstablecimiento']);
-                $usuarioSistema->setPassword($rs['password']);
-                $usuarioSistema->setEstado($rs['estado']);
-                $usuarioSistemas[] = $usuarioSistema; 
+                $usuario = new Usuario();
+                $usuario->setUsername($rs['username']);
+                $usuario->setIdRol($rs['idRol']);
+                $usuario->setPassword($rs['password']);
+                $usuario->setEstado($rs['estado']);
+                $usuarios[] = $usuario; 
             }
-            return isset($usuarioSistemas) ? $usuarioSistemas : false;
+            return isset($usuarios) ? $usuarios : false;
         }
         
-        public static function crear($usuarioSistema) {
-            $result = BaseDatos::getDbh()->prepare("INSERT INTO UsuarioSistema(username, idRol, idEstablecimiento, password, estado) values(:username, :idRol, :idEstablecimiento, :password, :estado)");
-            $result->bindParam(':username', $usuarioSistema->getUsername());
-            $result->bindParam(':idRol', $usuarioSistema->getIdRol());
-            $result->bindParam(':idEstablecimiento', $usuarioSistema->getIdEstablecimiento());
-            $result->bindParam(':password', $usuarioSistema->getPassword());
-            $result->bindParam(':estado', $usuarioSistema->getEstado());
+        public static function crear($usuario) {
+            $result = BaseDatos::getDbh()->prepare("INSERT INTO Usuario(username, idRol, password, estado) values(:username, :idRol, :password, :estado)");
+            $result->bindParam(':username', $usuario->getUsername());
+            $result->bindParam(':idRol', $usuario->getIdRol());
+            $result->bindParam(':password', $usuario->getPassword());
+            $result->bindParam(':estado', $usuario->getEstado());
             return $result->execute();
         }
            
-        public static function editar($usuarioSistema) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE UsuarioSistema SET idRol = :idRol, idEstablecimiento = :idEstablecimiento, password = :password, estado = :estado WHERE username = :username");
-            $result->bindParam(':password', $usuarioSistema->getPassword());
-            $result->bindParam(':idEstablecimiento', $usuarioSistema->getIdEstablecimiento());
-            $result->bindParam(':idRol', $usuarioSistema->getIdRol());
-            $result->bindParam(':estado', $usuarioSistema->getEstado());
-            $result->bindParam(':username', $usuarioSistema->getUsername());
+        public static function editar($usuario) {
+            $result = BaseDatos::getDbh()->prepare("UPDATE Usuario SET idRol = :idRol, password = :password, estado = :estado WHERE username = :username");
+            $result->bindParam(':password', $usuario->getPassword());
+            $result->bindParam(':idRol', $usuario->getIdRol());
+            $result->bindParam(':estado', $usuario->getEstado());
+            $result->bindParam(':username', $usuario->getUsername());
             return $result->execute();
         }
         
-        public static function eliminar($usuarioSistema) {
+        public static function eliminar($usuario) {
         }
         
-        public static function loguear(UsuarioSistema $usuarioSistema) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM UsuarioSistema WHERE username = :username AND password = :password AND estado = 1");
-            $result->bindParam(':username', $usuarioSistema->getUsername());
-            $result->bindParam(':password', $usuarioSistema->getPassword());
+        public static function loguear(Usuario $usuario) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Usuario WHERE username = :username AND password = :password AND estado = 1");
+            $result->bindParam(':username', $usuario->getUsername());
+            $result->bindParam(':password', $usuario->getPassword());
             $result->execute();
             if(!$rs = $result->fetch())
                 return false;
-            $usuarioSistema = new UsuarioSistema();
-            $usuarioSistema->setUsername($rs['username']);
-            $usuarioSistema->setIdRol($rs['idRol']);
-            $usuarioSistema->setIdEstablecimiento($rs['idEstablecimiento']);
-            $usuarioSistema->setPassword($rs['password']);
-            $usuarioSistema->setEstado($rs['estado']);
-            return $usuarioSistema;
+            $usuario = new Usuario();
+            $usuario->setUsername($rs['username']);
+            $usuario->setIdRol($rs['idRol']);
+            $usuario->setPassword($rs['password']);
+            $usuario->setEstado($rs['estado']);
+            return $usuario;
         }
         
-        public static function getVwUsuarioSistema() {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_UsuarioSistema");
+        public static function getVwUsuario() {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM vw_Usuario");
             $result->execute();
             while ($rs = $result->fetch()) {
-                $vwUsuarioSistema = new VwUsuarioSistema();
-                $vwUsuarioSistema->setUsername($rs['username']);
-                $vwUsuarioSistema->setRol($rs['rol']);
-                $vwUsuarioSistema->setEstablecimiento($rs['establecimiento']);
-                $vwUsuarioSistemas[] = $vwUsuarioSistema; 
+                $vwUsuario = new VwUsuario();
+                $vwUsuario->setUsername($rs['username']);
+                $vwUsuario->setRol($rs['rol']);
+                $vwUsuario->setEstablecimientos($rs['establecimientos']);
+                $vwUsuarios[] = $vwUsuario; 
             }
-            return isset($vwUsuarioSistemas) ? $vwUsuarioSistemas : false;
+            return isset($vwUsuarios) ? $vwUsuarios : false;
         }
         
     }

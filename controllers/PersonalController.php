@@ -1,16 +1,16 @@
-<!-- File: /controllers/UsuarioController.php -->
+<!-- File: /controllers/PersonalController.php -->
     
 <?php
     require_once './controllers/AppController.php';
-    require_once './DAO/UsuarioDAO.php';
+    require_once './DAO/PersonalDAO.php';
     require_once './DAO/EstablecimientoDAO.php';
-    require_once './DAO/DependenciaDAO.php';
+    require_once './DAO/AreaDAO.php';
     require_once './DAO/RolDAO.php';
     
-    class UsuarioController implements AppController {
+    class PersonalController implements AppController {
         
-        public static function UsuarioAction() {
-            UsuarioController::ListaAction();
+        public static function PersonalAction() {
+            PersonalController::ListaAction();
         }
         
         public static function ListaAction() {
@@ -18,8 +18,8 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            $vwUsuarios = UsuarioDAO::getVwUsuario();
-            require_once './views/Mantenimiento/Usuario/Lista.php';
+            $vwPersonales = PersonalDAO::getVwPersonal();
+            require_once './views/Mantenimiento/Personal/Lista.php';
         }
         
         public static function CrearAction() {
@@ -27,30 +27,29 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            $nextID = UsuarioDAO::getNextID();
             $establecimientos = EstablecimientoDAO::getAll();
-            $dependencias = DependenciaDAO::getAll();
-            require_once './views/Mantenimiento/Usuario/Crear.php';
+            $areas = AreaDAO::getAll();
+            require_once './views/Mantenimiento/Personal/Crear.php';
         }
         
         public static function CrearPOSTAction() {
             if(isset($_POST)) {
-                $usuario = new Usuario();
-                $usuario->setIdUsuario($_POST['idUsuario']);
-                $usuario->setIdDependencia($_POST['idDependencia']);
-                $usuario->setNombres($_POST['nombres']);
-                $usuario->setApellidoPaterno($_POST['apellidoPaterno']);
-                $usuario->setApellidoMaterno($_POST['apellidoMaterno']);
-                $usuario->setCorreo($_POST['correo']);
-                $usuario->setRpm($_POST['rpm']);
-                $usuario->setAnexo($_POST['anexo']);
-                UsuarioDAO::crear($usuario) ?
-                    $mensaje = "Usuario guardado correctamente" :
-                    $mensaje = "El Usuario no fue guardado correctamente";
-                    
+                $personal = new Personal();
+                $personal->setIdPersonal($_POST['idPersonal']);
+                $personal->setNombres($_POST['nombres']);
+                $personal->setApellidoPaterno($_POST['apellidoPaterno']);
+                $personal->setApellidoMaterno($_POST['apellidoMaterno']);
+                $personal->setCorreo($_POST['correo']);
+                $personal->setRpm($_POST['rpm']);
+                $personal->setAnexo($_POST['anexo']);
+                $personal->activar();
+                var_dump($_POST);
+                PersonalDAO::crearUSP($personal->getIdPersonal(), $personal->getNombres(), $personal->getApellidoPaterno(), $personal->getApellidoMaterno(), $personal->getCorreo(), $personal->getRpm(), $personal->getAnexo(), $_POST["idArea"], $$_POST["idEstablecimiento"]) ?
+                    $mensaje = "Personal guardado correctamente" :
+                    $mensaje = "El Personal no fue guardado correctamente";
             }
-            $vwUsuarios = UsuarioDAO::getVwUsuario();
-            require_once './views/Mantenimiento/Usuario/Lista.php';
+            $vwPersonals = PersonalDAO::getVwPersonal();
+            require_once './views/Mantenimiento/Personal/Lista.php';
         }
         
         public static function DetalleAction() {
@@ -60,7 +59,7 @@
             }
             if(isset($_GET['idUsuario'])) {
                 $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
-                $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
+                $dependencia = current(UsuarioDAO::getBy("idDependencia", $usuario->getIdDependencia()));
                 $establecimiento = EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento());
                 require_once './views/Mantenimiento/Usuario/Detalle.php';
             }
