@@ -16,7 +16,7 @@
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
                 isRequired($('#txtDireccion'));
-                setValue($('#txtIdEstablecimiento'), '<?php echo $nextID; ?>');
+                setValue($('#txtIdEstablecimiento'), 'E??');
                 isReadOnly($('#txtIdEstablecimiento'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();

@@ -1,4 +1,4 @@
-<!-- File: /views/Registrar Usuario Sistema/index.php -->
+<!-- File: /views/Registrar Usuario/Respuesta.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -36,8 +36,7 @@
                 }); 
             });
         </script>  
-        
-        <title>SIRALL2 - Registrar Usuario Sistema</title>
+        <title>SIRALL2 - Registrar Usuario</title>
     </head>
     <body>
         <aside>
@@ -52,34 +51,51 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Lista de Usuarios del Sistema</h2>
-                        <h4>Usuarios del Sistema</h4>
+                        <h2>Registrar Usuario</h2>
+                        <h4>Usuario registrado</h4>
                     </hgroup>
-                </header>    
+                </header>
                 <?php if(isset($mensaje)) { ?>
                 <div id="mensaje" title="Mensaje"><p><?php echo $mensaje; ?></p></div>
                 <?php } ?>
                 <fieldset>
-                    <legend>Lista de Usuarios del Sistema</legend>
+                    <legend>Confirmación Usuario</legend>
+                    <table>
+                        <tr>
+                            <td><strong>Nombre de Usuario</strong></td>
+                            <td><?php echo $usuario->getUsername(); ?></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rol:</strong></td>
+                            <td><?php echo $rol->getDescripcion(); ?></td>  
+                        </tr>
+                        <tr>
+                            <td><strong>Password:</strong></td>
+                            <td><?php echo preg_replace("/[A-Za-z0-9]/", "*", $usuario->getPassword()); ?></td>  
+                        </tr>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>Lista de Usuarios</legend>
                     <table>
                         <thead>
                             <tr>
                                 <th>Nombre de Usuario</th>
                                 <th>Rol</th>
-                                <th>Establecimiento</th>
+                                <th>Establecimientos</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php
-                            if(is_array($vwUsuarioSistemas)) {
-                                foreach ($vwUsuarioSistemas as $vwUsuarioSistema) {
+                            if(is_array($vwUsuario)) {
+                                foreach ($vwUsuario as $vwUsuario) {
                         ?>
                         <tr>
-                            <td><a href="?controller=RegistrarUsuarioSistema&action=Editar&username=<?php echo $vwUsuarioSistema->getUsername(); ?>"><?php echo $vwUsuarioSistema->getUsername(); ?></a></td>
-                            <td><?php echo $vwUsuarioSistema->getRol(); ?></td>  
-                            <td><?php echo $vwUsuarioSistema->getEstablecimiento(); ?></td>
-                            <td><a class="aEliminar aeliminarUsuarioSistema" href="?controller=RegistrarUsuarioSistema&action=Eliminar&username=<?php echo $vwUsuarioSistema->getUsername(); ?>">Eliminar</a></td>
+                            <td><a href="?controller=RegistrarUsuario&action=Editar&username=<?php echo $vwUsuario->getUsername(); ?>"><?php echo $vwUsuario->getUsername(); ?></a></td>
+                            <td><?php echo $vwUsuario->getRol(); ?></td>
+                            <td><?php echo $vwUsuario->getEstablecimientos(); ?></td>
+                            <td><a class="aEliminar aeliminarUsuario" href="?controller=RegistrarUsuario&action=Eliminar&username=<?php echo $vwUsuario->getUsername(); ?>">Eliminar</a></td>
                         </tr>
                         <?php
                                 }
@@ -87,6 +103,8 @@
                         ?>
                         </tbody>
                     </table>
+                    <br/>
+                    <a href="?controller=RegistrarUsuario">Registrar Usuario</a>
                 </fieldset>
             </article>
         </section>

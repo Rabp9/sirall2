@@ -1,0 +1,26 @@
+#ulIdEstablecimiento .ui-selecting { 
+    background: #75BBD8; 
+    color: white; 
+}
+
+#ulIdEstablecimiento .ui-selected { 
+    background: #1B86B7; 
+    color: white; 
+}
+
+#ulIdEstablecimiento { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    width: 400px; 
+    height: 600px;
+    border: solid 1px #1B86B7;
+    overflow: scroll;
+}
+
+#ulIdEstablecimiento li { 
+    margin: 0px; 
+    padding: 0.4em; 
+    font-size: 90%; 
+    height: 14px; 
+}

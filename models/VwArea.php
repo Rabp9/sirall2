@@ -1,31 +1,33 @@
-<!-- File: /models/VwDependencia.php -->
+<!-- File: /models/VwArea.php -->
 
 <?php
     require_once './models/AppModel.php';
     /*
-     * Clase de Vista VwDependencia
+     * Clase de Vista VwArea
      */
-    class VwDependencia implements AppModel {
-        private $idDependencia;
+    class VwArea implements AppModel {
+        private $idArea;
         private $descripcion;
         private $establecimiento;
-        private $superDependencia;
+        private $jefaturaInmediata;
+        private $areaGeneral;
                 
-        public function __construct($idDependencia = "", $descripcion = "", $establecimiento = "", $superDependencia = "") {
-            $this->idDependencia = $idDependencia;
+        public function __construct($idArea = "", $descripcion = "", $establecimiento = "", $jefaturaInmediata = '', $areaGeneral = "") {
+            $this->idArea = $idArea;
             $this->descripcion = $descripcion;
             $this->establecimiento = $establecimiento;
-            $this->superDependencia = $superDependencia;
+            $this->jefaturaInmediata = $jefaturaInmediata;
+            $this->areaGeneral = $areaGeneral;
         }
                 
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
  
-        public function setIdDependencia($idDependencia) {
-            $this->idDependencia = $idDependencia;
+        public function setIdArea($idArea) {
+            $this->idArea = $idArea;
         }
         
-        public function getIdDependencia() {
-            return $this->idDependencia;
+        public function getIdArea() {
+            return $this->idArea;
         }
         
         public function setDescripcion($descripcion) {
@@ -44,14 +46,21 @@
             return $this->establecimiento;
         }
          
-        public function setSuperDependencia($superDependencia) {
-            $this->superDependencia = $superDependencia;
+        public function setJefaturaInmediata($jefaturaInmediata) {
+            $this->jefaturaInmediata = $jefaturaInmediata;
         }
         
-        public function getSuperDependencia() {
-            return $this->superDependencia;
+        public function getJefaturaInmediata() {
+            return $this->jefaturaInmediata;
         }          
         
+        public function setAreaGeneral($areaGeneral) {
+            $this->areaGeneral = $areaGeneral;
+        }
+        
+        public function getAreaGeneral() {
+            return $this->areaGeneral;
+        }          
         // </editor-fold>
               
         public function toArray() {

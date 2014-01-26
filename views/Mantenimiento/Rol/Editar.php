@@ -174,20 +174,20 @@
                                     <td><input class="chPermiso" type="checkbox" name="elm7"></td>
                                 </tr>
                             </tbody>
+                          <!--
                             <tfoot>
                                 <tr>
                                     <td colspan="8">
                                         <input id="chbRestEstablecimiento" type="checkbox" name="restEstablecimiento"/> <label for="chbRestEstablecimiento"> Restringir Usuario a objetos de su Establecimiento</label>
                                     </td>  
                                 </tr>
-                          <!--
                                 <tr>
                                     <td colspan="8">
                                         <input id="chbRestDependencia" type="checkbox" name="restDependencia"/> <label for="chbRestDependencia"> Restringir Usuario a objetos de su Dependencia</label>
                                     </td>
                                 </tr>
-                          -->
                             </tfoot>
+                          -->
                         </table>
                         
                         <table>

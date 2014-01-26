@@ -10,7 +10,7 @@
             EstablecimientoController::ListaAction();
         }
         
-        public static function ListaAction() {       
+        public static function ListaAction() {
             if(!PermisoDAO::hasPermiso($_SESSION["usuarioActual"], "mst7")) {
                 require_once "views/Home/Error_Permisos.php";
                 return;
@@ -24,14 +24,14 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            $nextID = EstablecimientoDAO::getNextID();
             require_once './views/Mantenimiento/Establecimiento/Crear.php';
         }
                 
         public static function CrearPOSTAction() {
             if(isset($_POST)) {
                 $establecimiento = new Establecimiento();
-                $establecimiento->setIdEstablecimiento($_POST["idEstablecimiento"]);
+                $nextID = EstablecimientoDAO::getNextID();
+                $establecimiento->setIdEstablecimiento($nextID);
                 $establecimiento->setDescripcion($_POST["descripcion"]);
                 $establecimiento->setDireccion($_POST["direccion"]);
                 $establecimiento->setNivel($_POST["nivel"]);

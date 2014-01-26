@@ -1,7 +1,6 @@
-﻿<?php   
-    // esto es una prueba
-    if(!class_exists("UsuariosSistema")) {
-        include_once "models/UsuarioSistema.php";
+﻿<?php
+    if(!class_exists("Usuarios")) {
+        include_once "models/Usuario.php";
     }
     session_start();
     include './Libs/fpdf17/fpdf.php';
@@ -36,7 +35,7 @@
 
     //Formamos el nombre del fichero que contiene nuestro controlador
     $controller = $controller . 'Controller';
-  
+
     //Incluimos el controlador o detenemos todo si no existe
     if(is_file($carpetaControllers . $controller . '.php'))
           require_once $carpetaControllers . $controller . '.php';

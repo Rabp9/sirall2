@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Dependencia/Lista.php -->
+<!-- File: /views/Mantenimiento/Area/Lista.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -15,7 +15,7 @@
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.lista.js"></script>
         
-        <title>SIRALL2 - Lista Dependencia</title>
+        <title>SIRALL2 - Lista Area</title>
     </head>
     <body>
         <aside>
@@ -30,8 +30,8 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Lista Dependencia</h2>
-                        <h4>Lista de Dependencias registradas</h4>
+                        <h2>Lista Area</h2>
+                        <h4>Lista de Áreas registradas</h4>
                     </hgroup>
                 </header>  
                 <?php if(isset($mensaje)) { ?>
@@ -40,29 +40,31 @@
                 <table class="tblLista">
                     <thead>
                         <tr>
-                            <th><abbr title="Código identificador">ID.</abbr> Dependencia</th>
+                            <th><abbr title="Código identificador">ID.</abbr> Area</th>
                             <th>Descripción</th>
                             <th>Establecimiento</th>
-                            <th>Dependencia Superior</th>
+                            <th>Jefatura Inmediata</th>
+                            <th>Área General</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            if(is_array($vwDependencias)) {
-                                foreach ($vwDependencias as $vwDependencia) {
+                            if(is_array($vwAreas)) {
+                                foreach ($vwAreas as $vwArea) {
                         ?>
                         <tr>
-                            <td><?php echo $vwDependencia->getIdDependencia(); ?></td>
-                            <td><?php echo $vwDependencia->getDescripcion(); ?></td>
-                            <td><?php echo $vwDependencia->getEstablecimiento(); ?></td>
-                            <td><?php echo $vwDependencia->getSuperDependencia(); ?></td>
+                            <td><?php echo $vwArea->getIdArea(); ?></td>
+                            <td><?php echo $vwArea->getDescripcion(); ?></td>
+                            <td><?php echo $vwArea->getEstablecimiento(); ?></td> 
+                            <td><?php echo $vwArea->getJefaturaInmediata(); ?></td>
+                            <td><?php echo $vwArea->getAreaGeneral(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
                                 <ul>
-                                    <li><a href="?controller=Dependencia&action=Detalle&idDependencia=<?php echo $vwDependencia->getIdDependencia(); ?>"><img src="resources/images/detalle.png"> Detalle</a></li>
-                                    <li><a href="?controller=Dependencia&action=Editar&idDependencia=<?php echo $vwDependencia->getIdDependencia(); ?>"><img src="resources/images/editar.png"> Editar</a></li>
-                                    <li><a href="?controller=Dependencia&action=Eliminar&idDependencia=<?php echo $vwDependencia->getIdDependencia(); ?>"><img src="resources/images/eliminar.png"> Eliminar</a></li>
+                                    <li><a href="?controller=Area&action=Detalle&idArea=<?php echo $vwArea->getIdArea(); ?>">Detalle</a></li>
+                                    <li><a href="?controller=Area&action=Editar&idArea=<?php echo $vwArea->getIdArea(); ?>">Editar</a></li>
+                                    <li><a href="?controller=Area&action=Eliminar&idArea=<?php echo $vwArea->getIdArea(); ?>">Eliminar</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -73,7 +75,7 @@
                     </tbody>
                     <tfoot>          
                         <tr>
-                            <td colspan="2"><a class="crearLink" href="?controller=Dependencia&action=Crear">Crear Dependencia</a></td>
+                            <td colspan="2"><a class="crearLink" href="?controller=Area&action=Crear">Crear Área</a></td>
                         </tr>
                     </tfoot>
                 </table>

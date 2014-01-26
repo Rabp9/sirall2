@@ -184,7 +184,7 @@ button.btnSeleccionarRepuesto {
     background-color: #D2E9F2;
 }
 
-#ulDependencia {
+#ulArea {
     height: 400px;
     overflow: scroll;
 }
