@@ -57,7 +57,7 @@
                 return;
             }
             if(isset($_GET['idEstablecimiento'])) {
-                $establecimiento = current(EstablecimientoDAO::getVwBy("idEstablecimiento", $_GET['idEstablecimiento']));
+                $vwEstablecimiento = current(EstablecimientoDAO::getVwBy("idEstablecimiento", $_GET['idEstablecimiento']));
                 require_once './views/Mantenimiento/Establecimiento/Detalle.php';
             }
         }
@@ -101,7 +101,7 @@
                 return;
             }
             if(isset($_GET['idEstablecimiento'])) {
-                $establecimiento = current(EstablecimientoDAO::getVwBy("idEstablecimiento", $_GET['idEstablecimiento']));
+                $vwEstablecimiento = current(EstablecimientoDAO::getVwBy("idEstablecimiento", $_GET['idEstablecimiento']));
                 require_once './views/Mantenimiento/Establecimiento/Eliminar.php';
             }
         }

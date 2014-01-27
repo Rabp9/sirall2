@@ -43,12 +43,11 @@
                 $personal->setRpm($_POST['rpm']);
                 $personal->setAnexo($_POST['anexo']);
                 $personal->activar();
-                var_dump($_POST);
-                PersonalDAO::crearUSP($personal->getIdPersonal(), $personal->getNombres(), $personal->getApellidoPaterno(), $personal->getApellidoMaterno(), $personal->getCorreo(), $personal->getRpm(), $personal->getAnexo(), $_POST["idArea"], $$_POST["idEstablecimiento"]) ?
+                PersonalDAO::crearUSP($personal->getIdPersonal(), $personal->getNombres(), $personal->getApellidoPaterno(), $personal->getApellidoMaterno(), $personal->getCorreo(), $personal->getRpm(), $personal->getAnexo(), $_POST["idArea"]) ?
                     $mensaje = "Personal guardado correctamente" :
                     $mensaje = "El Personal no fue guardado correctamente";
             }
-            $vwPersonals = PersonalDAO::getVwPersonal();
+            $vwPersonales = PersonalDAO::getVwPersonal();
             require_once './views/Mantenimiento/Personal/Lista.php';
         }
         
@@ -57,11 +56,9 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            if(isset($_GET['idUsuario'])) {
-                $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
-                $dependencia = current(UsuarioDAO::getBy("idDependencia", $usuario->getIdDependencia()));
-                $establecimiento = EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento());
-                require_once './views/Mantenimiento/Usuario/Detalle.php';
+            if(isset($_GET['idPersonal'])) {
+                $vwPersonal = current(PersonalDAO::getVwBy("idPersonal", $_GET['idPersonal']));
+                require_once './views/Mantenimiento/Personal/Detalle.php';
             }
         }
         
@@ -70,11 +67,9 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            if(isset($_GET['idUsuario'])) {
-                $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
-                $establecimientos = current(EstablecimientoDAO::getAll());
-                $dependencias = DependenciaDAO::getAll();   
-                require_once './views/Mantenimiento/Usuario/Editar.php';
+            if(isset($_GET['idPersonal'])) {
+                $personal = current(PersonalDAO::getBy("idPersonal", $_GET['idPersonal']));
+                require_once './views/Mantenimiento/Personal/Editar.php';
             }
         }
         

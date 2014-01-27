@@ -12,14 +12,18 @@
         private $establecimeinto;
         private $nombreCompleto;
         private $correo;
+        private $rpm;
+        private $anexo;
         
-        public function __construct($idPersonal = "", $area = "", $areaGeneral = "", $establecimiento = "", $nombreCompleto= "", $correo = "") {
+        public function __construct($idPersonal = "", $area = "", $areaGeneral = "", $establecimiento = "", $nombreCompleto= "", $correo = "", $rpm = "", $anexo = "") {
             $this->idPersonal = $idPersonal;
             $this->area = $area;
             $this->areaGeneral = $areaGeneral;
             $this->establecimeinto = $establecimiento;
             $this->nombreCompleto = $nombreCompleto;
             $this->correo = $correo;
+            $this->rpm = $rpm;
+            $this->anexo = $anexo;
         }
         
         // <editor-fold defaultstate="collapsed" desc="Sets y Gets">
@@ -71,7 +75,23 @@
         public function getCorreo() {
             return $this->correo;
         }
-     
+      
+        public function setRpm($rpm) {
+            $this->rpm = $rpm;
+        }
+        
+        public function getRpm() {
+            return $this->rpm;
+        }   
+        
+        public function setAnexo($anexo) {
+            $this->anexo = $anexo;
+        }
+        
+        public function getAnexo() {
+            return $this->anexo;
+        }
+        
         // </editor-fold>
         
         public function toArray() {

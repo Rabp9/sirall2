@@ -24,7 +24,7 @@
                 isRequired($('#cboRol'));
                 $('#btnEnviar').button();
                 $('#btnBorrar').button();
-                $('#txtNombres').focus();
+                $('#txtIdPersonal').focus();
                 $('#asistente').tabs();
                 
                 $('div#asistente div:not(:first)').append("<button class='prev' type='button'>Anterior</button>");
@@ -81,7 +81,7 @@
                                 <table>
                                     <tr>
                                         <td><label for="txtIdPersonal"><abbr title="Código identificador">ID.</abbr> Personal</label></td>
-                                        <td><input id="txtIdPersonal" type="text" name="idPersonal" maxlength="7"></td>
+                                        <td><input id="txtIdPersonal" type="text" name="idPersonal" maxlength="7" pattern="[0-9]{7,7}" placeholder="Código de Personal"></td>
                                     </tr>
                                     <tr>
                                         <td><label for="txtNombres">Nombres</label></td>
