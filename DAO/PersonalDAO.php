@@ -27,23 +27,22 @@
         }
                
         public static function getBy($campo, $valor) {
-            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Usuario where $campo = :$campo");
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Personal where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
             $result->execute();
             while ($rs = $result->fetch()) {
-                $usuario = new Usuario();
-                $usuario->setIdUsuario($rs['idUsuario']);
-                $usuario->setIdDependencia($rs['idDependencia']);
-                $usuario->setNombres($rs['nombres']);
-                $usuario->setApellidoPaterno($rs['apellidoPaterno']);
-                $usuario->setApellidoMaterno($rs['apellidoMaterno']);
-                $usuario->setCorreo($rs['correo']);
-                $usuario->setRpm($rs['rpm']);
-                $usuario->setAnexo($rs['anexo']);
-                $usuario->setEstado($rs['estado']);
-                $usuarios[] = $usuario; 
+                $personal = new Personal();
+                $personal->setIdPersonal($rs['idPersonal']);
+                $personal->setNombres($rs['nombres']);
+                $personal->setApellidoPaterno($rs['apellidoPaterno']);
+                $personal->setApellidoMaterno($rs['apellidoMaterno']);
+                $personal->setCorreo($rs['correo']);
+                $personal->setRpm($rs['rpm']);
+                $personal->setAnexo($rs['anexo']);
+                $personal->setEstado($rs['estado']);
+                $personales[] = $personal; 
             }
-            return isset($usuarios) ? $usuarios : false;
+            return isset($personales) ? $personales : false;
         }
         
         public static function crear($personal) {
@@ -97,6 +96,8 @@
                 $vwPersonal->setEstablecimiento($rs['establecimiento']);
                 $vwPersonal->setNombreCompleto($rs['nombreCompleto']);
                 $vwPersonal->setCorreo($rs['correo']);
+                $vwPersonal->setRpm($rs['rpm']);
+                $vwPersonal->setAnexo($rs['anexo']);
                 $vwPersonales[] = $vwPersonal; 
             }
             return isset($vwPersonales) ? $vwPersonales : false;
@@ -118,8 +119,8 @@
             return isset($vwUsuarios) ? $vwUsuarios : false;
         }
         
-        public static function crearUSP($idPersonal, $nombres, $apellidoPaterno, $apellidoMaterno, $correo, $rpm, $anexo, $idArea, $idEstablecimiento) {
-            $result = BaseDatos::getDbh()->prepare("call usp_crearPersonal(:idPersonal, :nombres, :apellidoPaterno, :apellidoMaterno, :correo, :rpm, :anexo, :idArea, :idEstablecimiento)");
+        public static function crearUSP($idPersonal, $nombres, $apellidoPaterno, $apellidoMaterno, $correo, $rpm, $anexo, $idArea) {
+            $result = BaseDatos::getDbh()->prepare("call usp_crearPersonal(:idPersonal, :nombres, :apellidoPaterno, :apellidoMaterno, :correo, :rpm, :anexo, :idArea)");
             $result->bindParam(':idPersonal', $idPersonal);
             $result->bindParam(':nombres', $nombres);
             $result->bindParam(':apellidoPaterno', $apellidoPaterno);
@@ -128,11 +129,26 @@
             $result->bindParam(':rpm', $rpm);
             $result->bindParam(':anexo', $anexo);
             $result->bindParam(':idArea', $idArea);
-            $result->bindParam(':idEstablecimiento', $idEstablecimiento);
+            return $result->execute();
+        }
+          
+        public static function getVwBy($campo, $valor) {
+            $result = BaseDatos::getDbh()->prepare("SELECT * FROM Vw_Personal where $campo = :$campo");
+            $result->bindParam(":$campo", $valor);
             $result->execute();
-            $rs = $result->fetch();
-            var_dump($rs);
-            return;
+            while ($rs = $result->fetch()) {
+                $vwPersonal = new VwPersonal();
+                $vwPersonal->setIdPersonal($rs['idPersonal']);
+                $vwPersonal->setArea($rs['area']);
+                $vwPersonal->setAreaGeneral ($rs['areaGeneral']);
+                $vwPersonal->setEstablecimiento($rs['establecimiento']);
+                $vwPersonal->setNombreCompleto($rs['nombreCompleto']);
+                $vwPersonal->setCorreo($rs['correo']);
+                $vwPersonal->setRpm($rs['rpm']);
+                $vwPersonal->setAnexo($rs['anexo']);
+                $vwPersonales[] = $vwPersonal; 
+            }
+            return isset($vwPersonales) ? $vwPersonales : false;
         }
         
     }

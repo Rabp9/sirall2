@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Usuario/Editar.php -->
+<!-- File: /views/Mantenimiento/Personal/Editar.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -22,8 +22,8 @@
                 isRequired($('#txtApellidoPaterno'));
                 isRequired($('#txtApellidoMaterno'));
                 isRequired($('#cboRol'));
-                setValue($('#txtIdUsuario'), '<?php echo $usuario->getIdUsuario(); ?>');
-                setValue($('#hdnDependencia'), '<?php echo $usuario->getIdDependencia(); ?>');
+                setValue($('#txtIdPersonal'), '<?php echo $personal->getIdPersonal(); ?>');
+                setValue($('#hdnArea'), '<?php echo $usuario->getIdDependencia(); ?>');
                 setValue($('#txtNombres'), '<?php echo $usuario->getNombres(); ?>');
                 setValue($('#txtApellidoPaterno'), '<?php echo $usuario->getApellidoPaterno(); ?>');
                 setValue($('#txtApellidoMaterno'), '<?php echo $usuario->getApellidoMaterno(); ?>');

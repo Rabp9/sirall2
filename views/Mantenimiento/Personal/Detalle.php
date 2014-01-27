@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Usuario/Detalle.php -->
+<!-- File: /views/Mantenimiento/Personal/Detalle.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -13,7 +13,7 @@
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/jquery.codaPopupBubbles.js"></script>
 
-        <title>SIRALL2 - Detalle Usuario</title>
+        <title>SIRALL2 - Detalle Personal</title>
     </head>
     <body>
         <aside>
@@ -28,57 +28,53 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Detalle Usuario</h2>
-                        <h4>Detalla la información del Usuario</h4>
+                        <h2>Detalle Personal</h2>
+                        <h4>Detalla la información del Personal</h4>
                     </hgroup>
                 </header>
                 <fieldset>
-                    <legend>Detalle Usuario</legend>
+                    <legend>Detalle Personal</legend>
                     <table>
                         <tr>
-                            <td><strong><abbr title="Código identificador">ID.</abbr> Usuario:</strong></td>
-                            <td><?php echo $usuario->getIdUsuario(); ?></td>
+                            <td><strong><abbr title="Código identificador">ID.</abbr> Personal:</strong></td>
+                            <td><?php echo $vwPersonal->getIdPersonal(); ?></td>
                         </tr>
                         <tr>
-                            <td><strong>Dependencia:</strong></td>
-                            <td><?php echo $dependencia->getDescripcion(); ?></td>  
+                            <td><strong>Área:</strong></td>
+                            <td><?php echo $vwPersonal->getArea(); ?></td>  
+                        </tr>
+                        <tr>
+                            <td><strong>Área General:</strong></td>
+                            <td><?php echo $vwPersonal->getAreaGeneral(); ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Establecimiento:</strong></td>
-                            <td><?php echo $establecimiento->getDescripcion(); ?></td>  
+                            <td><?php echo $vwPersonal->getEstablecimiento(); ?></td>  
                         </tr>
                         <tr>
-                            <td><strong>Nombres:</strong></td>
-                            <td><?php echo $usuario->getNombres(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Apellido Paterno:</strong></td>
-                            <td><?php echo $usuario->getApellidoPaterno(); ?></td>  
-                        </tr>
-                        <tr>
-                            <td><strong>Apellido Materno:</strong></td>
-                            <td><?php echo $usuario->getApellidoMaterno(); ?></td>  
+                            <td><strong>Nombre Completo:</strong></td>
+                            <td><?php echo $vwPersonal->getNombreCompleto(); ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Correo:</strong></td>
-                            <td><?php echo $usuario->getCorreo(); ?></td>  
+                            <td><?php echo $vwPersonal->getCorreo(); ?></td>  
                         </tr>
                         <tr>
                             <td><strong>RPM:</strong></td>
-                            <td><?php echo $usuario->getRpm(); ?></td>  
+                            <td><?php echo $vwPersonal->getRpm(); ?></td>  
                         </tr>
                         <tr>
                             <td><strong>Anexo:</strong></td>
-                            <td><?php echo $usuario->getAnexo(); ?></td>  
+                            <td><?php echo $vwPersonal->getAnexo(); ?></td>  
                         </tr>
                         <tr>
                             <td>
-                                <a class="aEditar" href="?controller=Usuario&action=Editar&idUsuario=<?php echo $usuario->getIdUsuario(); ?>">Editar</a> |
-                                <a class="aEliminar" href="?controller=Usuario&action=Eliminar&idUsuario=<?php echo $usuario->getIdUsuario(); ?>">Eliminar</a>
+                                <a class="aEditar" href="?controller=Personal&action=Editar&idPersonal=<?php echo $vwPersonal->getIdPersonal(); ?>">Editar</a> |
+                                <a class="aEliminar" href="?controller=Personal&action=Eliminar&idPersonal=<?php echo $vwPersonal->getIdPersonal(); ?>">Eliminar</a>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2"><a href="?controller=Usuario">Regresar</a></td>
+                            <td colspan="2"><a href="?controller=Personal">Regresar</a></td>
                         </tr>
                     </table>
                 </fieldset>

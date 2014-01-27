@@ -18,8 +18,8 @@
                 $.ajax({
                     url: 'resources/xml/LaLibertad.xml',
                     success: function(data) {
-                        var codigoProvincia = "<?php echo $establecimiento->getProvincia(); ?>";
-                        var codigoDistrito = "<?php echo $establecimiento->getDistrito(); ?>";
+                        var codigoProvincia = "<?php echo $vwEstablecimiento->getProvincia(); ?>";
+                        var codigoDistrito = "<?php echo $vwEstablecimiento->getDistrito(); ?>";
                         
                         var provincia = $(data).find("Provincia[codigo=" + codigoProvincia + "]").attr("nombre");
                         var distrito = $(data).find("Distrito[codigo=" + codigoDistrito + "]").text();
@@ -53,51 +53,51 @@
                 <form id="frmEliminarEstablecimiento" method="POST" action="?controller=Establecimiento&action=EliminarPOST">
                      <fieldset>
                         <legend>Eliminar Establecimiento</legend>
-                        <input id="idEstablecimiento" type="hidden" value="<?php echo $establecimiento->getIdEstablecimiento(); ?>" name="idEstablecimiento"/>
+                        <input id="idEstablecimiento" type="hidden" value="<?php echo $vwEstablecimiento->getIdEstablecimiento(); ?>" name="idEstablecimiento"/>
                         <table>
                             <tr>
                                 <td><strong><abbr title="Código identificador">ID.</abbr> Establecimiento:</strong></td>
-                                <td><?php echo $establecimiento->getIdEstablecimiento(); ?></td>
+                                <td><?php echo $vwEstablecimiento->getIdEstablecimiento(); ?></td>
                             </tr>
                             <tr>
                                 <td><strong>Descripción:</strong></td>
-                                <td><?php echo $establecimiento->getDescripcion(); ?></td>  
+                                <td><?php echo $vwEstablecimiento->getDescripcion(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Dirección:</strong></td>
-                                <td><?php echo $establecimiento->getDireccion(); ?></td>  
+                                <td><?php echo $vwEstablecimiento->getDireccion(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Nivel:</strong></td>
-                                <td><?php echo $establecimiento->getNivel(); ?></td>  
+                                <td><?php echo $vwEstablecimiento->getNivel(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Tipo CAS:</strong></td>
-                                <td><?php echo $establecimiento->getTipoCAS(); ?></td>  
+                                <td><?php echo $vwEstablecimiento->getTipoCAS(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Situación:</strong></td>
-                                <td><?php echo $establecimiento->getSituacion(); ?></td>  
+                                <td><?php echo $vwEstablecimiento->getSituacion(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Provincia:</strong></td>
-                                <td class="Provincia"><?php echo $establecimiento->getProvincia(); ?></td>  
+                                <td class="Provincia"><?php echo $vwEstablecimiento->getProvincia(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Distrito:</strong></td>
-                                <td class="Distrito"><?php echo $establecimiento->getDistrito(); ?></td>  
+                                <td class="Distrito"><?php echo $vwEstablecimiento->getDistrito(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Teléfono:</strong></td>
-                                <td><?php echo $establecimiento->getTelefono(); ?></td>  
+                                <td><?php echo $vwEstablecimiento->getTelefono(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>RPM:</strong></td>
-                                <td><?php echo $establecimiento->getRpm(); ?></td>  
+                                <td><?php echo $vwEstablecimiento->getRpm(); ?></td>  
                             </tr>
                             <tr>
-                                <td><strong>Número de Dependencias:</strong></td>
-                                <td><?php echo $establecimiento->getNumDependencia(); ?></td>  
+                                <td><strong>Número de Áreas:</strong></td>
+                                <td><?php echo $vwEstablecimiento->getNumArea(); ?></td>  
                             </tr>
                             <tr>
                                 <td></td>
