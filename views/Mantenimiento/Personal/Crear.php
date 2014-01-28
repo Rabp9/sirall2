@@ -100,7 +100,7 @@
                             <div id="institucional">
                                 <table>
                                     <tr>
-                                        <td><label for="btnAreaSuperior">Area Superior</label></td>
+                                        <td><label for="btnAreaSuperior">Área Superior</label></td>
                                         <td>
                                             <button id="btnAreaSuperior" type="button">Seleccionar</button>
                                             <span id="txtAreaSeleccionada"></span>

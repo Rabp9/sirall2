@@ -4,6 +4,7 @@
     require_once './controllers/AppController.php';
     require_once './DAO/PersonalDAO.php';
     require_once './DAO/EstablecimientoDAO.php';
+    require_once './DAO/PersonalAreaDetalleDAO.php';
     require_once './DAO/AreaDAO.php';
     require_once './DAO/RolDAO.php';
     
@@ -68,28 +69,31 @@
                 return;
             }
             if(isset($_GET['idPersonal'])) {
+                $establecimientos = EstablecimientoDAO::getAll();
+                $areas = AreaDAO::getAll();
                 $personal = current(PersonalDAO::getBy("idPersonal", $_GET['idPersonal']));
+                $personalAreaDetalle = current(PersonalAreaDetalleDAO::getBy("idPersonal", $_GET['idPersonal']));
                 require_once './views/Mantenimiento/Personal/Editar.php';
             }
         }
         
         public static function EditarPOSTAction() {
             if(isset($_POST)) {
-                $usuario = new Usuario();
-                $usuario->setIdUsuario($_POST['idUsuario']);
-                $usuario->setIdDependencia($_POST['idDependencia']);
-                $usuario->setNombres($_POST['nombres']);
-                $usuario->setApellidoPaterno($_POST['apellidoPaterno']);
-                $usuario->setApellidoMaterno($_POST['apellidoMaterno']);
-                $usuario->setCorreo($_POST['correo']);
-                $usuario->setRpm($_POST['rpm']);
-                $usuario->setAnexo($_POST['anexo']);
-                UsuarioDAO::editar($usuario) ?
-                    $mensaje = "Usuario modificado correctamente" :
-                    $mensaje = "El Usuario no fue modificado correctamente";
+               $personal = new Personal();
+                $personal->setIdPersonal($_POST['idPersonal']);
+                $personal->setNombres($_POST['nombres']);
+                $personal->setApellidoPaterno($_POST['apellidoPaterno']);
+                $personal->setApellidoMaterno($_POST['apellidoMaterno']);
+                $personal->setCorreo($_POST['correo']);
+                $personal->setRpm($_POST['rpm']);
+                $personal->setAnexo($_POST['anexo']);
+                $personal->activar();
+                PersonalDAO::editarUSP($personal->getIdPersonal(), $personal->getNombres(), $personal->getApellidoPaterno(), $personal->getApellidoMaterno(), $personal->getCorreo(), $personal->getRpm(), $personal->getAnexo(), $_POST["idArea"]) ?
+                    $mensaje = "Personal modificado correctamente" :
+                    $mensaje = "El Personal no fue modificado correctamente";
             }
-            $vwUsuarios = UsuarioDAO::getVwUsuario();
-            require_once './views/Mantenimiento/Usuario/Lista.php';
+            $vwPersonales = PersonalDAO::getVwPersonal();
+            require_once './views/Mantenimiento/Personal/Lista.php';
         }
         
         public static function EliminarAction() {
