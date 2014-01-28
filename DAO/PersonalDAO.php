@@ -131,7 +131,20 @@
             $result->bindParam(':idArea', $idArea);
             return $result->execute();
         }
-          
+        
+        public static function editarUSP($idPersonal, $nombres, $apellidoPaterno, $apellidoMaterno, $correo, $rpm, $anexo, $idArea) {
+            $result = BaseDatos::getDbh()->prepare("call usp_editarPersonal(:idPersonal, :nombres, :apellidoPaterno, :apellidoMaterno, :correo, :rpm, :anexo, :idArea)");
+            $result->bindParam(':idPersonal', $idPersonal);
+            $result->bindParam(':nombres', $nombres);
+            $result->bindParam(':apellidoPaterno', $apellidoPaterno);
+            $result->bindParam(':apellidoMaterno', $apellidoMaterno);
+            $result->bindParam(':correo', $correo);
+            $result->bindParam(':rpm', $rpm);
+            $result->bindParam(':anexo', $anexo);
+            $result->bindParam(':idArea', $idArea);
+            return $result->execute();
+        }
+        
         public static function getVwBy($campo, $valor) {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Vw_Personal where $campo = :$campo");
             $result->bindParam(":$campo", $valor);
