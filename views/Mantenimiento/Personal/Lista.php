@@ -41,10 +41,10 @@
                     <thead>
                         <tr>
                             <th><abbr title="Código identificador">ID.</abbr> Personal</th>
+                            <th>Nombre Completo</th>
                             <th>Área</th>
                             <th>Área General</th>
                             <th>Establecimeinto</th>
-                            <th>Nombre Completo</th>
                             <th>Correo</th>
                             <th></th>
                         </tr>
@@ -56,10 +56,10 @@
                         ?>
                         <tr>
                             <td><?php echo $vwPersonal->getIdPersonal(); ?></td>
+                            <td><?php echo $vwPersonal->getNombreCompleto(); ?></td>
                             <td><?php echo $vwPersonal->getArea(); ?></td>
                             <td><?php echo $vwPersonal->getAreaGeneral(); ?></td>
                             <td><?php echo $vwPersonal->getEstablecimiento(); ?></td>
-                            <td><?php echo $vwPersonal->getNombreCompleto(); ?></td>
                             <td><?php echo $vwPersonal->getCorreo(); ?></td>
                             <td>
                                 <button class="select">Acciones</button>
