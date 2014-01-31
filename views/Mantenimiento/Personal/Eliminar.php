@@ -1,4 +1,4 @@
-<!-- File: /views/Mantenimiento/Usuario/Eliminar.php -->
+<!-- File: /views/Mantenimiento/Personal/Eliminar.php -->
 
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +14,7 @@
         <script type="text/javascript" src="resources/js/jquery.codaPopupBubbles.js"></script>
         <script type="text/javascript" src="resources/js/template.eliminar.js"></script>
         
-        <title>SIRALL2 - Eliminar Usuario</title>
+        <title>SIRALL2 - Eliminar Personal</title>
     </head>
     <body>
         <aside>
@@ -29,50 +29,46 @@
             <article>
                 <header>
                     <hgroup>
-                        <h2>Eliminar Usuario</h2>
-                        <h4>¿Está seguro de eliminar el Usuario?</h4>
+                        <h2>Eliminar Personal</h2>
+                        <h4>¿Está seguro de eliminar el Personal?</h4>
                     </hgroup>
                 </header>
-                <form id="frmEliminarUsuario" method="POST" action="?controller=Usuario&action=EliminarPOST">
+                <form id="frmEliminarPersonal" method="POST" action="?controller=Personal&action=EliminarPOST">
                      <fieldset>
-                        <legend>Eliminar Usuario</legend>
-                        <input id="idUsuario" type="hidden" value="<?php echo $usuario->getIdUsuario(); ?>" name="idUsuario"/>
+                        <legend>Eliminar Personal</legend>
+                        <input id="idPersonal" type="hidden" value="<?php echo $vwPersonal->getIdPersonal(); ?>" name="idPersonal"/>
                         <table>
                             <tr>
-                                <td><strong><abbr title="Código identificador">ID.</abbr> Usuario:</strong></td>
-                                <td><?php echo $usuario->getIdUsuario(); ?></td>
+                                <td><strong><abbr title="Código identificador">ID.</abbr> Personal:</strong></td>
+                                <td><?php echo $vwPersonal->getIdPersonal(); ?></td>
                             </tr>
                             <tr>
-                                <td><strong>Dependencia:</strong></td>
-                                <td><?php echo $dependencia->getDescripcion(); ?></td>  
+                                <td><strong>Área:</strong></td>
+                                <td><?php echo $vwPersonal->getArea(); ?></td>  
+                            </tr>
+                            <tr>
+                                <td><strong>Área General:</strong></td>
+                                <td><?php echo $vwPersonal->getAreaGeneral(); ?></td>  
                             </tr>
                             <tr>
                                 <td><strong>Establecimiento:</strong></td>
-                                <td><?php echo $establecimiento->getDescripcion(); ?></td>  
+                                <td><?php echo $vwPersonal->getEstablecimiento(); ?></td>  
                             </tr>
                             <tr>
-                                <td><strong>Nombres:</strong></td>
-                                <td><?php echo $usuario->getNombres(); ?></td>  
-                            </tr>
-                            <tr>
-                                <td><strong>Apellido Paterno:</strong></td>
-                                <td><?php echo $usuario->getApellidoPaterno(); ?></td>  
-                            </tr>
-                            <tr>
-                                <td><strong>Apellido Materno:</strong></td>
-                                <td><?php echo $usuario->getApellidoMaterno(); ?></td>  
+                                <td><strong>Nombre Completo:</strong></td>
+                                <td><?php echo $vwPersonal->getNombreCompleto(); ?></td>
                             </tr>
                             <tr>
                                 <td><strong>Correo:</strong></td>
-                                <td><?php echo $usuario->getCorreo(); ?></td>  
+                                <td><?php echo $vwPersonal->getCorreo(); ?></td>
                             </tr>
                             <tr>
                                 <td><strong>RPM:</strong></td>
-                                <td><?php echo $usuario->getRpm(); ?></td>  
+                                <td><?php echo $vwPersonal->getRpm(); ?></td>
                             </tr>
                             <tr>
                                 <td><strong>Anexo:</strong></td>
-                                <td><?php echo $usuario->getAnexo(); ?></td>  
+                                <td><?php echo $vwPersonal->getAnexo(); ?></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -81,14 +77,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2"><a href="?controller=Establecimiento">Regresar</a></td>
+                                <td colspan="2"><a href="?controller=Personal">Regresar</a></td>
                             </tr>
                         </table>
                     </fieldset>
                 </form>
                 <!-- Ventana de diálogo confirmar -->
                 <div id="confirmar" title="Advertencia">
-                    <p>¿Está seguro de eliminar el Usuario?</p>
+                    <p>¿Está seguro de eliminar el Personal?</p>
                 </div>
             </article>
         </section>

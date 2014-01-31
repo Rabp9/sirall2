@@ -144,6 +144,12 @@
             $result->bindParam(':idArea', $idArea);
             return $result->execute();
         }
+           
+        public static function eliminarUSP($idPersonal) {
+            $result = BaseDatos::getDbh()->prepare("call usp_eliminarPersonal(:idPersonal)");
+            $result->bindParam(':idPersonal', $idPersonal);
+            return $result->execute();
+        }
         
         public static function getVwBy($campo, $valor) {
             $result = BaseDatos::getDbh()->prepare("SELECT * FROM Vw_Personal where $campo = :$campo");

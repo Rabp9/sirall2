@@ -72,7 +72,8 @@
                 $establecimientos = EstablecimientoDAO::getAll();
                 $areas = AreaDAO::getAll();
                 $personal = current(PersonalDAO::getBy("idPersonal", $_GET['idPersonal']));
-                $personalAreaDetalle = current(PersonalAreaDetalleDAO::getBy("idPersonal", $_GET['idPersonal']));
+                if(is_array(PersonalAreaDetalleDAO::getBy("idPersonal", $_GET['idPersonal'])))
+                    $personalAreaDetalle = current(PersonalAreaDetalleDAO::getBy("idPersonal", $_GET['idPersonal']));
                 require_once './views/Mantenimiento/Personal/Editar.php';
             }
         }
@@ -101,24 +102,22 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            if(isset($_GET['idUsuario'])) {
-                $usuario = current(UsuarioDAO::getBy("idUsuario", $_GET['idUsuario']));
-                $dependencia = current(DependenciaDAO::getBy("idDependencia", $usuario->getIdDependencia()));
-                $establecimiento = current(EstablecimientoDAO::getBy("idEstablecimiento", $dependencia->getIdEstablecimiento()));
-                require_once './views/Mantenimiento/Usuario/Eliminar.php';
+            if(isset($_GET['idPersonal'])) {
+                $vwPersonal = current(PersonalDAO::getVwBy("idPersonal", $_GET['idPersonal']));
+                require_once './views/Mantenimiento/Personal/Eliminar.php';
             }
         }
         
         public static function EliminarPOSTAction() {
             if(isset($_POST)) {
-                $usuario = new Usuario();
-                $usuario->setIdUsuario($_POST['idUsuario']);
-                UsuarioDAO::eliminar($usuario) ?
-                    $mensaje = "Usuario eliminado correctamente" :
-                    $mensaje = "El Usuario no fue eliminado correctamente";
+                $personal = new Personal();
+                $personal->setIdPersonal($_POST['idPersonal']);
+                PersonalDAO::eliminarUSP($personal->getIdPersonal()) ?
+                    $mensaje = "Personal eliminado correctamente" :
+                    $mensaje = "El Personal no fue eliminado correctamente";
             }
-            $vwUsuarios = UsuarioDAO::getVwUsuario();
-            require_once './views/Mantenimiento/Usuario/Lista.php';
+            $vwPersonales = PersonalDAO::getVwPersonal();
+            require_once './views/Mantenimiento/Personal/Lista.php';
         }
         
         public static function usuarioAJAXAction() {
