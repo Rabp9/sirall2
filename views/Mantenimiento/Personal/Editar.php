@@ -23,7 +23,6 @@
                 isRequired($('#txtApellidoMaterno'));
                 isRequired($('#cboRol'));
                 setValue($('#txtIdPersonal'), '<?php echo $personal->getIdPersonal(); ?>');
-                setValue($('#hdnArea'), '<?php echo $personalAreaDetalle->getIdArea(); ?>');    
                 setValue($('#txtNombres'), '<?php echo $personal->getNombres(); ?>');
                 setValue($('#txtApellidoPaterno'), '<?php echo $personal->getApellidoPaterno(); ?>');
                 setValue($('#txtApellidoMaterno'), '<?php echo $personal->getApellidoMaterno(); ?>');
@@ -53,16 +52,20 @@
                 $('button.prev').button();
                 // ASISTENTE FIN
                 
-                // INICIO Editar Seleccionar Area
-                var idArea = '<?php echo $personalAreaDetalle->getIdArea(); ?>';
-                $("#ulArea li button").not($("button[title='Establecimiento']")).find("input[value='" + idArea + "']").parent().parent().parent().parent().find('button:eq(0)').addClass('selected');
-                var $areaSeleccionada = $("#ulArea li button.selected"); 
-                var $establecimientoSeleccionada = $areaSeleccionada.parents().filter($('li')).find($("button[title='Establecimiento']"));
-                $('#txtAreaSeleccionada').html($areaSeleccionada.text() + " (" + $establecimientoSeleccionada.text() + ")");
-                $('#hdnEstablecimiento').val($establecimientoSeleccionada.find('input').val());
-                if($establecimientoSeleccionada.find('input').val() !== $areaSeleccionada.find('input').val())
-                    $('#hdnArea').val($areaSeleccionada.find('input').val());
-                // FIN Editar Seleccionar Area    
+                <?php
+                    if(isset($personalAreaDetalle)) {
+                ?>
+                        // INICIO Editar Seleccionar Area
+                        setValue($('#hdnArea'), '<?php echo $personalAreaDetalle->getIdArea(); ?>');    
+                        var idArea = '<?php echo $personalAreaDetalle->getIdArea(); ?>';
+                        $("#ulArea li button").not($("button[title='Establecimiento']")).find("input[value='" + idArea + "']").parent().parent().find('button:eq(0)').addClass('selected');
+                        var $areaSeleccionada = $("#ulArea li button.selected"); 
+                        var $establecimientoSeleccionada = $areaSeleccionada.parents().filter($('li')).find($("button[title='Establecimiento']"));
+                        $('#txtAreaSeleccionada').html($areaSeleccionada.text() + " (" + $establecimientoSeleccionada.text() + ")");   
+                        // FIN Editar Seleccionar Area
+                 <?php
+                    }
+                ?>
             });
         </script>
         

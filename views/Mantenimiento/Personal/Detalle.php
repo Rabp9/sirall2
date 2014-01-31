@@ -53,19 +53,19 @@
                         </tr>
                         <tr>
                             <td><strong>Nombre Completo:</strong></td>
-                            <td><?php echo $vwPersonal->getNombreCompleto(); ?></td>  
+                            <td><?php echo $vwPersonal->getNombreCompleto(); ?></td>
                         </tr>
                         <tr>
                             <td><strong>Correo:</strong></td>
-                            <td><?php echo $vwPersonal->getCorreo(); ?></td>  
+                            <td><?php echo $vwPersonal->getCorreo(); ?></td>
                         </tr>
                         <tr>
                             <td><strong>RPM:</strong></td>
-                            <td><?php echo $vwPersonal->getRpm(); ?></td>  
+                            <td><?php echo $vwPersonal->getRpm(); ?></td>
                         </tr>
                         <tr>
                             <td><strong>Anexo:</strong></td>
-                            <td><?php echo $vwPersonal->getAnexo(); ?></td>  
+                            <td><?php echo $vwPersonal->getAnexo(); ?></td>
                         </tr>
                         <tr>
                             <td>
