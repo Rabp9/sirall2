@@ -58,23 +58,22 @@
             return $result->execute();
         }
            
-        public static function editar($usuario) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Usuario SET idDependencia = :idDependencia, nombres = :nombres, apellidoPaterno = :apellidoPaterno, apellidoMaterno = :apellidoMaterno, correo = :correo, rpm = :rpm, anexo = :anexo, estado = :estado WHERE idUsuario = :idUsuario");
-            $result->bindParam(':idDependencia', $usuario->getIdDependencia());
-            $result->bindParam(':nombres', $usuario->getNombres());
-            $result->bindParam(':apellidoPaterno', $usuario->getApellidoPaterno());
-            $result->bindParam(':apellidoMaterno', $usuario->getApellidoMaterno());
-            $result->bindParam(':correo', $usuario->getCorreo());
-            $result->bindParam(':rpm', $usuario->getRpm());
-            $result->bindParam(':anexo', $usuario->getAnexo());
-            $result->bindParam(':estado', $usuario->getEstado());
-            $result->bindParam(':idUsuario', $usuario->getIdUsuario());
+        public static function editar($personal) {
+            $result = BaseDatos::getDbh()->prepare("UPDATE Personal SET nombres = :nombres, apellidoPaterno = :apellidoPaterno, apellidoMaterno = :apellidoMaterno, correo = :correo, rpm = :rpm, anexo = :anexo, estado = :estado WHERE idPersonal = :idPersonal");
+            $result->bindParam(':nombres', $personal->getNombres());
+            $result->bindParam(':apellidoPaterno', $personal->getApellidoPaterno());
+            $result->bindParam(':apellidoMaterno', $personal->getApellidoMaterno());
+            $result->bindParam(':correo', $personal->getCorreo());
+            $result->bindParam(':rpm', $personal->getRpm());
+            $result->bindParam(':anexo', $personal->getAnexo());
+            $result->bindParam(':estado', $personal->getEstado());
+            $result->bindParam(':idPersonal', $personal->getIdPersonal());
             return $result->execute();
         }
         
-        public static function eliminar($usuario) {
-            $result = BaseDatos::getDbh()->prepare("UPDATE Usuario SET estado = 2 WHERE idUsuario = :idUsuario");
-            $result->bindParam(':idUsuario', $usuario->getIdUsuario());
+        public static function eliminar($personal) {
+            $result = BaseDatos::getDbh()->prepare("UPDATE Personal SET estado = 2 WHERE idPersonal = :idPersonal");
+            $result->bindParam(':idPersonal', $personal->getIdPersonal());
             return $result->execute();
         }
         
@@ -91,9 +90,6 @@
             while ($rs = $result->fetch()) {
                 $vwPersonal = new VwPersonal();
                 $vwPersonal->setIdPersonal($rs['idPersonal']);
-                $vwPersonal->setArea($rs['area']);
-                $vwPersonal->setAreaGeneral($rs['areaGeneral']);
-                $vwPersonal->setEstablecimiento($rs['establecimiento']);
                 $vwPersonal->setNombreCompleto($rs['nombreCompleto']);
                 $vwPersonal->setCorreo($rs['correo']);
                 $vwPersonal->setRpm($rs['rpm']);
@@ -158,9 +154,6 @@
             while ($rs = $result->fetch()) {
                 $vwPersonal = new VwPersonal();
                 $vwPersonal->setIdPersonal($rs['idPersonal']);
-                $vwPersonal->setArea($rs['area']);
-                $vwPersonal->setAreaGeneral ($rs['areaGeneral']);
-                $vwPersonal->setEstablecimiento($rs['establecimiento']);
                 $vwPersonal->setNombreCompleto($rs['nombreCompleto']);
                 $vwPersonal->setCorreo($rs['correo']);
                 $vwPersonal->setRpm($rs['rpm']);

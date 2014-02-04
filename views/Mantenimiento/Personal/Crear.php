@@ -7,15 +7,11 @@
       
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
-        <link rel="stylesheet" type="text/css" href="resources/css/jquery.treeview.css"/>
       
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
-        <script type="text/javascript" src="resources/js/template.areaSelect.js"></script>
-        <script type="text/javascript" src="resources/js/jquery.cookie.js"></script>
-        <script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtNombres'));
@@ -41,12 +37,6 @@
                 $('button.next').button();
                 $('button.prev').button();
                    
-                $('form').submit(function() {
-                    if(!$('#txtAreaSeleccionada').text().length) {
-                        alert('Debes elegir una area');
-                        return false;
-                    }
-                });
             });
         </script>
         
@@ -100,15 +90,6 @@
                             <div id="institucional">
                                 <table>
                                     <tr>
-                                        <td><label for="btnAreaSuperior">Área Superior</label></td>
-                                        <td>
-                                            <button id="btnAreaSuperior" type="button">Seleccionar</button>
-                                            <span id="txtAreaSeleccionada"></span>
-                                            <input id="hdnEstablecimiento" type="hidden" name="idEstablecimiento" value=""/>
-                                            <input id="hdnArea" type="hidden" name="idArea" value=""/>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td><label for="txtCorreo">Correo Institucional</label></td>
                                         <td><input id="txtCorreo" type="text" name="correo" placeholder="Escribe el correo"/></td>  
                                     </tr>
@@ -135,61 +116,6 @@
                                 <td colspan="2"><a href="?controller=Personal">Regresar</a></td>
                             </tr>
                         </table>     
-                        <div id="areaSelect" title="Seleccionar Area">         
-                            <p>Selecciona una Area</p>
-                            <?php
-                                function tieneHijos($padre, $areas) {
-                                    foreach ($areas as $area) {
-                                        if($padre->getIdArea() == $area->getSuperIdArea()) 
-                                            return true;
-                                    }
-                                    return false;
-                                }
-                                
-                                function mostrarHijosEstablecimiento($padre, $areas) {
-                                    if(is_array($areas)) {
-                                        foreach ($areas as $area) {
-                                            if($padre->getIdEstablecimiento() == $area->getIdEstablecimiento() && $area->getSuperIdArea() == null) {
-                                                echo "<li><button type='button' title='Area'><input type='hidden' value='" . $area->getIdArea() ."'/>" . $area->getDescripcion() . "</button>";
-                                                if(tieneHijos($area, $areas)) {
-                                                    echo "<ul>";
-                                                    mostrarHijos($area, $areas);
-                                                    echo "</ul>";
-                                                }
-                                                echo "</li>";
-                                            }
-                                        }
-                                    }
-                                }
-                                
-                                function mostrarHijos($padre, $areas) {
-                                    foreach ($areas as $area) {
-                                        if($padre->getIdArea() == $area->getSuperIdArea()) {
-                                            echo "<li><button type='button' title='Area'><input type='hidden' value='" . $area->getIdArea() ."'/>" . $area->getDescripcion() . "</button>";
-                                            if(tieneHijos($area, $areas)) {
-                                                echo "<ul>";
-                                                mostrarHijos($area, $areas);
-                                                echo "</ul>";
-                                            }
-                                            echo "</li>";
-                                        }
-                                    }
-                                }
-                                
-                                if(is_array($establecimientos)) {
-                                    echo "<ul id='ulArea' class='treeview-blue'>";
-                                    foreach($establecimientos as $establecimiento) {
-                                        echo "<li><button type='button' title='Establecimiento'><input type='hidden' value='" . $establecimiento->getIdEstablecimiento() ."'/>" . $establecimiento->getDescripcion() . "</button>";
-                                        echo "<ul>";
-                                        mostrarHijosEstablecimiento($establecimiento, $areas);
-                                        echo "</ul>";
-                                        echo "</li>";
-                                    }
-                                    echo "</ul>";
-                                }
-                            ?>
-                            <button id="btnSeleccionar" type="button">Seleccionar</button>
-                        </div>
                     </fieldset>               
                 </form>
             </article>

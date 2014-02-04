@@ -7,19 +7,13 @@
      */
     class VwPersonal implements AppModel {
         private $idPersonal;
-        private $area;
-        private $areaGeneral;
-        private $establecimeinto;
         private $nombreCompleto;
         private $correo;
         private $rpm;
         private $anexo;
         
-        public function __construct($idPersonal = "", $area = "", $areaGeneral = "", $establecimiento = "", $nombreCompleto= "", $correo = "", $rpm = "", $anexo = "") {
+        public function __construct($idPersonal = "", $nombreCompleto= "", $correo = "", $rpm = "", $anexo = "") {
             $this->idPersonal = $idPersonal;
-            $this->area = $area;
-            $this->areaGeneral = $areaGeneral;
-            $this->establecimeinto = $establecimiento;
             $this->nombreCompleto = $nombreCompleto;
             $this->correo = $correo;
             $this->rpm = $rpm;
@@ -34,30 +28,6 @@
          
         public function getIdPersonal() {
             return $this->idPersonal;
-        }
-        
-        public function setArea($area) {
-            $this->area = $area;
-        }
-        
-        public function getArea() {
-            return $this->area;
-        }
-             
-        public function setAreaGeneral($areaGeneral) {
-            $this->areaGeneral = $areaGeneral;
-        }
-        
-        public function getAreaGeneral() {
-            return $this->areaGeneral;
-        }
-        
-        public function setEstablecimiento($establecimiento) {
-            $this->establecimeinto = $establecimiento;
-        }
-        
-        public function getEstablecimiento() {
-            return $this->establecimeinto;
         }
         
         public function setNombreCompleto($nombreCompleto) {

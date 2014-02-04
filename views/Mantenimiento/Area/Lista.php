@@ -65,7 +65,8 @@
                                     <li><a href="?controller=Area&action=Detalle&idArea=<?php echo $vwArea->getIdArea(); ?>">Detalle</a></li>
                                     <li><a href="?controller=Area&action=Editar&idArea=<?php echo $vwArea->getIdArea(); ?>">Editar</a></li>
                                     <li><a href="?controller=Area&action=Eliminar&idArea=<?php echo $vwArea->getIdArea(); ?>">Eliminar</a></li>
-                                </ul>
+                                    <li><a href="?controller=Area&action=AsignarPersonal&idArea=<?php echo $vwArea->getIdArea(); ?>"><span class="ui-icon ui-icon-arrowreturnthick-1-e"> </span>Asg. Per.</a></li>
+                                 </ul>
                             </td>
                         </tr>
                         <?php

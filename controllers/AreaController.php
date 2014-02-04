@@ -141,5 +141,13 @@
                 echo DependenciaDAO::toXml($dependencias);
             }
         }
+        
+        public static function AsignarPersonalAction() { 
+            if(isset($_GET['idArea'])) {
+                $vwArea = current(AreaDAO::getVwBy("idArea", $_GET['idArea']));
+            }
+            require_once './views/Mantenimiento/Area/AsignarPersonal.php';
+        }
+        
     }
 ?>
