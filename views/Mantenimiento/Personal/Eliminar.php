@@ -43,18 +43,6 @@
                                 <td><?php echo $vwPersonal->getIdPersonal(); ?></td>
                             </tr>
                             <tr>
-                                <td><strong>Área:</strong></td>
-                                <td><?php echo $vwPersonal->getArea(); ?></td>  
-                            </tr>
-                            <tr>
-                                <td><strong>Área General:</strong></td>
-                                <td><?php echo $vwPersonal->getAreaGeneral(); ?></td>  
-                            </tr>
-                            <tr>
-                                <td><strong>Establecimiento:</strong></td>
-                                <td><?php echo $vwPersonal->getEstablecimiento(); ?></td>  
-                            </tr>
-                            <tr>
                                 <td><strong>Nombre Completo:</strong></td>
                                 <td><?php echo $vwPersonal->getNombreCompleto(); ?></td>
                             </tr>

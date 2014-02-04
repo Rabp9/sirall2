@@ -28,8 +28,6 @@
                 require_once "views/Home/Error_Permisos.php";
                 return;
             }
-            $establecimientos = EstablecimientoDAO::getAll();
-            $areas = AreaDAO::getAll();
             require_once './views/Mantenimiento/Personal/Crear.php';
         }
         
@@ -44,7 +42,7 @@
                 $personal->setRpm($_POST['rpm']);
                 $personal->setAnexo($_POST['anexo']);
                 $personal->activar();
-                PersonalDAO::crearUSP($personal->getIdPersonal(), $personal->getNombres(), $personal->getApellidoPaterno(), $personal->getApellidoMaterno(), $personal->getCorreo(), $personal->getRpm(), $personal->getAnexo(), $_POST["idArea"]) ?
+                PersonalDAO::crear($personal) ?
                     $mensaje = "Personal guardado correctamente" :
                     $mensaje = "El Personal no fue guardado correctamente";
             }
@@ -69,11 +67,7 @@
                 return;
             }
             if(isset($_GET['idPersonal'])) {
-                $establecimientos = EstablecimientoDAO::getAll();
-                $areas = AreaDAO::getAll();
                 $personal = current(PersonalDAO::getBy("idPersonal", $_GET['idPersonal']));
-                if(is_array(PersonalAreaDetalleDAO::getBy("idPersonal", $_GET['idPersonal'])))
-                    $personalAreaDetalle = current(PersonalAreaDetalleDAO::getBy("idPersonal", $_GET['idPersonal']));
                 require_once './views/Mantenimiento/Personal/Editar.php';
             }
         }
@@ -89,7 +83,7 @@
                 $personal->setRpm($_POST['rpm']);
                 $personal->setAnexo($_POST['anexo']);
                 $personal->activar();
-                PersonalDAO::editarUSP($personal->getIdPersonal(), $personal->getNombres(), $personal->getApellidoPaterno(), $personal->getApellidoMaterno(), $personal->getCorreo(), $personal->getRpm(), $personal->getAnexo(), $_POST["idArea"]) ?
+                PersonalDAO::editar($personal) ?
                     $mensaje = "Personal modificado correctamente" :
                     $mensaje = "El Personal no fue modificado correctamente";
             }
@@ -112,7 +106,7 @@
             if(isset($_POST)) {
                 $personal = new Personal();
                 $personal->setIdPersonal($_POST['idPersonal']);
-                PersonalDAO::eliminarUSP($personal->getIdPersonal()) ?
+                PersonalDAO::eliminar($personal) ?
                     $mensaje = "Personal eliminado correctamente" :
                     $mensaje = "El Personal no fue eliminado correctamente";
             }
