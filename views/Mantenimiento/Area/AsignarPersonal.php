@@ -14,6 +14,17 @@
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
             
         <script type="text/javascript">
+            $(document).ready(function() {
+                $('#btnIdPersonal').button({
+                    icons: {
+                        primary: "ui-icon-search"
+                    },
+                    text: false
+                });
+                $('#btnIdPersonal').css('height', parseInt($("#txtIdPersonal").css('height')) + 8);
+                $("#txtIdPersonal").css('width', parseInt($("#txtIdPersonal").css('width')) - 48);
+                 
+            });
         </script>
         
         <title>SIRALL2 - Asignar Personal</title>
