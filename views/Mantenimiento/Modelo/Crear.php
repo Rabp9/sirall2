@@ -4,17 +4,18 @@
 <html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      
+        
         <link rel="stylesheet" type="text/css" href="resources/css/start/jquery-ui-1.10.3.custom.min.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/template.css"/>
         <link rel="stylesheet" type="text/css" href="resources/css/jquery.dataTables_themeroller.css"/>
-      
+        
         <script type="text/javascript" src="resources/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
         <script type="text/javascript" src="resources/js/template.default.js"></script>
         <script type="text/javascript" src="resources/js/template.funciones.js"></script>
         <script type="text/javascript" src="resources/js/template.lista.js"></script>
         <script type="text/javascript" src="resources/js/jquery.dataTables.min.js"></script>
+     
         <script type="text/javascript">
             $(document).ready(function() {
                 isRequired($('#txtDescripcion'));
@@ -197,6 +198,8 @@
                 // FIN Validar
             });
         </script>
+        
+      
         
         <title>SIRALL2 - Crear Modelo</title>
     </head>

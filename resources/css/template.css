@@ -164,6 +164,10 @@ button.btnSeleccionarRepuesto {
     height: 30px;
 }
 
+button.btnSeleccionarPersonal {
+    height: 30px;
+}
+
 .textareaObservacion1 {
     resize: none;
     width: 600px;
