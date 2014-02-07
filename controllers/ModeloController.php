@@ -5,6 +5,7 @@
     require_once './DAO/ModeloDAO.php';
     require_once './DAO/TipoEquipoDAO.php';
     require_once './DAO/MarcaDAO.php';
+    require_once './DAO/PersonalDAO.php';
     
     class ModeloController implements AppController {
         

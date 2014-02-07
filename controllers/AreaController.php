@@ -4,6 +4,7 @@
     require_once './controllers/AppController.php';
     require_once './DAO/EstablecimientoDAO.php';
     require_once './DAO/AreaDAO.php';
+    require_once './DAO/PersonalDAO.php';
     
     class AreaController implements AppController {
         
@@ -145,8 +146,18 @@
         public static function AsignarPersonalAction() { 
             if(isset($_GET['idArea'])) {
                 $vwArea = current(AreaDAO::getVwBy("idArea", $_GET['idArea']));
+                $vwPersonales = PersonalDAO::getVwPersonal();
             }
             require_once './views/Mantenimiento/Area/AsignarPersonal.php';
+        }
+        
+        public static function AsignarPersonalPOSTAction() { 
+            if(isset($_POST)) {
+                var_dump($_POST);
+                $personalAreaDetalle = new PersonalAreaDetalle();
+            }
+            $vwAreas = AreaDAO::getVwArea();
+            require_once './views/Mantenimiento/Area/Lista.php';
         }
         
     }
